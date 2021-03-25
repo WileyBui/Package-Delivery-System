@@ -19,6 +19,7 @@ Drone::Drone(const picojson::object& val) {
   details = val;
   battery = Battery(10000);
   package = NULL;
+  type = "carrier";
 }
 
 Drone::Drone(Drone& cpy){
@@ -33,89 +34,7 @@ Drone::Drone(Drone& cpy){
   battery = cpy.battery;
   package = cpy.package;
   speed = cpy.speed;
-}
-
-
-bool Drone::BatteryDead() {
-  return battery.IsDead();
-}
-
-bool Drone::Charging(float sec){
-  return battery.Charging(sec);
-}
-
-bool Drone::HavePackage() {
-  if (package == NULL) {
-    return false;
-  }
-  else {
-    return true;
-  }
-}
-
-Package* Drone::GetPackage(){
-  return package;
-}
-
-bool Drone::AddPackage(Package* arg){
-  dynamic = true;
-  if (HavePackage()) {
-    return false;
-  }
-  else {
-    package = arg;
-    return true;
-  }
-}
-
-Package* Drone::DropPackage(){
-  Package* drop;
-  drop = package;
-  if (package!=NULL) {
-    package->Deliver();
-    package = NULL;
-  }
-  return drop;
-}
-
-void Drone::SetPosition(std::vector<float> agr){
-  position.clear();
-  position = agr;
-}
-
-void Drone::SetSpeed(float s){
-  if (s>=0){
-    speed = s;
-  }
-}
-float Drone::GetSpeed() {
-  return speed;
-}
-
-void Drone::AddPosition(std::vector<float> v){
-  route.push_back(v);
-  dynamic = true;
-}
-
-std::vector<float> Drone::NextPosition() {
-  std::vector<float> temp;
-  // Check for next position, if there is none, return current position
-  if (route.size()>0) {
-    temp = route[0];
-  }
-  else {
-    temp = position;
-  }
-  return temp;
-}
-
-void Drone::PopPosition(){
-  if (route.size()>0){
-    route.erase(route.begin());
-  }
-  if (route.size() == 0){
-    dynamic = false;
-  }
+  type = "carrier";
 }
 
 

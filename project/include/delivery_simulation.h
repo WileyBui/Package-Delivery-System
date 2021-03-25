@@ -14,7 +14,7 @@
 #include "drone_factory.h"
 #include "customer_factory.h"
 #include "package_factory.h"
-
+#include "carrier.h"
 
 namespace csci3081 {
 
@@ -122,7 +122,13 @@ class DeliverySimulation : public IDeliverySystem {
    */
   void RunScript(const picojson::array& script, IEntitySystem* system) const;
 
-  IEntity* AvailableCarrier(IEntity* package);
+  /**
+  * @brief Return pointer to the most suitable available carrier (e.g. drone, robot, etc)
+  * to deliver a package. Choose the one available, not out of battery, closest
+  * to the package
+  */
+  Carrier* AvailableCarrier(IEntity* package);
+
  private:
   // You don't strictly need to use the following variable, but it is probably
   // the most straightforward way of storing the entities in the system.
