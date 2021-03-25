@@ -41,7 +41,9 @@ int main(int argc, char**argv) {
     }
 
     // Run the simulation
-    while (viewer.Run()) {}
+    while (viewer.Run()) {
+      // deliverySystem->Update(0.5);
+    }
     delete entitySystem;
   }
 

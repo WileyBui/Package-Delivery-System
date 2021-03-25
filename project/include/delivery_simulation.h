@@ -10,6 +10,11 @@
 #include <EntityProject/facade/delivery_system.h>
 #include <vector>
 #include <string>
+#include "composite_factory.h"
+#include "drone_factory.h"
+#include "customer_factory.h"
+#include "package_factory.h"
+
 
 namespace csci3081 {
 
@@ -117,11 +122,15 @@ class DeliverySimulation : public IDeliverySystem {
    */
   void RunScript(const picojson::array& script, IEntitySystem* system) const;
 
+  IEntity* AvailableCarrier(IEntity* package);
  private:
   // You don't strictly need to use the following variable, but it is probably
   // the most straightforward way of storing the entities in the system.
   // Feel free to use it as is or change it.
   std::vector<IEntity*> entities_;
+  CompositeFactory* composite;
+  int numEntities;
+  const IGraph* graph;
 };
 
 }  // namespace csci3081
