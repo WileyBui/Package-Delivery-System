@@ -17,6 +17,7 @@ Customer::Customer(const picojson::object& val) {
   details = val;
   numPackageTotal = 0;
   numDeliveredPackage = 0;
+  type = "customer";
 }
 
 Customer::Customer(Customer& customer){
@@ -34,6 +35,7 @@ Customer::Customer(Customer& customer){
   details = customer.GetDetails();
   numPackageTotal = customer.GetNumPackageTotal();
   numDeliveredPackage = customer.GetNumDeliverPackage();
+  type = "customer";
 }
 
 void Customer::AddPackage(int packageID) {

@@ -18,6 +18,7 @@ Package::Package(const picojson::object& detail) {
   owner = NULL;
   carrier = NULL;
   delivered = false;
+  type = "package";
 }
 
 Package::Package(Package& package){
@@ -32,6 +33,7 @@ Package::Package(Package& package){
   owner = package.owner;
   carrier = package.carrier;
   delivered = package.delivered;
+  type = "package";
 }
 
 void Package::SetOwner(Customer* o){

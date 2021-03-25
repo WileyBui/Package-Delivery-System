@@ -48,6 +48,8 @@ TEST_F(CustomerTest, ConstructorAndGetter) {
   EXPECT_FLOAT_EQ(Lin.GetRadius(), radius) << "Normal Constructor or GetRadius does not work";
   EXPECT_EQ(Lin.GetVersion(),0) << "Normal Constructor or GetVersion does not work";
   EXPECT_EQ(Lin.IsDynamic(),false) << "Normal Constructor or IsDynamic does not work";
+  EXPECT_EQ(Lin.GetType(), "customer") << "Normal Constructor or GetType does not work";
+
 
   // Copy Constructor
   Customer Lin2(Lin);
@@ -60,6 +62,7 @@ TEST_F(CustomerTest, ConstructorAndGetter) {
   EXPECT_FLOAT_EQ(Lin2.GetDirection()[1], direction_to_add[1]) << "Copy Constructor or GetDirection does not work";
   EXPECT_FLOAT_EQ(Lin2.GetDirection()[2], direction_to_add[2]) << "Copy Constructor or GetDirection does not work";
   EXPECT_FLOAT_EQ(Lin2.GetRadius(), radius) << "Copy Constructor or GetRadius does not work";
+  EXPECT_EQ(Lin2.GetType(), "customer") << "Normal Constructor or GetType does not work";
   EXPECT_EQ(Lin2.GetVersion(),0) << "Copy Constructor or GetVersion does not work";
   EXPECT_EQ(Lin2.IsDynamic(),false) << "Copy Constructor or IsDynamic does not work";
 }
