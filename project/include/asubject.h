@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 #include <EntityProject/entity_observer.h>
+#include <EntityProject/entity.h>
+#include "json_helper.h"
 
 namespace csci3081 {
 
@@ -23,22 +25,22 @@ namespace csci3081 {
              * @brief Adds an observer to the list of observers for this subject
              * @param IEntityObserver* observer
              */
-            void Attach(IEntityObserver* observer);
+            void Attach(entity_project::IEntityObserver* observer);
             /**
              * @brief Deletes an observer from the list of observers for this subject
              * @param IEntityObserver* observer
              */
-            void Detach(IEntityObserver* observer);
+            void Detach(entity_project::IEntityObserver* observer);
             /**
              * @brief Sends out Notification to the observer watching this subject
              * @param std::string name
              * @param std::string value
              */
-            void Notify(std::string name, std::string value);
+            void Notify(picojson::value& event, const entity_project::IEntity& entity);
         private:
             /**
              * @brief List of pointers to the observers for this subject
              **/
-            std::vector <IEntityObserver*> list;
+            std::vector <entity_project::IEntityObserver*> list;
     };
 } // namespace 3081
