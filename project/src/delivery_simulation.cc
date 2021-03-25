@@ -45,7 +45,6 @@ void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {
 	Customer* owner = dynamic_cast<Customer*> (dest);
 	Package* pack = dynamic_cast<Package*> (package);
 	pack->SetOwner(owner);
-	owner->AddPackage(pack->GetId());
 }
 
 void DeliverySimulation::AddObserver(IEntityObserver* observer) {}
