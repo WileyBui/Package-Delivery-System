@@ -33,8 +33,8 @@ namespace csci3081 {
             void Detach(entity_project::IEntityObserver* observer);
             /**
              * @brief Sends out Notification to the observer watching this subject
-             * @param std::string name
-             * @param std::string value
+             * @param picojson::value& event 
+             * @param const entity_project::IEntity& entity
              */
             void Notify(picojson::value& event, const entity_project::IEntity& entity);
         private:
