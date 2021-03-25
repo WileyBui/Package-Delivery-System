@@ -14,7 +14,11 @@
 #include "drone_factory.h"
 #include "customer_factory.h"
 #include "package_factory.h"
+#include "carrier_factory.h"
+#include "drone.h"
 #include "carrier.h"
+#include "package.h"
+#include "customer.h"
 
 namespace csci3081 {
 

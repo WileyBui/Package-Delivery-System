@@ -9,8 +9,8 @@ DeliverySimulation::DeliverySimulation() {
 	numEntities = 0;
 	composite = new CompositeFactory();	
 	AddFactory(new PackageFactory());
-	AddFactory(new DroneFactory());
 	AddFactory(new CustomerFactory());
+	AddFactory(new CarrierFactory());
 }
 
 DeliverySimulation::~DeliverySimulation() {
