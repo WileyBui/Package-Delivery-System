@@ -9,6 +9,7 @@
  ******************************************************************************/
 #include <EntityProject/facade/delivery_system.h>
 #include "drone_factory.h"
+#include "robot_factory.h"
 #include <vector>
 #include <string>
 
