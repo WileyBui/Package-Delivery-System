@@ -73,7 +73,7 @@ void DeliverySimulation::Update(float dt) {
 		if (entity->GetType() == "package") {
 			package = dynamic_cast<Package*> (entities_.at(i));
 			owner = package->GetOwner();
-			if ((!package->IsDynamic()) && (owner!=NULL)) {
+			if ((!package->IsDynamic()) && (owner!=NULL) && (package->GetCarrier()==NULL)) {
 				Carrier* carrier = AvailableCarrier(package);
 				if (carrier!=NULL){
 					// Establish relationship between objects
