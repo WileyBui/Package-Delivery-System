@@ -25,7 +25,9 @@ class FactoryTest : public ::testing::Test {
  * Test Cases
  ******************************************************************************/
 
-TEST_F(FactoryTest, DroneFactory) {
+
+TEST_F(FactoryTest, CarrierFactory) {
+  // Drone
   picojson::object obj = JsonHelper::CreateJsonObject();
   JsonHelper::AddStringToJsonObject(obj, "type", "drone");
   JsonHelper::AddStringToJsonObject(obj, "name", "drone");

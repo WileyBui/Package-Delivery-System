@@ -63,6 +63,7 @@ TEST_F(DroneTest, ConstructorAndGetter) {
   EXPECT_FLOAT_EQ(SHINeeCD.GetDirection()[0], direction_to_add2[0]) << "Normal Constructor or GetDirection does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetDirection()[1], direction_to_add2[1]) << "Normal Constructor or GetDirection does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetDirection()[2], direction_to_add2[2]) << "Normal Constructor or GetDirection does not work";
+  EXPECT_EQ(SHINeeCD.GetType(), "carrier") << "Normal Constructor or GetType does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetRadius(), radius) << "Normal Constructor or GetRadius does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetSpeed(), speed) << "Normal Constructor or GetSpeed does not work";
   EXPECT_EQ(SHINeeCD.GetVersion(),0) << "Normal Constructor or GetVersion does not work";
@@ -85,6 +86,7 @@ TEST_F(DroneTest, CopyConstructorAndGetter) {
   EXPECT_FLOAT_EQ(SHINeeCD.GetDirection()[0], direction_to_add2[0]) << "Copy Constructor or GetDirection does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetDirection()[1], direction_to_add2[1]) << "Copy Constructor or GetDirection does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetDirection()[2], direction_to_add2[2]) << "Copy Constructor or GetDirection does not work";
+  EXPECT_EQ(SHINeeCD.GetType(), "carrier") << "Normal Constructor or GetType does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetRadius(), radius) << "Copy Constructor or GetRadius does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetSpeed(), speed) << "Copy Constructor or GetSpeed does not work";
   EXPECT_EQ(SHINeeCD.GetVersion(),0) << "Copy Constructor or GetVersion does not work";

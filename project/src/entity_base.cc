@@ -47,4 +47,8 @@ bool EntityBase::IsWithin(IEntity* another){
   }
   return false;
 }
+
+std::string EntityBase::GetType(){
+    return type;
+}
 }
