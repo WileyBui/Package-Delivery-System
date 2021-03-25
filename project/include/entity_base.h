@@ -8,6 +8,7 @@
  * Includes
  ******************************************************************************/
 #include <EntityProject/facade/delivery_system.h>
+#include <vector>
 
 namespace csci3081 {
 
@@ -26,11 +27,64 @@ namespace csci3081 {
 class EntityBase : public IEntity {
  public:
   virtual ~EntityBase() {}
- 
-  const picojson::object& GetDetails() { return details_; }
+  const picojson::object& GetDetails(); 
+  /**
+    * Return the unique ID of the drone
+    * param [out]: ID of the drone
+    **/
+  int GetId() const;
+
+  /**
+    * Return the name of the drone
+    * param [out]: name of the drone
+    **/
+  const std::string& GetName();
+
+  /**
+    * Return the position of the drone
+    * param [out]: position of the drone as vector of float
+    **/
+  const std::vector<float>& GetPosition() const;
+
+  /**
+    * Return the direction of the drone
+    * param [out]: direction of the drone as vector of float
+    **/
+  const std::vector<float>& GetDirection() const;
+
+  /**
+    * Return the radius of the drone
+    * param [out]: radius of the drone as vector of float
+    **/
+  float GetRadius() const;
+
+  /**
+    * Return the version of the drone
+    * param [out]: version of the drone as vector of float
+    **/
+  int GetVersion() const;
+
+  /**
+    * Return the dynamic of the drone
+    * param [out]: dynamic of the drone as vector of float
+    **/
+  bool IsDynamic() const;
+
+  virtual void Update(float dt) = 0;
+
+  float DistanceBetween(IEntity* another);
+
+  bool IsWithin(IEntity* another);
 
  protected:
-  picojson::object details_;
+    std::string name;
+    int ID;
+    std::vector<float> position;
+    std::vector<float> direction;
+    bool dynamic;
+    int version;
+    float radius;
+    picojson::object details;
 };
 
 }  // namespace csci3081
