@@ -16,6 +16,7 @@
 #include "package_factory.h"
 #include "carrier_factory.h"
 #include "drone.h"
+#include "robot.h"
 #include "carrier.h"
 #include "package.h"
 #include "customer.h"
@@ -28,7 +29,7 @@ namespace csci3081 {
 /**
  * @brief This is the facade for the delivery system
  *
- * This class will delegate operations for the whole drone delivery system.
+ * This class will delegate operations for the whole delivery system.
  * See the documentation for IDeliverySystem for more information.
  */
 

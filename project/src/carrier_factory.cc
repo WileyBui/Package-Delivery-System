@@ -6,6 +6,7 @@
 namespace csci3081 {
 CarrierFactory::CarrierFactory() {
     AddFactory(new DroneFactory());
+    AddFactory(new RobotFactory());
 };
 
 CarrierFactory::~CarrierFactory() {

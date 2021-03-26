@@ -42,7 +42,13 @@ Vector2D::Vector2D() {
 Vector2D::Vector2D(std::vector<float> arg) {
     x = arg.at(0);
     y = 0;
-    z = arg.at(1);
+
+    
+    if (arg.size() == 3) {
+        z = arg.at(2);
+    } else {
+        z = arg.at(1);
+    }
 }
 
 Vector2D::Vector2D(float x_, float z_) {
