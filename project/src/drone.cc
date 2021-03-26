@@ -13,7 +13,12 @@ Drone::Drone(const picojson::object& val) {
   name = JsonHelper::GetString(val, "name");
   speed = JsonHelper::GetDouble(val, "speed");
   radius = JsonHelper::GetDouble(val, "radius");
-  battery = JsonHelper::GetDouble(val, "duration");
+  try {
+    battery = Battery(JsonHelper::GetDouble(val, "battery_capacity"));
+  }
+  catch (std::logic_error a){
+    battery = Battery(10000);
+  }
   dynamic = false;
   version = 0;
   ID = EntityHash.nextNumber();
@@ -45,7 +50,10 @@ void Drone::Update(float dt){
 	float portion;
 	Vector3D result;
   if (IsDynamic()){
-    battery.Depleting(dt);
+    std::cout << dt << std::endl;
+    if (dt>GetBattery()){
+       dt = GetBattery();
+    }
     while (true) {
       nextPosition = NextPosition();
       distance = Distance(Vector3D(GetPosition()),Vector3D(nextPosition));
@@ -66,6 +74,7 @@ void Drone::Update(float dt){
         break;
       }
     }
+    battery.Depleting(dt);
     if (HavePackage()){
       Package *package = GetPackage();
       // Check the status of Package 
@@ -78,7 +87,7 @@ void Drone::Update(float dt){
       else {
         // Package is on the drone
         if (IsWithin(GetPackage()->GetOwner())){
-          DropPackage();
+          DropPackage()->Deliver();
           dynamic = false;
         }
       }
@@ -89,17 +98,17 @@ void Drone::Update(float dt){
   }  
 }
 
-// void Drone::GetStatus() {
-  // picojson::object notification_builder = JsonHelper::CreateJsonNotification();
-  // if (BatteryDead()){
-  //   JsonHelper::AddStringToJsonObject(notification_builder,"value","idle");
-  // }
-  // else {
-  //   JsonHelper::AddStringToJsonObject(notification_builder,"value","moving");
-  //   JsonHelper::AddStdVectorVectorFloatToJsonObject(notification_builder, "path", route);
-  // }
-  // picojson::value notification_to_send = JsonHelper::ConvertPicojsonObjectToValue(notification_builder);
-  // Notify(notification_to_send,*this);
-// }
+void Drone::GetStatus() {
+  picojson::object notification_builder = JsonHelper::CreateJsonNotification();
+  if (BatteryDead()){
+    JsonHelper::AddStringToJsonObject(notification_builder,"value","idle");
+  }
+  else {
+    JsonHelper::AddStringToJsonObject(notification_builder,"value","moving");
+    JsonHelper::AddStdVectorVectorFloatToJsonObject(notification_builder, "path", route);
+  }
+  picojson::value notification_to_send = JsonHelper::ConvertPicojsonObjectToValue(notification_builder);
+  Notify(notification_to_send,*this);
+}
 
 } // close namespace csci3081

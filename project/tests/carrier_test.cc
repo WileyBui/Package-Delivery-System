@@ -21,7 +21,7 @@ class CarrierTest : public ::testing::Test {
     std::vector<float> direction_to_add2;
     float radius = 1.0;
     float speed = 3.0;
-    float duration = 1.56;
+    float battery_capacity = 1.56;
  public:
   virtual void SetUp() {
     JsonHelper::AddStringToJsonObject(obj, "type", "Carrier");
@@ -44,10 +44,10 @@ class CarrierTest : public ::testing::Test {
     JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", direction_to_add);
     JsonHelper::AddStdFloatVectorToJsonObject(obj2, "direction", direction_to_add2);
     JsonHelper::AddFloatToJsonObject(obj, "radius", radius);
-    JsonHelper::AddFloatToJsonObject(obj, "duration", duration);
+    JsonHelper::AddFloatToJsonObject(obj, "battery_capacity", battery_capacity);
     JsonHelper::AddFloatToJsonObject(obj2, "radius", radius);
     JsonHelper::AddFloatToJsonObject(obj2, "speed", speed);
-    JsonHelper::AddFloatToJsonObject(obj2, "duration", duration);
+    JsonHelper::AddFloatToJsonObject(obj2, "battery_capacity", battery_capacity);
   }
   virtual void TearDown() {}
 };
@@ -70,7 +70,7 @@ TEST_F(CarrierTest, Getter) {
   EXPECT_FLOAT_EQ(carrier->GetDirection()[2], direction_to_add2[2]) << "Normal Constructor or GetDirection does not work";
   EXPECT_FLOAT_EQ(carrier->GetRadius(), radius) << "Normal Constructor or GetRadius does not work";
   EXPECT_FLOAT_EQ(carrier->GetSpeed(), speed) << "Normal Constructor or GetSpeed does not work";
-  EXPECT_FLOAT_EQ(carrier->GetBattery(), duration) << "Normal Constructor or GetSpeed does not work";
+  EXPECT_FLOAT_EQ(carrier->GetBattery(), battery_capacity) << "Normal Constructor or GetSpeed does not work";
   EXPECT_EQ(carrier->GetType(), "carrier") << "Normal Constructor or GetBattery does not work";
   EXPECT_EQ(carrier->GetVersion(),0) << "Normal Constructor or GetVersion does not work";
   EXPECT_FALSE(carrier->IsDynamic()) << "Normal Constructor or IsDynamic does not work";

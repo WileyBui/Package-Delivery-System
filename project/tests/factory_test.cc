@@ -43,8 +43,6 @@ TEST_F(FactoryTest, CarrierFactory) {
   JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", direction_to_add);
   JsonHelper::AddFloatToJsonObject(obj, "speed", 30.0);
   JsonHelper::AddFloatToJsonObject(obj, "radius", 1.0);
-  JsonHelper::AddFloatToJsonObject(obj, "duration", 1.56);
-
   IEntity* entity = system->CreateEntity(obj);
 
   // Checks that the returned entity is not NULL
@@ -57,7 +55,7 @@ TEST_F(FactoryTest, CarrierFactory) {
   ASSERT_FLOAT_EQ(entity->GetDirection()[0], direction_to_add[0]);
   ASSERT_FLOAT_EQ(entity->GetDirection()[1], direction_to_add[1]);
   ASSERT_FLOAT_EQ(entity->GetDirection()[2], direction_to_add[2]);
-
+  ASSERT_FLOAT_EQ(dynamic_cast<Carrier*> (entity)->GetBattery(), 10000);
   // Checks that when GetDetails() is called, the entity returns 
   //  the picojson object that was used to initialize it
   ASSERT_EQ(picojson::value(system->GetEntities()[0]->GetDetails()).serialize(), picojson::value(obj).serialize());

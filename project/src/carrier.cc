@@ -47,7 +47,6 @@ Package* Carrier::DropPackage(){
   Package* drop;
   drop = package;
   if (package!=NULL) {
-    package->Deliver();
     package = NULL;
   }
   return drop;
