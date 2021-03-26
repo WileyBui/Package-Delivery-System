@@ -28,7 +28,7 @@ class Battery {
         int BatteryID;              //!< Unique ID (interger presentation for each Battery istances)
         float maxCharge = 10000;      //!< The maximum capacity of the battery in secs
         float remainingLifeinSec;     //!< The remaining life of the battery in secs
-        bool isDead;                //!< Boolean attribute to see if the battery is below 20%
+        // bool isDead;                //!< Boolean attribute to see if the battery is below 20%
                                     //!< False if below 20%, true otherwise
         int displayBar;             //!< Bar represents the leftover capacity of the battery
                                     //!< Maximum of displayBar is 5

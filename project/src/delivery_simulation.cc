@@ -45,7 +45,6 @@ void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {
 	Customer* owner = dynamic_cast<Customer*> (dest);
 	Package* pack = dynamic_cast<Package*> (package);
 	pack->SetOwner(owner);
-	owner->AddPackage(pack->GetId());
 }
 
 void DeliverySimulation::AddObserver(IEntityObserver* observer) {}
@@ -73,7 +72,7 @@ void DeliverySimulation::Update(float dt) {
 		if (entity->GetType() == "package") {
 			package = dynamic_cast<Package*> (entities_.at(i));
 			owner = package->GetOwner();
-			if ((!package->IsDynamic()) && (owner!=NULL)) {
+			if ((!package->IsDynamic()) && (owner!=NULL) && (package->GetCarrier()==NULL)) {
 				Carrier* carrier = AvailableCarrier(package);
 				if (carrier!=NULL){
 					// Establish relationship between objects

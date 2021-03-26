@@ -11,6 +11,10 @@ bool Carrier::BatteryDead() {
   return battery.IsDead();
 }
 
+float Carrier::GetBattery() {
+  return battery.GetRemainingLife();
+}
+
 bool Carrier::Charging(float sec){
   return battery.Charging(sec);
 }
@@ -43,7 +47,6 @@ Package* Carrier::DropPackage(){
   Package* drop;
   drop = package;
   if (package!=NULL) {
-    package->Deliver();
     package = NULL;
   }
   return drop;

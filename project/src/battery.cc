@@ -1,19 +1,13 @@
 #include <iostream>
 #include "../include/battery.h"
 #include "../include/utils.h"
+#include <cmath>
 
 namespace csci3081 {
 
 Battery::Battery() {
     BatteryID = BatteryHash.nextNumber();
     remainingLifeinSec = 0;
-    displayBar = floor(remainingLifeinSec*5.0/maxCharge);
-    if (displayBar>1) {
-        isDead = false;
-    }
-    else {
-        isDead = true;
-    }
 }
 
 Battery::Battery(float remainingLifeinSec_) {
@@ -21,22 +15,11 @@ Battery::Battery(float remainingLifeinSec_) {
     if (remainingLifeinSec_ < 0) {                                  // invalid negative life
         remainingLifeinSec = 0;
     }
-    else if (remainingLifeinSec_ > 10000) {                         // over maximum capacity
-        remainingLifeinSec = 10000;
+    else if (remainingLifeinSec_ > maxCharge) {                         // over maximum capacity
+        remainingLifeinSec = maxCharge;
     }
     else {
         remainingLifeinSec = remainingLifeinSec_;
-    }
-
-    // Calculate displayBar
-    displayBar = floor(remainingLifeinSec*5.0/maxCharge);
-
-    // From DisplayBar determine the bool value of isDead
-    if (displayBar>1) {
-        isDead = false;
-    }
-    else {
-        isDead = true;
     }
 }
 
@@ -45,7 +28,10 @@ float Battery::GetRemainingLife() {
 }
 
 bool Battery::IsDead() {
-    return isDead;
+    if (remainingLifeinSec<1e-6) {
+        return true;
+    }
+    return false;
 }
 
 int Battery::GetId() {
@@ -56,21 +42,11 @@ void Battery::Depleting(float sec) {
     if (sec<=0){                                            // depleting invalid negative value
         return;
     }
-
     if (remainingLifeinSec>sec) {                           
         remainingLifeinSec = remainingLifeinSec - sec;
     }
     else {                                                  // Deplete more than remaining life
         remainingLifeinSec = 0;
-        isDead = true;
-    }
-
-    displayBar = floor(remainingLifeinSec*5.0/maxCharge);
-    if (displayBar>1) {
-        isDead = false;
-    }
-    else {
-        isDead = true;
     }
 }
 
@@ -84,14 +60,6 @@ bool Battery::Charging(float sec) {
     else {                                                      // Charge more than max capacity
         remainingLifeinSec = 10000;
     }
-    displayBar = floor(remainingLifeinSec*5.0/maxCharge);
-    if (displayBar>1) {
-        isDead = false;
-    }
-    else {
-        isDead = true;
-    }
-    return true;
 }
 
 
@@ -100,6 +68,7 @@ float Battery::TimeToFull() {
 }
 
 int Battery::GetDisplayBar() {
+    displayBar = floor(remainingLifeinSec*5.0/maxCharge);
     return displayBar;
 }
 }

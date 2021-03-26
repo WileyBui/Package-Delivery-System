@@ -123,6 +123,12 @@ class Carrier : public csci3081::EntityBase {
     * with the customer to drop off the package
     */
     virtual void Update(float dt) = 0;
+
+    /**
+    * @brief This returns the time in secs left in the carrier's battery
+    */
+    float GetBattery();
+
   protected: 
     Battery battery;
     Package* package;

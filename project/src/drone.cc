@@ -13,11 +13,16 @@ Drone::Drone(const picojson::object& val) {
   name = JsonHelper::GetString(val, "name");
   speed = JsonHelper::GetDouble(val, "speed");
   radius = JsonHelper::GetDouble(val, "radius");
+  try {
+    battery = Battery(JsonHelper::GetDouble(val, "battery_capacity"));
+  }
+  catch (std::logic_error a){
+    battery = Battery(10000);
+  }
   dynamic = false;
   version = 0;
   ID = EntityHash.nextNumber();
   details = val;
-  battery = Battery(10000);
   package = NULL;
   type = "carrier";
 }
@@ -44,49 +49,70 @@ void Drone::Update(float dt){
 	float time;
 	float portion;
 	Vector3D result;
+  GetStatus();
   if (IsDynamic()){
-    battery.Depleting(dt);
-    while (true) {
-      nextPosition = NextPosition();
-      distance = Distance(Vector3D(GetPosition()),Vector3D(nextPosition));
-      time = distance/GetSpeed();
-      if (time>=dt) {
-        portion = time/dt;
-        result = Vector3D(GetPosition())+((Vector3D(nextPosition)-Vector3D(GetPosition()))/portion);
-        SetPosition(toVectorFloat(result));
-        break;
-      }
-      else if (time > 0) {
-        SetPosition(nextPosition);
-        PopPosition();
-        dt = dt - time;
-      }
-      else if (time == 0) {
-        PopPosition();
-        break;
-      }
+    if (BatteryDead() & HavePackage()){
+      DropPackage()->SetCarrier(NULL);
+      dynamic = false;
+      route.clear();
+    }    
+    else if (dt>GetBattery()){
+       dt = GetBattery();
     }
-    if (HavePackage()){
-      Package *package = GetPackage();
-      // Check the status of Package 
-      if (!GetPackage()->IsDynamic()){
-        // Need the drone to pick up
-        if (IsWithin(package)){
-          GetPackage()->SetDynamic(true);
+    if (dt>0) {
+      battery.Depleting(dt);
+      while (true) {
+        nextPosition = NextPosition();
+        distance = Distance(Vector3D(GetPosition()),Vector3D(nextPosition));
+        time = distance/GetSpeed();
+        if (time>=dt) {
+          portion = time/dt;
+          result = Vector3D(GetPosition())+((Vector3D(nextPosition)-Vector3D(GetPosition()))/portion);
+          SetPosition(toVectorFloat(result));
+          break;
+        }
+        else if (time > 0) {
+          SetPosition(nextPosition);
+          PopPosition();
+          dt = dt - time;
+        }
+        else if (time == 0) {
+          PopPosition();
+          break;
         }
       }
-      else {
-        // Package is on the drone
-        if (IsWithin(GetPackage()->GetOwner())){
-          DropPackage();
-          dynamic = false;
+      if (HavePackage()){
+        Package *package = GetPackage();
+        // Check the status of Package 
+        if (!GetPackage()->IsDynamic()){
+          // Need the drone to pick up
+          if (IsWithin(package)){
+            GetPackage()->SetDynamic(true);
+          }
+        }
+        else {
+          // Package is on the drone
+          if (IsWithin(GetPackage()->GetOwner())){
+            DropPackage()->Deliver();
+            dynamic = false;
+          }
         }
       }
     }
   }
+}
+
+void Drone::GetStatus() {
+  picojson::object notification_builder = JsonHelper::CreateJsonNotification();
+  if (BatteryDead()){
+    JsonHelper::AddStringToJsonObject(notification_builder,"value","idle");
+  }
   else {
-    battery.Charging(dt);
-  }  
+    JsonHelper::AddStringToJsonObject(notification_builder,"value","moving");
+    JsonHelper::AddStdVectorVectorFloatToJsonObject(notification_builder, "path", route);
+  }
+  picojson::value notification_to_send = JsonHelper::ConvertPicojsonObjectToValue(notification_builder);
+  Notify(notification_to_send,*this);
 }
 
 } // close namespace csci3081
