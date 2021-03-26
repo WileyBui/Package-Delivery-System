@@ -9,7 +9,7 @@ namespace csci3081 {
 
 Robot::Robot(const picojson::object& val) {
   position  = JsonHelper::GetStdFloatVector(val, "position");
-  position.at(1) = 0;
+  // position.at(1) = 0;
   direction = JsonHelper::GetStdFloatVector(val, "direction");
   name      = JsonHelper::GetString(val, "name");
   speed     = JsonHelper::GetDouble(val, "speed");
@@ -25,7 +25,7 @@ Robot::Robot(const picojson::object& val) {
 
 Robot::Robot(Robot& cpy){
   position=cpy.position;
-  position.at(1) = 0;
+  // position.at(1) = 0;
   direction=cpy.direction;
   name = cpy.name;
   radius = cpy.radius;
@@ -45,17 +45,18 @@ void Robot::Update(float dt){
 	float distance;
 	float time;
 	float portion;
-	Vector2D result;
+
+	Vector3D result;
   if (IsDynamic()){
     battery.Depleting(dt);
     while (true) {
       nextPosition = NextPosition();
-      distance = Distance(Vector2D(GetPosition()),Vector2D(nextPosition));
+      distance = Distance(Vector3D(GetPosition()),Vector3D(nextPosition));
       
       time = distance/GetSpeed();
       if (time>=dt) {
         portion = time/dt;
-        result = Vector2D(GetPosition())+((Vector2D(nextPosition)-Vector2D(GetPosition()))/portion);
+        result = Vector3D(GetPosition())+((Vector3D(nextPosition)-Vector3D(GetPosition()))/portion);
         SetPosition(toVectorFloat(result));
         break;
       }
