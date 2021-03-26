@@ -49,6 +49,7 @@ void Drone::Update(float dt){
 	float time;
 	float portion;
 	Vector3D result;
+  GetStatus();
   if (IsDynamic()){
     if (BatteryDead() & HavePackage()){
       DropPackage()->SetCarrier(NULL);
@@ -99,9 +100,6 @@ void Drone::Update(float dt){
       }
     }
   }
-  // else {
-  //   battery.Charging(dt);
-  // }  
 }
 
 void Drone::GetStatus() {
