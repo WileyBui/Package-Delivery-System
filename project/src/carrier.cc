@@ -11,6 +11,10 @@ bool Carrier::BatteryDead() {
   return battery.IsDead();
 }
 
+float Carrier::GetBattery() {
+  return battery.GetRemainingLife();
+}
+
 bool Carrier::Charging(float sec){
   return battery.Charging(sec);
 }
