@@ -31,7 +31,7 @@ class Robot : public csci3081::Carrier {
   public:
     /**
       * Constructor, creates a Package object
-      * param[in] val    a picojson::object object that has the detail of the 
+      * param[in] val     a picojson::object object that has the detail of the 
       *                   package including name, position, direction, radius,
       *                   and speed 
     **/
@@ -41,7 +41,7 @@ class Robot : public csci3081::Carrier {
     * @brief Copy Constructor.
     * This creates a new instance of Package that has the same content
     * as the Package argument
-    * @param[in] cpy    Robot instance that wants to be copied
+    * @param[in] cpy      Robot instance that wants to be copied
     */
     Robot(Robot&);
 

@@ -9,7 +9,6 @@ namespace csci3081 {
 
 Robot::Robot(const picojson::object& val) {
   position  = JsonHelper::GetStdFloatVector(val, "position");
-  // position.at(1) = 0;
   direction = JsonHelper::GetStdFloatVector(val, "direction");
   name      = JsonHelper::GetString(val, "name");
   speed     = JsonHelper::GetDouble(val, "speed");
@@ -24,19 +23,18 @@ Robot::Robot(const picojson::object& val) {
 }
 
 Robot::Robot(Robot& cpy){
-  position=cpy.position;
-  // position.at(1) = 0;
-  direction=cpy.direction;
-  name = cpy.name;
-  radius = cpy.radius;
-  dynamic = cpy.dynamic;
-  version = cpy.version;
-  ID = cpy.ID;
-  details = cpy.details;
-  battery = cpy.battery;
-  package = cpy.package;
-  speed = cpy.speed;
-  type = "carrier";
+  position  = cpy.position;
+  direction = cpy.direction;
+  name      = cpy.name;
+  radius    = cpy.radius;
+  dynamic   = cpy.dynamic;
+  version   = cpy.version;
+  ID        = cpy.ID;
+  details   = cpy.details;
+  battery   = cpy.battery;
+  package   = cpy.package;
+  speed     = cpy.speed;
+  type      = "carrier";
 }
 
 
