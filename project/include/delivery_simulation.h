@@ -139,6 +139,8 @@ class DeliverySimulation : public IDeliverySystem {
   // the most straightforward way of storing the entities in the system.
   // Feel free to use it as is or change it.
   std::vector<IEntity*> entities_;
+  std::vector<IEntityObserver*> observers_;
+  std::vector<ASubject*> subjects_;
   CompositeFactory* composite;
   int numEntities;
   const IGraph* graph;

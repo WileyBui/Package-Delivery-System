@@ -18,7 +18,6 @@
 #include "package.h"
 #include "carrier.h"
 #include "vector.h"
-#include "asubject.h"
 
 namespace csci3081 {
 /*******************************************************************************
@@ -29,7 +28,7 @@ namespace csci3081 {
  * It stores the drone's name, ID, version, position, direction, speed, and 
  * dynamic mode.
  */
-class Drone : public csci3081::Carrier, public csci3081::ASubject {
+class Drone : public csci3081::Carrier {
 // class Drone : public csci3081::Carrier{
 
   public:
@@ -58,9 +57,6 @@ class Drone : public csci3081::Carrier, public csci3081::ASubject {
     */
     void Update(float dt);
 
-    /**
-    */
-    void GetStatus();
 };
 
 }

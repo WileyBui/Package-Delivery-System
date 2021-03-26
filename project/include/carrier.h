@@ -16,6 +16,7 @@
 #include <iostream>
 #include "battery.h"
 #include "package.h"
+#include "asubject.h"
 
 namespace csci3081 {
 /*******************************************************************************
@@ -26,7 +27,7 @@ namespace csci3081 {
  * An abstract base class for delivery transportation clases like Drone or Robot.
  * Robot and Drone inherited from Carrier
  */
-class Carrier : public csci3081::EntityBase {
+class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
   public:
     /**
     * @brief This links a package object to the carrier if the carrier is not  
@@ -128,6 +129,8 @@ class Carrier : public csci3081::EntityBase {
     * @brief This returns the time in secs left in the carrier's battery
     */
     float GetBattery();
+
+    void GetStatus();
 
   protected: 
     Battery battery;
