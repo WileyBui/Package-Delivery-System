@@ -51,8 +51,9 @@ void Drone::Update(float dt){
 	Vector3D result;
   if (IsDynamic()){
     if (BatteryDead() & HavePackage()){
-      DropPackage();
+      DropPackage()->SetCarrier(NULL);
       dynamic = false;
+      route.clear();
     }    
     else if (dt>GetBattery()){
        dt = GetBattery();
