@@ -13,11 +13,11 @@ Drone::Drone(const picojson::object& val) {
   name = JsonHelper::GetString(val, "name");
   speed = JsonHelper::GetDouble(val, "speed");
   radius = JsonHelper::GetDouble(val, "radius");
+  battery = JsonHelper::GetDouble(val, "duration");
   dynamic = false;
   version = 0;
   ID = EntityHash.nextNumber();
   details = val;
-  battery = Battery(10000);
   package = NULL;
   type = "carrier";
 }
@@ -88,5 +88,18 @@ void Drone::Update(float dt){
     battery.Charging(dt);
   }  
 }
+
+// void Drone::GetStatus() {
+  // picojson::object notification_builder = JsonHelper::CreateJsonNotification();
+  // if (BatteryDead()){
+  //   JsonHelper::AddStringToJsonObject(notification_builder,"value","idle");
+  // }
+  // else {
+  //   JsonHelper::AddStringToJsonObject(notification_builder,"value","moving");
+  //   JsonHelper::AddStdVectorVectorFloatToJsonObject(notification_builder, "path", route);
+  // }
+  // picojson::value notification_to_send = JsonHelper::ConvertPicojsonObjectToValue(notification_builder);
+  // Notify(notification_to_send,*this);
+// }
 
 } // close namespace csci3081

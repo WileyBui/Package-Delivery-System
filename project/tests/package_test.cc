@@ -21,6 +21,7 @@ class PackageTest : public ::testing::Test {
     std::vector<float> direction_to_add2;
     float radius = 1.0;
     float speed = 3;
+    float duration = 1.56;
  public:
   virtual void SetUp() {
     JsonHelper::AddStringToJsonObject(obj, "type", "customer");
@@ -51,6 +52,8 @@ class PackageTest : public ::testing::Test {
     JsonHelper::AddFloatToJsonObject(obj2, "radius", radius);
     JsonHelper::AddFloatToJsonObject(obj3, "radius", radius);
     JsonHelper::AddFloatToJsonObject(obj3, "speed", speed);
+    JsonHelper::AddFloatToJsonObject(obj2, "duration", duration);
+    JsonHelper::AddFloatToJsonObject(obj3, "duration", duration);
   }
   virtual void TearDown() {}
 };

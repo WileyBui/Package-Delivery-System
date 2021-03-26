@@ -43,6 +43,7 @@ TEST_F(FactoryTest, CarrierFactory) {
   JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", direction_to_add);
   JsonHelper::AddFloatToJsonObject(obj, "speed", 30.0);
   JsonHelper::AddFloatToJsonObject(obj, "radius", 1.0);
+  JsonHelper::AddFloatToJsonObject(obj, "duration", 1.56);
 
   IEntity* entity = system->CreateEntity(obj);
 
