@@ -35,6 +35,14 @@ void DeliverySimulation::AddFactory(IEntityFactory* factory) {
 
 void DeliverySimulation::AddEntity(IEntity* entity) { 
   	entities_.push_back(entity);
+	// Adding into subjects_ if entity is a derived class of ASubject
+	ASubject* subject;
+	if ((subject = dynamic_cast<ASubject*> (entity))!=0){
+		subjects_.push_back(subject);
+		for (int i = 0; i<observers_.size(); i++){
+			subject->Attach(observers_.at(i));
+		}
+	}
 }
 
 void DeliverySimulation::SetGraph(const IGraph* graph) {
@@ -47,9 +55,32 @@ void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {
 	pack->SetOwner(owner);
 }
 
-void DeliverySimulation::AddObserver(IEntityObserver* observer) {}
+void DeliverySimulation::AddObserver(IEntityObserver* observer) {
+	EntityBase* entity;
+	ASubject* subject;
+	// Adding new observe into the tracked list
+	observers_.push_back(observer);
+	for (int i = 0; i<subjects_.size(); i++) {
+		std::cout << i << std::endl;
+		subjects_.at(i)->Attach(observer); 
+	}
+}
 
-void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {}
+void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {
+	// Deleting from the observers list of DeliverySimulation
+	observers_.erase(std::remove(observers_.begin(), observers_.end(), observer), observers_.end());
+	// Deleting from each subjects
+	EntityBase* entity;
+	ASubject* subject;
+	for (int i = 0; i<numEntities; i++) {
+		entity = dynamic_cast<EntityBase*> (entities_.at(i));
+		// Right now only carrier has GetStatus, later can change condition to != "customer"
+		if (entity->GetType() == "carrier") {
+			subject = dynamic_cast<ASubject*> (entity);
+			subject->Detach(observer); 
+		}
+	}
+}
 
 const std::vector<IEntity*>& DeliverySimulation::GetEntities() const { 
 	return entities_; 
@@ -84,12 +115,19 @@ void DeliverySimulation::Update(float dt) {
 					for (int j = 0; j<path.size(); j++){
 						carrier->AddPosition(path.at(j));
 					}
-					// Adding path to customer
-					path = graph->GetPath(package->GetPosition(),owner->GetPosition());
-					for (int j = 0; j<path.size(); j++){
-						carrier->AddPosition(path.at(j));
-					}
+					carrier->GetStatus();
 				}
+			}
+		}
+		else if (entity->GetType() == "carrier") {
+			Carrier* carrier = dynamic_cast<Carrier*> (entities_.at(i));
+			if (carrier->HavePackage() && carrier->NextPosition() == carrier->GetPosition()){
+				// Adding path to customer
+				std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
+				for (int j = 0; j<path.size(); j++){
+					carrier->AddPosition(path.at(j));
+				}
+				carrier->GetStatus();
 			}
 		}
 	}

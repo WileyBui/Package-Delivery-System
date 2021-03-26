@@ -37,6 +37,16 @@ namespace csci3081 {
              * @param const entity_project::IEntity& entity
              */
             void Notify(picojson::value& event, const entity_project::IEntity& entity);
+
+            /**
+             * @brief Pure virtual function GetStatus that needs to implemented by derived
+             * class based on their types of notification. This function creates the arguments 
+             * required by Notify function and makes call to Notify function
+             * @param picojson::value& event 
+             * @param const entity_project::IEntity& entity
+             */
+            virtual void GetStatus() = 0;
+
         private:
             /**
              * @brief List of pointers to the observers for this subject

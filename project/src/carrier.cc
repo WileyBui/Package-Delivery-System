@@ -92,4 +92,17 @@ void Carrier::PopPosition(){
   }
 }
 
+void Carrier::GetStatus() {
+  picojson::object notification_builder = JsonHelper::CreateJsonNotification();
+  if (!IsDynamic()){
+    JsonHelper::AddStringToJsonObject(notification_builder,"value","idle");
+  }
+  else {
+    JsonHelper::AddStringToJsonObject(notification_builder,"value","moving");
+    JsonHelper::AddStdVectorVectorFloatToJsonObject(notification_builder, "path", route);
+  }
+  picojson::value notification_to_send = JsonHelper::ConvertPicojsonObjectToValue(notification_builder);
+  Notify(notification_to_send,*this);
+}
+
 } // close namespace csci3081

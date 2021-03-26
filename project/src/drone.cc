@@ -49,12 +49,12 @@ void Drone::Update(float dt){
 	float time;
 	float portion;
 	Vector3D result;
-  GetStatus();
   if (IsDynamic()){
     if (BatteryDead() & HavePackage()){
       DropPackage()->SetCarrier(NULL);
       dynamic = false;
       route.clear();
+      GetStatus();
     }    
     else if (dt>GetBattery()){
        dt = GetBattery();
@@ -95,6 +95,7 @@ void Drone::Update(float dt){
           if (IsWithin(GetPackage()->GetOwner())){
             DropPackage()->Deliver();
             dynamic = false;
+            GetStatus();
           }
         }
       }
@@ -102,17 +103,5 @@ void Drone::Update(float dt){
   }
 }
 
-void Drone::GetStatus() {
-  picojson::object notification_builder = JsonHelper::CreateJsonNotification();
-  if (BatteryDead()){
-    JsonHelper::AddStringToJsonObject(notification_builder,"value","idle");
-  }
-  else {
-    JsonHelper::AddStringToJsonObject(notification_builder,"value","moving");
-    JsonHelper::AddStdVectorVectorFloatToJsonObject(notification_builder, "path", route);
-  }
-  picojson::value notification_to_send = JsonHelper::ConvertPicojsonObjectToValue(notification_builder);
-  Notify(notification_to_send,*this);
-}
 
 } // close namespace csci3081
