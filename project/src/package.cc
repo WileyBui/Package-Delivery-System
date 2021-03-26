@@ -81,7 +81,7 @@ IEntity* Package::GetCarrier(){
 }
 
 void Package::Update(float dt){
-  if ((delivered==false) && (owner!=NULL) && (IsDynamic())) {
+  if ((delivered==false) && (owner!=NULL) && (IsDynamic()) && (GetCarrier()!=NULL)) {
         SetPosition(carrier->GetPosition());
   }
 }
