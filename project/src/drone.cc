@@ -50,52 +50,57 @@ void Drone::Update(float dt){
 	float portion;
 	Vector3D result;
   if (IsDynamic()){
-    std::cout << dt << std::endl;
-    if (dt>GetBattery()){
+    if (BatteryDead() & HavePackage()){
+      DropPackage();
+      dynamic = false;
+    }    
+    else if (dt>GetBattery()){
        dt = GetBattery();
     }
-    while (true) {
-      nextPosition = NextPosition();
-      distance = Distance(Vector3D(GetPosition()),Vector3D(nextPosition));
-      time = distance/GetSpeed();
-      if (time>=dt) {
-        portion = time/dt;
-        result = Vector3D(GetPosition())+((Vector3D(nextPosition)-Vector3D(GetPosition()))/portion);
-        SetPosition(toVectorFloat(result));
-        break;
-      }
-      else if (time > 0) {
-        SetPosition(nextPosition);
-        PopPosition();
-        dt = dt - time;
-      }
-      else if (time == 0) {
-        PopPosition();
-        break;
-      }
-    }
-    battery.Depleting(dt);
-    if (HavePackage()){
-      Package *package = GetPackage();
-      // Check the status of Package 
-      if (!GetPackage()->IsDynamic()){
-        // Need the drone to pick up
-        if (IsWithin(package)){
-          GetPackage()->SetDynamic(true);
+    if (dt>0) {
+      battery.Depleting(dt);
+      while (true) {
+        nextPosition = NextPosition();
+        distance = Distance(Vector3D(GetPosition()),Vector3D(nextPosition));
+        time = distance/GetSpeed();
+        if (time>=dt) {
+          portion = time/dt;
+          result = Vector3D(GetPosition())+((Vector3D(nextPosition)-Vector3D(GetPosition()))/portion);
+          SetPosition(toVectorFloat(result));
+          break;
+        }
+        else if (time > 0) {
+          SetPosition(nextPosition);
+          PopPosition();
+          dt = dt - time;
+        }
+        else if (time == 0) {
+          PopPosition();
+          break;
         }
       }
-      else {
-        // Package is on the drone
-        if (IsWithin(GetPackage()->GetOwner())){
-          DropPackage()->Deliver();
-          dynamic = false;
+      if (HavePackage()){
+        Package *package = GetPackage();
+        // Check the status of Package 
+        if (!GetPackage()->IsDynamic()){
+          // Need the drone to pick up
+          if (IsWithin(package)){
+            GetPackage()->SetDynamic(true);
+          }
+        }
+        else {
+          // Package is on the drone
+          if (IsWithin(GetPackage()->GetOwner())){
+            DropPackage()->Deliver();
+            dynamic = false;
+          }
         }
       }
     }
   }
-  else {
-    battery.Charging(dt);
-  }  
+  // else {
+  //   battery.Charging(dt);
+  // }  
 }
 
 void Drone::GetStatus() {
