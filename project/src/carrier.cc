@@ -104,5 +104,63 @@ void Carrier::GetStatus() {
   picojson::value notification_to_send = JsonHelper::ConvertPicojsonObjectToValue(notification_builder);
   Notify(notification_to_send,*this);
 }
-
+void Carrier::Update(float dt){
+  std::vector<float> nextPosition;
+	float distance;
+	float time;
+	float portion;
+	Vector3D result;
+  if (IsDynamic()){
+    if (BatteryDead() & HavePackage()){
+      DropPackage()->SetCarrier(NULL);
+      dynamic = false;
+      route.clear();
+      GetStatus();
+    }    
+    else if (dt>GetBattery()){
+       dt = GetBattery();
+    }
+    if (dt>0) {
+      battery.Depleting(dt);
+      while (true) {
+        nextPosition = NextPosition();
+        distance = Distance(Vector3D(GetPosition()),Vector3D(nextPosition));
+        time = distance/GetSpeed();
+        if (time>=dt) {
+          portion = time/dt;
+          result = Vector3D(GetPosition())+((Vector3D(nextPosition)-Vector3D(GetPosition()))/portion);
+          SetPosition(toVectorFloat(result));
+          break;
+        }
+        else if (time > 0) {
+          SetPosition(nextPosition);
+          PopPosition();
+          dt = dt - time;
+        }
+        else if (time == 0) {
+          PopPosition();
+          break;
+        }
+      }
+      if (HavePackage()){
+        Package *package = GetPackage();
+        // Check the status of Package 
+        if (!GetPackage()->IsDynamic()){
+          // Need the drone to pick up
+          if (IsWithin(package)){
+            GetPackage()->SetDynamic(true);
+          }
+        }
+        else {
+          // Package is on the drone
+          if (IsWithin(GetPackage()->GetOwner())){
+            DropPackage()->Deliver();
+            dynamic = false;
+            GetStatus();
+          }
+        }
+      }
+    }
+  }
+}
 } // close namespace csci3081

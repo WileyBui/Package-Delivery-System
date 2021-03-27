@@ -123,7 +123,7 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     * carrier is in within distance with the package to pick it up, or within distance
     * with the customer to drop off the package
     */
-    virtual void Update(float dt) = 0;
+    void Update(float dt);
 
     /**
     * @brief This returns the time in secs left in the carrier's battery
