@@ -97,12 +97,11 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     void SetPosition(std::vector<float> v);
 
     /**
-    * @brief This function adds a position to the carrier queue of position need 
-    * to move to. This is useful when use for the GetPath() function from 
-    * IGraph class
-    * @param agr    a std::vector<float> that has the position need to be added
+    * @brief This function adds a full route to route attribute of the carrier 
+    * This is useful when use for the GetPath() function from IGraph class
+    * @param agr    a std::vector<std::vector<float>> that has the positions need to be added
     */ 
-    void AddPosition(std::vector<float>); 
+    void SetRoute(std::vector<vector<float>>); 
 
     /**
     * @brief This function returns the next position in std::vector<float> in 
