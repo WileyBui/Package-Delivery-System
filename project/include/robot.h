@@ -44,15 +44,6 @@ class Robot : public csci3081::Carrier {
     * @param[in] cpy      Robot instance that wants to be copied
     */
     Robot(Robot&);
-
-    /**
-    * @brief This is an inherited method from EntityBase to use for DeliverySimulation.
-    * This updates the position of the robot on the simulation if the position changes
-    * and its dynamic is set to true. In addition, this function also checks if the
-    * robot is in within distance with the package to pick it up, or within distance
-    * with the customer to drop off the package
-    */
-    // void Update(float dt);
 };
 
 }

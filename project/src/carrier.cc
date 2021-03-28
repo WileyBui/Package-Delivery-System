@@ -66,8 +66,8 @@ float Carrier::GetSpeed() {
   return speed;
 }
 
-void Carrier::AddPosition(std::vector<float> v){
-  route.push_back(v);
+void Carrier::SetRoute(std::vector<std::vector<float>> v){
+  route = v;
   dynamic = true;
 }
 
