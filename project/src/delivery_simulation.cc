@@ -114,8 +114,8 @@ void DeliverySimulation::Update(float dt) {
 					// Adding path to package
 					std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
 					carrier->SetRoute(path);
-					carrier->GetStatus();
 					package->GetStatus();
+					carrier->GetStatus();
 				}
 			}
 		}
@@ -125,8 +125,8 @@ void DeliverySimulation::Update(float dt) {
 				// Adding path to customer
 				std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
 				carrier->SetRoute(path);
-				carrier->GetStatus();
 				carrier->GetPackage()->GetStatus();
+				carrier->GetStatus();
 			}
 		}
 	}
