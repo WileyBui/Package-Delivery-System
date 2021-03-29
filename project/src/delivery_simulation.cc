@@ -53,6 +53,7 @@ void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {
 	Customer* owner = dynamic_cast<Customer*> (dest);
 	Package* pack = dynamic_cast<Package*> (package);
 	pack->SetOwner(owner);
+	pack->GetStatus();
 }
 
 void DeliverySimulation::AddObserver(IEntityObserver* observer) {
@@ -114,6 +115,7 @@ void DeliverySimulation::Update(float dt) {
 					std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
 					carrier->SetRoute(path);
 					carrier->GetStatus();
+					package->GetStatus();
 				}
 			}
 		}
@@ -124,6 +126,7 @@ void DeliverySimulation::Update(float dt) {
 				std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
 				carrier->SetRoute(path);
 				carrier->GetStatus();
+				carrier->GetPackage()->GetStatus();
 			}
 		}
 	}

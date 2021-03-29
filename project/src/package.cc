@@ -53,6 +53,7 @@ void Package::Deliver(){
   disappear.push_back(0);
   delivered = true;
   carrier = NULL;
+  GetStatus();
   owner->PackageDeliver(ID);
   SetPosition(disappear);
 }
@@ -78,6 +79,25 @@ void Package::SetCarrier(IEntity* ve){
 
 IEntity* Package::GetCarrier(){
   return carrier;
+}
+
+void Package::GetStatus() {
+  picojson::object notification_builder = JsonHelper::CreateJsonNotification();
+  if (carrier != NULL){
+    if (IsDynamic()){
+      JsonHelper::AddStringToJsonObject(notification_builder,"value","en route");
+    }
+    else{
+      JsonHelper::AddStringToJsonObject(notification_builder,"value","scheduled");
+    }
+    picojson::value notification_to_send = JsonHelper::ConvertPicojsonObjectToValue(notification_builder);
+    Notify(notification_to_send,*this);
+  }
+  else if (delivered == true){
+    JsonHelper::AddStringToJsonObject(notification_builder,"value","delivered");
+    picojson::value notification_to_send = JsonHelper::ConvertPicojsonObjectToValue(notification_builder);
+    Notify(notification_to_send,*this);
+  }
 }
 
 void Package::Update(float dt){
