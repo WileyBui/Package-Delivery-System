@@ -70,8 +70,6 @@ class EntityBase : public IEntity {
     **/
   bool IsDynamic() const;
 
-  virtual void Update(float dt) = 0;
-
   float DistanceBetween(IEntity* another);
 
   bool IsWithin(IEntity* another);

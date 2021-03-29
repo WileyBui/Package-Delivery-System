@@ -67,7 +67,4 @@ bool Customer::PackageDeliver(int packageID){
   return false;
 }
 
-void Customer::Update(float dt){} // Should be empty since there is nothing to Update
-                                  // Here so that the simulation runs
-
 }
