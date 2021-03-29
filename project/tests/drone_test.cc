@@ -122,7 +122,7 @@ TEST_F(DroneTest, AddingPackage){
 }
  
 TEST_F(DroneTest, Route) {
-    // AddPosition
+    // SetPosition
     srand(0);
     std::vector<float> homie;
     std::vector<std::vector<float>> path;
@@ -135,8 +135,8 @@ TEST_F(DroneTest, Route) {
         homie.at(i) = rand()%100;
       }
       path.push_back(homie);
-      SHINeeCD.AddPosition(homie);
-      EXPECT_TRUE(SHINeeCD.IsDynamic()) << "AddPosition does not work";
+      SHINeeCD.SetPosition(homie);
+      EXPECT_TRUE(SHINeeCD.IsDynamic()) << "SetPosition does not work";
     }
 
     int j = 0;
@@ -148,7 +148,7 @@ TEST_F(DroneTest, Route) {
       SHINeeCD.PopPosition();
       j++;
     }
-    EXPECT_FALSE(SHINeeCD.IsDynamic()) << "AddPosition does not work";
+    EXPECT_FALSE(SHINeeCD.IsDynamic()) << "SetPosition does not work";
 }
 
 TEST_F(DroneTest, IsWithin){

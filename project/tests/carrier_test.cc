@@ -118,9 +118,10 @@ TEST_F(CarrierTest, Route) {
         homie.at(i) = rand()%100;
       }
       path.push_back(homie);
-      carrier->AddPosition(homie);
-      EXPECT_TRUE(carrier->IsDynamic()) << "AddPosition does not work";
     }
+
+    carrier->SetRoute(path);
+    EXPECT_TRUE(carrier->IsDynamic()) << "SetRoute does not work";
 
     int j = 0;
     for (int i = 0; i<9; i++){
@@ -131,7 +132,7 @@ TEST_F(CarrierTest, Route) {
       carrier->PopPosition();
       j++;
     }
-    EXPECT_FALSE(carrier->IsDynamic()) << "AddPosition does not work";
+    EXPECT_FALSE(carrier->IsDynamic()) << "SetRoute does not work";
 }
 
 TEST_F(CarrierTest, IsWithin){
