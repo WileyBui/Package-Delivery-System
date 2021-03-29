@@ -20,6 +20,7 @@ class RobotTest : public ::testing::Test {
     std::vector<float> direction_to_add2;
     float radius = 1.0;
     float speed = 3.0;
+    float battery_capacity = 10000;
  public:
   virtual void SetUp() {
     JsonHelper::AddStringToJsonObject(obj, "type", "Robot");
@@ -44,6 +45,8 @@ class RobotTest : public ::testing::Test {
     JsonHelper::AddFloatToJsonObject(obj, "radius", radius);
     JsonHelper::AddFloatToJsonObject(obj2, "radius", radius);
     JsonHelper::AddFloatToJsonObject(obj2, "speed", speed);
+    JsonHelper::AddFloatToJsonObject(obj2, "battery_capacity", battery_capacity);
+    JsonHelper::AddFloatToJsonObject(obj, "battery_capacity", battery_capacity);
   }
   virtual void TearDown() {}
 };
@@ -119,7 +122,7 @@ TEST_F(RobotTest, AddingPackage){
 }
 
 TEST_F(RobotTest, Route) {
-    // AddPosition
+    // SetPosition
     srand(0);
     std::vector<float> homie;
     std::vector<std::vector<float>> path;
@@ -132,9 +135,9 @@ TEST_F(RobotTest, Route) {
         homie.at(i) = rand()%100;
       }
       path.push_back(homie);
-      SHINeeCD.AddPosition(homie);
-      EXPECT_TRUE(SHINeeCD.IsDynamic()) << "AddPosition does not work";
     }
+    SHINeeCD.SetRoute(path);
+    EXPECT_TRUE(SHINeeCD.IsDynamic()) << "SetRoute does not work";
 
     int j = 0;
     for (int i = 0; i<9; i++){
@@ -145,7 +148,7 @@ TEST_F(RobotTest, Route) {
       SHINeeCD.PopPosition();
       j++;
     }
-    EXPECT_FALSE(SHINeeCD.IsDynamic()) << "AddPosition does not work";
+    EXPECT_FALSE(SHINeeCD.IsDynamic()) << "SetPosition does not work";
 }
 
 TEST_F(RobotTest, IsWithin){
@@ -182,7 +185,7 @@ TEST_F(RobotTest, UpdateAndBattery){
   EXPECT_TRUE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
   SHINeeCD.DropPackage();
   SHINeeCD.Update(10000);
-  EXPECT_FALSE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
+  EXPECT_TRUE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
 }
 
 

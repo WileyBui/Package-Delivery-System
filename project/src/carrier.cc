@@ -104,6 +104,7 @@ void Carrier::GetStatus() {
   picojson::value notification_to_send = JsonHelper::ConvertPicojsonObjectToValue(notification_builder);
   Notify(notification_to_send,*this);
 }
+
 void Carrier::Update(float dt){
   std::vector<float> nextPosition;
 	float distance;
