@@ -20,7 +20,7 @@ class DroneTest : public ::testing::Test {
     std::vector<float> direction_to_add2;
     float radius = 1.0;
     float speed = 3.0;
-    float battery_capacity = 1.56;
+    float battery_capacity = 10000;
  public:
   virtual void SetUp() {
     JsonHelper::AddStringToJsonObject(obj, "type", "Drone");
@@ -135,9 +135,9 @@ TEST_F(DroneTest, Route) {
         homie.at(i) = rand()%100;
       }
       path.push_back(homie);
-      SHINeeCD.SetPosition(homie);
-      EXPECT_TRUE(SHINeeCD.IsDynamic()) << "SetPosition does not work";
     }
+    SHINeeCD.SetRoute(path);
+    EXPECT_TRUE(SHINeeCD.IsDynamic()) << "SetRoute does not work";
 
     int j = 0;
     for (int i = 0; i<9; i++){
@@ -185,7 +185,7 @@ TEST_F(DroneTest, UpdateAndBattery){
   EXPECT_TRUE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
   SHINeeCD.DropPackage();
   SHINeeCD.Update(10000);
-  EXPECT_FALSE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
+  EXPECT_TRUE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
 }
 
 

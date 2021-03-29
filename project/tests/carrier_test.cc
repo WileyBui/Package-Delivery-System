@@ -21,7 +21,7 @@ class CarrierTest : public ::testing::Test {
     std::vector<float> direction_to_add2;
     float radius = 1.0;
     float speed = 3.0;
-    float battery_capacity = 1.56;
+    float battery_capacity = 10000;
  public:
   virtual void SetUp() {
     JsonHelper::AddStringToJsonObject(obj, "type", "Carrier");
@@ -172,7 +172,7 @@ TEST_F(CarrierTest, UpdateAndBattery){
   EXPECT_TRUE(carrier->BatteryDead()) << "BatteryDead does not work";
   carrier->DropPackage();
   carrier->Update(10000);
-  EXPECT_FALSE(carrier->BatteryDead()) << "BatteryDead does not work";
+  EXPECT_TRUE(carrier->BatteryDead()) << "BatteryDead does not work";
 }
 
 
