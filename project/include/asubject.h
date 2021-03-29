@@ -26,11 +26,13 @@ namespace csci3081 {
              * @param IEntityObserver* observer
              */
             void Attach(entity_project::IEntityObserver* observer);
+            
             /**
              * @brief Deletes an observer from the list of observers for this subject
              * @param IEntityObserver* observer
              */
             void Detach(entity_project::IEntityObserver* observer);
+
             /**
              * @brief Sends out Notification to the observer watching this subject
              * @param picojson::value& event 
@@ -46,6 +48,21 @@ namespace csci3081 {
              * @param const entity_project::IEntity& entity
              */
             virtual void GetStatus() = 0;
+
+            /**
+             * @brief Pure virtual function Update that needs to implemented by derived
+             * class based on their entity type. This function is used to advance time 
+             * in the simulation. 
+             * 
+             * @param float dt refers to the  amount of time the update call should advance
+             * the simulation by. For instance if a drone moves 1 unit of distance per unit 
+             * of time, and Update is called with dt=.05, then the drone should move 
+             * 1 * .05 = .05 units of distance.
+             * 
+             * Some things that should happen in the Update function: move drones, check if
+             * packages have been delivered to customers, etc. 
+             */
+            virtual void Update(float dt) = 0;
 
         private:
             /**

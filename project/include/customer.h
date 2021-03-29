@@ -68,13 +68,6 @@ class Customer : public csci3081::EntityBase {
     */
     int GetNumUndeliverPackage() const;
 
-    /**
-    * @brief Empty function Update. Have to be here because Update(float) in
-    * EntityBase is pure virtual
-    * @param[in] dt    time in float
-    */
-    void Update(float dt);
-
   private: 
     std::vector<int> packageIDVector;     
     std::vector<bool> deliveredPackage;

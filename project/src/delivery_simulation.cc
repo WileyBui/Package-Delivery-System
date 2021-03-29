@@ -90,6 +90,7 @@ const std::vector<IEntity*>& DeliverySimulation::GetEntities() const {
 void DeliverySimulation::Update(float dt) {
 	// Placeholder pointer
 	EntityBase *entity;
+	ASubject *subject;
 	Package* package;
 	Customer* owner;
 
@@ -97,8 +98,11 @@ void DeliverySimulation::Update(float dt) {
 	for (int i = 0; i<numEntities; i++) {
 		// Update dynamic entities_	
 		entity = dynamic_cast<EntityBase*> (entities_.at(i));
+		subject = dynamic_cast<ASubject*> (entities_.at(i));
+
 		if (entity->IsDynamic()){
-			entity->Update(dt);
+			// Only updating the carrier (drone & robot) and the package, customer doesn't need to move
+			subject->Update(dt); 
 		}
 		// See if there is any undeliverered package
 		if (entity->GetType() == "package") {
