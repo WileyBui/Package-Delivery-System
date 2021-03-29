@@ -1,5 +1,5 @@
 /**
- * @file Customer.h
+ * @file Package.h
  *
  * @copyright Lin Huynh, All rights reserved.
  */
@@ -14,6 +14,7 @@
 #include <vector>         // Used for vector like vector3D and vector2D
 #include <string>
 #include "customer.h"
+#include "asubject.h"
 
 namespace csci3081 {
 /*******************************************************************************
@@ -23,7 +24,7 @@ namespace csci3081 {
  * @brief A representation of a Package, inherited from EntityBase
  * It stores the Package's name, ID, version, position, direction, and dynamic mode.
  */
-class Package : public csci3081::EntityBase {
+class Package : public csci3081::EntityBase, public csci3081::ASubject{
   public:
     /**
       * Constructor, creates a Package object
@@ -93,7 +94,8 @@ class Package : public csci3081::EntityBase {
     * @brief This returns a TRUE if the package has been delivered, FALSE otherwise
     */
     bool IsDelivered();
-
+    
+    void GetStatus();
     /**
     * @brief This is an inherited method from EntityBase to use for DeliverySimulation.
     * This updates the position of the package on the simulation if the position changes

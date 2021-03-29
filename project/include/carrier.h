@@ -16,7 +16,7 @@
 #include <iostream>
 #include "battery.h"
 #include "package.h"
-#include "asubject.h"
+//#include "asubject.h"
 
 namespace csci3081 {
 /*******************************************************************************
