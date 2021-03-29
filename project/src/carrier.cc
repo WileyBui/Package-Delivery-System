@@ -112,7 +112,9 @@ void Carrier::Update(float dt){
 	Vector3D result;
   if (IsDynamic()){
     if (BatteryDead() & HavePackage()){
-      DropPackage()->SetCarrier(NULL);
+      Package* pack = DropPackage();
+      pack->SetCarrier(NULL);
+      pack->SetDynamic(false);
       dynamic = false;
       route.clear();
       GetStatus();
