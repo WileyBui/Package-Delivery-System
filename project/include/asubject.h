@@ -34,6 +34,11 @@ namespace csci3081 {
             void Detach(entity_project::IEntityObserver* observer);
 
             /**
+             * @brief Getter function for the list of observers (mostly used in testing)
+             * @return std::vector <entity_project::IEntityObserver*> list
+             */
+            std::vector <entity_project::IEntityObserver*> GetList();
+            /**
              * @brief Sends out Notification to the observer watching this subject
              * @param picojson::value& event 
              * @param const entity_project::IEntity& entity
@@ -64,7 +69,7 @@ namespace csci3081 {
              */
             virtual void Update(float dt) = 0;
 
-        private:
+        protected:
             /**
              * @brief List of pointers to the observers for this subject
              **/

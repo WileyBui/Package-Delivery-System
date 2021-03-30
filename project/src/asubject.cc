@@ -7,6 +7,9 @@ namespace csci3081 {
     void ASubject::Detach(entity_project::IEntityObserver* observer){
         list.erase(std::remove(list.begin(), list.end(), observer), list.end());
     }
+    std::vector <entity_project::IEntityObserver*> ASubject::GetList(){
+        return list;
+    }
     void ASubject::Notify(picojson::value& event, const entity_project::IEntity& entity){
         for (entity_project::IEntityObserver* observer : list){
             if (observer != NULL)
