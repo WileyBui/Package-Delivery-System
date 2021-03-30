@@ -1,14 +1,10 @@
 #include "gtest/gtest.h"
 #include "../include/battery.h"
-#include "../include/hash.h"
-#include "../include/utils.h"
 #include <iostream>
 #include <string>
 #include <vector>
 
 namespace csci3081 {
-
-Hash BatterHash = 10;
 
 class BatteryTesting : public ::testing::Test {
     protected:

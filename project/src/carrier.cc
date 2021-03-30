@@ -3,7 +3,6 @@
 #include "../include/battery.h"
 #include "../include/vector.h"
 #include "../include/json_helper.h"
-#include "../include/utils.h"
 
 namespace csci3081 {
 

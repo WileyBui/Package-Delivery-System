@@ -19,6 +19,13 @@ class GenerateId {
    */
   static int GenerateNewId();
 
+  /**
+   * Warning: this function SHOULD ONLY BE CALLED during Google Test cases.
+   * This function resets the ID counter back to 0. 
+   * @return Current reset ID.
+   */
+  int ResetId();
+
  private:
   static int id;
 };
