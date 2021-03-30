@@ -1,4 +1,0 @@
-3/25/21
-Worked with Lin
-I needed help with some of the include statements. We also worked together to figure out how to change the parameters of the 
-Notify function to access the picojson object and the entity.
