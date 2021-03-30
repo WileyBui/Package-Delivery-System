@@ -47,7 +47,7 @@ class ASubjectTest : public ::testing::Test {
  * Test Cases
  ******************************************************************************/
 
-TEST_F(ASubjectTest, AttachTest) {
+TEST_F(ASubjectTest, AttachDetatchTest) {
   Drone drone(obj);
   Package pack(obj);
   Robot robo(obj); 
@@ -67,30 +67,38 @@ TEST_F(ASubjectTest, AttachTest) {
   viewer.SetEntitySystem(entitySystem);
 
   entity_project::EntityConsoleLogger logger;
-    if (deliverySystem) {
-    //   deliverySystem->AddObserver(&logger);
-    //   deliverySystem->AddObserver(&viewer);
-    // }
-      ASSERT_EQ(drone.GetList().size(), 0)<< "List should not be populated yet in attach, for drone";
-      drone.Attach(&logger);
-      ASSERT_EQ(drone.GetList().size(), 1)<< "List should be populated to 1 in attach, for drone";
-      drone.Attach(&viewer);
-      ASSERT_EQ(drone.GetList().size(), 2)<< "List should be populated to 2 in attach, for drone";
 
-      ASSERT_EQ(pack.GetList().size(), 0)<< "List should not be populated yet in attach, for pack";
-      pack.Attach(&logger);
-      ASSERT_EQ(pack.GetList().size(), 1)<< "List should be populated to 1 in attach, for pack";
-      pack.Attach(&viewer);
-      ASSERT_EQ(pack.GetList().size(), 2)<< "List should be populated to 2 in attach, for pack";
+  if (deliverySystem) {
+    ASSERT_EQ(drone.GetList().size(), 0)<< "List should not be populated yet in attach, for drone";
+    drone.Attach(&logger);
+    ASSERT_EQ(drone.GetList().size(), 1)<< "List should be populated to 1 in attach, for drone";
+    drone.Attach(&viewer);
+    ASSERT_EQ(drone.GetList().size(), 2)<< "List should be populated to 2 in attach, for drone";
+    drone.Detach(&logger);
+    ASSERT_EQ(drone.GetList().size(), 1)<< "List size should decrease to 1 in detach, for drone";
+    drone.Detach(&viewer);
+    ASSERT_EQ(drone.GetList().size(), 0)<< "List size should decrease to 0 in detach, for drone";
 
-      ASSERT_EQ(robo.GetList().size(), 0)<< "List should not be populated yet in attach, for robo";
-      robo.Attach(&logger);
-      ASSERT_EQ(robo.GetList().size(), 1)<< "List should be populated to 1 in attach, for robo";
-      robo.Attach(&viewer);
-      ASSERT_EQ(robo.GetList().size(), 2)<< "List should be populated to 2 in attach, for robo";
-    }
+    ASSERT_EQ(pack.GetList().size(), 0)<< "List should not be populated yet in attach, for pack";
+    pack.Attach(&logger);
+    ASSERT_EQ(pack.GetList().size(), 1)<< "List should be populated to 1 in attach, for pack";
+    pack.Attach(&viewer);
+    ASSERT_EQ(pack.GetList().size(), 2)<< "List should be populated to 2 in attach, for pack";
+    pack.Detach(&logger);
+    ASSERT_EQ(pack.GetList().size(), 1)<< "List size should decrease to 1 in detach, for pack";
+    pack.Detach(&viewer);
+    ASSERT_EQ(pack.GetList().size(), 0)<< "List size should decrease to 0 in detach, for pack";
 
-  
+    ASSERT_EQ(robo.GetList().size(), 0)<< "List should not be populated yet in attach, for robo";
+    robo.Attach(&logger);
+    ASSERT_EQ(robo.GetList().size(), 1)<< "List should be populated to 1 in attach, for robo";
+    robo.Attach(&viewer);
+    ASSERT_EQ(robo.GetList().size(), 2)<< "List should be populated to 2 in attach, for robo";
+    robo.Detach(&logger);
+    ASSERT_EQ(robo.GetList().size(), 1)<< "List size should decrease to 1 in detach, for robo";
+    robo.Detach(&viewer);
+    ASSERT_EQ(robo.GetList().size(), 0)<< "List size should decrease to 0 in detach, for robo";
+  } 
 }
 
 }//namespace csci3081
