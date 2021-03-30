@@ -98,7 +98,12 @@ TEST_F(ASubjectTest, AttachDetatchTest) {
     ASSERT_EQ(robo.GetList().size(), 1)<< "List size should decrease to 1 in detach, for robo";
     robo.Detach(&viewer);
     ASSERT_EQ(robo.GetList().size(), 0)<< "List size should decrease to 0 in detach, for robo";
+
+    delete entitySystem;
   } 
 }
+
+TEST_F(ASubjectTest, NotifyTest) {} //since this function relies heavily on OnEvent which is provided for us,
+                                    // we decided that we would not test it
 
 }//namespace csci3081
