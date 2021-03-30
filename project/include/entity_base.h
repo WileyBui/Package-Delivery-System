@@ -70,11 +70,11 @@ class EntityBase : public IEntity {
     **/
   bool IsDynamic() const;
 
-  virtual void Update(float dt) = 0;
-
   float DistanceBetween(IEntity* another);
 
   bool IsWithin(IEntity* another);
+
+  std::string GetType();
 
  protected:
     std::string name;
@@ -84,6 +84,7 @@ class EntityBase : public IEntity {
     bool dynamic;
     int version;
     float radius;
+    std::string type;
     picojson::object details;
 };
 

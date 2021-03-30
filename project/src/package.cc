@@ -1,5 +1,5 @@
 #include "../include/entity_base.h"
-#include "../include/utils.h"
+#include "../include/generate_id.h"
 #include "json_helper.h"
 #include <EntityProject/entity.h>
 #include "../include/vector.h"
@@ -13,11 +13,12 @@ Package::Package(const picojson::object& detail) {
   radius = JsonHelper::GetDouble(detail, "radius");
   dynamic = false;
   version = 0;
-  ID = EntityHash.nextNumber();
+  ID = GenerateId::GenerateNewId();
   details = detail;
   owner = NULL;
   carrier = NULL;
   delivered = false;
+  type = "package";
 }
 
 Package::Package(Package& package){
@@ -32,6 +33,7 @@ Package::Package(Package& package){
   owner = package.owner;
   carrier = package.carrier;
   delivered = package.delivered;
+  type = "package";
 }
 
 void Package::SetOwner(Customer* o){
@@ -51,6 +53,7 @@ void Package::Deliver(){
   disappear.push_back(0);
   delivered = true;
   carrier = NULL;
+  GetStatus();
   owner->PackageDeliver(ID);
   SetPosition(disappear);
 }
@@ -78,8 +81,27 @@ IEntity* Package::GetCarrier(){
   return carrier;
 }
 
+void Package::GetStatus() {
+  picojson::object notification_builder = JsonHelper::CreateJsonNotification();
+  if (carrier != NULL){
+    if (IsDynamic()){
+      JsonHelper::AddStringToJsonObject(notification_builder,"value","en route");
+    }
+    else{
+      JsonHelper::AddStringToJsonObject(notification_builder,"value","scheduled");
+    }
+    picojson::value notification_to_send = JsonHelper::ConvertPicojsonObjectToValue(notification_builder);
+    Notify(notification_to_send,*this);
+  }
+  else if (delivered == true){
+    JsonHelper::AddStringToJsonObject(notification_builder,"value","delivered");
+    picojson::value notification_to_send = JsonHelper::ConvertPicojsonObjectToValue(notification_builder);
+    Notify(notification_to_send,*this);
+  }
+}
+
 void Package::Update(float dt){
-  if ((delivered==false) && (owner!=NULL) && (IsDynamic())) {
+  if ((delivered==false) && (owner!=NULL) && (IsDynamic()) && (GetCarrier()!=NULL)) {
         SetPosition(carrier->GetPosition());
   }
 }

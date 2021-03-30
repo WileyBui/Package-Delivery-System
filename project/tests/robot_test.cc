@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 #include <EntityProject/entity.h>
 #include "../include/package.h"
-#include "../include/drone.h"
+#include "../include/robot.h"
 #include "../include/customer.h"
 #include "json_helper.h"
 #include <iostream>
@@ -10,7 +10,7 @@ namespace csci3081 {
 
 using entity_project::IEntity;
 
-class DroneTest : public ::testing::Test {
+class RobotTest : public ::testing::Test {
  protected:
     picojson::object obj = JsonHelper::CreateJsonObject();
     picojson::object obj2 = JsonHelper::CreateJsonObject();
@@ -23,7 +23,7 @@ class DroneTest : public ::testing::Test {
     float battery_capacity = 10000;
  public:
   virtual void SetUp() {
-    JsonHelper::AddStringToJsonObject(obj, "type", "Drone");
+    JsonHelper::AddStringToJsonObject(obj, "type", "Robot");
     position_to_add.push_back(100);
     position_to_add.push_back(253.883);
     position_to_add.push_back(431.292);
@@ -55,10 +55,10 @@ class DroneTest : public ::testing::Test {
  * Test Cases
  ******************************************************************************/
 
-TEST_F(DroneTest, ConstructorAndGetter) {
+TEST_F(RobotTest, ConstructorAndGetter) {
   // Normal constructor
   // Customer Lin("Lin",position_to_add,direction_to_add,radius,obj);
-  Drone SHINeeCD(obj2);
+  Robot SHINeeCD(obj2);
   EXPECT_EQ(SHINeeCD.GetName(),"SHINeeCD") << "Normal Constructor or GetName does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetPosition()[0], position_to_add2[0]) << "Normal Constructor or GetPosition does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetPosition()[1], position_to_add2[1]) << "Normal Constructor or GetPosition does not work";
@@ -78,10 +78,10 @@ TEST_F(DroneTest, ConstructorAndGetter) {
   EXPECT_TRUE(SHINeeCD.DropPackage()==NULL) << "Normal Constructor or BatteryDead does not work";
 }
 
-TEST_F(DroneTest, CopyConstructorAndGetter) {
+TEST_F(RobotTest, CopyConstructorAndGetter) {
   // Normal constructor
-  Drone SHINeeCD2(obj2);
-  Drone SHINeeCD(SHINeeCD2);
+  Robot SHINeeCD2(obj2);
+  Robot SHINeeCD(SHINeeCD2);
   EXPECT_EQ(SHINeeCD.GetName(),"SHINeeCD") << "Copy Constructor or GetName does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetPosition()[0], position_to_add2[0]) << "Copy Constructor or GetPosition does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetPosition()[1], position_to_add2[1]) << "Copy Constructor or GetPosition does not work";
@@ -101,32 +101,32 @@ TEST_F(DroneTest, CopyConstructorAndGetter) {
   EXPECT_TRUE(SHINeeCD.DropPackage()==NULL) << "Copy Constructor or BatteryDead does not work";
 }
 
-TEST_F(DroneTest, AddingPackage){
-  Customer Lin(obj); 
-  Drone SM(obj2);
+TEST_F(RobotTest, AddingPackage){
+  Customer Lin(obj);
+  Robot SM(obj2);
   Package SHINeeCD(obj2);
   EXPECT_FLOAT_EQ(SM.DistanceBetween(&SHINeeCD), 0) << "DistanceBetween does not work";
   EXPECT_FLOAT_EQ(SM.DistanceBetween(&Lin), 5568.104575) << "DistanceBetween does not work";
 
   SHINeeCD.SetOwner(&Lin);
 
-  EXPECT_TRUE(SM.AddPackage(&SHINeeCD)) << "Add AddPackage does not work";  
+  EXPECT_TRUE(SM.AddPackage(&SHINeeCD)) << "Add AddPackage does not work";
   EXPECT_EQ(SM.GetPackage()->GetId(),SHINeeCD.GetId()) << "GetPackageID does not work";
-  EXPECT_TRUE(SM.HavePackage()) << "Add HavePackage does not work";  
-  
+  EXPECT_TRUE(SM.HavePackage()) << "Add HavePackage does not work";
+
   // Add another package
   Package SummerPackage(obj2);
-  EXPECT_FALSE(SM.AddPackage(&SummerPackage)) << "Add HavePackage does not work";  
+  EXPECT_FALSE(SM.AddPackage(&SummerPackage)) << "Add HavePackage does not work";
   SM.DropPackage();
-  EXPECT_TRUE(SM.AddPackage(&SummerPackage)) << "Add HavePackage does not work";  
+  EXPECT_TRUE(SM.AddPackage(&SummerPackage)) << "Add HavePackage does not work";
 }
- 
-TEST_F(DroneTest, Route) {
+
+TEST_F(RobotTest, Route) {
     // SetPosition
     srand(0);
     std::vector<float> homie;
     std::vector<std::vector<float>> path;
-    Drone SHINeeCD(obj2);
+    Robot SHINeeCD(obj2);
     homie.push_back(1);
     homie.push_back(2);
     homie.push_back(3);
@@ -151,16 +151,16 @@ TEST_F(DroneTest, Route) {
     EXPECT_FALSE(SHINeeCD.IsDynamic()) << "SetPosition does not work";
 }
 
-TEST_F(DroneTest, IsWithin){
-  Customer Lin(obj); 
-  Drone SM(obj2);
+TEST_F(RobotTest, IsWithin){
+  Customer Lin(obj);
+  Robot SM(obj2);
   Package SHINeeCD(obj2);
   EXPECT_FALSE(SM.IsWithin(&Lin));
-  EXPECT_TRUE(SM.IsWithin(&SHINeeCD));  
+  EXPECT_TRUE(SM.IsWithin(&SHINeeCD));
 }
 
-TEST_F(DroneTest, SetPosition){
-  Drone SHINeeCD(obj2);
+TEST_F(RobotTest, SetPosition){
+  Robot SHINeeCD(obj2);
   std::vector<float> placeHolder;
 	placeHolder.push_back(12.0);
 	placeHolder.push_back(15.0);
@@ -168,12 +168,12 @@ TEST_F(DroneTest, SetPosition){
   SHINeeCD.SetPosition(placeHolder);
   EXPECT_FLOAT_EQ(SHINeeCD.GetPosition()[0], placeHolder[0]) << "Normal Constructor or GetPosition does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetPosition()[1], placeHolder[1]) << "Normal Constructor or GetPosition does not work";
-  EXPECT_FLOAT_EQ(SHINeeCD.GetPosition()[2], placeHolder[2]) << "Normal Constructor or GetPosition does not work";   
+  EXPECT_FLOAT_EQ(SHINeeCD.GetPosition()[2], placeHolder[2]) << "Normal Constructor or GetPosition does not work";
 }
 
-TEST_F(DroneTest, UpdateAndBattery){
-  Drone SHINeeCD(obj2);
-  Customer Lin(obj2); 
+TEST_F(RobotTest, UpdateAndBattery){
+  Robot SHINeeCD(obj2);
+  Customer Lin(obj2);
   SHINeeCD.SetSpeed(0.0000000000001);
   SHINeeCD.Update(10);
   EXPECT_FALSE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
@@ -189,8 +189,8 @@ TEST_F(DroneTest, UpdateAndBattery){
 }
 
 
-TEST_F(DroneTest, SetSpeed){
-  Drone SHINeeCD(obj2);
+TEST_F(RobotTest, SetSpeed){
+  Robot SHINeeCD(obj2);
   SHINeeCD.SetSpeed(2.4);
   EXPECT_FLOAT_EQ(SHINeeCD.GetSpeed(),2.4) << "SetSpeed or GetSpeed is faulty";
   SHINeeCD.SetSpeed(-10.5);

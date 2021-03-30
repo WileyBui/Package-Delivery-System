@@ -21,6 +21,7 @@ class PackageTest : public ::testing::Test {
     std::vector<float> direction_to_add2;
     float radius = 1.0;
     float speed = 3;
+    float duration = 1.56;
  public:
   virtual void SetUp() {
     JsonHelper::AddStringToJsonObject(obj, "type", "customer");
@@ -51,6 +52,8 @@ class PackageTest : public ::testing::Test {
     JsonHelper::AddFloatToJsonObject(obj2, "radius", radius);
     JsonHelper::AddFloatToJsonObject(obj3, "radius", radius);
     JsonHelper::AddFloatToJsonObject(obj3, "speed", speed);
+    JsonHelper::AddFloatToJsonObject(obj2, "duration", duration);
+    JsonHelper::AddFloatToJsonObject(obj3, "duration", duration);
   }
   virtual void TearDown() {}
 };
@@ -69,6 +72,7 @@ TEST_F(PackageTest, ConstructorAndGetter) {
   EXPECT_FLOAT_EQ(SHINeeCD.GetDirection()[0], direction_to_add2[0]) << "Normal Constructor or GetDirection does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetDirection()[1], direction_to_add2[1]) << "Normal Constructor or GetDirection does not work";
   EXPECT_FLOAT_EQ(SHINeeCD.GetDirection()[2], direction_to_add2[2]) << "Normal Constructor or GetDirection does not work";
+  EXPECT_EQ(SHINeeCD.GetType(), "package") << "Normal Constructor or GetType does not work";  
   EXPECT_FLOAT_EQ(SHINeeCD.GetRadius(), radius) << "Normal Constructor or GetRadius does not work";
   EXPECT_EQ(SHINeeCD.GetVersion(),0) << "Normal Constructor or GetVersion does not work";
 }
@@ -81,6 +85,7 @@ TEST_F(PackageTest, CustomerAdding){
   EXPECT_TRUE(SHINeeCD.GetOwner()!=NULL) << "Customers are not set";
   EXPECT_EQ(SHINeeCD.GetOwner()->GetId(),Lin.GetId()) << "Customers are not the same";
   EXPECT_FALSE(SHINeeCD.IsDelivered()) << "IsDelivered is faulty";
+  EXPECT_EQ(SHINeeCD.GetType(), "package") << "Normal Constructor or GetType does not work";  
 }
 
 TEST_F(PackageTest, CopyConstructorAndGetter) {

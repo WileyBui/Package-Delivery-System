@@ -2,7 +2,6 @@
 #include "entity_base.h"
 #include "vector.h"
 #include "json_helper.h"
-#include "drone.h"
 
 namespace csci3081 {
 
@@ -10,8 +9,8 @@ DeliverySimulation::DeliverySimulation() {
 	numEntities = 0;
 	composite = new CompositeFactory();	
 	AddFactory(new PackageFactory());
-	AddFactory(new DroneFactory());
 	AddFactory(new CustomerFactory());
+	AddFactory(new CarrierFactory());
 }
 
 DeliverySimulation::~DeliverySimulation() {
@@ -36,6 +35,14 @@ void DeliverySimulation::AddFactory(IEntityFactory* factory) {
 
 void DeliverySimulation::AddEntity(IEntity* entity) { 
   	entities_.push_back(entity);
+	// Adding into subjects_ if entity is a derived class of ASubject
+	ASubject* subject;
+	if ((subject = dynamic_cast<ASubject*> (entity))!=0){
+		subjects_.push_back(subject);
+		for (int i = 0; i<observers_.size(); i++){
+			subject->Attach(observers_.at(i));
+		}
+	}
 }
 
 void DeliverySimulation::SetGraph(const IGraph* graph) {
@@ -46,12 +53,35 @@ void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {
 	Customer* owner = dynamic_cast<Customer*> (dest);
 	Package* pack = dynamic_cast<Package*> (package);
 	pack->SetOwner(owner);
-	owner->AddPackage(pack->GetId());
+	pack->GetStatus();
 }
 
-void DeliverySimulation::AddObserver(IEntityObserver* observer) {}
+void DeliverySimulation::AddObserver(IEntityObserver* observer) {
+	EntityBase* entity;
+	ASubject* subject;
+	// Adding new observe into the tracked list
+	observers_.push_back(observer);
+	for (int i = 0; i<subjects_.size(); i++) {
+		std::cout << i << std::endl;
+		subjects_.at(i)->Attach(observer); 
+	}
+}
 
-void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {}
+void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {
+	// Deleting from the observers list of DeliverySimulation
+	observers_.erase(std::remove(observers_.begin(), observers_.end(), observer), observers_.end());
+	// Deleting from each subjects
+	EntityBase* entity;
+	ASubject* subject;
+	for (int i = 0; i<numEntities; i++) {
+		entity = dynamic_cast<EntityBase*> (entities_.at(i));
+		// Right now only carrier has GetStatus, later can change condition to != "customer"
+		if (entity->GetType() == "carrier") {
+			subject = dynamic_cast<ASubject*> (entity);
+			subject->Detach(observer); 
+		}
+	}
+}
 
 const std::vector<IEntity*>& DeliverySimulation::GetEntities() const { 
 	return entities_; 
@@ -60,79 +90,82 @@ const std::vector<IEntity*>& DeliverySimulation::GetEntities() const {
 void DeliverySimulation::Update(float dt) {
 	// Placeholder pointer
 	EntityBase *entity;
+	ASubject *subject;
 	Package* package;
-	Drone* drone;
 	Customer* owner;
-	std::vector<float> random;
-	random.push_back(0);
-	random.push_back(-10000);
-	random.push_back(0);
 
 	picojson::object val;
 	for (int i = 0; i<numEntities; i++) {
 		// Update dynamic entities_	
 		entity = dynamic_cast<EntityBase*> (entities_.at(i));
+		subject = dynamic_cast<ASubject*> (entities_.at(i));
+
 		if (entity->IsDynamic()){
-			entity->Update(dt);
+			// Only updating the carrier (drone & robot) and the package, customer doesn't need to move
+			subject->Update(dt); 
 		}
-		val = entities_.at(i)->GetDetails();
 		// See if there is any undeliverered package
-		if (JsonHelper::GetString(val, "type") == "package") {
+		if (entity->GetType() == "package") {
 			package = dynamic_cast<Package*> (entities_.at(i));
 			owner = package->GetOwner();
-			if ((!package->IsDynamic()) && (owner!=NULL)) {
-				IEntity* carrier = AvailableCarrier(package);
+			if ((!package->IsDynamic()) && (owner!=NULL) && (package->GetCarrier()==NULL)) {
+				Carrier* carrier = AvailableCarrier(package);
 				if (carrier!=NULL){
-					drone = dynamic_cast<Drone*> (carrier);
 					// Establish relationship between objects
-					drone->AddPackage(package);
-					package->SetCarrier(drone);
+					carrier->AddPackage(package);
+					package->SetCarrier(carrier);
 					
 					// Adding path to package
-					std::vector<vector<float>> path = graph->GetPath(drone->GetPosition(),package->GetPosition());
-					for (int j = 0; j<path.size(); j++){
-						drone->AddPosition(path.at(j));
-					}
-					// Adding path to customer
-					path = graph->GetPath(package->GetPosition(),owner->GetPosition());
-					for (int j = 0; j<path.size(); j++){
-						drone->AddPosition(path.at(j));
-					}
+					std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
+					carrier->SetRoute(path);
+					package->GetStatus();
+					carrier->GetStatus();
 				}
+			}
+		}
+		else if (entity->GetType() == "carrier") {
+			Carrier* carrier = dynamic_cast<Carrier*> (entities_.at(i));
+			if (carrier->HavePackage() && carrier->NextPosition() == carrier->GetPosition()){
+				// Adding path to customer
+				std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
+				carrier->SetRoute(path);
+				carrier->GetPackage()->GetStatus();
+				carrier->GetStatus();
 			}
 		}
 	}
 }
 
-IEntity* DeliverySimulation::AvailableCarrier(IEntity* package){
+Carrier* DeliverySimulation::AvailableCarrier(IEntity* package){
 	float minDist;
 	float instance;
-	int droneIndex = -1;
+	int carrierIndex = -1;
 	picojson::object val;
-	Drone* drone;
+	Carrier* carrier;
+	EntityBase* entity;
 	for (int j = 0; j<numEntities; j++){
-		val = entities_.at(j)->GetDetails();
-		if ((JsonHelper::GetString(val, "type") == "drone")) {
-			drone = dynamic_cast<Drone*> (entities_.at(j));
-			if ((!drone->HavePackage()) && (!drone->BatteryDead())) {
-			// if a drone and is not busy with another package and have enough battery
-			instance = drone->DistanceBetween(package);
-			if (droneIndex == -1) {
+		entity = dynamic_cast<EntityBase*> (entities_.at(j));
+		if (entity->GetType() == "carrier") {
+			carrier = dynamic_cast<Carrier*> (entity);
+			if ((!carrier->HavePackage()) && (!carrier->BatteryDead())) {
+			// if a carrier and is not busy with another package and have enough battery
+			instance = carrier->DistanceBetween(package);
+			if (carrierIndex == -1) {
 				minDist = instance;
-				droneIndex = j;
+				carrierIndex = j;
 			}
 			else {
 				if (minDist>instance){
 					minDist = instance;
-					droneIndex = j;
+					carrierIndex = j;
 				}
 			}
 			}
 		}
 	}	// find a carrier
-	if (droneIndex!=-1) {
-		drone = dynamic_cast<Drone*> (entities_.at(droneIndex));
-		return drone;
+	if (carrierIndex!=-1) {
+		carrier = dynamic_cast<Carrier*> (entities_.at(carrierIndex));
+		return carrier;
 	}
 	return NULL;
 }
