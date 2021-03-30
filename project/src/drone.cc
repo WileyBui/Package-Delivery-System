@@ -3,7 +3,7 @@
 #include "../include/battery.h"
 #include "../include/vector.h"
 #include "../include/json_helper.h"
-#include "../include/utils.h"
+#include "../include/generate_id.h"
 
 namespace csci3081 {
 
@@ -21,7 +21,7 @@ Drone::Drone(const picojson::object& val) {
   }
   dynamic = false;
   version = 0;
-  ID = EntityHash.nextNumber();
+  ID = GenerateId::GenerateNewId();
   details = val;
   package = NULL;
   type = "carrier";

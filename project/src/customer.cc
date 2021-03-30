@@ -1,5 +1,5 @@
 #include "../include/entity_base.h"
-#include "../include/utils.h"
+#include "../include/generate_id.h"
 #include "json_helper.h"
 #include <EntityProject/entity.h>
 #include "../include/vector.h"
@@ -13,7 +13,7 @@ Customer::Customer(const picojson::object& val) {
   radius = radius = JsonHelper::GetDouble(val, "radius");
   dynamic = false;
   version = 0;
-  ID = EntityHash.nextNumber();
+  ID = GenerateId::GenerateNewId();
   details = val;
   numPackageTotal = 0;
   numDeliveredPackage = 0;

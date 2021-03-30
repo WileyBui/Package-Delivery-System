@@ -1,17 +1,17 @@
 #include <iostream>
 #include "../include/battery.h"
-#include "../include/utils.h"
+#include "../include/generate_id.h"
 #include <cmath>
 
 namespace csci3081 {
 
 Battery::Battery() {
-    BatteryID = BatteryHash.nextNumber();
+    BatteryID = GenerateId::GenerateNewId();
     remainingLifeinSec = 0;
 }
 
 Battery::Battery(float remainingLifeinSec_) {
-    BatteryID = BatteryHash.nextNumber();
+    BatteryID = GenerateId::GenerateNewId();
     if (remainingLifeinSec_ < 0) {                                  // invalid negative life
         remainingLifeinSec = 0;
     }

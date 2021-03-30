@@ -3,7 +3,7 @@
 #include "../include/battery.h"
 #include "../include/vector.h"
 #include "../include/json_helper.h"
-#include "../include/utils.h"
+#include "../include/generate_id.h"
 
 namespace csci3081 {
 
@@ -15,7 +15,7 @@ Robot::Robot(const picojson::object& val) {
   radius    = JsonHelper::GetDouble(val, "radius");
   dynamic   = false;
   version   = 0;
-  ID        = EntityHash.nextNumber();
+  ID        = GenerateId::GenerateNewId();
   details   = val;
   battery   = Battery(10000);
   package   = NULL;
