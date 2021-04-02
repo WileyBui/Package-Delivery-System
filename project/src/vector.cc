@@ -157,6 +157,13 @@ void Vector3D::Print() {
     std::cout << "<" << x << "," << y << "," << z << ">";
 }
 
+bool Vector3D::IsWithinXandZRange(const Vector3D& other) {
+    if ((abs(x - other.GetX()) <= 5) && (abs(z - other.GetZ()) <= 5)) {
+        return true;
+    }
+    return false;
+}
+
 Vector2D to2D(Vector3D& other) {
     return Vector2D(other.GetX(),other.GetZ());
 }

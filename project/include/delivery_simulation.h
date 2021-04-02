@@ -106,6 +106,8 @@ class DeliverySimulation : public IDeliverySystem {
   */
   const std::vector<IEntity*>& GetEntities() const;
 
+  vector<vector<float>> GetBeelinePath(std::vector<float> src, std::vector<float> dest, float droneSpeed, float dt);
+
   /**
   This function is used to advance time in the simulation. float dt refers to the 
   amount of time the update call should advance the simulation by. For instance if a drone

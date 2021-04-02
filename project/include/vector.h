@@ -190,6 +190,8 @@ class Vector3D: public Vector {
         * @copydoc Vector::Print()
         */
         void Print();
+
+        bool IsWithinXandZRange(const Vector3D&);
 };
 
 /*******************************************************************************
