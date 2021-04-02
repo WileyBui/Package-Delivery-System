@@ -191,7 +191,7 @@ class Vector3D: public Vector {
         */
         void Print();
 
-        bool IsWithinXandZRange(const Vector3D&);
+        bool IsWithinXandZRange(const Vector3D&, float precision);
 };
 
 /*******************************************************************************

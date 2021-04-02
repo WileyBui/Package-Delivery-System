@@ -157,8 +157,8 @@ void Vector3D::Print() {
     std::cout << "<" << x << "," << y << "," << z << ">";
 }
 
-bool Vector3D::IsWithinXandZRange(const Vector3D& other) {
-    if ((abs(x - other.GetX()) <= 5) && (abs(z - other.GetZ()) <= 5)) {
+bool Vector3D::IsWithinXandZRange(const Vector3D& other, float precision) {
+    if ((abs(x - other.GetX()) <= precision) && (abs(z - other.GetZ()) <= precision)) {
         return true;
     }
     return false;
