@@ -24,6 +24,6 @@ namespace csci3081 {
              * allows the moving item to get the desired route.
              * @return std::vector <std::vector<float>>
              */
-            std::vector <std::vector<float>> GetRoute() = 0;
+            virtual std::vector <std::vector<float>> GetRoute() = 0;
     };
 } // namespace 3081

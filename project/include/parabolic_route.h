@@ -1,11 +1,12 @@
 /**
- * @file Route_Strategy
+ * @file Parabolic_Route
  */
 /*******************************************************************************
  * Includes
  ******************************************************************************/
 #include <string>
 #include <vector>
+#include "route_strategy.h"
 #include "json_helper.h"
 
 namespace csci3081 {
@@ -21,7 +22,8 @@ namespace csci3081 {
         public:
             /**
              * @brief This function 
-             * allows the moving item to get the desired route.
+             * allows the moving item to get the desired route. In this class, the function will return a 
+             * route that follows the parabolic path
              * @return std::vector <std::vector<float>>
              */
             std::vector <std::vector<float>> GetRoute();
