@@ -6,7 +6,8 @@
  ******************************************************************************/
 #include <string>
 #include <vector>
-#include "json_helper.h"
+// #include <EntityProject/facade/graph.h>
+#include <EntityProject/facade/delivery_system.h>
 
 namespace csci3081 {
 
@@ -22,10 +23,11 @@ namespace csci3081 {
             /**
              * @brief Pure virtual function that will be overridden in derived classes. This function 
              * allows the moving item to get the desired route.
+             * @param IGraph* graph
              * @param std::vector<float> location
              * @param std::vector<float> dest
              * @return std::vector <std::vector<float>>
              */
-            virtual std::vector <std::vector<float>> GetRoute(std::vector<float> location, std::vector<float> dest) = 0;
+            virtual std::vector <std::vector<float>> GetRoute(IGraph* graph, std::vector<float> location, std::vector<float> dest) = 0;
     };
 } // namespace 3081
