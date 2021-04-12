@@ -15,8 +15,7 @@ namespace csci3081 {
  * Class Definitions
  ******************************************************************************/
 /**
- * @brief This is the Route Strategy class where we can use the interface to decide which type of route behaviour to implement
- * using a strategy pattern
+ * @brief This is the Parabolic Route class where we can use the strategy pattern to implement a parabolic route
  */
     class ParabolicRoute : public csci3081::RouteStrategy {
         public:
@@ -24,8 +23,10 @@ namespace csci3081 {
              * @brief This function 
              * allows the moving item to get the desired route. In this class, the function will return a 
              * route that follows the parabolic path
+             * @param std::vector<float> location
+             * @param std::vector<float> dest
              * @return std::vector <std::vector<float>>
              */
-            std::vector <std::vector<float>> GetRoute();
+            std::vector <std::vector<float>> GetRoute(std::vector<float> location, std::vector<float> dest);
     };
 } // namespace 3081
