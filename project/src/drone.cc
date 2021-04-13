@@ -50,6 +50,8 @@ vector<vector<float>> Drone::GetBeelinePath(std::vector<float> src, std::vector<
 
   float heightToAvoidCollision = 400;     // height where the drone must not touch any building
 
+  path.push_back(toVectorFloat(srcPosition));
+
   // Go up to heightToAvoidCollision from the source location
   flyToPosition = srcPosition;
   flyToPosition.SetY(heightToAvoidCollision);
