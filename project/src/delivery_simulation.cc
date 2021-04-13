@@ -121,8 +121,7 @@ void DeliverySimulation::Update(float dt) {
 					if (carrier->GetName().find("drone") != std::string::npos) {
 						// Uses GetBeelinePath() route
 						Drone* drone = dynamic_cast<Drone*> (carrier);
-						// path = drone->GetBeelinePath(package->GetPosition(), dt);
-						path = drone->GetBeelinePath(carrier->GetPosition(), package->GetPosition(), carrier->GetSpeed(), dt);
+						path = drone->GetBeelinePath(carrier->GetPosition(), package->GetPosition());
 					} else {
 						// Uses GetPath() route
 						path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
@@ -143,7 +142,7 @@ void DeliverySimulation::Update(float dt) {
 				if (carrier->GetName().find("drone") != std::string::npos) {
 					// Uses GetBeelinePath() route
 					Drone* drone = dynamic_cast<Drone*> (carrier);
-					path = drone->GetBeelinePath(carrier->GetPosition(), carrier->GetPackage()->GetOwner()->GetPosition(), carrier->GetSpeed(), dt);
+					path = drone->GetBeelinePath(carrier->GetPosition(), carrier->GetPackage()->GetOwner()->GetPosition());
 				} else {
 					// Uses GetPath() route
 					path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
