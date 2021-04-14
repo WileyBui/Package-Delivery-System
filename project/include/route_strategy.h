@@ -1,6 +1,8 @@
 /**
  * @file Route_Strategy
  */
+#ifndef ROUTE_STRATEGY_H_
+#define ROUTE_STRATEGY_H_
 /*******************************************************************************
  * Includes
  ******************************************************************************/
@@ -32,3 +34,5 @@ namespace csci3081 {
             virtual ~RouteStrategy(){}
     };
 } // namespace 3081
+
+#endif  // ROUTE_STRATEGY_H_

@@ -11,14 +11,17 @@
  * Includes
  ******************************************************************************/
 #include "entity_base.h"
-#include <vector>         // Used for vector like vector3D and vector2D
+//#include <vector>         // Used for vector like vector3D and vector2D
 #include <string>
 #include <iostream>
 #include "battery.h"
 #include "package.h"
 #include "carrier.h"
 #include "vector.h"
-#include "route_strategy.h"
+// #include "route_strategy.h"
+#include "beeline_route.h"
+#include "smart_route.h"
+#include "parabolic_route.h"
 
 namespace csci3081 {
 /*******************************************************************************
