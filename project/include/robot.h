@@ -17,6 +17,10 @@
 #include "package.h"
 #include "carrier.h"
 #include "vector.h"
+#include "route_strategy.h"
+// #include "beeline_route.h"
+// #include "smart_route.h"
+// #include "parabolic_route.h"
 
 
 namespace csci3081 {
@@ -45,6 +49,8 @@ class Robot : public csci3081::Carrier {
     * @param[in] cpy      Robot instance that wants to be copied
     */
     Robot(Robot&);
+  private:
+    RouteStrategy* routeStrategy;
 };
 
 }
