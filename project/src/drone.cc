@@ -4,6 +4,9 @@
 #include "../include/json_helper.h"
 #include "../include/package.h"
 #include "../include/vector.h"
+// #include "../include/beeline_route.h"
+// #include "../include/smart_route.h"
+// #include "../include/parabolic_route.h"
 
 namespace csci3081 {
 
@@ -24,6 +27,23 @@ Drone::Drone(const picojson::object& val) {
   details = val;
   package = NULL;
   type = "carrier";
+    // Checking to see if a route type is specified
+  std::string routetype;
+  try {
+    routetype = JsonHelper::GetString(val, "path");
+  }
+  catch (...) {
+    routetype = "smart";
+  }
+  if (routetype == "beeline"){
+    routeStrategy = new BeelineRoute();
+  }
+  else if (routetype == "parabolic"){
+    routeStrategy = new ParabolicRoute();
+  }
+  else{
+    routeStrategy = new SmartRoute();
+  }
 }
 
 Drone::Drone(Drone& cpy) {
@@ -39,34 +59,13 @@ Drone::Drone(Drone& cpy) {
   package = cpy.package;
   speed = cpy.speed;
   type = "carrier";
-}
-
-vector<vector<float>> Drone::GetBeelinePath(std::vector<float> src, std::vector<float> dest) {
-  vector<vector<float>> path;
-
-  Vector3D srcPosition = Vector3D(src);   // current position of the drone
-  Vector3D destPosition = Vector3D(dest); // destination position of the drone
-  Vector3D flyToPosition;
-
-  float heightToAvoidCollision = 400;     // height where the drone must not touch any building
-
-  path.push_back(toVectorFloat(srcPosition));
-
-  // Go up to heightToAvoidCollision from the source location
-  flyToPosition = srcPosition;
-  flyToPosition.SetY(heightToAvoidCollision);
-  path.push_back(toVectorFloat(flyToPosition));
-
-  // Go horizontally to the destination location
-  flyToPosition = destPosition;
-  flyToPosition.SetY(heightToAvoidCollision);
-  path.push_back(toVectorFloat(flyToPosition));
-
-  // Go down to reach the source location
-  flyToPosition = destPosition;
-  path.push_back(toVectorFloat(flyToPosition));
-
-  return path;
+  routeStrategy = cpy.routeStrategy;
 }
 
 }  // namespace csci3081
+// Drone::~Drone(){
+//   if (routeStrategy != NULL){
+//     delete routeStrategy;
+//   }
+// }
+

@@ -101,7 +101,11 @@ void Carrier::GetStatus() {
   Notify(notification_to_send, *this);
 }
 
-void Carrier::Update(float dt) {
+RouteStrategy* Carrier::GetRouteStrategy(){
+  return routeStrategy;
+}
+
+void Carrier::Update(float dt){
   std::vector<float> nextPosition;
   float distance;
   float time;

@@ -11,6 +11,7 @@ DeliverySimulation::DeliverySimulation() {
 	AddFactory(new PackageFactory());
 	AddFactory(new CustomerFactory());
 	AddFactory(new CarrierFactory());
+	
 }
 
 DeliverySimulation::~DeliverySimulation() {
@@ -111,22 +112,12 @@ void DeliverySimulation::Update(float dt) {
 			if ((!package->IsDynamic()) && (owner!=NULL) && (package->GetCarrier()==NULL)) {
 				Carrier* carrier = AvailableCarrier(package);
 				if (carrier!=NULL){
-					std::vector<vector<float>> path;
-
 					// Establish relationship between objects
 					carrier->AddPackage(package);
 					package->SetCarrier(carrier);
 					
-					// Adding path to package
-					if (carrier->GetName().find("drone") != std::string::npos) {
-						// Uses GetBeelinePath() route
-						Drone* drone = dynamic_cast<Drone*> (carrier);
-						path = drone->GetBeelinePath(carrier->GetPosition(), package->GetPosition());
-					} else {
-						// Uses GetPath() route
-						path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
-					}
-					
+					// std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
+					std::vector<vector<float>> path = carrier->GetRouteStrategy()->GetRoute(graph, carrier->GetPosition(),package->GetPosition());
 					carrier->SetRoute(path);
 					package->GetStatus();
 					carrier->GetStatus();
@@ -137,17 +128,19 @@ void DeliverySimulation::Update(float dt) {
 			Carrier* carrier = dynamic_cast<Carrier*> (entities_.at(i));
 			if (carrier->HavePackage() && carrier->NextPosition() == carrier->GetPosition()){
 				// Adding path to customer
-				std::vector<vector<float>> path;
+				// std::vector<vector<float>> path;
 
-				if (carrier->GetName().find("drone") != std::string::npos) {
-					// Uses GetBeelinePath() route
-					Drone* drone = dynamic_cast<Drone*> (carrier);
-					path = drone->GetBeelinePath(carrier->GetPosition(), carrier->GetPackage()->GetOwner()->GetPosition());
-				} else {
-					// Uses GetPath() route
-					path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
-				}
+				// if (carrier->GetName().find("drone") != std::string::npos) {
+				// 	// Uses GetBeelinePath() route
+				// 	Drone* drone = dynamic_cast<Drone*> (carrier);
+				// 	path = drone->GetBeelinePath(carrier->GetPosition(), carrier->GetPackage()->GetOwner()->GetPosition());
+				// } else {
+				// 	// Uses GetPath() route
+				// 	path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
+				// }
 					
+				// std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
+				std::vector<vector<float>> path = carrier->GetRouteStrategy()->GetRoute(graph, carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
 				carrier->SetRoute(path);
 				carrier->GetPackage()->GetStatus();
 				carrier->GetStatus();

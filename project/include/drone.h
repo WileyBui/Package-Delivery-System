@@ -10,6 +10,8 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
+#include "entity_base.h"
+//#include <vector>         // Used for vector like vector3D and vector2D
 #include <iostream>
 #include <string>
 #include <vector>  // Used for vector like vector3D and vector2D
@@ -19,6 +21,10 @@
 #include "entity_base.h"
 #include "package.h"
 #include "vector.h"
+// #include "route_strategy.h"
+#include "beeline_route.h"
+#include "parabolic_route.h"
+#include "smart_route.h"
 
 namespace csci3081 {
 /*******************************************************************************
@@ -30,8 +36,6 @@ namespace csci3081 {
  * dynamic mode.
  */
 class Drone : public csci3081::Carrier {
-  // class Drone : public csci3081::Carrier{
-
  public:
   /**
     * Constructor, creates a Package object
@@ -49,17 +53,19 @@ class Drone : public csci3081::Carrier {
     */
   Drone(Drone&);
 
-  /**
-    * @brief Gets the beeline path (go up a certain height and fly horizontally across to the destination)
-    * This method gets the beeline path, which includes a point where the drone needs to go up to
-    * by a certain height from where it is at, then another point to the destination location with the
-    * same certain height, then another point to the final destination location.
-    * @param[in] src    Current drone location
-    * @param[in] dest   Final location where the drone needs to be
-    * 
-    * @return           The path of the beeline
-    */
-  vector<vector<float>> GetBeelinePath(std::vector<float> src, std::vector<float> dest);
+  // /**
+  // * @brief Destructor.
+  // * This destructor is used to delete the routeStrategy pointer attribute when a Drone obj goes out of scope.
+  // */
+  // ~Drone();
+  // /**
+  // * @brief This is an inherited method from EntityBase to use for DeliverySimulation.
+  // * This updates the position of the drone on the simulation if the position changes
+  // * and its dynamic is set to true. In addition, this function also checks if the
+  // * drone is in within distance with the package to pick it up, or within distance
+  // * with the customer to drop off the package
+  // */
+  // void Update(float dt);
 };
 
 }  // namespace csci3081

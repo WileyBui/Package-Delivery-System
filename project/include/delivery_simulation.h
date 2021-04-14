@@ -144,6 +144,7 @@ class DeliverySimulation : public IDeliverySystem {
   CompositeFactory* composite;
   int numEntities;
   const IGraph* graph;
+  
 };
 
 }  // namespace csci3081

@@ -1,3 +1,4 @@
+
 /**
  * @file carrier.h
  *
@@ -16,7 +17,7 @@
 #include <iostream>
 #include "battery.h"
 #include "package.h"
-//#include "asubject.h"
+#include "route_strategy.h"
 
 namespace csci3081 {
 /*******************************************************************************
@@ -131,12 +132,15 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
 
     void GetStatus();
 
+    RouteStrategy* GetRouteStrategy();
+
   protected: 
     Battery battery;
     Package* package;
     float speed;
     std::vector<std::vector<float>> route;
     std::string droneStatusWhenBatteryDies = "not dead yet";
+    RouteStrategy* routeStrategy = NULL;
 };
 
 }
