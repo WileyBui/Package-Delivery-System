@@ -50,11 +50,11 @@ class Drone : public csci3081::Carrier {
     * @param[in] cpy    Drone instance that wants to be copied
     */
     Drone(Drone&);
-    /**
-    * @brief Destructor.
-    * This destructor is used to delete the routeStrategy pointer attribute when a Drone obj goes out of scope.
-    */
-    ~Drone();
+    // /**
+    // * @brief Destructor.
+    // * This destructor is used to delete the routeStrategy pointer attribute when a Drone obj goes out of scope.
+    // */
+    // ~Drone();
     // /**
     // * @brief This is an inherited method from EntityBase to use for DeliverySimulation.
     // * This updates the position of the drone on the simulation if the position changes

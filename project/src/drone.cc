@@ -63,8 +63,10 @@ Drone::Drone(Drone& cpy){
   routeStrategy = cpy.routeStrategy;
 }
 
-Drone::~Drone(){
-  delete routeStrategy;
-}
+// Drone::~Drone(){
+//   if (routeStrategy != NULL){
+//     delete routeStrategy;
+//   }
+// }
 
 } // close namespace csci3081

@@ -4,6 +4,7 @@
 #include "../include/vector.h"
 #include "../include/json_helper.h"
 #include "../include/generate_id.h"
+#include "../include/smart_route.h"
 
 
 namespace csci3081 {
@@ -21,6 +22,7 @@ Robot::Robot(const picojson::object& val) {
   battery   = Battery(10000);
   package   = NULL;
   type      = "carrier";
+  routeStrategy = new SmartRoute(); //robot can only implement smart route
   }
 
 
@@ -37,6 +39,11 @@ Robot::Robot(Robot& cpy){
   package   = cpy.package;
   speed     = cpy.speed;
   type      = "carrier";
+  routeStrategy = cpy.routeStrategy;
 }
+
+// Robot::~Robot(){
+//   delete routeStrategy;
+// }
 
 } // close namespace csci3081

@@ -45,6 +45,11 @@ class Robot : public csci3081::Carrier {
     * @param[in] cpy      Robot instance that wants to be copied
     */
     Robot(Robot&);
+    // /**
+    // * @brief Destructor.
+    // * This destructor is used to delete the routeStrategy pointer attribute when a Robot obj goes out of scope.
+    // */
+    // ~Robot();
 };
 
 }
