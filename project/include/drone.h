@@ -18,6 +18,7 @@
 #include "package.h"
 #include "carrier.h"
 #include "vector.h"
+#include "route_strategy.h"
 
 namespace csci3081 {
 /*******************************************************************************
@@ -56,6 +57,8 @@ class Drone : public csci3081::Carrier {
     * with the customer to drop off the package
     */
     // void Update(float dt);
+  private:
+    RouteStrategy* routeStrategy;
 
 };
 

@@ -4,9 +4,6 @@
 #include "../include/vector.h"
 #include "../include/json_helper.h"
 #include "../include/generate_id.h"
-#include "../include/beeline_route.h"
-#include "../include/smart_route.h"
-#include "../include/parabolic_route.h"
 
 
 namespace csci3081 {
@@ -24,23 +21,6 @@ Robot::Robot(const picojson::object& val) {
   battery   = Battery(10000);
   package   = NULL;
   type      = "carrier";
-  // Checking to see if a route type is specified
-  std::string routetype;
-  try {
-    routetype = JsonHelper::GetString(val, "path");
-  }
-  catch (...) {
-    routetype = "smart";
-  }
-  if (routetype == "beeline"){
-    routeStrategy = new BeelineRoute();
-  }
-  else if (routetype == "parabolic"){
-    routeStrategy = new ParabolicRoute();
-  }
-  else{
-    routeStrategy = new SmartRoute();
-  }
   }
 
 
