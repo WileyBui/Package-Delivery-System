@@ -108,22 +108,37 @@ void Carrier::Update(float dt) {
   float portion;
   Vector3D result;
   if (IsDynamic()) {
-    if (BatteryDead() & HavePackage()) {
-      float groundLevel = 253;
-      if ((GetPosition().at(1) > groundLevel) && (GetName().find("drone") != std::string::npos)) {
-        std::vector<vector<float>> path;
-        std::vector<float> destPosition = GetPosition();
-        destPosition.at(1) = groundLevel;
+    if (BatteryDead()) {
+      if (GetName().find("drone") != std::string::npos) {
+        float groundLevel = 253;
 
-        path.push_back(destPosition);
-        SetRoute(path);
-      } else {
-        Package* pack = DropPackage();
-        pack->SetCarrier(NULL);
-        pack->SetDynamic(false);
-        dynamic = false;
-        route.clear();
-        GetStatus();
+        if ((GetPosition().at(1) > groundLevel) && (droneStatusWhenBatteryDies == "not dead yet")) {
+          route.clear();
+
+          std::vector<vector<float>> path;
+          std::vector<float> destPosition = GetPosition();
+          destPosition.at(1) = groundLevel;
+
+          path.push_back(GetPosition());
+          path.push_back(destPosition);
+
+          dynamic = false;
+          GetStatus();
+          dynamic = true;
+
+          SetRoute(path);
+          droneStatusWhenBatteryDies = "battery dead; going towards ground";
+        } else if ((GetPosition().at(1) <= groundLevel) && (droneStatusWhenBatteryDies == "battery dead; going towards ground")) {
+          droneStatusWhenBatteryDies = "battery dead; is on ground";
+          if (HavePackage()) {
+            Package* pack = DropPackage();
+            pack->SetCarrier(NULL);
+            pack->SetDynamic(false);
+          }
+          dynamic = false;
+          route.clear();
+          GetStatus();
+        }
       }
     } else if (dt > GetBattery()) {
       dt = GetBattery();

@@ -136,6 +136,7 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     Package* package;
     float speed;
     std::vector<std::vector<float>> route;
+    std::string droneStatusWhenBatteryDies = "not dead yet";
 };
 
 }
