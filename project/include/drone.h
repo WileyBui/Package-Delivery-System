@@ -33,7 +33,6 @@ namespace csci3081 {
  * dynamic mode.
  */
 class Drone : public csci3081::Carrier {
-// class Drone : public csci3081::Carrier{
 
   public:
     /**
@@ -51,17 +50,20 @@ class Drone : public csci3081::Carrier {
     * @param[in] cpy    Drone instance that wants to be copied
     */
     Drone(Drone&);
-
     /**
-    * @brief This is an inherited method from EntityBase to use for DeliverySimulation.
-    * This updates the position of the drone on the simulation if the position changes
-    * and its dynamic is set to true. In addition, this function also checks if the
-    * drone is in within distance with the package to pick it up, or within distance
-    * with the customer to drop off the package
+    * @brief Destructor.
+    * This destructor is used to delete the routeStrategy pointer attribute when a Drone obj goes out of scope.
     */
+    ~Drone();
+    // /**
+    // * @brief This is an inherited method from EntityBase to use for DeliverySimulation.
+    // * This updates the position of the drone on the simulation if the position changes
+    // * and its dynamic is set to true. In addition, this function also checks if the
+    // * drone is in within distance with the package to pick it up, or within distance
+    // * with the customer to drop off the package
+    // */
     // void Update(float dt);
-  private:
-    RouteStrategy* routeStrategy;
+    
 
 };
 

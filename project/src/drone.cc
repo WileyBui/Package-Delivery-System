@@ -60,6 +60,11 @@ Drone::Drone(Drone& cpy){
   package = cpy.package;
   speed = cpy.speed;
   type = "carrier";
+  routeStrategy = cpy.routeStrategy;
+}
+
+Drone::~Drone(){
+  delete routeStrategy;
 }
 
 } // close namespace csci3081

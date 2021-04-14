@@ -27,11 +27,11 @@ namespace csci3081 {
              * @brief This function 
              * allows the moving item to get the desired route. In this class, the function will return a 
              * route that follows the Beeline path
-             * @param IGraph* graph
+             * @param const IGraph* graph
              * @param std::vector<float> location
              * @param std::vector<float> dest
              * @return std::vector <std::vector<float>>
              */
-            std::vector <std::vector<float>> GetRoute(IGraph* graph, std::vector<float> location, std::vector<float> dest);
+            virtual std::vector <std::vector<float>> GetRoute(const IGraph* graph, std::vector<float> location, std::vector<float> dest);
     };
 } // namespace 3081
