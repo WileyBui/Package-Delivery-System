@@ -17,7 +17,12 @@ Robot::Robot(const picojson::object& val) {
   version   = 0;
   ID        = GenerateId::GenerateNewId();
   details   = val;
-  battery   = Battery(10000);
+  try {
+    battery = Battery(JsonHelper::GetDouble(val, "battery_capacity"));
+  }
+  catch (std::logic_error a){
+    battery = Battery(10000);
+  }
   package   = NULL;
   type      = "carrier";
 }
