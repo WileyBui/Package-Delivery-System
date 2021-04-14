@@ -109,24 +109,14 @@ void Carrier::Update(float dt) {
   Vector3D result;
   if (IsDynamic()) {
     if (BatteryDead() & HavePackage()) {
-      if ((GetPosition().at(1) > 253) && (GetName().find("drone") != std::string::npos)) {
-        Vector3D srcPosition = Vector3D(GetPosition());
-        Vector3D destPosition = Vector3D(GetPosition());
-        destPosition.SetY(253);
-        Vector3D nextPosition = srcPosition;
+      float groundLevel = 253;
+      if ((GetPosition().at(1) > groundLevel) && (GetName().find("drone") != std::string::npos)) {
+        std::vector<vector<float>> path;
+        std::vector<float> destPosition = GetPosition();
+        destPosition.at(1) = groundLevel;
 
-        // calculate & normalize the direction
-        Vector3D directionPosition = destPosition - nextPosition;
-        directionPosition = directionPosition.Normalize();
-
-        // calculate the velocity of the drone
-        Vector3D velocity = directionPosition * GetSpeed();
-
-        // calculate the distance traveled over this time step: s = v*dt
-        nextPosition = nextPosition + velocity * dt;
-
-        SetPosition(toVectorFloat(nextPosition));
-        
+        path.push_back(destPosition);
+        SetRoute(path);
       } else {
         Package* pack = DropPackage();
         pack->SetCarrier(NULL);
@@ -139,7 +129,7 @@ void Carrier::Update(float dt) {
       dt = GetBattery();
     }
 
-    if ((dt > 0) && (!BatteryDead())) {
+    if (dt > 0) {
       battery.Depleting(dt);
       while (true) {
         nextPosition = NextPosition();
