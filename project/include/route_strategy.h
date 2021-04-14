@@ -1,6 +1,8 @@
 /**
  * @file Route_Strategy
  */
+#ifndef ROUTE_STRATEGY_H_
+#define ROUTE_STRATEGY_H_
 /*******************************************************************************
  * Includes
  ******************************************************************************/
@@ -23,11 +25,14 @@ namespace csci3081 {
             /**
              * @brief Pure virtual function that will be overridden in derived classes. This function 
              * allows the moving item to get the desired route.
-             * @param IGraph* graph
+             * @param const IGraph* graph
              * @param std::vector<float> location
              * @param std::vector<float> dest
              * @return std::vector <std::vector<float>>
              */
-            virtual std::vector <std::vector<float>> GetRoute(IGraph* graph, std::vector<float> location, std::vector<float> dest) = 0;
+            virtual std::vector <std::vector<float>> GetRoute(const IGraph* graph, std::vector<float> location, std::vector<float> dest) = 0;
+            virtual ~RouteStrategy(){}
     };
 } // namespace 3081
+
+#endif  // ROUTE_STRATEGY_H_

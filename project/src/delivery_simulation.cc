@@ -11,6 +11,7 @@ DeliverySimulation::DeliverySimulation() {
 	AddFactory(new PackageFactory());
 	AddFactory(new CustomerFactory());
 	AddFactory(new CarrierFactory());
+	
 }
 
 DeliverySimulation::~DeliverySimulation() {
@@ -116,7 +117,8 @@ void DeliverySimulation::Update(float dt) {
 					package->SetCarrier(carrier);
 					
 					// Adding path to package
-					std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
+					// std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
+					std::vector<vector<float>> path = carrier->GetRouteStrategy()->GetRoute(graph, carrier->GetPosition(),package->GetPosition());
 					carrier->SetRoute(path);
 					package->GetStatus();
 					carrier->GetStatus();
@@ -127,7 +129,8 @@ void DeliverySimulation::Update(float dt) {
 			Carrier* carrier = dynamic_cast<Carrier*> (entities_.at(i));
 			if (carrier->HavePackage() && carrier->NextPosition() == carrier->GetPosition()){
 				// Adding path to customer
-				std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
+				// std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
+				std::vector<vector<float>> path = carrier->GetRouteStrategy()->GetRoute(graph, carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
 				carrier->SetRoute(path);
 				carrier->GetPackage()->GetStatus();
 				carrier->GetStatus();
