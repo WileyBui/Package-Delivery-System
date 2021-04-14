@@ -11,6 +11,7 @@ DeliverySimulation::DeliverySimulation() {
 	AddFactory(new PackageFactory());
 	AddFactory(new CustomerFactory());
 	AddFactory(new CarrierFactory());
+	
 }
 
 DeliverySimulation::~DeliverySimulation() {
@@ -117,6 +118,7 @@ void DeliverySimulation::Update(float dt) {
 					
 					// Adding path to package
 					std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
+					//std::vector<vector<float>> path = carrier->routeStrategyGetPath(graph, carrier->GetPosition(),package->GetPosition());
 					carrier->SetRoute(path);
 					package->GetStatus();
 					carrier->GetStatus();

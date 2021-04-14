@@ -20,7 +20,25 @@ Robot::Robot(const picojson::object& val) {
   battery   = Battery(10000);
   package   = NULL;
   type      = "carrier";
-}
+  // Checking to see if a route type is specified
+  std::string routetype;
+  try {
+    routetype = JsonHelper::GetString(val, "path");
+  }
+  catch (...) {
+    routetype = "smart";
+  }
+  if (routetype == "beeline"){
+    routeStrategy = new BeelineRoute();
+  }
+  else if (routetype == "parabolic"){
+    routeStrategy = new ParabolicRoute();
+  }
+  else{
+    routeStrategy = new SmartRoute();
+  }
+  }
+
 
 Robot::Robot(Robot& cpy){
   position  = cpy.position;
