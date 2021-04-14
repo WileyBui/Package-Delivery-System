@@ -1,4 +1,4 @@
-#include "parabolic_route.h"
+#include "../include/parabolic_route.h"
 
 namespace csci3081 {
     std::vector <std::vector<float>> ParabolicRoute::GetRoute(IGraph* graph, std::vector<float> location, std::vector<float> dest){

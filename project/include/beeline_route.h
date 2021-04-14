@@ -20,6 +20,10 @@ namespace csci3081 {
     class BeelineRoute : public csci3081::RouteStrategy {
         public:
             /**
+             * @brief This is the default constructor of the Beeline Path Class
+             */
+            BeelineRoute(){}
+            /**
              * @brief This function 
              * allows the moving item to get the desired route. In this class, the function will return a 
              * route that follows the Beeline path
