@@ -18,7 +18,7 @@ namespace csci3081 {
             std::vector<float> converted = toVectorFloat(current);
             float dis_mid_cur = Distance(middle,current);
             float dY = (1 - (dis_mid_cur*dis_mid_cur)/(dis_mid_source*dis_mid_source))*j;
-            converted[1]+=dY;
+            converted[1] + =dY;
             path.push_back(converted);
         }
         path.push_back(dest);
