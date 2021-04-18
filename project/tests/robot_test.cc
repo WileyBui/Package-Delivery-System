@@ -179,10 +179,14 @@ TEST_F(RobotTest, UpdateAndBattery){
   EXPECT_FALSE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
   Package SM(obj);
   SM.SetOwner(&Lin);
+  std::vector<std::vector<float>> path;
+  path.push_back(position_to_add2);
+  path.push_back(position_to_add);
+  SHINeeCD.SetRoute(path);
   EXPECT_TRUE(SHINeeCD.AddPackage(&SM)) << "AddPackage faulty";
   EXPECT_TRUE(SHINeeCD.HavePackage()) << "AddPackage faulty";
-  SHINeeCD.Update(10000);
-  EXPECT_TRUE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
+  SHINeeCD.Update(50);
+  EXPECT_FALSE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
   SHINeeCD.DropPackage();
   SHINeeCD.Update(10000);
   EXPECT_TRUE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
