@@ -159,17 +159,22 @@ TEST_F(CarrierTest, SetPosition){
 
 TEST_F(CarrierTest, UpdateAndBattery){
   Drone SHINeeCD(obj2);
-  Carrier*carrier = &SHINeeCD;
+  Carrier* carrier = &SHINeeCD;
   Customer Lin(obj2); 
-  carrier->SetSpeed(0.0000000000001);
+  carrier->SetSpeed(0.001);
   carrier->Update(10);
   EXPECT_FALSE(carrier->BatteryDead()) << "BatteryDead does not work";
   Package SM(obj);
   SM.SetOwner(&Lin);
+  std::vector<std::vector<float>> path;
+  path.push_back(position_to_add2);
+  path.push_back(position_to_add);
+  carrier->SetRoute(path);
   EXPECT_TRUE(carrier->AddPackage(&SM)) << "AddPackage faulty";
+  EXPECT_TRUE(carrier->IsDynamic()) << "Update doesn't work for IsDynamic";
   EXPECT_TRUE(carrier->HavePackage()) << "AddPackage faulty";
-  carrier->Update(10000);
-  EXPECT_TRUE(carrier->BatteryDead()) << "BatteryDead does not work";
+  carrier->Update(20);
+  EXPECT_FALSE(carrier->BatteryDead()) << "BatteryDead does not work";
   carrier->DropPackage();
   carrier->Update(10000);
   EXPECT_TRUE(carrier->BatteryDead()) << "BatteryDead does not work";
