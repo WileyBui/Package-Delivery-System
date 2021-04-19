@@ -1,1 +1,2 @@
-* Dustin Zhang (zhan5472)
+Dustin Zhang (zhan5472)
+
