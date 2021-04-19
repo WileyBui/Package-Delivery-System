@@ -97,6 +97,12 @@ in it’s routeStrategy attribute. This way, when we are in the delivery simulat
 call the GetRoute method from the routeStrategy attribute of the carrier. The default route 
 is set to smart path, and for the robots, only smart path is implemented (as robots cannot 
 fly).
+
+<CENTER>
+\image html StrategyPattern.png "Figure 4. Strategy Pattern used to develop Route Strategy, including 
+BeelineRoute, SmartRoute and ParabolicRoute"
+</CENTER>
+
 At first it was difficult to understand the strategy pattern for us, but after working 
 through different examples in class and online (https://www.geeksforgeeks.org/strategy-pattern-set-2/), 
 we were able to better apply the strategy pattern to our own code.
@@ -136,17 +142,30 @@ Vt is our step interval equal to distance(source, destination) / T
 j is a tuning parameter that we can use to avoid building collision and scale the parabola's slope
 </PRE>
 
+* **General roles of members**
+| Roles 	        | Member Name       |  Priority Task
+| :---------------: |:-----------------:|:-------------------------------------------------------
+|-------------------|-------------------|--------------------------------------------------------
+| Development Lead  | Lin Huynh         | - Make major decisions for design and implementation
+|                   |                   | such as how the drone/robot should behave when battery 
+|                   |                   | is out (drone should free fall into the ground before 
+|                   |                   | releasing the package)
+|-------------------|-------------------|--------------------------------------------------------
+| Scheduler         | Aunya Mukherjee   | - First use when2meet.com to figure out a time that all 
+|                   |                   | team members are available to meet, then make Google
+|                   |                   | Calendar events and invites
+|-------------------|-------------------|--------------------------------------------------------
+| Reporter          | Dustin Zhang      | - In charge of making meeting minutes and taking notes
+|                   |                   | during team's meetings
+|-------------------|-------------------|--------------------------------------------------------
+| Project Manager   | Wiley Bui         | - Keep team members on track and make sure group 
+|                   |                   | deadlines are being met. Manage the project timeline 
+|                   |                   | using trello and plan
 
-* **Summary of Team Meetings**
-| Meeting Date      |   Objective Summary
-| :---------------: | :-------------------------------------------   
-|-------------------|---------------------------------------------
-| 3/23/2021         | - Finish in-class exercise #9
-|                   | - Discuss what version of code to use
-|                   | - Discuss the requirement for iteration 2 (including abstract ASubject, concerte subject, etc)
-|                   | - Set up a timeline for work
-|                   | - Delegate work
-| 3/26/2021         | - Update from members
+* **Gantt Chart**
+<CENTER>
+\image html Gantt_chart.png "Figure 5. Gantt chart to show work progress"
+</CENTER>
 
 * **Distribution of tasks among members**
 
@@ -181,4 +200,17 @@ j is a tuning parameter that we can use to avoid building collision and scale th
 |                   |   Refactor SetRoute of Carrier	                                    | 20                    | n/a	
 |                   |	Battery Capacity for Robot 	                                        | 44                    | n/a	
 |                   |   Adding Documentation	                                            | 48            	    | Dustin Zhang, Aunya Mukherjee, Wiley Bui
+
+
+* **Summary of Team Meetings**
+| Meeting Date      |   Objective Summary
+| :---------------: | :-------------------------------------------   
+|-------------------|---------------------------------------------
+| 3/23/2021         | - Finish in-class exercise #9
+|                   | - Discuss what version of code to use
+|                   | - Discuss the requirement for iteration 2 (including abstract ASubject, concerte subject, etc)
+|                   | - Set up a timeline for work
+|                   | - Delegate work
+| 3/26/2021         | - Update from members
+
 */
