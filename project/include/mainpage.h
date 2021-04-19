@@ -5,27 +5,27 @@ multiple_customers.json, multiple_packages.json, and multiple_deliveries.json \n
 
 
 * **To obtain the code**, in the terminal, type:
-<PRE> $ git clone https://github.umn.edu/umn-csci-3081-s21/repo-huynh365.git </PRE>
+<PRE> $ git clone https://github.umn.edu/umn-csci-3081-s21/repo-iter2-10-22.git </PRE>
 This will prompt you to sign in into your Github. If you have the right access, 
 you would be able to obtain the code. To compile the code, navigate to the 
-"repo-huynh365" directory that you just download from github by typing:
-<PRE> $ cd repo-huynh365 </PRE>
+"repo-iter2-10-22" directory that you just download from github by typing:
+<PRE> $ cd repo-iter2-10-22 </PRE>
 **To compile the code**, in the terminal, type:
 <PRE> $ make </PRE>
 * **To run the simulation**, there are two ways: 
 - If you are using **Docker**, after install all of the Docker software needed
-for your environment, in directory "repo-huynh365", type the following commands 
+for your environment, in directory "repo-iter2-10-22", type the following commands 
 to the terminal:
 <PRE> $ bin/build-env.sh </PRE>
 This will help build the docker image. To run docker image:
 <PRE> bin/run-env.sh </PRE>
-Build project web server (inside docker image), navigate to the "repo-huynh365"
+Build project web server (inside docker image), navigate to the "repo-iter2-10-22"
 directory, then:
 <PRE> $ make </PRE>
-To run the web server (inside docker image), inside "repo-huynh365" directory:
+To run the web server (inside docker image), inside "repo-iter2-10-22" directory:
 <PRE> $ ./bin/run.sh </PRE>
 *
-- If you are using **VOLE**, navigate to "repo-huynh365" directory, then 
+- If you are using **VOLE**, navigate to "repo-iter2-10-22" directory, then 
 <PRE> $ cd project </PRE>
 <PRE> $ make </PRE>
 <PRE> $ ./bin/run.sh </PRE> 
