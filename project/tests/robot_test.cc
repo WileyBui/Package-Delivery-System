@@ -4,6 +4,7 @@
 #include "../include/robot.h"
 #include "../include/customer.h"
 #include "json_helper.h"
+#include "../include/smart_route.h"
 #include <iostream>
 
 namespace csci3081 {
@@ -76,6 +77,9 @@ TEST_F(RobotTest, ConstructorAndGetter) {
   EXPECT_FALSE(SHINeeCD.HavePackage()) << "Normal Constructor or HavePackage does not work";
   EXPECT_TRUE(SHINeeCD.Charging(1000)) << "Normal Constructor or Charging does not work";
   EXPECT_TRUE(SHINeeCD.DropPackage()==NULL) << "Normal Constructor or BatteryDead does not work";
+  RouteStrategy* routeChoice = SHINeeCD.GetRouteStrategy();
+  EXPECT_TRUE((dynamic_cast<SmartRoute*> (routeChoice)) != nullptr) << "Default Constructor does not work for path choosing";
+
 }
 
 TEST_F(RobotTest, CopyConstructorAndGetter) {
@@ -179,10 +183,14 @@ TEST_F(RobotTest, UpdateAndBattery){
   EXPECT_FALSE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
   Package SM(obj);
   SM.SetOwner(&Lin);
+  std::vector<std::vector<float>> path;
+  path.push_back(position_to_add2);
+  path.push_back(position_to_add);
+  SHINeeCD.SetRoute(path);
   EXPECT_TRUE(SHINeeCD.AddPackage(&SM)) << "AddPackage faulty";
   EXPECT_TRUE(SHINeeCD.HavePackage()) << "AddPackage faulty";
-  SHINeeCD.Update(10000);
-  EXPECT_TRUE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
+  SHINeeCD.Update(50);
+  EXPECT_FALSE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
   SHINeeCD.DropPackage();
   SHINeeCD.Update(10000);
   EXPECT_TRUE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
