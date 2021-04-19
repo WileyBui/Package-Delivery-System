@@ -2,8 +2,8 @@
 
 namespace csci3081 {
     std::vector <std::vector<float>> ParabolicRoute::GetRoute(const IGraph* graph, std::vector<float> location, std::vector<float> dest){
-        float j = 100.00;//(j) is a tuning parameter that we can use to avoid building collision and scale the parabola's slope.
-        int steps =100;
+        float j = 300.00;//(j) is a tuning parameter that we can use to avoid building collision and scale the parabola's slope.
+        int steps =50;
         Vector3D start(location);
         Vector3D end(dest);
         Vector3D middle = (start + end)/2;
@@ -18,7 +18,7 @@ namespace csci3081 {
             std::vector<float> converted = toVectorFloat(current);
             float dis_mid_cur = Distance(middle,current);
             float dY = (1 - (dis_mid_cur*dis_mid_cur)/(dis_mid_source*dis_mid_source))*j;
-            converted[1] + =dY;
+            converted[1]+=dY;
             path.push_back(converted);
         }
         path.push_back(dest);
