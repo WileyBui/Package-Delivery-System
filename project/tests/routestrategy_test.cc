@@ -65,5 +65,38 @@ TEST_F(RouteStrategyTest, GetRouteBeelineTest) {
     }
   }
 }
+TEST_F(RouteStrategyTest, ParabolicPathTest) {
+  ParabolicRoute pRoute;
+  std::vector<std::vector<float>> path1 = pRoute.GetRoute(graph, start, des);
+
+  float j = 300.00;  //(j) is a tuning parameter that we can use to avoid building collision and scale the parabola's slope.
+  int steps = 50;
+  Vector3D startV(start);
+  Vector3D end(des);
+  Vector3D middle = (startV + end) / 2;
+  Vector3D dV = (end - startV) / steps;
+  float dis_mid_source = Distance(startV, middle);
+  std::vector<std::vector<float>> path;
+  Vector3D current = startV;
+  path.push_back(start);
+  for (int i = 0; i < steps - 1; i++) {
+    current = current + dV;
+    std::vector<float> converted = toVectorFloat(current);
+    float dis_mid_cur = Distance(middle, current);
+    float dY = (1 - (dis_mid_cur * dis_mid_cur) / (dis_mid_source * dis_mid_source)) * j;
+    converted[1] += dY;
+    path.push_back(converted);
+  }
+  path.push_back(des);
+
+  EXPECT_EQ(path.size(), path1.size()) << "path and path1 size do not match";
+
+  for (int i = 0; i < path.size(); i++) {
+    for (int j = 0; j < 3; j++) {
+      EXPECT_FLOAT_EQ(path[i][j], path1[i][j]) << "Parabolic path does not work";
+    }
+  }
+
+}
 
 }  // namespace csci3081
