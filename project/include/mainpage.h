@@ -119,8 +119,10 @@ EntityConsoleLogger classes), and therefore only need to write implementations f
 as its functionaility, and relate it to Drone, Package and Robot class. Following is the UML depecting the
 relationship of the Observer pattern that we implement. 
 
-
-packages)  
+<CENTER>
+\image html Observer_Pattern.png "Figure 4. Observer Pattern used to send notification about drones, robots, 
+and package to selected observers"
+</CENTER>
 
 * **Designing and Implementing Different Route** <br>
 
@@ -200,7 +202,7 @@ j is a tuning parameter that we can use to avoid building collision and scale th
 |                   | Implement Parabolic Path for Drone	                                | 40                    | n/a
 |                   | Adding Documentation	                                                | 48	                | Wiley Bui, Aunya Mukherjee, Lin Huynh
 |-------------------|-----------------------------------------------------------------------|-----------------------|----------------------------------------------
-| Aunya Mukherjee	| Create ASubject Class for the Observer Pattern	                    | 3	                    | n/a
+| Aunya Mukherjee	| Create ASubject Class for the Observer Pattern	                    | 3	                    | Lin Huynh
 |                   | Test: Making Google Tests for ASubject Class	                        | 7                     | n/a	
 |                   | Feature: change package to inherit from Asubject 	                    | 23                    | n/a	
 |                   | Bug: Package left undelivered in all_scenes.json simulation	        | 24	                | n/a
@@ -218,15 +220,112 @@ j is a tuning parameter that we can use to avoid building collision and scale th
 |                   |   Gantt chart                                                         | n/a                   | n/a
 
 
-* **Summary of Team Meetings**
+* **Summary of Team Meetings** <br>
+
+Team usually meets 1 or 2 times a week. The following only contains meetings for iteration 2, but we also had meetings for iteration 1
 | Meeting Date      |   Objective Summary
-| :---------------: | :-------------------------------------------   
-|-------------------|---------------------------------------------
+| :---------------: | :---------------------------------------------------------------------------------------------------   
+|-------------------|-----------------------------------------------------------------------------------------------------
 | 3/23/2021         | - Finish in-class exercise #9
-|                   | - Discuss what version of code to use
+|                   | - Discuss what version of code to use (Lin's version)
 |                   | - Discuss the requirement for iteration 2 (including abstract ASubject, concerte subject, etc)
 |                   | - Set up a timeline for work
+|                   | 1. Implement ASubject  abstract class
+|                   | 2. Implement Robot
+|                   | 3. Implement Inheritance to existing classes (Drone, package, robot)
+|                   | 4. Write Google Test
 |                   | - Delegate work
+|                   | + Lin and Aunya: ASubject class, Update Drone and Package to have inheritance 
+|                   | + Wiley and Dustin: Implement Robot class and create google tests
+|                   | - Next Meeting: Friday 3/26/21 (1PM - 2PM)
+|-------------------|-----------------------------------------------------------------------------------------------------
 | 3/26/2021         | - Update from members
+|                   | + Lin:
+|                   | 1. Create Carrier class and test
+|                   | 2. Implement GetStatus for Drone
+|                   | 3. Implement AddObserver and RemoveObserver in DeliverSimulation
+|                   | 4. Fix bug where two drones fly together when there is only one package
+|                   | 5. Get Battery pattern to work for Drone (check test drone_low_battery a and b json)
+|                   | 6. Work with Aunya to finish ASubject
+|                   | + Aunya:
+|                   | 1. Finish ASubject
+|                   | + Wiley and Dustin:
+|                   | 1. Finished robot class and gtest 
+|                   | - Answer questions from members
+|                   | - Fix segmentation fault together
+|                   | - Delegate work: keep working on tasks from 3/23
+|-------------------|-----------------------------------------------------------------------------------------------------
+| 3/30/2021         | - Update from members
+|                   | + Lin:
+|                   | 1. Refactor AddPosition to SetRoute
+|                   | + Aunya:
+|                   | 1. Finish Package inherited from ASubject
+|                   | + Wiley and Dustin:
+|                   | 1. Fixed some google tests together. 
+|                   | - Answer questions from members
+|                   | - Run Devel again with all simulations and see if all notifications are printed out correctly
+|                   | - Next meeting: 
+|                   | 1. Split work for documentation and mainpage.h
+|                   | 2. Figure out UML's subcription
+|                   | 3. Start brainstorming for next iteration
+|                   | - Action items:
+|                   | + Dustin and Wiley:
+|                   | 1. Implement Beeline
+|                   | + Aunya and Lin:
+|                   | 1. Start building strategy pattern structure
+|-------------------|-----------------------------------------------------------------------------------------------------
+| 4/13/2021         | - Finish in class exercise 11
+|                   | - Update from members
+|                   | + Aunya:
+|                   | 1. Implemented the strategy pattern
+|                   | + Wiley and Dustin:
+|                   | 1. Implemented Beeline but needs to fix all_features.json
+|                   | 2. Implement parabolic path
+|                   | - Answer questions from members
+|                   | - Action items:
+|                   | + Wiley:
+|                   | 1. Fix the beeline - all_features.json
+|                   | 2. Add beeline Google test
+|                   | 3. Drop the drone & its package if it’s out of battery
+|                   | 4. Write about beeline and parabolic route in documentation
+|                   | + Dustin:
+|                   | 1. Implement Parabolic Path
+|                   | 2. Write about beeline and parabolic route in documentation
+|                   | + Aunya
+|                   | 1. Write about strategy structure 
+|                   | 2. Add strategy route in drone constructor
+|                   | + Lin
+|                   | 1. Do team documentation in mainpage.h
+|                   | 2. Add test for path in drone and robot constructor
+|                   | 3. Fix UML
+|-------------------|-----------------------------------------------------------------------------------------------------
+| 4/16/2021         | - Update from members
+|                   | + Aunya:
+|                   | 1. Add the strategy route in the drone constructor
+|                   | 2. Design & Documentation discussion about strategy pattern
+|                   | + Wiley:
+|                   | 1. Fix the beeline - all_features.json
+|                   | 2. Drop the drone & its package if it’s out of battery
+|                   | 3. SmartRoute, BeelineRoute, and ParabolicRoute Design & Documentation
+|                   | + Dustin:
+|                   | 1. Parabolic path 
+|                   | + Lin:
+|                   | 1. Create Task table
+|                   | 2. Update Robot to die when run out of battery
+|                   | - Answer questions from members
+|                   | - Run all simulation together
+|                   | - Check in for documentation
+|                   | - Action items:
+|                   | + Wiley:
+|                   | 1. Adding test for beeline path
+|                   | 2. Check if every single file has documentation
+|                   | + Dustin:
+|                   | 1. Add height in parabolic path
+|                   | 2. Adding test for parabolic path
+|                   | + Aunya
+|                   | 1. Test the observer pattern  
+|                   | + Lin
+|                   | 1. Discuss about Observer Pattern in mainpage.h
+|                   | 2. Check every github’s README file only has name of the person who works on it
 
 */
