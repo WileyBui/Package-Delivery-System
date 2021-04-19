@@ -113,7 +113,13 @@ In this project, **observer Pattern** is implemented to notify the observers (th
 EntityConsoleLogger) about change(s) in subjects (drones, robots, or packages). For the drones and robots, 
 notifications are sent when they become idle or moving. For the packages, notifications are sent when the 
 package is scheduled to be delivered, is en route (picked up), or is delivered. 
- 
+
+We are given the implementation of the Observer classes (including the WebSceneViewers and the 
+EntityConsoleLogger classes), and therefore only need to write implementations for ASubject class, as well
+as its functionaility, and relate it to Drone, Package and Robot class. Following is the UML depecting the
+relationship of the Observer pattern that we implement. 
+
+
 packages)  
 
 * **Designing and Implementing Different Route** <br>
