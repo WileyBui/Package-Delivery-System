@@ -14,6 +14,10 @@
 
 #include <iostream>
 
+// These are the tests for the Observer Pattern. We implemented them by testing the code we wrote in
+// the ASubject Class, to make sure that the right information will be sent to the Observer classes that
+// have been provided to us
+
 namespace csci3081 {
 
 using entity_project::IEntity;

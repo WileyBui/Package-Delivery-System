@@ -1,9 +1,9 @@
 #include "../include/drone.h"
-#include "../include/package.h"
 #include "../include/battery.h"
-#include "../include/vector.h"
-#include "../include/json_helper.h"
 #include "../include/generate_id.h"
+#include "../include/json_helper.h"
+#include "../include/package.h"
+#include "../include/vector.h"
 // #include "../include/beeline_route.h"
 // #include "../include/smart_route.h"
 // #include "../include/parabolic_route.h"
@@ -18,8 +18,7 @@ Drone::Drone(const picojson::object& val) {
   radius = JsonHelper::GetDouble(val, "radius");
   try {
     battery = Battery(JsonHelper::GetDouble(val, "battery_capacity"));
-  }
-  catch (std::logic_error a){
+  } catch (std::logic_error a) {
     battery = Battery(10000);
   }
   dynamic = false;
@@ -47,9 +46,9 @@ Drone::Drone(const picojson::object& val) {
   }
 }
 
-Drone::Drone(Drone& cpy){
-  position=cpy.position;
-  direction=cpy.direction;
+Drone::Drone(Drone& cpy) {
+  position = cpy.position;
+  direction = cpy.direction;
   name = cpy.name;
   radius = cpy.radius;
   dynamic = cpy.dynamic;
@@ -63,10 +62,10 @@ Drone::Drone(Drone& cpy){
   routeStrategy = cpy.routeStrategy;
 }
 
+}  // namespace csci3081
 // Drone::~Drone(){
 //   if (routeStrategy != NULL){
 //     delete routeStrategy;
 //   }
 // }
 
-} // close namespace csci3081

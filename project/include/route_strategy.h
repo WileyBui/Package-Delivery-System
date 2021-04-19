@@ -8,6 +8,7 @@
  ******************************************************************************/
 #include <string>
 #include <vector>
+#include "vector.h"
 // #include <EntityProject/facade/graph.h>
 #include <EntityProject/facade/delivery_system.h>
 
