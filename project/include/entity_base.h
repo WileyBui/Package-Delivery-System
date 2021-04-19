@@ -70,10 +70,22 @@ class EntityBase : public IEntity {
     **/
   bool IsDynamic() const;
 
+  /**
+    * Return the distance between the IEntity objects 
+    **/
   float DistanceBetween(IEntity* another);
 
+  /**
+    * Return true if the object is within radius of the IEntity 
+    * object passed in the argument;
+    * Return false otherwise
+    **/
   bool IsWithin(IEntity* another);
 
+  /**
+    * Return std::string type of the Entity object, such as 
+    * "carrier" and "customer"
+    **/
   std::string GetType();
 
  protected:

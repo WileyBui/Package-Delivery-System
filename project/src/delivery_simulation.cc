@@ -11,6 +11,7 @@ DeliverySimulation::DeliverySimulation() {
 	AddFactory(new PackageFactory());
 	AddFactory(new CustomerFactory());
 	AddFactory(new CarrierFactory());
+	
 }
 
 DeliverySimulation::~DeliverySimulation() {
@@ -84,7 +85,7 @@ void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {
 }
 
 const std::vector<IEntity*>& DeliverySimulation::GetEntities() const { 
-	return entities_; 
+	return entities_;
 }
 
 void DeliverySimulation::Update(float dt) {
@@ -115,8 +116,8 @@ void DeliverySimulation::Update(float dt) {
 					carrier->AddPackage(package);
 					package->SetCarrier(carrier);
 					
-					// Adding path to package
-					std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
+					// std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
+					std::vector<vector<float>> path = carrier->GetRouteStrategy()->GetRoute(graph, carrier->GetPosition(),package->GetPosition());
 					carrier->SetRoute(path);
 					package->GetStatus();
 					carrier->GetStatus();
@@ -127,7 +128,19 @@ void DeliverySimulation::Update(float dt) {
 			Carrier* carrier = dynamic_cast<Carrier*> (entities_.at(i));
 			if (carrier->HavePackage() && carrier->NextPosition() == carrier->GetPosition()){
 				// Adding path to customer
-				std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
+				// std::vector<vector<float>> path;
+
+				// if (carrier->GetName().find("drone") != std::string::npos) {
+				// 	// Uses GetBeelinePath() route
+				// 	Drone* drone = dynamic_cast<Drone*> (carrier);
+				// 	path = drone->GetBeelinePath(carrier->GetPosition(), carrier->GetPackage()->GetOwner()->GetPosition());
+				// } else {
+				// 	// Uses GetPath() route
+				// 	path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
+				// }
+					
+				// std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
+				std::vector<vector<float>> path = carrier->GetRouteStrategy()->GetRoute(graph, carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
 				carrier->SetRoute(path);
 				carrier->GetPackage()->GetStatus();
 				carrier->GetStatus();
