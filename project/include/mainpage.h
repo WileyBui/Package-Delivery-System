@@ -159,6 +159,9 @@ Vt is our step interval equal to distance(source, destination) / T
 j is a tuning parameter that we can use to avoid building collision and scale the parabola's slope
 </PRE>
 
+Right now, when the package is somewhat in a building, drone clips that building a little bit in the 
+scene when getting the package on its descent
+
 * **General roles of members**
 | Roles 	        | Member Name       |  Priority Task
 | :---------------: |:-----------------:|:-------------------------------------------------------
