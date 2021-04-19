@@ -68,7 +68,12 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     *         FALSE otherwise
     */
     bool BatteryDead();
-
+    
+    /**
+    * @brief This returns the time in secs left in the carrier's battery
+    */
+    float GetBattery();
+    
     /**
     * @brief This function is used to charge the battery of the carrier for 
     * a certain amount of time in seconds
@@ -126,12 +131,18 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     void Update(float dt);
 
     /**
-    * @brief This returns the time in secs left in the carrier's battery
+    * @brief Pure virtual function GetStatus that needs to implemented by derived
+    * class based on their types of notification. This function creates the arguments 
+    * required by Notify function and makes call to Notify function
+    * @param picojson::value& event 
+    * @param const entity_project::IEntity& entity
     */
-    float GetBattery();
-
     void GetStatus();
 
+    /**
+    * @brief return the Route Strategy that the carrier uses, such as Smart Route, Beeline, 
+    * or Parabolic Route
+    */
     RouteStrategy* GetRouteStrategy();
 
   protected: 

@@ -18,11 +18,7 @@ namespace csci3081 {
  * @brief This is the Beeline Route class where we can use the strategy pattern to implement a Beeline route for carriers
  */
     class BeelineRoute : public csci3081::RouteStrategy {
-        public:
-            /**
-             * @brief This is the default constructor of the Beeline Path Class
-             */
-            BeelineRoute(){}
+        public:           
             /**
              * @brief This function allows the moving item to get the desired route. In this class, the function
              * will return a route that follows the Beeline path.
@@ -37,6 +33,6 @@ namespace csci3081 {
              * @return std::vector <std::vector<float>> The path of the beeline
              */
 
-            virtual std::vector <std::vector<float>> GetRoute(const IGraph* graph, std::vector<float> location, std::vector<float> dest);
+            std::vector <std::vector<float>> GetRoute(const IGraph* graph, std::vector<float> location, std::vector<float> dest);
     };
 } // namespace 3081
