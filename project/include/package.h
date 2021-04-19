@@ -95,7 +95,14 @@ class Package : public csci3081::EntityBase, public csci3081::ASubject{
     */
     bool IsDelivered();
     
+    /**
+      * @brief Overwritten GetStatus from ASubject. This function creates the arguments 
+      * required by Notify function and makes call to Notify function. This function should
+      * be called when path is added to the package is schedule to deliver, en route 
+      * (picked up) or delivered
+      **/
     void GetStatus();
+
     /**
     * @brief This is an inherited method from EntityBase to use for DeliverySimulation.
     * This updates the position of the package on the simulation if the position changes

@@ -131,9 +131,9 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     void Update(float dt);
 
     /**
-    * @brief Pure virtual function GetStatus that needs to implemented by derived
-    * class based on their types of notification. This function creates the arguments 
-    * required by Notify function and makes call to Notify function
+    * @brief Overwritten GetStatus from ASubject. This function creates the arguments 
+    * required by Notify function and makes call to Notify function. This function should
+    * be called when path is added to the carrier and when the carrier becomes idle
     * @param picojson::value& event 
     * @param const entity_project::IEntity& entity
     */
