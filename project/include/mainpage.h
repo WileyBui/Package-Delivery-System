@@ -107,6 +107,15 @@ At first it was difficult to understand the strategy pattern for us, but after w
 through different examples in class and online (https://www.geeksforgeeks.org/strategy-pattern-set-2/), 
 we were able to better apply the strategy pattern to our own code.
 
+* **Designing and Implementing Observer Pattern** <br>
+
+In this project, **observer Pattern** is implemented to notify the observers (the WebSceneViewers and the 
+EntityConsoleLogger) about change(s) in subjects (drones, robots, or packages). For the drones and robots, 
+notifications are sent when they become idle or moving. For the packages, notifications are sent when the 
+package is scheduled to be delivered, is en route (picked up), or is delivered. 
+ 
+packages)  
+
 * **Designing and Implementing Different Route** <br>
 
 Drones and Robots are carriers, where they can deliver from a source to the designated location. 
@@ -200,6 +209,7 @@ j is a tuning parameter that we can use to avoid building collision and scale th
 |                   |   Refactor SetRoute of Carrier	                                    | 20                    | n/a	
 |                   |	Battery Capacity for Robot 	                                        | 44                    | n/a	
 |                   |   Adding Documentation	                                            | 48            	    | Dustin Zhang, Aunya Mukherjee, Wiley Bui
+|                   |   Gantt chart                                                         | n/a                   | n/a
 
 
 * **Summary of Team Meetings**
