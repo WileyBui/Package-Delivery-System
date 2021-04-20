@@ -10,6 +10,16 @@
 #include <EntityProject/facade/delivery_system.h>
 #include <vector>
 #include <string>
+#include "composite_factory.h"
+#include "drone_factory.h"
+#include "customer_factory.h"
+#include "package_factory.h"
+#include "carrier_factory.h"
+#include "drone.h"
+#include "robot.h"
+#include "carrier.h"
+#include "package.h"
+#include "customer.h"
 
 namespace csci3081 {
 
@@ -19,7 +29,7 @@ namespace csci3081 {
 /**
  * @brief This is the facade for the delivery system
  *
- * This class will delegate operations for the whole drone delivery system.
+ * This class will delegate operations for the whole delivery system.
  * See the documentation for IDeliverySystem for more information.
  */
 
@@ -117,11 +127,24 @@ class DeliverySimulation : public IDeliverySystem {
    */
   void RunScript(const picojson::array& script, IEntitySystem* system) const;
 
+  /**
+  * @brief Return pointer to the most suitable available carrier (e.g. drone, robot, etc)
+  * to deliver a package. Choose the one available, not out of battery, closest
+  * to the package
+  */
+  Carrier* AvailableCarrier(IEntity* package);
+
  private:
   // You don't strictly need to use the following variable, but it is probably
   // the most straightforward way of storing the entities in the system.
   // Feel free to use it as is or change it.
   std::vector<IEntity*> entities_;
+  std::vector<IEntityObserver*> observers_;
+  std::vector<ASubject*> subjects_;
+  CompositeFactory* composite;
+  int numEntities;
+  const IGraph* graph;
+  
 };
 
 }  // namespace csci3081

@@ -1,44 +1,187 @@
 #include "delivery_simulation.h"
 #include "entity_base.h"
+#include "vector.h"
 #include "json_helper.h"
-#include "drone.h"
 
 namespace csci3081 {
 
-DeliverySimulation::DeliverySimulation() {}
+DeliverySimulation::DeliverySimulation() {
+	numEntities = 0;
+	composite = new CompositeFactory();	
+	AddFactory(new PackageFactory());
+	AddFactory(new CustomerFactory());
+	AddFactory(new CarrierFactory());
+	
+}
 
-DeliverySimulation::~DeliverySimulation() {}
+DeliverySimulation::~DeliverySimulation() {
+	delete composite;
+	for (int i = 0; i<numEntities; i++){
+		delete entities_.at(i);
+	}
+	entities_.clear();
+}
 
 IEntity* DeliverySimulation::CreateEntity(const picojson::object& val) {
-  //TODO for lab10: replace the ?????'s with the appropriate values,
-  //  then uncomment the section of code
-  /*
-  if (JsonHelper::GetString(val, "????") == "drone") {
-    std::vector<float> position = JsonHelper::GetStdFloatVector(val, "????????");
-    std::vector<float> direction = JsonHelper::GetStdFloatVector(val, "????????");
-    return new Drone(????, ????, ????);
-  }
-  */
-  return NULL;
+	IEntity* result = composite->CreateEntity(val); 
+  	if (result!=NULL){
+		numEntities++;
+	}
+	return result;
 }
 
-void DeliverySimulation::AddFactory(IEntityFactory* factory) {}
+void DeliverySimulation::AddFactory(IEntityFactory* factory) {
+	composite->AddFactory(factory);
+}
 
 void DeliverySimulation::AddEntity(IEntity* entity) { 
-  //TODO for lab10: One line of code
+  	entities_.push_back(entity);
+	// Adding into subjects_ if entity is a derived class of ASubject
+	ASubject* subject;
+	if ((subject = dynamic_cast<ASubject*> (entity))!=0){
+		subjects_.push_back(subject);
+		for (int i = 0; i<observers_.size(); i++){
+			subject->Attach(observers_.at(i));
+		}
+	}
 }
 
-void DeliverySimulation::SetGraph(const IGraph* graph) {}
+void DeliverySimulation::SetGraph(const IGraph* graph) {
+	this->graph = graph;
+}
 
-void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {}
+void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {
+	Customer* owner = dynamic_cast<Customer*> (dest);
+	Package* pack = dynamic_cast<Package*> (package);
+	pack->SetOwner(owner);
+	pack->GetStatus();
+}
 
-void DeliverySimulation::AddObserver(IEntityObserver* observer) {}
+void DeliverySimulation::AddObserver(IEntityObserver* observer) {
+	EntityBase* entity;
+	ASubject* subject;
+	// Adding new observe into the tracked list
+	observers_.push_back(observer);
+	for (int i = 0; i<subjects_.size(); i++) {
+		std::cout << i << std::endl;
+		subjects_.at(i)->Attach(observer); 
+	}
+}
 
-void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {}
+void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {
+	// Deleting from the observers list of DeliverySimulation
+	observers_.erase(std::remove(observers_.begin(), observers_.end(), observer), observers_.end());
+	// Deleting from each subjects
+	EntityBase* entity;
+	ASubject* subject;
+	for (int i = 0; i<numEntities; i++) {
+		entity = dynamic_cast<EntityBase*> (entities_.at(i));
+		// Right now only carrier has GetStatus, later can change condition to != "customer"
+		if (entity->GetType() == "carrier") {
+			subject = dynamic_cast<ASubject*> (entity);
+			subject->Detach(observer); 
+		}
+	}
+}
 
-const std::vector<IEntity*>& DeliverySimulation::GetEntities() const { return entities_; }
+const std::vector<IEntity*>& DeliverySimulation::GetEntities() const { 
+	return entities_;
+}
 
-void DeliverySimulation::Update(float dt) {}
+void DeliverySimulation::Update(float dt) {
+	// Placeholder pointer
+	EntityBase *entity;
+	ASubject *subject;
+	Package* package;
+	Customer* owner;
+
+	picojson::object val;
+	for (int i = 0; i<numEntities; i++) {
+		// Update dynamic entities_	
+		entity = dynamic_cast<EntityBase*> (entities_.at(i));
+		subject = dynamic_cast<ASubject*> (entities_.at(i));
+
+		if (entity->IsDynamic()){
+			// Only updating the carrier (drone & robot) and the package, customer doesn't need to move
+			subject->Update(dt); 
+		}
+		// See if there is any undeliverered package
+		if (entity->GetType() == "package") {
+			package = dynamic_cast<Package*> (entities_.at(i));
+			owner = package->GetOwner();
+			if ((!package->IsDynamic()) && (owner!=NULL) && (package->GetCarrier()==NULL)) {
+				Carrier* carrier = AvailableCarrier(package);
+				if (carrier!=NULL){
+					// Establish relationship between objects
+					carrier->AddPackage(package);
+					package->SetCarrier(carrier);
+					
+					// std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
+					std::vector<vector<float>> path = carrier->GetRouteStrategy()->GetRoute(graph, carrier->GetPosition(),package->GetPosition());
+					carrier->SetRoute(path);
+					package->GetStatus();
+					carrier->GetStatus();
+				}
+			}
+		}
+		else if (entity->GetType() == "carrier") {
+			Carrier* carrier = dynamic_cast<Carrier*> (entities_.at(i));
+			if (carrier->HavePackage() && carrier->NextPosition() == carrier->GetPosition()){
+				// Adding path to customer
+				// std::vector<vector<float>> path;
+
+				// if (carrier->GetName().find("drone") != std::string::npos) {
+				// 	// Uses GetBeelinePath() route
+				// 	Drone* drone = dynamic_cast<Drone*> (carrier);
+				// 	path = drone->GetBeelinePath(carrier->GetPosition(), carrier->GetPackage()->GetOwner()->GetPosition());
+				// } else {
+				// 	// Uses GetPath() route
+				// 	path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
+				// }
+					
+				// std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
+				std::vector<vector<float>> path = carrier->GetRouteStrategy()->GetRoute(graph, carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
+				carrier->SetRoute(path);
+				carrier->GetPackage()->GetStatus();
+				carrier->GetStatus();
+			}
+		}
+	}
+}
+
+Carrier* DeliverySimulation::AvailableCarrier(IEntity* package){
+	float minDist;
+	float instance;
+	int carrierIndex = -1;
+	picojson::object val;
+	Carrier* carrier;
+	EntityBase* entity;
+	for (int j = 0; j<numEntities; j++){
+		entity = dynamic_cast<EntityBase*> (entities_.at(j));
+		if (entity->GetType() == "carrier") {
+			carrier = dynamic_cast<Carrier*> (entity);
+			if ((!carrier->HavePackage()) && (!carrier->BatteryDead())) {
+			// if a carrier and is not busy with another package and have enough battery
+			instance = carrier->DistanceBetween(package);
+			if (carrierIndex == -1) {
+				minDist = instance;
+				carrierIndex = j;
+			}
+			else {
+				if (minDist>instance){
+					minDist = instance;
+					carrierIndex = j;
+				}
+			}
+			}
+		}
+	}	// find a carrier
+	if (carrierIndex!=-1) {
+		carrier = dynamic_cast<Carrier*> (entities_.at(carrierIndex));
+		return carrier;
+	}
+	return NULL;
+}
 
 
 // DO NOT MODIFY THE FOLLOWING UNLESS YOU REALLY KNOW WHAT YOU ARE DOING
