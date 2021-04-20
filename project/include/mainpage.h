@@ -146,8 +146,7 @@ the height of 400 so it prevents the drones to not hit any building that crosses
 place to another.
 
 For the last strategy, **ParabolicRoute,** only the drones can use the parabolic path where it 
-followed by a smooth projectile curve. The calculation is as follows:
-
+followed by a smooth projectile curve. The calculation is as follows:  
 <PRE>
 y = (1 - distance(V, Vm)^2 / distance(Vo, Vm)^2) * j (2), where
 
@@ -158,9 +157,14 @@ T is the number of steps we are estimating
 Vt is our step interval equal to distance(source, destination) / T
 j is a tuning parameter that we can use to avoid building collision and scale the parabola's slope
 </PRE>
+However for a pure parabolic path, when the package is somewhat in a building, drone clips that building a little bit in the 
+scene when getting the package on its descent.  
 
-Right now, when the package is somewhat in a building, drone clips that building a little bit in the 
-scene when getting the package on its descent
+In order to solve the problem, we first raise the drone to a certain height first,then perform parabolic movement in the air and descend veritcally.  
+
+When a drone carrier runs out of battery in mid air, it becomes idle and also notifies the observer. It then falls down to the ground, along with its package if it currently delivers one. Therefore, another carrier, especially a robot, can come over to the dead drone to pick up the undelivered package and deliver it back to its corresponding customer. Similarly, when a robot carrier runs out of battery, it notifies the observer and stays right where it is because it's at the ground, making it easier for other carriers to come & pick up the package.
+  
+
 
 * **General roles of members**
 | Roles 	        | Member Name       |  Priority Task
