@@ -22,7 +22,8 @@ namespace csci3081 {
             /**
              * @brief This function 
              * allows the moving item to get the desired route. In this class, the function will return a 
-             * route that follows the parabolic path
+             * route that follows the parabolic path. However a pure parabolic path will make the drone clips the building at the end. 
+               What we did is raise the drone to a certain height first,then do parabolic in the air and descend veritcally.
              * @param const IGraph* graph
              * @param std::vector<float> location
              * @param std::vector<float> dest
