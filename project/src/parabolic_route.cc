@@ -4,14 +4,19 @@ namespace csci3081 {
     std::vector <std::vector<float>> ParabolicRoute::GetRoute(const IGraph* graph, std::vector<float> location, std::vector<float> dest){
         float j = 300.00;//(j) is a tuning parameter that we can use to avoid building collision and scale the parabola's slope.
         int steps =50;
-        Vector3D start(location);
-        Vector3D end(dest);
+        vector<float> startInAir = location;
+        startInAir[1]+=50;
+        Vector3D start(startInAir);
+        vector<float> endInAir = dest;
+        endInAir[1]+=50;
+        Vector3D end(endInAir);
         Vector3D middle = (start + end)/2;
         Vector3D dV = (end - start)/steps;//delta Vector
         float dis_mid_source = Distance(start,middle);
         std::vector <std::vector<float>> path;
         Vector3D current = start;
         path.push_back(location);
+        path.push_back(startInAir);
         for(int i = 0;i < steps-1; i++){
             current = current + dV;//update the current position 
             std::vector<float> converted = toVectorFloat(current);
@@ -20,7 +25,9 @@ namespace csci3081 {
             converted[1]+=dY;
             path.push_back(converted);//add point to the path
         }
+        path.push_back(endInAir);
         path.push_back(dest);
+
         return path;
 
         ;//Logic for generating the parabolic path points goes here

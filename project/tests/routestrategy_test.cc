@@ -68,17 +68,21 @@ TEST_F(RouteStrategyTest, GetRouteBeelineTest) {
 TEST_F(RouteStrategyTest, ParabolicPathTest) {
   ParabolicRoute pRoute;
   std::vector<std::vector<float>> path1 = pRoute.GetRoute(graph, start, des);
-
   float j = 300.00;  //(j) is a tuning parameter that we can use to avoid building collision and scale the parabola's slope.
   int steps = 50;
-  Vector3D startV(start);
-  Vector3D end(des);
+  vector<float> startInAir = start;
+  startInAir[1]+=50;
+  Vector3D startV(startInAir);
+  vector<float> endInAir = des;
+  endInAir[1]+=50;
+  Vector3D end(endInAir);
   Vector3D middle = (startV + end) / 2;
   Vector3D dV = (end - startV) / steps;
   float dis_mid_source = Distance(startV, middle);
   std::vector<std::vector<float>> path;
-  Vector3D current = startV;
+  Vector3D current = startInAir;
   path.push_back(start);
+  path.push_back(startInAir);
   for (int i = 0; i < steps - 1; i++) {
     current = current + dV;
     std::vector<float> converted = toVectorFloat(current);
@@ -87,6 +91,7 @@ TEST_F(RouteStrategyTest, ParabolicPathTest) {
     converted[1] += dY;
     path.push_back(converted);
   }
+  path.push_back(endInAir);
   path.push_back(des);
 
   EXPECT_EQ(path.size(), path1.size()) << "path and path1 size do not match";
