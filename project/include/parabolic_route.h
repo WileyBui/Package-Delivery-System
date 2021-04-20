@@ -29,6 +29,6 @@ namespace csci3081 {
              * @param std::vector<float> dest
              * @return std::vector <std::vector<float>>
              */
-            virtual std::vector <std::vector<float>> GetRoute(const IGraph* graph, std::vector<float> location, std::vector<float> dest);
+            std::vector <std::vector<float>> GetRoute(const IGraph* graph, std::vector<float> location, std::vector<float> dest);
     };
 } // namespace 3081

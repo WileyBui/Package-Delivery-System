@@ -12,8 +12,12 @@ using entity_project::IEntity;
 
 class DroneTest : public ::testing::Test {
  protected:
-    picojson::object obj = JsonHelper::CreateJsonObject();
+    picojson::object obj = JsonHelper::CreateJsonObject();    
+    picojson::object obj1 = JsonHelper::CreateJsonObject();
     picojson::object obj2 = JsonHelper::CreateJsonObject();
+    picojson::object obj3 = JsonHelper::CreateJsonObject();
+    picojson::object obj4 = JsonHelper::CreateJsonObject();
+
     std::vector<float> position_to_add;
     std::vector<float> direction_to_add;
     std::vector<float> position_to_add2;
@@ -23,30 +27,56 @@ class DroneTest : public ::testing::Test {
     float battery_capacity = 10000;
  public:
   virtual void SetUp() {
-    JsonHelper::AddStringToJsonObject(obj, "type", "Drone");
     position_to_add.push_back(100);
     position_to_add.push_back(253.883);
     position_to_add.push_back(431.292);
     position_to_add2.push_back(2253.883);
     position_to_add2.push_back(4938.292);
     position_to_add2.push_back(2533.883);
-    JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", position_to_add);
-    JsonHelper::AddStdFloatVectorToJsonObject(obj2, "position", position_to_add2);
     direction_to_add.push_back(1);
     direction_to_add.push_back(0);
     direction_to_add.push_back(1);
     direction_to_add2.push_back(0);
     direction_to_add2.push_back(1);
     direction_to_add2.push_back(0);
-    JsonHelper::AddStringToJsonObject(obj2,"name","SHINeeCD");
+
+    JsonHelper::AddStringToJsonObject(obj, "type", "Drone");
     JsonHelper::AddStringToJsonObject(obj,"name","Lin");
+    JsonHelper::AddStdFloatVectorToJsonObject(obj, "position", position_to_add);
     JsonHelper::AddStdFloatVectorToJsonObject(obj, "direction", direction_to_add);
-    JsonHelper::AddStdFloatVectorToJsonObject(obj2, "direction", direction_to_add2);
     JsonHelper::AddFloatToJsonObject(obj, "radius", radius);
+    JsonHelper::AddFloatToJsonObject(obj, "battery_capacity", battery_capacity);
+
+    JsonHelper::AddStringToJsonObject(obj1, "type", "Drone");
+    JsonHelper::AddStringToJsonObject(obj1,"name","Minho");
+    JsonHelper::AddStdFloatVectorToJsonObject(obj1, "position", position_to_add);
+    JsonHelper::AddStdFloatVectorToJsonObject(obj1, "direction", direction_to_add2);
+    JsonHelper::AddFloatToJsonObject(obj1, "radius", radius);
+    JsonHelper::AddFloatToJsonObject(obj1, "speed", speed);
+
+    JsonHelper::AddStringToJsonObject(obj2,"name","SHINeeCD");
+    JsonHelper::AddStdFloatVectorToJsonObject(obj2, "position", position_to_add2);
+    JsonHelper::AddStdFloatVectorToJsonObject(obj2, "direction", direction_to_add2);
     JsonHelper::AddFloatToJsonObject(obj2, "radius", radius);
     JsonHelper::AddFloatToJsonObject(obj2, "speed", speed);
     JsonHelper::AddFloatToJsonObject(obj2, "battery_capacity", battery_capacity);
-    JsonHelper::AddFloatToJsonObject(obj, "battery_capacity", battery_capacity);
+    JsonHelper::AddStringToJsonObject(obj2, "path", "beeline");
+    
+    JsonHelper::AddStringToJsonObject(obj3, "type", "Drone");
+    JsonHelper::AddStringToJsonObject(obj3,"name","Minho");
+    JsonHelper::AddStdFloatVectorToJsonObject(obj3, "position", position_to_add);
+    JsonHelper::AddStdFloatVectorToJsonObject(obj3, "direction", direction_to_add2);
+    JsonHelper::AddFloatToJsonObject(obj3, "radius", radius);
+    JsonHelper::AddFloatToJsonObject(obj3, "speed", speed);
+    JsonHelper::AddStringToJsonObject(obj3, "path", "parabolic");
+
+    JsonHelper::AddStringToJsonObject(obj4, "type", "Drone");
+    JsonHelper::AddStringToJsonObject(obj4,"name","Minho");
+    JsonHelper::AddStdFloatVectorToJsonObject(obj4, "position", position_to_add);
+    JsonHelper::AddStdFloatVectorToJsonObject(obj4, "direction", direction_to_add2);
+    JsonHelper::AddFloatToJsonObject(obj4, "radius", radius);
+    JsonHelper::AddFloatToJsonObject(obj4, "speed", speed);
+    JsonHelper::AddStringToJsonObject(obj4, "path", "smart");
   }
   virtual void TearDown() {}
 };
@@ -192,13 +222,32 @@ TEST_F(DroneTest, UpdateAndBattery){
   EXPECT_TRUE(SHINeeCD.BatteryDead()) << "BatteryDead does not work";
 }
 
-
 TEST_F(DroneTest, SetSpeed){
   Drone SHINeeCD(obj2);
   SHINeeCD.SetSpeed(2.4);
   EXPECT_FLOAT_EQ(SHINeeCD.GetSpeed(),2.4) << "SetSpeed or GetSpeed is faulty";
   SHINeeCD.SetSpeed(-10.5);
   EXPECT_FLOAT_EQ(SHINeeCD.GetSpeed(),2.4) << "SetSpeed or GetSpeed is faulty";
+}
+
+TEST_F(DroneTest, PathConstructor){
+  Drone droneDefault(obj1);
+  Drone droneBeeline(obj2);
+  Drone droneParabolic(obj3);
+  Drone droneSmartRoute(obj4);
+
+  RouteStrategy* routeChoice = droneDefault.GetRouteStrategy();
+  EXPECT_TRUE((dynamic_cast<SmartRoute*> (routeChoice)) != nullptr) << "Default Constructor does not work for path choosing";
+
+  routeChoice = droneBeeline.GetRouteStrategy();
+  EXPECT_TRUE((dynamic_cast<BeelineRoute*> (routeChoice)) != nullptr) << "Default Constructor does not work for path choosing";
+
+  routeChoice = droneParabolic.GetRouteStrategy();
+  EXPECT_TRUE((dynamic_cast<ParabolicRoute*> (routeChoice)) != nullptr) << "Default Constructor does not work for path choosing";
+
+  routeChoice = droneSmartRoute.GetRouteStrategy();
+  EXPECT_TRUE((dynamic_cast<SmartRoute*> (routeChoice)) != nullptr) << "Default Constructor does not work for path choosing";
+
 }
 
 }  // namespace csci3081
