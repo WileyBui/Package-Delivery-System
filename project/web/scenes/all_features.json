@@ -1,5 +1,41 @@
 [
   { "command": "reset", "params": {} },
+    {
+      "command": "createEntity",
+      "params": {
+          "type": "recharging_drone",
+          "name": "recharging_drone0",
+          "mesh": "models/DRON.glb",
+          "position": [-950, 275, 330],
+          "scale": [0.1, 0.1, 0.1],
+          "rotation": [0, 0, 0, 0],
+          "direction": [1,0,0],
+          "speed": 30.0,
+          "radius": 1.0,
+          "start": 2.0,
+          "duration": 2.0,
+          "offset": [0, 0.6, 0],
+          "battery_capacity": 20000
+      }
+  },
+  {
+    "command": "createEntity",
+    "params": {
+        "type": "recharging_drone",
+        "name": "recharging_drone1",
+        "mesh": "models/DRON.glb",
+        "position": [-950, 275, 330],
+        "scale": [0.1, 0.1, 0.1],
+        "rotation": [0, 0, 0, 0],
+        "direction": [1,0,0],
+        "speed": 30.0,
+        "radius": 1.0,
+        "start": 2.0,
+        "duration": 2.0,
+        "offset": [0, 0.6, 0],
+        "battery_capacity": 20000
+    }
+  },
   {
     "command": "createEntity",
     "params": {
