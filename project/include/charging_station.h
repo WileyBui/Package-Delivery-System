@@ -11,7 +11,8 @@
 #include "entity_base.h"
 #include <vector>         // Used for vector like vector3D and vector2D
 #include <string>
-#include <drone.h>
+#include <charging_drone.h>
+#include <carrier.h>
 #include <vector.h>
 
 namespace csci3081 {
@@ -39,16 +40,41 @@ class ChargingStation : public csci3081::EntityBase {
     ChargingStation(ChargingStation& chargingStation);
 
     /**
-    * @brief This charges the drone. If the battery of the drone reaches its max
-    * capacity, it will not charge anymore.
+    * @brief This checks to see if the current charging station has a close
+    * approximity to the charging drone.
+    * @param[in] chargingDrone  Compares the current charging station to this chargingDrone.
+    * @param[in] radius         The radius that the two entities can be within another.
+    * @returns bool             Returns true if the distance between the two are within the radius.
     */
-    bool IsDroneWithinRadius(Drone* currentDrone, float radius);
+    bool IsChargingDroneWithinRadius(ChargingDrone* chargingDrone, float radius);
 
     /**
-    * @brief This charges the drone. If the battery of the drone reaches its max
-    * capacity, it will not charge anymore.
+    * @brief This adds a new dead carrier to a deadCarriers vector.
+    * @param[in] carrier  A new carrier to be added to deadCarriers vector.
     */
-    bool AddDrone(Drone* currentDrone);
+    void AddDeadCarrier(Carrier* carrier)
+    
+    /**
+    * @brief This removes the first element from a deadCarriers vector.
+    * This is due to a charging carrier that is heading towards to charge a dead carrier.
+    */
+    void PopDeadCarrier();
+
+    /**
+    * @brief This adds a unique charging drone to the charging station only if the distance
+    * between the two is close together.
+    * @param[in] chargingDrone A charging drone to be added to the charging station.
+    * @returns bool         Returns true if the charging drone was successfully added.
+    */
+    bool AddChargingDrone(ChargingDrone* chargingDrone);
+
+    /**
+    * @brief This removes a charging drone from the charging station. This is due to 
+    * a charging drone leaving the station to charge for a dead carrier.
+    * @param[in] chargingDrone A charging drone to be removed from the charging station.
+    */
+    void RemoveChargingDrone(ChargingDrone* chargingDrone);
+
 
     /**
     * @brief This is an inherited method from EntityBase to use for DeliverySimulation.
@@ -59,7 +85,8 @@ class ChargingStation : public csci3081::EntityBase {
     */
     void Update(float dt);
   private: 
-    std::vector<Drone*> dronesAtStation;
+    std::vector<ChargingDrone*> chargingDronesAtStation;
+    std::vector<Carrier*> deadCarriers;
 };
 
 }

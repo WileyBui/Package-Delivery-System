@@ -146,7 +146,7 @@ class DeliverySimulation : public IDeliverySystem {
   CompositeFactory* composite;
   int numEntities;
   const IGraph* graph;
-  
+  ChargingStation* rechargeStation;
 };
 
 }  // namespace csci3081

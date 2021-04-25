@@ -36,6 +36,10 @@ void DeliverySimulation::AddFactory(IEntityFactory* factory) {
 
 void DeliverySimulation::AddEntity(IEntity* entity) { 
   	entities_.push_back(entity);
+
+	if (entity->GetName() == "recharge_station") {
+		rechargeStation = dynamic_cast<ChargingStation*> (entity);
+	}
 	// Adding into subjects_ if entity is a derived class of ASubject
 	ASubject* subject;
 	if ((subject = dynamic_cast<ASubject*> (entity))!=0){
@@ -145,6 +149,9 @@ void DeliverySimulation::Update(float dt) {
 				carrier->SetRoute(path);
 				carrier->GetPackage()->GetStatus();
 				carrier->GetStatus();
+
+				// if the carrier is dead, then call the charging station
+				// rechargeStation.AddDeadCarrier(carrier);
 			}
 		}
 	}

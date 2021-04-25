@@ -1,9 +1,6 @@
 #include "../include/charging_station.h"
-
 #include <EntityProject/entity.h>
-
 #include <algorithm>
-
 #include "../include/generate_id.h"
 #include "../include/vector.h"
 
@@ -32,32 +29,55 @@ ChargingStation::ChargingStation(ChargingStation& chargingStation) {
   type = "charging_station";
 }
 
-bool ChargingStation::IsDroneWithinRadius(Drone* currentDrone, float radius) {
-  if (Distance(Vector3D(GetPosition()), Vector3D(currentDrone->GetPosition())) < radius) {
+bool ChargingStation::IsChargingDroneWithinRadius(ChargingDrone* chargingDrone, float radius) {
+  if (Distance(Vector3D(GetPosition()), Vector3D(chargingDrone->GetPosition())) < radius) {
     return true;
   }
   return false;
 }
 
-bool ChargingStation::AddDrone(Drone* currentDrone) {
+void ChargingStation::AddDeadCarrier(Carrier* carrier) {
+  if (!(std::find(deadCarriers.begin(), deadCarriers.end(), carrier) != deadCarriers.end())) {
+    deadCarriers.push_back(carrier);
+  }
+}
+
+void ChargingStation::PopDeadCarrier() {
+  if (!deadCarriers.empty()) {
+    deadCarriers.erase(deadCarriers.begin());
+  }
+}
+
+bool ChargingStation::AddChargingDrone(ChargingDrone* chargingDrone) {
   // adds drone to the charging station only if the distance is close together
-  // also checks if current drone is already at the charging station
-  if (IsDroneWithinRadius(currentDrone, 10)) {
-    if (!(std::find(dronesAtStation.begin(), dronesAtStation.end(), currentDrone) != dronesAtStation.end())) {
-      dronesAtStation.push_back(currentDrone);
+  if (IsChargingDroneWithinRadius(chargingDrone, 10)) {
+    // checks if current drone has already at the charging station
+    if (!(std::find(chargingDronesAtStation.begin(), chargingDronesAtStation.end(), chargingDrone) != chargingDronesAtStation.end())) {
+      chargingDronesAtStation.push_back(chargingDrone);
     }
     return true;
   }
   return false;
 }
 
+void ChargingStation::RemoveChargingDrone(ChargingDrone* chargingDrone) {
+  chargingDronesAtStation.erase(std::remove(chargingDronesAtStation.begin(), chargingDronesAtStation.end(), chargingDrone), chargingDronesAtStation.end());
+}
+
 void ChargingStation::Update(float dt) {
-  for (Drone* drone : dronesAtStation) {
-    if (IsDroneWithinRadius(drone, 10)) {
-      drone->Charging(dt);
-    } else {
+  float fullChargingDroneBattery = 20000;
+  for (ChargingDrone* chargingDrone : chargingDronesAtStation) {
+    // still has dead carriers
+    if (IsChargingDroneWithinRadius(chargingDrone, 10) && (chargingDrone.GetBattery() >= fullChargingDroneBattery * 0.80) && (!deadCarriers.empty())) {
+      // assign chargingDrone to go to deadCarrier
+      
+      RemoveChargingDrone(chargingDrone);
+      PopDeadCarrier();
+    } else if (!IsChargingDroneWithinRadius(chargingDrone, 10)) {
       // removes drone if out of radius from the charging station
-      dronesAtStation.erase(std::remove(dronesAtStation.begin(), dronesAtStation.end(), drone), dronesAtStation.end());
+      RemoveChargingDrone(chargingDrone);
+    } else if ((chargingDrone.GetBattery() < fullChargingDroneBattery)){
+      // keeps charging the charging drone
     }
   }
 }
