@@ -15,11 +15,13 @@
 #include "customer_factory.h"
 #include "package_factory.h"
 #include "carrier_factory.h"
+#include "charging_station_factory.h"
 #include "drone.h"
 #include "robot.h"
 #include "carrier.h"
 #include "package.h"
 #include "customer.h"
+#include "charging_station.h"
 
 namespace csci3081 {
 

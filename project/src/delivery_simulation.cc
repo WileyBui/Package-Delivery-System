@@ -11,7 +11,7 @@ DeliverySimulation::DeliverySimulation() {
 	AddFactory(new PackageFactory());
 	AddFactory(new CustomerFactory());
 	AddFactory(new CarrierFactory());
-	
+	AddFactory(new ChargingStationFactory());
 }
 
 DeliverySimulation::~DeliverySimulation() {
@@ -103,8 +103,9 @@ void DeliverySimulation::Update(float dt) {
 
 		if (entity->IsDynamic()){
 			// Only updating the carrier (drone & robot) and the package, customer doesn't need to move
-			subject->Update(dt); 
+			subject->Update(dt);
 		}
+		
 		// See if there is any undeliverered package
 		if (entity->GetType() == "package") {
 			package = dynamic_cast<Package*> (entities_.at(i));
