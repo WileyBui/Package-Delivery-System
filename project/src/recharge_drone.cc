@@ -60,8 +60,8 @@ RechargeDrone::RechargeDrone(RechargeDrone& cpy) {
   routeStrategy = cpy.routeStrategy;
 }
 void RechargeDrone::ChargeDrone(float dt){
-  DeadCarrier->Charging(200*dt);
-  battery.Depleting(200*dt);
+  DeadCarrier->Charging(1000*dt);
+  battery.Depleting(1000*dt);
 }
 
 bool RechargeDrone::BatteryDead() {
@@ -146,16 +146,20 @@ vector<float> RechargeDrone::GetPositionOfStation(){
   return PositionOfStation;
 }
 void RechargeDrone::Update(float dt){
-  std::cout<<"Recharge Update" <<std::endl;
-  if(IsWithin(DeadCarrier)){//charging finished gotta to back
+  if(DeadCarrier&&IsWithin(DeadCarrier)){//charging finished gotta to back
+    DeadCarrier->SetChargingStatus(false);
     if(DeadCarrier->BatteryFull()){
     route.clear();
     const entity_project::IGraph* graph;
     std::vector<vector<float>> path = GetRouteStrategy()->GetRoute(graph,GetPosition(),PositionOfStation);
+    std::cout<<path.size()<<std::endl;
 		SetRoute(path);
     }
     else{
+      DeadCarrier->SetChargingStatus(true);
+      std::cout<<"Charging here"<<std::endl;
       ChargeDrone(dt);
+      std::cout<<DeadCarrier->GetBattery()<<std::endl;
       return;
     }
   }

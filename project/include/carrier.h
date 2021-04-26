@@ -145,12 +145,15 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     */
     RouteStrategy* GetRouteStrategy();
     bool BatteryFull();
+    bool GetChargingStatus();
+    void SetChargingStatus(bool b);
   protected: 
     Battery battery;
     Package* package;
     float speed;
     std::vector<std::vector<float>> route;
     std::string droneStatusWhenBatteryDies = "not dead yet";
+    bool ChargingStatus = false;
     RouteStrategy* routeStrategy = NULL;
 };
 

@@ -62,7 +62,7 @@ bool Battery::Charging(float sec) {
     }
 }
 bool Battery::IsFull(){
-    return (remainingLifeinSec == maxCharge);
+    return (remainingLifeinSec >= 1000);
 }
 
 

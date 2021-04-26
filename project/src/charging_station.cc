@@ -75,6 +75,7 @@ void ChargingStation::Update(float dt) {
       std::vector<vector<float>> path = chargingDrone->GetRouteStrategy()->GetRoute(graph,chargingDrone->GetPosition(),deadCarriers[0]->GetPosition());
 	    chargingDrone->SetRoute(path);
       chargingDrone->Update(dt);
+      chargingDrone->SetPositionOfStation(GetPosition());
       RemoveChargingDrone(chargingDrone);
       PopDeadCarrier();
     } else if (!IsChargingDroneWithinRadius(chargingDrone, 100)) {

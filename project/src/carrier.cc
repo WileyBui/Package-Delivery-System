@@ -107,6 +107,13 @@ RouteStrategy* Carrier::GetRouteStrategy(){
   return routeStrategy;
 }
 
+bool Carrier::GetChargingStatus(){
+  return ChargingStatus;
+}
+
+void Carrier::SetChargingStatus(bool b){
+  ChargingStatus = b;
+}
 void Carrier::Update(float dt){
   std::vector<float> nextPosition;
   float distance;
@@ -114,6 +121,10 @@ void Carrier::Update(float dt){
   float portion;
   Vector3D result;
   if (IsDynamic()) {
+    if(ChargingStatus == true){
+      std::cout<<"Charging!!!"<<std::endl;
+      return;
+    }
     if (BatteryDead()) {
       if (GetName().find("drone") != std::string::npos) {
         float groundLevel = 253;
