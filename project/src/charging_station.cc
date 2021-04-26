@@ -50,7 +50,7 @@ void ChargingStation::PopDeadCarrier() {
 
 bool ChargingStation::AddChargingDrone(RechargeDrone* chargingDrone) {
   // adds drone to the charging station only if the distance is close together
-  if (IsChargingDroneWithinRadius(chargingDrone, 10)) {
+  if (IsChargingDroneWithinRadius(chargingDrone, 100)) {
     // checks if current drone has already at the charging station
     if (!(std::find(chargingDronesAtStation.begin(), chargingDronesAtStation.end(), chargingDrone) != chargingDronesAtStation.end())) {
       chargingDronesAtStation.push_back(chargingDrone);
@@ -68,15 +68,16 @@ void ChargingStation::Update(float dt) {
   float fullChargingDroneBattery = 20000;
   for (RechargeDrone* chargingDrone : chargingDronesAtStation) {
     // still has dead carriers
-    if (IsChargingDroneWithinRadius(chargingDrone, 10) && (chargingDrone->GetBattery() >= fullChargingDroneBattery * 0.80) && (!deadCarriers.empty())) {
+    if (IsChargingDroneWithinRadius(chargingDrone, 100) && (chargingDrone->GetBattery() >= fullChargingDroneBattery * 0.80) && (!deadCarriers.empty())) {
       // assign chargingDrone to go to deadCarrier
       chargingDrone->SetDeadCarrier(deadCarriers[0]);
       const entity_project::IGraph* graph;
       std::vector<vector<float>> path = chargingDrone->GetRouteStrategy()->GetRoute(graph,chargingDrone->GetPosition(),deadCarriers[0]->GetPosition());
-	  chargingDrone->SetRoute(path);
+	    chargingDrone->SetRoute(path);
+      chargingDrone->Update(dt);
       RemoveChargingDrone(chargingDrone);
       PopDeadCarrier();
-    } else if (!IsChargingDroneWithinRadius(chargingDrone, 10)) {
+    } else if (!IsChargingDroneWithinRadius(chargingDrone, 100)) {
       // removes drone if out of radius from the charging station
       RemoveChargingDrone(chargingDrone);
     } else if ((chargingDrone->GetBattery() < fullChargingDroneBattery)){
