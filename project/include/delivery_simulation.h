@@ -15,13 +15,12 @@
 #include "customer_factory.h"
 #include "package_factory.h"
 #include "carrier_factory.h"
+#include "charging_station_factory.h"
 #include "recharge_drone_factory.h"
-// #include "drone.h"
-// #include "robot.h"
-// #include "recharge_drone.h"
 #include "carrier.h"
 #include "package.h"
 #include "customer.h"
+#include "charging_station.h"
 
 namespace csci3081 {
 
@@ -146,7 +145,7 @@ class DeliverySimulation : public IDeliverySystem {
   CompositeFactory* composite;
   int numEntities;
   const IGraph* graph;
-  
+  ChargingStation* rechargeStation;
 };
 
 }  // namespace csci3081

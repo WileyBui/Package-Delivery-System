@@ -1,8 +1,8 @@
 /**
- * @file recharge_drone_factory.h
+ * @file charging_station_factory.h
  */
-#ifndef RECHARGE_DRONE_FACTORY_H
-#define RECHARGE_DRONE_FACTORY_H
+#ifndef CHARGING_STATION_FACTORY_H
+#define CHARGING_STATION_FACTORY_H
 
 /*******************************************************************************
  * Includes
@@ -17,14 +17,14 @@ namespace csci3081 {
  * Class Definitions
  ******************************************************************************/
 /**
- * @brief This is the RECHARGE_DRONE_FACTORY, responsible for making Recharge Drones
+ * @brief This is the ChargingStationFactory, responsible for making charging station object
  */
 
-class RechargeDroneFactory : public IEntityFactory {
+class ChargingStationFactory : public IEntityFactory {
  public:
   /**
   * @brief This is an inheritance function from IEntityFactory to create 
-  * an appropriate Entity object based on the argument pass in 
+  * an approxiate Entity object based on the argument pass in 
   * Given the picojson::object val, this should create an entity.
   * Based on the type of entity, there may be different fields.
   * You can see the vals that will be passed in the project/web/scenes
@@ -42,13 +42,12 @@ class RechargeDroneFactory : public IEntityFactory {
 
   * @param[in] val the picojson::object that constains all of the necessary
   *                 information above in a json format
-  * @return IEntity pointer if the object has type "recharge_drone"; NULL otherwise
+  * @return IEntity pointer if the object has type "customer"; NULL otherwise
   */
-  IEntity* CreateEntity(const picojson::object& val);===
+  IEntity* CreateEntity(const picojson::object& val);
 };
 
 }  // namespace csci3081
 
 
-#endif  // RECHARGE_DRONE_FACTORY_H
-
+#endif  // CHARGING_STATION_FACTORY_H

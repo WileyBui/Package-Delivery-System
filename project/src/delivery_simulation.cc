@@ -11,6 +11,7 @@ DeliverySimulation::DeliverySimulation() {
 	AddFactory(new PackageFactory());
 	AddFactory(new CustomerFactory());
 	AddFactory(new CarrierFactory());
+	AddFactory(new ChargingStationFactory());
 	AddFactory(new RechargeDroneFactory());
 }
 
@@ -36,6 +37,10 @@ void DeliverySimulation::AddFactory(IEntityFactory* factory) {
 
 void DeliverySimulation::AddEntity(IEntity* entity) { 
   	entities_.push_back(entity);
+
+	if (entity->GetName() == "recharge_station") {
+		rechargeStation = dynamic_cast<ChargingStation*> (entity);
+	}
 	// Adding into subjects_ if entity is a derived class of ASubject
 	ASubject* subject;
 	if ((subject = dynamic_cast<ASubject*> (entity))!=0){
@@ -103,8 +108,9 @@ void DeliverySimulation::Update(float dt) {
 
 		if (entity->IsDynamic()){
 			// Only updating the carrier (drone & robot) and the package, customer doesn't need to move
-			subject->Update(dt); 
+			subject->Update(dt);
 		}
+		
 		// See if there is any undeliverered package
 		if (entity->GetType() == "package") {
 			package = dynamic_cast<Package*> (entities_.at(i));
@@ -145,6 +151,9 @@ void DeliverySimulation::Update(float dt) {
 				carrier->SetRoute(path);
 				carrier->GetPackage()->GetStatus();
 				carrier->GetStatus();
+
+				// if the carrier is dead, then call the charging station
+				// rechargeStation.AddDeadCarrier(carrier);
 			}
 		}
 	}
