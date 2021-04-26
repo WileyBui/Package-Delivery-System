@@ -106,7 +106,9 @@ void DeliverySimulation::Update(float dt) {
 		entity = dynamic_cast<EntityBase*> (entities_.at(i));
 		subject = dynamic_cast<ASubject*> (entities_.at(i));
 
-		if (entity->IsDynamic()){
+		if (entity->GetType() == "charging_station") {
+			rechargeStation->Update(dt);
+		} else if (entity->IsDynamic()){
 			// Only updating the carrier (drone & robot) and the package, customer doesn't need to move
 			subject->Update(dt);
 		}
