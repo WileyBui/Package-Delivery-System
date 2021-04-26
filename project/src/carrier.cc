@@ -10,7 +10,9 @@ namespace csci3081 {
 bool Carrier::BatteryDead() {
   return battery.IsDead();
 }
-
+bool Carrier::BatteryFull(){
+  return battery.IsFull();
+}
 float Carrier::GetBattery() {
   return battery.GetRemainingLife();
 }
@@ -144,7 +146,8 @@ void Carrier::Update(float dt){
           GetStatus();
         }
       }
-    } else if (dt > GetBattery()) {
+    } 
+    else if (dt > GetBattery()) {
       dt = GetBattery();
     }
 
