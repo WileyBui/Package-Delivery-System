@@ -112,7 +112,11 @@ void DeliverySimulation::Update(float dt) {
 		}
 		
 		// See if there is any undeliverered package
-		if (entity->GetType() == "package") {
+		if(entity->GetType() == "recharging_drone" && rechargeStation!=NULL){
+			RechargeDrone* rechageDrone = dynamic_cast<RechargeDrone*> (entities_.at(i));
+			rechargeStation->AddChargingDrone(rechageDrone);
+		}
+		else if (entity->GetType() == "package") {
 			package = dynamic_cast<Package*> (entities_.at(i));
 			owner = package->GetOwner();
 			if ((!package->IsDynamic()) && (owner!=NULL) && (package->GetCarrier()==NULL)) {
@@ -133,7 +137,10 @@ void DeliverySimulation::Update(float dt) {
 
 		else if (entity->GetType() == "carrier") {
 			Carrier* carrier = dynamic_cast<Carrier*> (entities_.at(i));
-			if (carrier->HavePackage() && carrier->NextPosition() == carrier->GetPosition()){
+			if(carrier->BatteryDead()){
+				rechargeStation->AddDeadCarrier(carrier);
+			}
+			else if (carrier->HavePackage() && carrier->NextPosition() == carrier->GetPosition()){
 				// Adding path to customer
 				// std::vector<vector<float>> path;
 
@@ -155,6 +162,7 @@ void DeliverySimulation::Update(float dt) {
 				// if the carrier is dead, then call the charging station
 				// rechargeStation.AddDeadCarrier(carrier);
 			}
+			
 		}
 	}
 }

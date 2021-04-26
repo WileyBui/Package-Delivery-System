@@ -133,6 +133,7 @@ RouteStrategy* RechargeDrone::GetRouteStrategy(){
   return routeStrategy;
 }
 void RechargeDrone::SetDeadCarrier(Carrier* carrier){
+    dynamic = true;
    DeadCarrier = carrier;
  }
 Carrier* RechargeDrone::GetDeadCarrier(){
@@ -145,6 +146,7 @@ vector<float> RechargeDrone::GetPositionOfStation(){
   return PositionOfStation;
 }
 void RechargeDrone::Update(float dt){
+  std::cout<<"Recharge Update" <<std::endl;
   if(IsWithin(DeadCarrier)){//charging finished gotta to back
     if(DeadCarrier->BatteryFull()){
     route.clear();

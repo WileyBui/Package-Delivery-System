@@ -32,7 +32,8 @@
             "radius": 1.0,
             "start": 2.0,
             "duration": 2.0,
-            "offset": [0, 0.6, 0]
+            "offset": [0, 0.6, 0],
+            "battery_capacity":20
         }
     },
     {
@@ -102,6 +103,7 @@
     { "command": "addEntity", "params": {"index" : 1} },
     { "command": "addEntity", "params": {"index" : 2} },
     { "command": "addEntity", "params": {"index" : 3} },
+    { "command": "addEntity", "params": {"index" : 4} },
     {
         "command": "scheduleDelivery",
         "params": {

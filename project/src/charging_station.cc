@@ -70,7 +70,10 @@ void ChargingStation::Update(float dt) {
     // still has dead carriers
     if (IsChargingDroneWithinRadius(chargingDrone, 10) && (chargingDrone->GetBattery() >= fullChargingDroneBattery * 0.80) && (!deadCarriers.empty())) {
       // assign chargingDrone to go to deadCarrier
-      
+      chargingDrone->SetDeadCarrier(deadCarriers[0]);
+      const entity_project::IGraph* graph;
+      std::vector<vector<float>> path = chargingDrone->GetRouteStrategy()->GetRoute(graph,chargingDrone->GetPosition(),deadCarriers[0]->GetPosition());
+	  chargingDrone->SetRoute(path);
       RemoveChargingDrone(chargingDrone);
       PopDeadCarrier();
     } else if (!IsChargingDroneWithinRadius(chargingDrone, 10)) {
