@@ -29,7 +29,7 @@ ChargingStation::ChargingStation(ChargingStation& chargingStation) {
   type = "charging_station";
 }
 
-bool ChargingStation::IsChargingDroneWithinRadius(ChargingDrone* chargingDrone, float radius) {
+bool ChargingStation::IsChargingDroneWithinRadius(RechargeDrone* chargingDrone, float radius) {
   if (Distance(Vector3D(GetPosition()), Vector3D(chargingDrone->GetPosition())) < radius) {
     return true;
   }
@@ -48,7 +48,7 @@ void ChargingStation::PopDeadCarrier() {
   }
 }
 
-bool ChargingStation::AddChargingDrone(ChargingDrone* chargingDrone) {
+bool ChargingStation::AddChargingDrone(RechargeDrone* chargingDrone) {
   // adds drone to the charging station only if the distance is close together
   if (IsChargingDroneWithinRadius(chargingDrone, 10)) {
     // checks if current drone has already at the charging station
@@ -60,15 +60,15 @@ bool ChargingStation::AddChargingDrone(ChargingDrone* chargingDrone) {
   return false;
 }
 
-void ChargingStation::RemoveChargingDrone(ChargingDrone* chargingDrone) {
+void ChargingStation::RemoveChargingDrone(RechargeDrone* chargingDrone) {
   chargingDronesAtStation.erase(std::remove(chargingDronesAtStation.begin(), chargingDronesAtStation.end(), chargingDrone), chargingDronesAtStation.end());
 }
 
 void ChargingStation::Update(float dt) {
   float fullChargingDroneBattery = 20000;
-  for (ChargingDrone* chargingDrone : chargingDronesAtStation) {
+  for (RechargeDrone* chargingDrone : chargingDronesAtStation) {
     // still has dead carriers
-    if (IsChargingDroneWithinRadius(chargingDrone, 10) && (chargingDrone.GetBattery() >= fullChargingDroneBattery * 0.80) && (!deadCarriers.empty())) {
+    if (IsChargingDroneWithinRadius(chargingDrone, 10) && (chargingDrone->GetBattery() >= fullChargingDroneBattery * 0.80) && (!deadCarriers.empty())) {
       // assign chargingDrone to go to deadCarrier
       
       RemoveChargingDrone(chargingDrone);
@@ -76,7 +76,7 @@ void ChargingStation::Update(float dt) {
     } else if (!IsChargingDroneWithinRadius(chargingDrone, 10)) {
       // removes drone if out of radius from the charging station
       RemoveChargingDrone(chargingDrone);
-    } else if ((chargingDrone.GetBattery() < fullChargingDroneBattery)){
+    } else if ((chargingDrone->GetBattery() < fullChargingDroneBattery)){
       // keeps charging the charging drone
     }
   }

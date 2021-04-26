@@ -60,8 +60,8 @@ RechargeDrone::RechargeDrone(RechargeDrone& cpy) {
   routeStrategy = cpy.routeStrategy;
 }
 void RechargeDrone::ChargeDrone(float dt){
-  DeadCarrier->Charging(dt);
-  battery.Depleting(dt);
+  DeadCarrier->Charging(200*dt);
+  battery.Depleting(200*dt);
 }
 
 bool RechargeDrone::BatteryDead() {

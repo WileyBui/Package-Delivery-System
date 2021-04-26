@@ -11,7 +11,7 @@
 #include "entity_base.h"
 #include <vector>         // Used for vector like vector3D and vector2D
 #include <string>
-#include <charging_drone.h>
+#include <recharge_drone.h>
 #include <carrier.h>
 #include <vector.h>
 
@@ -46,13 +46,13 @@ class ChargingStation : public csci3081::EntityBase {
     * @param[in] radius         The radius that the two entities can be within another.
     * @returns bool             Returns true if the distance between the two are within the radius.
     */
-    bool IsChargingDroneWithinRadius(ChargingDrone* chargingDrone, float radius);
+    bool IsChargingDroneWithinRadius(RechargeDrone* chargingDrone, float radius);
 
     /**
     * @brief This adds a new dead carrier to a deadCarriers vector.
     * @param[in] carrier  A new carrier to be added to deadCarriers vector.
     */
-    void AddDeadCarrier(Carrier* carrier)
+    void AddDeadCarrier(Carrier* carrier);
     
     /**
     * @brief This removes the first element from a deadCarriers vector.
@@ -66,14 +66,14 @@ class ChargingStation : public csci3081::EntityBase {
     * @param[in] chargingDrone A charging drone to be added to the charging station.
     * @returns bool         Returns true if the charging drone was successfully added.
     */
-    bool AddChargingDrone(ChargingDrone* chargingDrone);
+    bool AddChargingDrone(RechargeDrone* chargingDrone);
 
     /**
     * @brief This removes a charging drone from the charging station. This is due to 
     * a charging drone leaving the station to charge for a dead carrier.
     * @param[in] chargingDrone A charging drone to be removed from the charging station.
     */
-    void RemoveChargingDrone(ChargingDrone* chargingDrone);
+    void RemoveChargingDrone(RechargeDrone* chargingDrone);
 
 
     /**
@@ -85,7 +85,7 @@ class ChargingStation : public csci3081::EntityBase {
     */
     void Update(float dt);
   private: 
-    std::vector<ChargingDrone*> chargingDronesAtStation;
+    std::vector<RechargeDrone*> chargingDronesAtStation;
     std::vector<Carrier*> deadCarriers;
 };
 

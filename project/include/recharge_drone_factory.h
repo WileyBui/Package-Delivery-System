@@ -44,7 +44,7 @@ class RechargeDroneFactory : public IEntityFactory {
   *                 information above in a json format
   * @return IEntity pointer if the object has type "recharge_drone"; NULL otherwise
   */
-  IEntity* CreateEntity(const picojson::object& val);===
+  IEntity* CreateEntity(const picojson::object& val);
 };
 
 }  // namespace csci3081
