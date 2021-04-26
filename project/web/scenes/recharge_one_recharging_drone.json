@@ -105,8 +105,8 @@
     {
         "command": "scheduleDelivery",
         "params": {
-            "dest_index": 1,
-            "pkg_index": 2
+            "dest_index": 2,
+            "pkg_index": 3
         }
     }
   ]

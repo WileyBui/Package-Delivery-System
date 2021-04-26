@@ -17,7 +17,7 @@ namespace csci3081 {
  * Class Definitions
  ******************************************************************************/
 /**
- * @brief This is the RECHARGE_DRONE, responsible for making Recharge Drones
+ * @brief This is the RECHARGE_DRONE_FACTORY, responsible for making Recharge Drones
  */
 
 class RechargeDroneFactory : public IEntityFactory {
@@ -44,10 +44,11 @@ class RechargeDroneFactory : public IEntityFactory {
   *                 information above in a json format
   * @return IEntity pointer if the object has type "recharge_drone"; NULL otherwise
   */
-  IEntity* CreateEntity(const picojson::object& val);
+  IEntity* CreateEntity(const picojson::object& val);===
 };
 
 }  // namespace csci3081
 
 
 #endif  // RECHARGE_DRONE_FACTORY_H
+

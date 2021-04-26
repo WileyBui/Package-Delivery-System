@@ -12,6 +12,7 @@ DeliverySimulation::DeliverySimulation() {
 	AddFactory(new CustomerFactory());
 	AddFactory(new CarrierFactory());
 	AddFactory(new ChargingStationFactory());
+	AddFactory(new RechargeDroneFactory());
 }
 
 DeliverySimulation::~DeliverySimulation() {
@@ -129,6 +130,7 @@ void DeliverySimulation::Update(float dt) {
 				}
 			}
 		}
+
 		else if (entity->GetType() == "carrier") {
 			Carrier* carrier = dynamic_cast<Carrier*> (entities_.at(i));
 			if (carrier->HavePackage() && carrier->NextPosition() == carrier->GetPosition()){
@@ -229,6 +231,8 @@ void DeliverySimulation::RunScript(const picojson::array& script, IEntitySystem*
 					if (dest_index >= 0 && pkg_index < system->GetEntities().size()) {
 						IEntity* cst = system->GetEntities()[dest_index];
 						if (pkg && cst) {
+							std::cout<<"package: "<<pkg->GetName()<<std::endl;
+							std::cout<<"customer: "<<cst->GetName()<<std::endl;
 							deliverySystem->ScheduleDelivery(pkg, cst);
 						}
 					}

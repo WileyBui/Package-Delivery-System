@@ -25,7 +25,7 @@ namespace csci3081 {
 class Battery {
     private:
         int BatteryID;              //!< Unique ID (interger presentation for each Battery istances)
-        float maxCharge = 10000;      //!< The maximum capacity of the battery in secs
+        float maxCharge = 100;      //!< The maximum capacity of the battery in secs
         float remainingLifeinSec;     //!< The remaining life of the battery in secs
         int displayBar;             //!< Bar represents the leftover capacity of the battery
                                     //!< Maximum of displayBar is 5
@@ -82,6 +82,8 @@ class Battery {
         *       True otherwise
         */
         bool IsDead();
+
+        bool IsFull();
 };
 
 }
