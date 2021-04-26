@@ -11,6 +11,7 @@
  * Includes
  ******************************************************************************/
 #include <iostream>
+#include <string>
 #include <cmath>
 /*******************************************************************************
  * Class Definitions
@@ -25,8 +26,8 @@ namespace csci3081 {
 class Battery {
     private:
         int BatteryID;              //!< Unique ID (interger presentation for each Battery istances)
-        float maxCharge = 20000;      //!< The maximum capacity of the battery in secs
-        float remainingLifeinSec;     //!< The remaining life of the battery in secs
+        float maxCharge;            //!< The maximum capacity of the battery in secs
+        float remainingLifeinSec;   //!< The remaining life of the battery in secs
         int displayBar;             //!< Bar represents the leftover capacity of the battery
                                     //!< Maximum of displayBar is 5
     
@@ -40,8 +41,10 @@ class Battery {
         /**
         * @brief Constructor to set up an instance of Battery with passing remaining life
         * @param[in] remainingLifeinSec_ current remaining life in the battery
+        * @param[in] batteryType optional; there are 2 types of batteries: carrier and recharging_drone.
+        *                        Recharging drone has higher maxCharge than carrier. Default of batterType is carrier.
         */
-        Battery(float remainingLifeinSec_);
+        Battery(float remainingLifeinSec_, std::string batteryType="carrier");
     
         /**
         * This functions return the remaining life of the battery

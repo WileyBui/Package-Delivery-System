@@ -17,9 +17,9 @@ RechargeDrone::RechargeDrone(const picojson::object& val) {
   speed = JsonHelper::GetDouble(val, "speed");
   radius = JsonHelper::GetDouble(val, "radius");
   try {
-    battery = Battery(JsonHelper::GetDouble(val, "battery_capacity"));
+    battery = Battery(JsonHelper::GetDouble(val, "battery_capacity"), "recharging_drone");
   } catch (std::logic_error a) {
-    battery = Battery(20000);
+    battery = Battery(20000, "recharging_drone");
   }
   dynamic = false;
   version = 0;
