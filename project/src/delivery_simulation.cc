@@ -117,7 +117,7 @@ void DeliverySimulation::Update(float dt) {
 		if(entity->GetType() == "recharging_drone" && rechargeStation!=NULL){
 			RechargeDrone* rechargeDrone = dynamic_cast<RechargeDrone*> (entities_.at(i));
 			rechargeStation->AddChargingDrone(rechargeDrone);
-			if (rechargeDrone->IsChargingACarrier()) {
+			if (!rechargeDrone->IsDynamic() && rechargeDrone->IsChargingACarrier()) {
 				rechargeDrone->Update(dt);
 			}
 		}
@@ -131,9 +131,11 @@ void DeliverySimulation::Update(float dt) {
 					carrier->AddPackage(package);
 					package->SetCarrier(carrier);
 					
-					// std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
-					std::vector<vector<float>> path = carrier->GetRouteStrategy()->GetRoute(graph, carrier->GetPosition(),package->GetPosition());
-					carrier->SetRoute(path);
+					if (!carrier->IsWithin(package)) {
+						// std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
+						std::vector<vector<float>> path = carrier->GetRouteStrategy()->GetRoute(graph, carrier->GetPosition(),package->GetPosition());
+						carrier->SetRoute(path);
+					}
 					package->GetStatus();
 					carrier->GetStatus();
 				}
@@ -143,7 +145,8 @@ void DeliverySimulation::Update(float dt) {
 		else if (entity->GetType() == "carrier") {
 			Carrier* carrier = dynamic_cast<Carrier*> (entities_.at(i));
 
-			if (carrier->BatteryDead() && !rechargeStation->HasDeadCarrier(carrier)){
+			if (carrier->BatteryDead() && !rechargeStation->HasDeadCarrier(carrier) && carrier->GetPosition().at(1) < 255) {
+				std::cout << "DEAD RIGHT NOW" << std::endl;
 				rechargeStation->AddDeadCarrier(carrier);
 			} else if (carrier->BatteryDead()) {
 				carrier->GoDownToGround();

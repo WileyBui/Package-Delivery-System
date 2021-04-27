@@ -70,10 +70,10 @@ bool RechargeDrone::IsChargingCarrierFull(float dt){
   for (i; i < 100; i++) {
     if (DeadCarrier->BatteryFull()) {
       DeadCarrier->SetChargingStatus(false);
-      std::cout << "full battery" << DeadCarrier->GetBattery() << std::endl;
+      std::cout << "Full battery" << DeadCarrier->GetBattery() << std::endl;
       return true;
     } else {
-      std::cout << "Charging... " << DeadCarrier->GetBattery() << "; maxCapacity: " << DeadCarrier->GetMaxBattery() << std::endl;
+      // std::cout << "Charging... " << DeadCarrier->GetBattery() << "; maxCapacity: " << DeadCarrier->GetMaxBattery() << std::endl;
       DeadCarrier->SetChargingStatus(true);
       DeadCarrier->Charging(dt);
       battery.Depleting(dt);
@@ -140,6 +140,11 @@ void RechargeDrone::PopPosition() {
   }
   if (route.size() == 0) {
     dynamic = false;
+
+    if (!alreadyNotified) {
+      GetStatus();
+      alreadyNotified = true;
+    }
   }
 }
 
@@ -178,17 +183,12 @@ vector<float> RechargeDrone::GetPositionOfStation(){
   return PositionOfStation;
 }
 void RechargeDrone::Update(float dt){
-  if (!IsDynamic() && !alreadyNotified) {
-    GetStatus();
-    alreadyNotified = true;
-  }
-
   if(DeadCarrier&&(DistanceBetween(DeadCarrier) < 20)){
     if(IsChargingCarrierFull(dt)) {
       //charging finished, gotta to back
       DeadCarrier->SetDroneStatusWhenBatteryDies("not dead yet");
       SetDeadCarrier(NULL);
-      std::cout << "GO BACK TO STATION" << std::endl;
+      std::cout << "Recharge drone: done charging carrier; heading back to station" << std::endl;
       route.clear();
       const entity_project::IGraph* graph;
       std::vector<vector<float>> path = GetRouteStrategy()->GetRoute(graph,GetPosition(),PositionOfStation);

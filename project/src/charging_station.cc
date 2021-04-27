@@ -71,23 +71,25 @@ void ChargingStation::RemoveChargingDrone(RechargeDrone* chargingDrone) {
 void ChargingStation::Update(float dt) {
   // chargingDrone->GetBatteryObj();
   float maxChargeBattery;
-
+  
   for (RechargeDrone* chargingDrone : chargingDronesAtStation) {
     maxChargeBattery = chargingDrone->GetBatteryMaxCharge();
-
     // still has dead carriers
     if (IsChargingDroneWithinRadius(chargingDrone, 10) &&
         (chargingDrone->GetBattery() >= maxChargeBattery * 0.80) &&
         (!chargingDrone->IsDynamic()) &&
         (!deadCarriers.empty())) {
-      // assign chargingDrone to go to deadCarrier
-      chargingDrone->SetDeadCarrier(deadCarriers[0]);
-      const entity_project::IGraph* graph;
-      std::vector<vector<float>> path = chargingDrone->GetRouteStrategy()->GetRoute(graph, chargingDrone->GetPosition(), deadCarriers[0]->GetPosition());
-      chargingDrone->SetRoute(path);
-      chargingDrone->SetPositionOfStation(GetPosition());
-      chargingDrone->GetStatus();
-      RemoveChargingDrone(chargingDrone);
+        
+      if (deadCarriers[0]->BatteryDead() && !deadCarriers[0]->IsCurrentlyCharging()) {
+        // assign chargingDrone to go to deadCarrier
+        chargingDrone->SetDeadCarrier(deadCarriers[0]);
+        const entity_project::IGraph* graph;
+        std::vector<vector<float>> path = chargingDrone->GetRouteStrategy()->GetRoute(graph, chargingDrone->GetPosition(), deadCarriers[0]->GetPosition());
+        chargingDrone->SetRoute(path);
+        chargingDrone->SetPositionOfStation(GetPosition());
+        chargingDrone->GetStatus();
+        RemoveChargingDrone(chargingDrone);
+      }
       PopDeadCarrier();
     } else if (!IsChargingDroneWithinRadius(chargingDrone, 10)) {
       // removes drone if out of radius from the charging station
