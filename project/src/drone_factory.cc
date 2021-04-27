@@ -7,7 +7,6 @@ namespace csci3081 {
 
 IEntity* DroneFactory::CreateEntity(const picojson::object& val){
     if (JsonHelper::GetString(val, "type") == "drone") {
-        std::cout<<"HIIII Drone"<<std::endl;
         return new Drone(val);
     }
     return NULL;

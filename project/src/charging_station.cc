@@ -74,6 +74,7 @@ void ChargingStation::Update(float dt) {
   
   for (RechargeDrone* chargingDrone : chargingDronesAtStation) {
     maxChargeBattery = chargingDrone->GetBatteryMaxCharge();
+    // std::cout << deadCarriers.size() << std::endl;
     // still has dead carriers
     if (IsChargingDroneWithinRadius(chargingDrone, 10) &&
         (chargingDrone->GetBattery() >= maxChargeBattery * 0.80) &&
