@@ -1,5 +1,5 @@
 /**
- * @file composite_factory.h
+ * @file drone_factory.h
  */
 #ifndef DRONE_FACTORY_H
 #define DRONE_FACTORY_H

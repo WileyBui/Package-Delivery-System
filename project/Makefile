@@ -18,7 +18,7 @@ OBJFILES = $(notdir $(OBJFILES_CC:.cpp=.o))
 OBJDIR = $(BUILD_DIR)/obj
 OBJECTS = $(addprefix $(OBJDIR)/, $(OBJFILES))
 -include $(DEP_DIR)/env
-
+CXX = g++
 LIBFILE = ${BUILD_DIR}/lib/libcsci3081proj.so
 EXEFILE = ${BUILD_DIR}/bin/web-app
 

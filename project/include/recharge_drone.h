@@ -1,85 +1,81 @@
-
 /**
- * @file carrier.h
+ * @file recharge_drone.h
  *
- * @copyright Lin Huynh, All rights reserved.
+ * @copyright Dustin Zhang, All rights reserved.
  */
 
-#ifndef INC_CARRIER_H_
-#define INC_CARRIER_H_
+#ifndef INC_RCGDRONE_H_
+#define INC_RCGDRONE_H_
 
 /*******************************************************************************
  * Includes
  ******************************************************************************/
 #include "entity_base.h"
-#include <vector>         // Used for vector like vector3D and vector2D
-#include <string>
+//#include <vector>         // Used for vector like vector3D and vector2D
 #include <iostream>
+#include <string>
+#include <vector>  // Used for vector like vector3D and vector2D
+
 #include "battery.h"
+#include "carrier.h"
+#include "entity_base.h"
 #include "package.h"
-#include "route_strategy.h"
+#include "vector.h"
+// #include "route_strategy.h"
+#include "beeline_route.h"
+#include "parabolic_route.h"
+#include "smart_route.h"
 
 namespace csci3081 {
 /*******************************************************************************
  * Class Definitions
  ******************************************************************************/
 /**
- * @brief A representation of a carrier
- * An abstract base class for delivery transportation clases like Drone or Robot.
- * Robot and Drone inherited from Carrier
+ * @brief A representation of a drone
+ * It stores the drone's name, ID, version, position, direction, speed, and 
+ * dynamic mode.
  */
-class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
-  public:
-    /**
-    * @brief This links a package object to the carrier if the carrier is not  
-    * already linking to another package (carrier can only carry one package
-    * at a time)
-    * @param[in] arg    a Package pointer
-    * @return True upon succeeding linking the package to the carrier
-    *         False otherwise (e.g. carrier is already linked to another package)
-    */
-    bool AddPackage(Package* arg);
+class RechargeDrone : public csci3081::EntityBase, public csci3081::ASubject {
+ public:
+  /**
+    * Constructor, creates a recharing drone object
+    * param[in] val    a picojson::object object that has the detail of the 
+    *                   package including name, position, direction, radius,
+    *                   and speed 
+  **/
+  RechargeDrone(const picojson::object& val);
 
-    /**
-    * @brief This checks if the carrier is already linked to a package
-    * @return True if the carrier is already linked to a package 
-    *                     (package pointer of the carrier is not NULL)
-    *         False otherwise
+  /**
+    * @brief Copy Constructor.
+    * This creates a new instance of recharing drone that has the same content
+    * as the Package argument
+    * @param[in] cpy    Drone instance that wants to be copied
     */
-    bool HavePackage();
+  RechargeDrone(RechargeDrone&);
+  ///need to add documentaion 
+  void ChargeDrone(float dt);
 
-    /**
-    * @brief This releases the link of the package from the carrier, making the
-    * package pointer of the carrier NULL, and return a pointer to the just 
-    * dropped/delivered package
-    * @return a Package pointer to the just dropped/delivered package
-    */
-    Package* DropPackage();
-    
-    /**
-    * @brief This returns a Package pointer to the package that the carrier is
-    * linking to, and returns NULL if the carrier is not linking to any package. 
-    */
-    Package* GetPackage();
+  bool IsChargingCarrierFull(float dt);
 
-    /**
-    * @brief This checks if the carrier is out of battery
+  /**
+    * @brief This checks if the recharging drone is out of battery
     * @return TRUE if the battery of the carrier is out 
     *         FALSE otherwise
     */
     bool BatteryDead();
-    
-    /**
+
+  /**
     * @brief This returns the time in secs left in the carrier's battery
     */
     float GetBattery();
-    
-    /**
-    * @brief This returns the battery maximum capacity.
+
+
+  /**
+    * @brief This returns the max charge of the recharge drone's battery.
     */
-    float GetMaxBattery();
-    
-    /**
+    float GetBatteryMaxCharge();
+
+  /**
     * @brief This function is used to charge the battery of the carrier for 
     * a certain amount of time in seconds
     * @param[in] sec  amount of time in secs to charge the battery
@@ -88,7 +84,7 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     */
     bool Charging(float);
 
-    /**
+     /**
     * @brief This sets the speed of the carrier. Change the speed of the carrier
     * if the argument is a non-negative float number
     * @param[in] s    a non-negative float value for the carrier's speed
@@ -106,6 +102,14 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     * @param agr    a std::vector<float> that has the new position of the carrier
     */  
     void SetPosition(std::vector<float> v);
+
+    /**
+    * @brief This changes the dynamic of the recharge drone. Note that for the recharge drone to
+    * move on the simulation, dynamic of the recharge drone must be set to true
+    * @param[in]  n     True if the recharge drone is actively moving in the simulation
+    *                 False otherwise
+    */
+    void SetDynamic(bool dynamic_);
 
     /**
     * @brief This function adds a full route to route attribute of the carrier 
@@ -126,11 +130,6 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     */
     void PopPosition();
 
-
-    void SetDroneStatusWhenBatteryDies(std::string status);
-    std::string GetDroneStatusWhenBatteryDies();
-    void GoDownToGround();
-
     /**
     * @brief This is an inherited method from EntityBase to use for DeliverySimulation.
     * This updates the position of the carrier on the simulation if the position changes
@@ -148,6 +147,12 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     * @param const entity_project::IEntity& entity
     */
     void GetStatus();
+    void SetDeadCarrier(Carrier* carrier);
+    Carrier* GetDeadCarrier();
+    void SetPositionOfStation(vector<float> station);
+    vector<float> GetPositionOfStation();
+
+    bool IsChargingACarrier();
 
     /**
     * @brief return the Route Strategy that the carrier uses, such as Smart Route, Beeline, 
@@ -155,18 +160,17 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     */
     RouteStrategy* GetRouteStrategy();
     bool BatteryFull();
-    bool IsCurrentlyCharging();
-    void SetChargingStatus(bool b);
-  protected: 
+  private:
     Battery battery;
-    Package* package;
     float speed;
+    bool alreadyNotified = false;
     std::vector<std::vector<float>> route;
-    std::string droneStatusWhenBatteryDies = "not dead yet";
-    bool ChargingStatus = false;
     RouteStrategy* routeStrategy = NULL;
+    std::vector<float> PositionOfStation;
+    Carrier* DeadCarrier = NULL;
+
 };
 
-}
+}  // namespace csci3081
 
-#endif /* INC_CARRIER_H_ */
+#endif /* INC_RCGDRONE_H_ */
