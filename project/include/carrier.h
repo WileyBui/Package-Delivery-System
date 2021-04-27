@@ -126,6 +126,11 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     */
     void PopPosition();
 
+
+    void SetDroneStatusWhenBatteryDies(std::string status);
+    std::string GetDroneStatusWhenBatteryDies();
+    void GoDownToGround();
+
     /**
     * @brief This is an inherited method from EntityBase to use for DeliverySimulation.
     * This updates the position of the carrier on the simulation if the position changes

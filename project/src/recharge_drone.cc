@@ -67,7 +67,7 @@ void RechargeDrone::ChargeDrone(float dt){
 bool RechargeDrone::IsChargingCarrierFull(float dt){
   int i = 0;
   
-  for (i; i < 10; i++) {
+  for (i; i < 100; i++) {
     if (DeadCarrier->BatteryFull()) {
       DeadCarrier->SetChargingStatus(false);
       std::cout << "full battery" << DeadCarrier->GetBattery() << std::endl;
@@ -79,6 +79,7 @@ bool RechargeDrone::IsChargingCarrierFull(float dt){
       battery.Depleting(dt);
     }
   }
+
   return false;
 }
 
@@ -185,6 +186,7 @@ void RechargeDrone::Update(float dt){
   if(DeadCarrier&&(DistanceBetween(DeadCarrier) < 20)){
     if(IsChargingCarrierFull(dt)) {
       //charging finished, gotta to back
+      DeadCarrier->SetDroneStatusWhenBatteryDies("not dead yet");
       SetDeadCarrier(NULL);
       std::cout << "GO BACK TO STATION" << std::endl;
       route.clear();

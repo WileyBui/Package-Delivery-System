@@ -143,9 +143,10 @@ void DeliverySimulation::Update(float dt) {
 		else if (entity->GetType() == "carrier") {
 			Carrier* carrier = dynamic_cast<Carrier*> (entities_.at(i));
 
-			if(carrier->BatteryDead()){
-				std::cout << "BATTERY DEAD: " << carrier->GetBattery() << std::endl;
+			if (carrier->BatteryDead() && !rechargeStation->HasDeadCarrier(carrier)){
 				rechargeStation->AddDeadCarrier(carrier);
+			} else if (carrier->BatteryDead()) {
+				carrier->GoDownToGround();
 			} else if (carrier->HavePackage() && (carrier->NextPosition() == carrier->GetPosition()) && (!carrier->IsCurrentlyCharging())){
 				// Adding path to customer
 				// std::vector<vector<float>> path;
