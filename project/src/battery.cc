@@ -30,12 +30,14 @@ Battery::Battery(float remainingLifeinSec_, std::string batteryType) {
         maxCharge = remainingLifeinSec_;
         remainingLifeinSec = remainingLifeinSec_;
     }
-
-    std::cout << "Battery type: " << batteryType << "; remainingLifeinSec_:" << remainingLifeinSec_ << "; maxCharge: " << maxCharge << std::endl;
 }
 
 float Battery::GetRemainingLife() {
     return remainingLifeinSec;
+}
+
+float Battery::GetMaxCharge() {
+    return maxCharge;
 }
 
 bool Battery::IsDead() {
@@ -69,11 +71,11 @@ bool Battery::Charging(float sec) {
         remainingLifeinSec += sec;
     }
     else {                                                      // Charge more than max capacity
-        remainingLifeinSec = 10000;
+        remainingLifeinSec = maxCharge;
     }
 }
 bool Battery::IsFull(){
-    return (remainingLifeinSec >= 1000);
+    return (remainingLifeinSec >= maxCharge);
 }
 
 

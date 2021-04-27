@@ -75,6 +75,11 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     float GetBattery();
     
     /**
+    * @brief This returns the battery maximum capacity.
+    */
+    float GetMaxBattery();
+    
+    /**
     * @brief This function is used to charge the battery of the carrier for 
     * a certain amount of time in seconds
     * @param[in] sec  amount of time in secs to charge the battery
@@ -145,7 +150,7 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     */
     RouteStrategy* GetRouteStrategy();
     bool BatteryFull();
-    bool GetChargingStatus();
+    bool IsCurrentlyCharging();
     void SetChargingStatus(bool b);
   protected: 
     Battery battery;

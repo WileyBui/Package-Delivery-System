@@ -108,15 +108,18 @@ void DeliverySimulation::Update(float dt) {
 
 		if (entity->GetType() == "charging_station") {
 			rechargeStation->Update(dt);
-		} else if (entity->IsDynamic()){
+		} else if (entity->IsDynamic()) {
 			// Only updating the carrier (drone & robot) and the package, customer doesn't need to move
 			subject->Update(dt);
 		}
 		
 		// See if there is any undeliverered package
 		if(entity->GetType() == "recharging_drone" && rechargeStation!=NULL){
-			RechargeDrone* rechageDrone = dynamic_cast<RechargeDrone*> (entities_.at(i));
-			rechargeStation->AddChargingDrone(rechageDrone);
+			RechargeDrone* rechargeDrone = dynamic_cast<RechargeDrone*> (entities_.at(i));
+			rechargeStation->AddChargingDrone(rechargeDrone);
+			if (rechargeDrone->IsChargingACarrier()) {
+				rechargeDrone->Update(dt);
+			}
 		}
 		else if (entity->GetType() == "package") {
 			package = dynamic_cast<Package*> (entities_.at(i));
@@ -139,23 +142,14 @@ void DeliverySimulation::Update(float dt) {
 
 		else if (entity->GetType() == "carrier") {
 			Carrier* carrier = dynamic_cast<Carrier*> (entities_.at(i));
+
 			if(carrier->BatteryDead()){
+				std::cout << "BATTERY DEAD: " << carrier->GetBattery() << std::endl;
 				rechargeStation->AddDeadCarrier(carrier);
-			}
-			else if (carrier->HavePackage() && carrier->NextPosition() == carrier->GetPosition()){
+			} else if (carrier->HavePackage() && (carrier->NextPosition() == carrier->GetPosition()) && (!carrier->IsCurrentlyCharging())){
 				// Adding path to customer
 				// std::vector<vector<float>> path;
 
-				// if (carrier->GetName().find("drone") != std::string::npos) {
-				// 	// Uses GetBeelinePath() route
-				// 	Drone* drone = dynamic_cast<Drone*> (carrier);
-				// 	path = drone->GetBeelinePath(carrier->GetPosition(), carrier->GetPackage()->GetOwner()->GetPosition());
-				// } else {
-				// 	// Uses GetPath() route
-				// 	path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
-				// }
-					
-				// std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
 				std::vector<vector<float>> path = carrier->GetRouteStrategy()->GetRoute(graph, carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
 				carrier->SetRoute(path);
 				carrier->GetPackage()->GetStatus();
@@ -164,7 +158,6 @@ void DeliverySimulation::Update(float dt) {
 				// if the carrier is dead, then call the charging station
 				// rechargeStation.AddDeadCarrier(carrier);
 			}
-			
 		}
 	}
 }
@@ -180,7 +173,7 @@ Carrier* DeliverySimulation::AvailableCarrier(IEntity* package){
 		entity = dynamic_cast<EntityBase*> (entities_.at(j));
 		if (entity->GetType() == "carrier") {
 			carrier = dynamic_cast<Carrier*> (entity);
-			if ((!carrier->HavePackage()) && (!carrier->BatteryDead())) {
+			if ((!carrier->HavePackage()) && (!carrier->BatteryDead()) && (!carrier->IsCurrentlyCharging())) {
 			// if a carrier and is not busy with another package and have enough battery
 			instance = carrier->DistanceBetween(package);
 			if (carrierIndex == -1) {

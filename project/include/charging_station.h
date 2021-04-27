@@ -60,6 +60,8 @@ class ChargingStation : public csci3081::EntityBase {
     */
     void PopDeadCarrier();
 
+    bool HasDeadCarrier(Carrier* carrier);
+
     /**
     * @brief This adds a unique charging drone to the charging station only if the distance
     * between the two is close together.

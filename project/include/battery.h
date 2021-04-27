@@ -50,6 +50,11 @@ class Battery {
         * This functions return the remaining life of the battery
         */
         float GetRemainingLife();
+
+        /**
+        * This function returns the max charge of the battery.
+        */
+        float GetMaxCharge();
     
         /**
         * This functions return the current displayBar of the Battery

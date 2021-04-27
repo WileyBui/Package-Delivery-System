@@ -64,6 +64,24 @@ void RechargeDrone::ChargeDrone(float dt){
   battery.Depleting(1000*dt);
 }
 
+bool RechargeDrone::IsChargingCarrierFull(float dt){
+  int i = 0;
+  
+  for (i; i < 10; i++) {
+    if (DeadCarrier->BatteryFull()) {
+      DeadCarrier->SetChargingStatus(false);
+      std::cout << "full battery" << DeadCarrier->GetBattery() << std::endl;
+      return true;
+    } else {
+      std::cout << "Charging... " << DeadCarrier->GetBattery() << "; maxCapacity: " << DeadCarrier->GetMaxBattery() << std::endl;
+      DeadCarrier->SetChargingStatus(true);
+      DeadCarrier->Charging(dt);
+      battery.Depleting(dt);
+    }
+  }
+  return false;
+}
+
 bool RechargeDrone::BatteryDead() {
   return battery.IsDead();
 }
@@ -73,6 +91,9 @@ bool RechargeDrone::BatteryFull(){
 float RechargeDrone::GetBattery() {
   return battery.GetRemainingLife();
 }
+float RechargeDrone::GetBatteryMaxCharge() {
+  return battery.GetMaxCharge();
+}
 
 bool RechargeDrone::Charging(float sec) {
   return battery.Charging(sec);
@@ -81,6 +102,10 @@ bool RechargeDrone::Charging(float sec) {
 void RechargeDrone::SetPosition(std::vector<float> agr) {
   position.clear();
   position = agr;
+}
+
+void RechargeDrone::SetDynamic(bool dynamic_) {
+  dynamic = dynamic_;
 }
 
 void RechargeDrone::SetSpeed(float s) {
@@ -132,10 +157,16 @@ void RechargeDrone::GetStatus() {
 RouteStrategy* RechargeDrone::GetRouteStrategy(){
   return routeStrategy;
 }
+
+bool RechargeDrone::IsChargingACarrier(){
+  return (DeadCarrier && DeadCarrier->IsCurrentlyCharging());
+}
+
 void RechargeDrone::SetDeadCarrier(Carrier* carrier){
     dynamic = true;
    DeadCarrier = carrier;
  }
+
 Carrier* RechargeDrone::GetDeadCarrier(){
   return DeadCarrier;
 }
@@ -146,23 +177,25 @@ vector<float> RechargeDrone::GetPositionOfStation(){
   return PositionOfStation;
 }
 void RechargeDrone::Update(float dt){
-  if(DeadCarrier&&IsWithin(DeadCarrier)){//charging finished gotta to back
-    DeadCarrier->SetChargingStatus(false);
-    if(DeadCarrier->BatteryFull()){
-    route.clear();
-    const entity_project::IGraph* graph;
-    std::vector<vector<float>> path = GetRouteStrategy()->GetRoute(graph,GetPosition(),PositionOfStation);
-    std::cout<<path.size()<<std::endl;
-		SetRoute(path);
-    }
-    else{
-      DeadCarrier->SetChargingStatus(true);
-      std::cout<<"Charging here"<<std::endl;
-      ChargeDrone(dt);
-      std::cout<<DeadCarrier->GetBattery()<<std::endl;
-      return;
+  if (!IsDynamic() && !alreadyNotified) {
+    GetStatus();
+    alreadyNotified = true;
+  }
+
+  if(DeadCarrier&&(DistanceBetween(DeadCarrier) < 20)){
+    if(IsChargingCarrierFull(dt)) {
+      //charging finished, gotta to back
+      SetDeadCarrier(NULL);
+      std::cout << "GO BACK TO STATION" << std::endl;
+      route.clear();
+      const entity_project::IGraph* graph;
+      std::vector<vector<float>> path = GetRouteStrategy()->GetRoute(graph,GetPosition(),PositionOfStation);
+      alreadyNotified = false;
+      SetRoute(path);
+      GetStatus();
     }
   }
+  
   std::vector<float> nextPosition;
   float distance;
   float time;
@@ -177,22 +210,22 @@ void RechargeDrone::Update(float dt){
       nextPosition = NextPosition();
       distance = Distance(Vector3D(GetPosition()), Vector3D(nextPosition));
       time = distance / GetSpeed();
-    if (time >= dt) {
-          portion = time / dt;
-          result = Vector3D(GetPosition()) + ((Vector3D(nextPosition) - Vector3D(GetPosition())) / portion);
-          SetPosition(toVectorFloat(result));
-          break;
-    } 
-    else if (time > 0) {
-          SetPosition(nextPosition);
-          PopPosition();
-          dt = dt - time;
+      if (time >= dt) {
+        portion = time / dt;
+        result = Vector3D(GetPosition()) + ((Vector3D(nextPosition) - Vector3D(GetPosition())) / portion);
+        SetPosition(toVectorFloat(result));
+        break;
+      } 
+      else if (time > 0) {
+        SetPosition(nextPosition);
+        PopPosition();
+        dt = dt - time;
+      }
+      else if (time == 0) {
+        PopPosition();
+        break;
+      }
     }
-    else if (time == 0) {
-          PopPosition();
-          break;
-    }
-  }
   }
   //   if (BatteryDead()) {
   //     if (GetName().find("drone") != std::string::npos) {

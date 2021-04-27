@@ -16,6 +16,9 @@ bool Carrier::BatteryFull(){
 float Carrier::GetBattery() {
   return battery.GetRemainingLife();
 }
+float Carrier::GetMaxBattery() {
+  return battery.GetMaxCharge();
+}
 
 bool Carrier::Charging(float sec) {
   return battery.Charging(sec);
@@ -107,7 +110,7 @@ RouteStrategy* Carrier::GetRouteStrategy(){
   return routeStrategy;
 }
 
-bool Carrier::GetChargingStatus(){
+bool Carrier::IsCurrentlyCharging(){
   return ChargingStatus;
 }
 

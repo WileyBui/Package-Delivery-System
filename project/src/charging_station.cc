@@ -37,7 +37,7 @@ bool ChargingStation::IsChargingDroneWithinRadius(RechargeDrone* chargingDrone, 
 }
 
 void ChargingStation::AddDeadCarrier(Carrier* carrier) {
-  if (!(std::find(deadCarriers.begin(), deadCarriers.end(), carrier) != deadCarriers.end())) {
+  if (!HasDeadCarrier(carrier)) {
     deadCarriers.push_back(carrier);
   }
 }
@@ -46,6 +46,10 @@ void ChargingStation::PopDeadCarrier() {
   if (!deadCarriers.empty()) {
     deadCarriers.erase(deadCarriers.begin());
   }
+}
+
+bool ChargingStation::HasDeadCarrier(Carrier* carrier) {
+  return (std::find(deadCarriers.begin(), deadCarriers.end(), carrier) != deadCarriers.end());
 }
 
 bool ChargingStation::AddChargingDrone(RechargeDrone* chargingDrone) {
@@ -65,27 +69,33 @@ void ChargingStation::RemoveChargingDrone(RechargeDrone* chargingDrone) {
 }
 
 void ChargingStation::Update(float dt) {
-  float fullChargingDroneBattery = 20000;
+  // chargingDrone->GetBatteryObj();
+  float maxChargeBattery;
+
   for (RechargeDrone* chargingDrone : chargingDronesAtStation) {
+    maxChargeBattery = chargingDrone->GetBatteryMaxCharge();
+
     // still has dead carriers
-    if (IsChargingDroneWithinRadius(chargingDrone, 100) && (chargingDrone->GetBattery() >= fullChargingDroneBattery * 0.80) && (!deadCarriers.empty())) {
+    if (IsChargingDroneWithinRadius(chargingDrone, 10) &&
+        (chargingDrone->GetBattery() >= maxChargeBattery * 0.80) &&
+        (!chargingDrone->IsDynamic()) &&
+        (!deadCarriers.empty())) {
       // assign chargingDrone to go to deadCarrier
       chargingDrone->SetDeadCarrier(deadCarriers[0]);
       const entity_project::IGraph* graph;
-      std::vector<vector<float>> path = chargingDrone->GetRouteStrategy()->GetRoute(graph,chargingDrone->GetPosition(),deadCarriers[0]->GetPosition());
-	    chargingDrone->SetRoute(path);
-      chargingDrone->Update(dt);
+      std::vector<vector<float>> path = chargingDrone->GetRouteStrategy()->GetRoute(graph, chargingDrone->GetPosition(), deadCarriers[0]->GetPosition());
+      chargingDrone->SetRoute(path);
       chargingDrone->SetPositionOfStation(GetPosition());
+      chargingDrone->GetStatus();
       RemoveChargingDrone(chargingDrone);
       PopDeadCarrier();
-    } else if (!IsChargingDroneWithinRadius(chargingDrone, 100)) {
+    } else if (!IsChargingDroneWithinRadius(chargingDrone, 10)) {
       // removes drone if out of radius from the charging station
       RemoveChargingDrone(chargingDrone);
-    } else if ((chargingDrone->GetBattery() < fullChargingDroneBattery)){
+    } else if ((chargingDrone->GetBattery() < maxChargeBattery)) {
       // keeps charging the charging drone
     }
   }
 }
 
 }  // namespace csci3081
-

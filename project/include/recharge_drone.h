@@ -55,6 +55,8 @@ class RechargeDrone : public csci3081::EntityBase, public csci3081::ASubject {
   ///need to add documentaion 
   void ChargeDrone(float dt);
 
+  bool IsChargingCarrierFull(float dt);
+
   /**
     * @brief This checks if the recharging drone is out of battery
     * @return TRUE if the battery of the carrier is out 
@@ -66,6 +68,12 @@ class RechargeDrone : public csci3081::EntityBase, public csci3081::ASubject {
     * @brief This returns the time in secs left in the carrier's battery
     */
     float GetBattery();
+
+
+  /**
+    * @brief This returns the max charge of the recharge drone's battery.
+    */
+    float GetBatteryMaxCharge();
 
   /**
     * @brief This function is used to charge the battery of the carrier for 
@@ -94,6 +102,14 @@ class RechargeDrone : public csci3081::EntityBase, public csci3081::ASubject {
     * @param agr    a std::vector<float> that has the new position of the carrier
     */  
     void SetPosition(std::vector<float> v);
+
+    /**
+    * @brief This changes the dynamic of the recharge drone. Note that for the recharge drone to
+    * move on the simulation, dynamic of the recharge drone must be set to true
+    * @param[in]  n     True if the recharge drone is actively moving in the simulation
+    *                 False otherwise
+    */
+    void SetDynamic(bool dynamic_);
 
     /**
     * @brief This function adds a full route to route attribute of the carrier 
@@ -135,6 +151,9 @@ class RechargeDrone : public csci3081::EntityBase, public csci3081::ASubject {
     Carrier* GetDeadCarrier();
     void SetPositionOfStation(vector<float> station);
     vector<float> GetPositionOfStation();
+
+    bool IsChargingACarrier();
+
     /**
     * @brief return the Route Strategy that the carrier uses, such as Smart Route, Beeline, 
     * or Parabolic Route
@@ -144,6 +163,7 @@ class RechargeDrone : public csci3081::EntityBase, public csci3081::ASubject {
   private:
     Battery battery;
     float speed;
+    bool alreadyNotified = false;
     std::vector<std::vector<float>> route;
     RouteStrategy* routeStrategy = NULL;
     std::vector<float> PositionOfStation;
