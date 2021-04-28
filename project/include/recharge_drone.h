@@ -55,8 +55,10 @@ class RechargeDrone : public csci3081::EntityBase, public csci3081::ASubject {
   ///need to add documentaion 
   void ChargeDrone(float dt);
 
+  bool IsCurrentlyCharging();
+
   void ChargeFromStation(float dt);
-  
+
   bool IsChargingCarrierFull(float dt);
 
   /**
@@ -166,6 +168,7 @@ class RechargeDrone : public csci3081::EntityBase, public csci3081::ASubject {
     Battery battery;
     float speed;
     bool alreadyNotified = false;
+    bool isCurrentlyCharging = false;
     std::vector<std::vector<float>> route;
     RouteStrategy* routeStrategy = NULL;
     std::vector<float> PositionOfStation;
