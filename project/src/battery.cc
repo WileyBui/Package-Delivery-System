@@ -27,7 +27,6 @@ Battery::Battery(float remainingLifeinSec_, std::string batteryType) {
         remainingLifeinSec = maxCharge;
     }
     else {
-        maxCharge = remainingLifeinSec_;
         remainingLifeinSec = remainingLifeinSec_;
     }
 }

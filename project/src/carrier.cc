@@ -127,6 +127,7 @@ std::string Carrier::GetDroneStatusWhenBatteryDies() {
 }
 
 void Carrier::GoDownToGround() {
+  // drone
   if (GetName().find("drone") != std::string::npos) {
     float groundLevel = 253;
 
@@ -147,6 +148,19 @@ void Carrier::GoDownToGround() {
       SetRoute(path);
       droneStatusWhenBatteryDies = "battery dead; going towards ground";
     } else if ((GetPosition().at(1) <= groundLevel) && (droneStatusWhenBatteryDies == "battery dead; going towards ground")) {
+      droneStatusWhenBatteryDies = "battery dead; is on ground";
+      if (HavePackage()) {
+        Package* pack = DropPackage();
+        pack->SetCarrier(NULL);
+        pack->SetDynamic(false);
+      }
+      dynamic = false;
+      route.clear();
+      GetStatus();
+    }
+  } else {
+    // robot; doesn't need to go to "ground" since robot stays at ground level
+    if (droneStatusWhenBatteryDies == "not dead yet") {
       droneStatusWhenBatteryDies = "battery dead; is on ground";
       if (HavePackage()) {
         Package* pack = DropPackage();

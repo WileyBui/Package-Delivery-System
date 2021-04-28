@@ -75,7 +75,7 @@ void ChargingStation::Update(float dt) {
   for (RechargeDrone* chargingDrone : chargingDronesAtStation) {
     maxChargeBattery = chargingDrone->GetBatteryMaxCharge();
     // still has dead carriers
-    if (IsChargingDroneWithinRadius(chargingDrone, 10) &&
+    if (IsChargingDroneWithinRadius(chargingDrone, 5) &&
         (chargingDrone->GetBattery() >= maxChargeBattery * 0.80) &&
         (!chargingDrone->IsDynamic()) &&
         (!deadCarriers.empty())) {
@@ -91,11 +91,12 @@ void ChargingStation::Update(float dt) {
         RemoveChargingDrone(chargingDrone);
       }
       PopDeadCarrier();
-    } else if (!IsChargingDroneWithinRadius(chargingDrone, 10)) {
-      // removes drone if out of radius from the charging station
+    } else if (IsChargingDroneWithinRadius(chargingDrone, 5)) {
+      // charges recharging drone if at station
+      chargingDrone->ChargeFromStation(dt);
+    } else if (!IsChargingDroneWithinRadius(chargingDrone, 5)) {
+      // removes recharging drone if out of radius from the charging station
       RemoveChargingDrone(chargingDrone);
-    } else if ((chargingDrone->GetBattery() < maxChargeBattery)) {
-      // keeps charging the charging drone
     }
   }
 }
