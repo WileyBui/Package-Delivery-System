@@ -13,22 +13,24 @@ Battery::Battery() {
 }
 
 Battery::Battery(float remainingLifeinSec_, std::string batteryType) {
-  BatteryID = GenerateId::GenerateNewId();
+    BatteryID = GenerateId::GenerateNewId();
 
-  if (batteryType == "recharging_drone") {  // recharging drone's default capacity
-    maxCharge = 20000;
-  } else {  // carrier's default capacity
-    maxCharge = 10000;
-  }
+    if (batteryType == "recharging_drone") {                        // recharging drone's default capacity
+        maxCharge = 20000;
+    } 
+    else {                                                          // carrier's default capacity
+        maxCharge = 10000;
+    }
 
-  if (remainingLifeinSec_ < 0) {  // invalid negative life
-    remainingLifeinSec = 0;
-  } else if (remainingLifeinSec_ > maxCharge) {  // over maximum capacity
-    remainingLifeinSec = maxCharge;
-  } else {
-    maxCharge = remainingLifeinSec_;
-    remainingLifeinSec = remainingLifeinSec_;
-  }
+    if (remainingLifeinSec_ < 0) {                                  // invalid negative life
+        remainingLifeinSec = 0;
+    }
+    else if (remainingLifeinSec_ > maxCharge) {                     // over maximum capacity
+        remainingLifeinSec = maxCharge;
+    }
+    else {
+        remainingLifeinSec = remainingLifeinSec_;
+    }
 }
 
 float Battery::GetRemainingLife() {

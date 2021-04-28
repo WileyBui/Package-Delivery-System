@@ -54,7 +54,7 @@ bool ChargingStation::HasDeadCarrier(Carrier* carrier) {
 
 bool ChargingStation::AddChargingDrone(RechargeDrone* chargingDrone) {
   // adds drone to the charging station only if the distance is close together
-  if (IsChargingDroneWithinRadius(chargingDrone, 100)) {
+  if (IsWithin(chargingDrone)) {
     // checks if current drone has already at the charging station
     if (!(std::find(chargingDronesAtStation.begin(), chargingDronesAtStation.end(), chargingDrone) != chargingDronesAtStation.end())) {
       chargingDronesAtStation.push_back(chargingDrone);
@@ -76,7 +76,7 @@ void ChargingStation::Update(float dt) {
     maxChargeBattery = chargingDrone->GetBatteryMaxCharge();
     // std::cout << deadCarriers.size() << std::endl;
     // still has dead carriers
-    if (IsChargingDroneWithinRadius(chargingDrone, 10) &&
+    if (IsWithin(chargingDrone) &&
         (chargingDrone->GetBattery() >= maxChargeBattery * 0.80) &&
         (!chargingDrone->IsDynamic()) &&
         (!deadCarriers.empty())) {
@@ -92,11 +92,12 @@ void ChargingStation::Update(float dt) {
         RemoveChargingDrone(chargingDrone);
       }
       PopDeadCarrier();
-    } else if (!IsChargingDroneWithinRadius(chargingDrone, 10)) {
-      // removes drone if out of radius from the charging station
+    } else if (IsWithin(chargingDrone)) {
+      // charges recharging drone if at station
+      chargingDrone->ChargeFromStation(dt);
+    } else if (!IsWithin(chargingDrone)) {
+      // removes recharging drone if out of radius from the charging station
       RemoveChargingDrone(chargingDrone);
-    } else if ((chargingDrone->GetBattery() < maxChargeBattery)) {
-      // keeps charging the charging drone
     }
   }
 }
