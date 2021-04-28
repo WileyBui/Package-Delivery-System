@@ -145,8 +145,9 @@ void DeliverySimulation::Update(float dt) {
 		else if (entity->GetType() == "carrier") {
 			Carrier* carrier = dynamic_cast<Carrier*> (entities_.at(i));
 
-			if (carrier->BatteryDead() && !rechargeStation->HasDeadCarrier(carrier) && carrier->GetPosition().at(1) < 255) {
-				std::cout << "DEAD RIGHT NOW" << std::endl;
+			if (carrier->BatteryDead() && !rechargeStation->HasDeadCarrier(carrier) && 
+				carrier->GetDroneStatusWhenBatteryDies() == "battery dead; is on ground") {
+				std::cout << entity->GetName() << " IS DEAD RIGHT NOW... SEND HELP!" << std::endl;
 				rechargeStation->AddDeadCarrier(carrier);
 			} else if (carrier->BatteryDead()) {
 				carrier->GoDownToGround();

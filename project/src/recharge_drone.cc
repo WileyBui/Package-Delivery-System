@@ -64,20 +64,27 @@ void RechargeDrone::ChargeDrone(float dt){
   battery.Depleting(1000*dt);
 }
 
+void RechargeDrone::ChargeFromStation(float dt){
+  // the recharging station can charge 500x faster
+  for (int i = 0; i < 250; i++) {
+    if (!battery.IsFull()) {
+      battery.Charging(dt);
+    }
+  }
+}
+
 bool RechargeDrone::IsChargingCarrierFull(float dt){
-  int i = 0;
-  //charge it instantly
-  for (i; i < 100; i++) {
+  for (int i = 0; i < 250; i++) {
     if (DeadCarrier->BatteryFull()) {
       DeadCarrier->SetChargingStatus(false);
-      std::cout << "Full battery" << DeadCarrier->GetBattery() << std::endl;
+      std::cout << DeadCarrier->GetName() << ": recharge full with battery = " << DeadCarrier->GetBattery() << std::endl;
       return true;
     } else {
       // std::cout << "Charging... " << DeadCarrier->GetBattery() << "; maxCapacity: " << DeadCarrier->GetMaxBattery() << std::endl;
       DeadCarrier->SetChargingStatus(true);
       DeadCarrier->Charging(dt);
       battery.Depleting(dt);
-      std::cout<<battery.GetRemainingLife()<<std::endl;
+      // std::cout<<battery.GetRemainingLife()<<std::endl;
     }
   }
 
@@ -189,7 +196,7 @@ void RechargeDrone::Update(float dt){
       //charging finished, gotta to back
       DeadCarrier->SetDroneStatusWhenBatteryDies("not dead yet");
       SetDeadCarrier(NULL);
-      std::cout << "Recharge drone: drone charging carrier; heading back to station" << std::endl;
+      std::cout << "Recharging drone is done charging a carrier; heading back to station" << std::endl;
       route.clear();
       const entity_project::IGraph* graph;
       std::vector<vector<float>> path = GetRouteStrategy()->GetRoute(graph,GetPosition(),PositionOfStation);
@@ -230,87 +237,6 @@ void RechargeDrone::Update(float dt){
       }
     }
   }
-  //   if (BatteryDead()) {
-  //     if (GetName().find("drone") != std::string::npos) {
-  //       float groundLevel = 253;
-
-  //       if ((GetPosition().at(1) > groundLevel) && (droneStatusWhenBatteryDies == "not dead yet")) {
-  //         route.clear();
-
-  //         std::vector<vector<float>> path;
-  //         std::vector<float> destPosition = GetPosition();
-  //         destPosition.at(1) = groundLevel;
-
-  //         path.push_back(GetPosition());
-  //         path.push_back(destPosition);
-
-  //         dynamic = false;
-  //         GetStatus();
-  //         dynamic = true;
-
-  //         SetRoute(path);
-  //         droneStatusWhenBatteryDies = "battery dead; going towards ground";
-  //       } else if ((GetPosition().at(1) <= groundLevel) && (droneStatusWhenBatteryDies == "battery dead; going towards ground")) {
-  //         droneStatusWhenBatteryDies = "battery dead; is on ground";
-  //         if (HavePackage()) {
-  //           Package* pack = DropPackage();
-  //           pack->SetRechargeDrone(NULL);
-  //           pack->SetDynamic(false);
-  //         }
-  //         dynamic = false;
-  //         route.clear();
-  //         GetStatus();
-  //       }
-  //     }
-  //   } else if (dt > GetBattery()) {
-  //     dt = GetBattery();
-  //   }
-
-  //   if (dt > 0) {
-  //     battery.Depleting(dt);
-  //     while (true) {
-  //       nextPosition = NextPosition();
-  //       distance = Distance(Vector3D(GetPosition()), Vector3D(nextPosition));
-  //       time = distance / GetSpeed();
-  //       if (time >= dt) {
-  //         portion = time / dt;
-  //         result = Vector3D(GetPosition()) + ((Vector3D(nextPosition) - Vector3D(GetPosition())) / portion);
-  //         SetPosition(toVectorFloat(result));
-  //         break;
-  //       } else if (time > 0) {
-  //         SetPosition(nextPosition);
-  //         PopPosition();
-  //         dt = dt - time;
-  //       } else if (time == 0) {
-  //         PopPosition();
-  //         break;
-  //       }
-  //     }
-  //     if (HavePackage()) {
-  //       Package* package = GetPackage();
-  //       // Check the status of Package
-  //       if (!GetPackage()->IsDynamic()) {
-  //         // Need the drone to pick up
-  //         if (IsWithin(package)) {
-  //           GetPackage()->SetDynamic(true);
-  //         }
-  //       } else {
-  //         // Package is on the drone
-  //         if (IsWithin(GetPackage()->GetOwner())) {
-  //           DropPackage()->Deliver();
-  //           dynamic = false;
-  //           GetStatus();
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
 }
 
 }  // namespace csci3081
-// RechargeDrone::~Drone(){
-//   if (routeStrategy != NULL){
-//     delete routeStrategy;
-//   }
-// }
-

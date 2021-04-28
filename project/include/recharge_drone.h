@@ -55,6 +55,8 @@ class RechargeDrone : public csci3081::EntityBase, public csci3081::ASubject {
   ///need to add documentaion 
   void ChargeDrone(float dt);
 
+  void ChargeFromStation(float dt);
+  
   bool IsChargingCarrierFull(float dt);
 
   /**
