@@ -163,8 +163,16 @@ scene when getting the package on its descent.
 In order to solve the problem, we first raise the drone to a certain height first,then perform parabolic movement in the air and descend veritcally.  
 
 When a drone carrier runs out of battery in mid air, it becomes idle and also notifies the observer. It then falls down to the ground, along with its package if it currently delivers one. Therefore, another carrier, especially a robot, can come over to the dead drone to pick up the undelivered package and deliver it back to its corresponding customer. Similarly, when a robot carrier runs out of battery, it notifies the observer and stays right where it is because it's at the ground, making it easier for other carriers to come & pick up the package.
-  
 
+* **Dicussion of Iteration 3 new feature: Recharging Drones and Recharging Stations**
+
+We chose to implement a system that has designated “recharge_drones” that will wait at a recharge station until they are notified that a delivery carrier has run out of battery. Once they are notified, a recharging mission will be “scheduled,” and the recharge drone can fly to the specified carrier and charge it for a given amount of time, before returning to the recharging station. We made several calculated decisions about how the drone would know how much charge to give, and make sure that it has enough charge to return to the charging station. With this new implementation, we are able to recharge carriers that have died, so that they can resume delivering packages.
+
+We had to write 4 new classes. We needed a class each for the functionalities of the recharging station and the recharging drone, and we needed to write a factory for each of these classes as well, so that they could be created in the composite factory pattern.
+
+In order to implement this, we had to use the factory pattern that we implemented in iteration 1. The true benefits of this pattern were made clear to us when we updated our code to include entities “recharge_stations” and “recharge_drones”. Since we have already done the work of implementing the factory pattern, creating new entities required very little fixing of old code, and we just had to create new factories that were added into the composite factory. 
+
+What was most difficult for us was integrating our new features into the pre-existing code. For example, we had some trouble editing the json files to be able to accommodate our new functionality, but after a while we were able to figure it out. Other than small snaffles like these, we were able to implement this feature without much issue, since all of the patterns we used were pre-existing in our code, we just had to change the functionalities.
 
 * **General roles of members**
 | Roles 	        | Member Name       |  Priority Task
