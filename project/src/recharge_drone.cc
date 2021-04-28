@@ -66,7 +66,7 @@ void RechargeDrone::ChargeDrone(float dt){
 
 bool RechargeDrone::IsChargingCarrierFull(float dt){
   int i = 0;
-  
+  //charge it instantly
   for (i; i < 100; i++) {
     if (DeadCarrier->BatteryFull()) {
       DeadCarrier->SetChargingStatus(false);
@@ -77,6 +77,7 @@ bool RechargeDrone::IsChargingCarrierFull(float dt){
       DeadCarrier->SetChargingStatus(true);
       DeadCarrier->Charging(dt);
       battery.Depleting(dt);
+      std::cout<<battery.GetRemainingLife()<<std::endl;
     }
   }
 
@@ -188,7 +189,7 @@ void RechargeDrone::Update(float dt){
       //charging finished, gotta to back
       DeadCarrier->SetDroneStatusWhenBatteryDies("not dead yet");
       SetDeadCarrier(NULL);
-      std::cout << "Recharge drone: done charging carrier; heading back to station" << std::endl;
+      std::cout << "Recharge drone: drone charging carrier; heading back to station" << std::endl;
       route.clear();
       const entity_project::IGraph* graph;
       std::vector<vector<float>> path = GetRouteStrategy()->GetRoute(graph,GetPosition(),PositionOfStation);

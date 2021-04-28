@@ -158,6 +158,16 @@ void Carrier::GoDownToGround() {
       GetStatus();
     }
   }
+  else{
+     if (HavePackage()) {
+        Package* pack = DropPackage();
+        pack->SetCarrier(NULL);
+        pack->SetDynamic(false);
+      }
+      dynamic = false;
+      route.clear();
+      GetStatus();
+  }
 }
 
 void Carrier::Update(float dt) {
