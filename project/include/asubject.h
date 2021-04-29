@@ -38,6 +38,7 @@ namespace csci3081 {
              * @return std::vector <entity_project::IEntityObserver*> list
              */
             std::vector <entity_project::IEntityObserver*> GetList();
+            
             /**
              * @brief Sends out Notification to the observer watching this subject
              * @param picojson::value& event 

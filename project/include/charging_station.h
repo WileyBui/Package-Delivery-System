@@ -40,23 +40,15 @@ class ChargingStation : public csci3081::EntityBase {
     ChargingStation(ChargingStation& chargingStation);
 
     /**
-    * @brief This checks to see if the current charging station has a close
-    * approximity to the charging drone.
-    * @param[in] chargingDrone  Compares the current charging station to this chargingDrone.
-    * @param[in] radius         The radius that the two entities can be within another.
-    * @returns bool             Returns true if the distance between the two are within the radius.
-    */
-    bool IsChargingDroneWithinRadius(RechargeDrone* chargingDrone, float radius);
-
-    /**
     * @brief This adds a new dead carrier to a deadCarriers vector.
     * @param[in] carrier  A new carrier to be added to deadCarriers vector.
     */
     void AddDeadCarrier(Carrier* carrier);
     
     /**
-    * @brief This removes the first element from a deadCarriers vector.
-    * This is due to a charging carrier that is heading towards to charge a dead carrier.
+    * @brief This removes the first dead carrier from a deadCarriers vector.
+    * This is due to a recharging drone that is heading towards a dead carrier
+    * to charge its battery.
     */
     void PopDeadCarrier();
 

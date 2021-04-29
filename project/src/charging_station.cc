@@ -29,13 +29,6 @@ ChargingStation::ChargingStation(ChargingStation& chargingStation) {
   type = "charging_station";
 }
 
-bool ChargingStation::IsChargingDroneWithinRadius(RechargeDrone* chargingDrone, float radius) {
-  if (Distance(Vector3D(GetPosition()), Vector3D(chargingDrone->GetPosition())) < radius) {
-    return true;
-  }
-  return false;
-}
-
 void ChargingStation::AddDeadCarrier(Carrier* carrier) {
   if (!HasDeadCarrier(carrier)) {
     deadCarriers.push_back(carrier);
