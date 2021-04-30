@@ -131,8 +131,9 @@ void DeliverySimulation::Update(float dt) {
 					carrier->AddPackage(package);
 					package->SetCarrier(carrier);
 					
+					// Checks if the package and the carrier are close enough, if so, don't set the path
+					// but pick it up right away. Otherwise, get the path between 2 entities.
 					if (!carrier->IsWithin(package)) {
-						// std::vector<vector<float>> path = graph->GetPath(carrier->GetPosition(),package->GetPosition());
 						std::vector<vector<float>> path = carrier->GetRouteStrategy()->GetRoute(graph, carrier->GetPosition(),package->GetPosition());
 						carrier->SetRoute(path);
 					}

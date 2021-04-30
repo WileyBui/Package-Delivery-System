@@ -58,7 +58,10 @@ class RechargeDrone : public csci3081::EntityBase, public csci3081::ASubject {
     * @param[in] t time that charge the recharging drone
     */
 
+  bool IsCurrentlyCharging();
+
   void ChargeFromStation(float dt);
+
   /**
     * @brief This function will charge the DeadCarrier if the DeadCarrier is not charged to full. After
     * the DeadCarrier get charged to full it will set the DeadCarrier Charging Status to false so the simulation will know
@@ -204,6 +207,7 @@ class RechargeDrone : public csci3081::EntityBase, public csci3081::ASubject {
     Battery battery;
     float speed;
     bool alreadyNotified = false;
+    bool isCurrentlyCharging = false;
     std::vector<std::vector<float>> route;
     RouteStrategy* routeStrategy = NULL;
     std::vector<float> PositionOfStation;

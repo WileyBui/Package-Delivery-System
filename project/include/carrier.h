@@ -31,43 +31,18 @@ namespace csci3081 {
 class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
   public:
     /**
-    * @brief This links a package object to the carrier if the carrier is not  
-    * already linking to another package (carrier can only carry one package
-    * at a time)
-    * @param[in] arg    a Package pointer
-    * @return True upon succeeding linking the package to the carrier
-    *         False otherwise (e.g. carrier is already linked to another package)
-    */
-    bool AddPackage(Package* arg);
-
-    /**
-    * @brief This checks if the carrier is already linked to a package
-    * @return True if the carrier is already linked to a package 
-    *                     (package pointer of the carrier is not NULL)
-    *         False otherwise
-    */
-    bool HavePackage();
-
-    /**
-    * @brief This releases the link of the package from the carrier, making the
-    * package pointer of the carrier NULL, and return a pointer to the just 
-    * dropped/delivered package
-    * @return a Package pointer to the just dropped/delivered package
-    */
-    Package* DropPackage();
-    
-    /**
-    * @brief This returns a Package pointer to the package that the carrier is
-    * linking to, and returns NULL if the carrier is not linking to any package. 
-    */
-    Package* GetPackage();
-
-    /**
     * @brief This checks if the carrier is out of battery
     * @return TRUE if the battery of the carrier is out 
     *         FALSE otherwise
     */
     bool BatteryDead();
+
+    /**
+    * @brief This function checks if the battery is full.
+    * @return bool  True if battery is full.
+    *               False otherwise.
+    */
+    bool BatteryFull();
     
     /**
     * @brief This returns the time in secs left in the carrier's battery
@@ -89,6 +64,45 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     bool Charging(float);
 
     /**
+    * @brief This checks if the carrier is already linked to a package
+    * @return True if the carrier is already linked to a package 
+    *                     (package pointer of the carrier is not NULL)
+    *         False otherwise
+    */
+    bool HavePackage();
+
+    /**
+    * @brief This returns a Package pointer to the package that the carrier is
+    * linking to, and returns NULL if the carrier is not linking to any package. 
+    */
+    Package* GetPackage();
+
+    /**
+    * @brief This links a package object to the carrier if the carrier is not  
+    * already linking to another package (carrier can only carry one package
+    * at a time)
+    * @param[in] arg    a Package pointer
+    * @return True upon succeeding linking the package to the carrier
+    *         False otherwise (e.g. carrier is already linked to another package)
+    */
+    bool AddPackage(Package* arg);
+
+    /**
+    * @brief This releases the link of the package from the carrier, making the
+    * package pointer of the carrier NULL, and return a pointer to the just 
+    * dropped/delivered package
+    * @return a Package pointer to the just dropped/delivered package
+    */
+    Package* DropPackage();
+    
+    /**
+    * @brief This function uses to set the new position of the carrier. However, 
+    * carrier only moves in simulation if its dynamic attribute is set to true
+    * @param agr    a std::vector<float> that has the new position of the carrier
+    */  
+    void SetPosition(std::vector<float> v);
+
+    /**
     * @brief This sets the speed of the carrier. Change the speed of the carrier
     * if the argument is a non-negative float number
     * @param[in] s    a non-negative float value for the carrier's speed
@@ -100,13 +114,6 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     */
     float GetSpeed();
     
-    /**
-    * @brief This function uses to set the new position of the carrier. However, 
-    * carrier only moves in simulation if its dynamic attribute is set to true
-    * @param agr    a std::vector<float> that has the new position of the carrier
-    */  
-    void SetPosition(std::vector<float> v);
-
     /**
     * @brief This function adds a full route to route attribute of the carrier 
     * This is useful when use for the GetPath() function from IGraph class
@@ -126,20 +133,6 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     */
     void PopPosition();
 
-
-    void SetDroneStatusWhenBatteryDies(std::string status);
-    std::string GetDroneStatusWhenBatteryDies();
-    void GoDownToGround();
-
-    /**
-    * @brief This is an inherited method from EntityBase to use for DeliverySimulation.
-    * This updates the position of the carrier on the simulation if the position changes
-    * and its dynamic is set to true. In addition, this function also checks if the
-    * carrier is in within distance with the package to pick it up, or within distance
-    * with the customer to drop off the package
-    */
-    void Update(float dt);
-
     /**
     * @brief Overwritten GetStatus from ASubject. This function creates the arguments 
     * required by Notify function and makes call to Notify function. This function should
@@ -154,9 +147,47 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     * or Parabolic Route
     */
     RouteStrategy* GetRouteStrategy();
-    bool BatteryFull();
+
+    /**
+    * @brief This function checks if the carrier battery is currently charging.
+    * @return bool  True if battery is currently charging.
+    *               False otherwise.
+    */
     bool IsCurrentlyCharging();
+
+    /**
+    * @brief This function sets the carrier battery if it's currently charging.
+    */
     void SetChargingStatus(bool b);
+    
+    /**
+    * @brief This function sets the battery status when the battery dies (alive, 
+    * dead on ground, or dead in the air)
+    * @param status Status of the battery.
+    */
+    void SetDroneStatusWhenBatteryDies(std::string status);
+
+    /**
+    * @brief This function gets the battery status (alive, dead on ground, or dead in the air)
+    * @return string battery status
+    */
+    std::string GetDroneStatusWhenBatteryDies();
+
+    /**
+    * @brief This function sends the drone down to the ground if the battery's dead and
+    * is in the air.
+    */
+    void GoDownToGround();
+
+    /**
+    * @brief This is an inherited method from EntityBase to use for DeliverySimulation.
+    * This updates the position of the carrier on the simulation if the position changes
+    * and its dynamic is set to true. In addition, this function also checks if the
+    * carrier is in within distance with the package to pick it up, or within distance
+    * with the customer to drop off the package
+    */
+    void Update(float dt);
+
   protected: 
     Battery battery;
     Package* package;
