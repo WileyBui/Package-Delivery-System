@@ -59,10 +59,6 @@ RechargeDrone::RechargeDrone(RechargeDrone& cpy) {
   type = "recharging_drone";
   routeStrategy = cpy.routeStrategy;
 }
-void RechargeDrone::ChargeDrone(float dt){
-  DeadCarrier->Charging(1000*dt);
-  battery.Depleting(1000*dt);
-}
 
 void RechargeDrone::ChargeFromStation(float dt){
   // the recharging station can charge 500x faster
