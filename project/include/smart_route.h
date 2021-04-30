@@ -1,9 +1,13 @@
 /**
  * @file Smart_Route
  */
+#ifndef SMARTROUTE_H_
+#define SMARTROUTE_H_
 /*******************************************************************************
  * Includes
  ******************************************************************************/
+
+
 #include <string>
 #include <vector>
 #include "route_strategy.h"
@@ -31,3 +35,4 @@ namespace csci3081 {
             std::vector <std::vector<float>> GetRoute(const IGraph* graph, std::vector<float> location, std::vector<float> dest);
     };
 } // namespace 3081
+#endif 

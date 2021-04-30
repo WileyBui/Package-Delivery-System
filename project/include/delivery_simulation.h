@@ -114,7 +114,8 @@ class DeliverySimulation : public IDeliverySystem {
   drone should move 1 * .05 = .05 units of distance.
 
   Some things that should happen in the Update function: move drones, check if
-  packages have been delivered to customers, etc.
+  packages have been delivered to customers, move recharge drone & fill up battery to
+  dead carriers, ect...
   */
 
   void Update(float dt);
