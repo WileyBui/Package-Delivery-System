@@ -178,7 +178,6 @@ TEST_F(CarrierTest, UpdateAndBattery){
   carrier->DropPackage();
   carrier->Update(10000);
   EXPECT_TRUE(carrier->BatteryDead()) << "BatteryDead does not work";
-  EXPECT_TRUE()
 }
 
 

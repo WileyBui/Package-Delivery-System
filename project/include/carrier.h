@@ -154,6 +154,11 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     *               False otherwise.
     */
     bool IsCurrentlyCharging();
+    /**
+    * @brief This function will return the Battery object
+    * @return Battery Battery in the drone
+    */
+    Battery* GetBatteryObj();
 
     /**
     * @brief This function sets the carrier battery if it's currently charging.

@@ -174,6 +174,10 @@ void Carrier::GoDownToGround() {
   }
 }
 
+Battery* Carrier::GetBatteryObj(){
+  return &battery;
+}
+
 void Carrier::Update(float dt) {
   std::vector<float> nextPosition;
   float distance;

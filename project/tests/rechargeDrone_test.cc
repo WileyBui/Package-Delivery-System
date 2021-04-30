@@ -27,7 +27,7 @@ class RechargeDroneTest : public ::testing::Test {
     float radius = 1.0;
     float speed = 3.0;
     float battery_capacity = 15000;
-    float dead_battery_capacity = 0;
+    float dead_battery_capacity = 1000;
  public:
   virtual void SetUp() {
     position_to_add.push_back(100);
@@ -116,6 +116,7 @@ TEST_F(RechargeDroneTest, ConstructorAndGetter) {
   EXPECT_FALSE(SHINeeCD.IsDynamic()) << "Normal Constructor or IsDynamic does not work";
   EXPECT_FALSE(SHINeeCD.BatteryDead()) << "Normal Constructor or BatteryDead does not work";
   EXPECT_TRUE(SHINeeCD.Charging(1000)) << "Normal Constructor or Charging does not work";
+  EXPECT_EQ(SHINeeCD.GetBatteryMaxCharge(),15000);
 }
 
 TEST_F(RechargeDroneTest, CopyConstructorAndGetter) {
@@ -186,6 +187,18 @@ TEST_F(RechargeDroneTest, SetPosition){
   EXPECT_FLOAT_EQ(SHINeeCD.GetPosition()[2], placeHolder[2]) << "Normal Constructor or GetPosition does not work";   
 }
 
+TEST_F(RechargeDroneTest, SetPositionOfStation){
+  RechargeDrone SHINeeCD(obj2);
+  std::vector<float> placeHolder;
+	placeHolder.push_back(12.0);
+	placeHolder.push_back(15.0);
+	placeHolder.push_back(16.0);
+  SHINeeCD.SetPositionOfStation(placeHolder);
+  EXPECT_FLOAT_EQ(SHINeeCD.GetPositionOfStation()[0], placeHolder[0]) << "Normal Constructor or GetPosition does not work";
+  EXPECT_FLOAT_EQ(SHINeeCD.GetPositionOfStation()[1], placeHolder[1]) << "Normal Constructor or GetPosition does not work";
+  EXPECT_FLOAT_EQ(SHINeeCD.GetPositionOfStation()[2], placeHolder[2]) << "Normal Constructor or GetPosition does not work";   
+}
+
 TEST_F(RechargeDroneTest, UpdateAndBattery){
   RechargeDrone SHINeeCD(obj2);
   Customer Lin(obj2); 
@@ -225,12 +238,16 @@ TEST_F(RechargeDroneTest, PathConstructor){
 TEST_F(RechargeDroneTest,ChargeTheDroneAndGetDeadDrone){
   RechargeDrone droneDefault(obj1);
   Drone DeadDrone(obj5);
+  DeadDrone.GetBatteryObj()->Depleting(1000);
+  EXPECT_FLOAT_EQ(DeadDrone.GetBattery(),0);
   droneDefault.SetDeadCarrier(&DeadDrone);
   droneDefault.IsChargingCarrierFull(10);
   EXPECT_TRUE((droneDefault.GetDeadCarrier() != nullptr))<<"RechargeDrone GetDeadCarrier function does not work";
   EXPECT_FALSE(DeadDrone.BatteryDead())<<"RechargeDrone Charging function does not work";
   EXPECT_FALSE(droneDefault.BatteryFull())<<"RechargeDrone Charging function does not work";
-  EXPECT_TRUE(droneDefault.IsChargingACarrier())<<"RechargeDrone IsChargingACarrier function does not work";
-  EXPECT_TRUE(DeadDrone.IsCurrentlyCharging())<<"Drone IsCharging function does not work";
+  EXPECT_FALSE(droneDefault.IsChargingACarrier())<<"RechargeDrone IsChargingACarrier function does not work";
+  EXPECT_FALSE(DeadDrone.IsCurrentlyCharging())<<"Drone IsCharging function does not work";
 }
+TEST_F(RechargeDroneTest, GetStatus){} //since this function relies heavily on Notify (which relies heavily on OnEvent) 
+                                  //which is provided for us, we decided that we would not test it
 }  // namespace csci3081
