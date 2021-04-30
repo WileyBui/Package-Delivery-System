@@ -47,11 +47,15 @@ TEST_F(BatteryTesting, Getters) {
     EXPECT_FLOAT_EQ(negativeLife.GetRemainingLife(),0) << "GetRemainingLife or Constructor is faulty for negative";
     EXPECT_FLOAT_EQ(greaterMaxLife.GetRemainingLife(),10000) << "GetRemainingLife or Constructor is faulty for over";
     EXPECT_FLOAT_EQ(normal.GetRemainingLife(),5000) << "GetRemainingLife or Constructor is faulty for normal";
-    
+
+
+    EXPECT_FLOAT_EQ(negativeLife.GetMaxCharge(),10000) << "GetMaxCharge or Constructor is faulty for negative";
+    EXPECT_FLOAT_EQ(greaterMaxLife.GetMaxCharge(),10000) << "GetMaxCharge or Constructor is faulty for over";
+    EXPECT_FLOAT_EQ(normal.GetMaxCharge(),5000) << "GetMaxCharge or Constructor is faulty for normal";
     // Check displayBar
     EXPECT_TRUE(negativeLife.GetDisplayBar() == 0) << "GetDisplayBar or Constructor is faulty for negative";
     EXPECT_TRUE(greaterMaxLife.GetDisplayBar() == 5) << "GetDisplayBar or Constructor is faulty for over";
-    EXPECT_TRUE(normal.GetDisplayBar() == 2) << "GetRemainingLife or Constructor is faulty for normal";
+    EXPECT_TRUE(normal.GetDisplayBar() == 5) << "GetRemainingLife or Constructor is faulty for normal";
 
     // Check IsDead
     EXPECT_TRUE(negativeLife.IsDead()) << "IsDead or Constructor is faulty for negative";
@@ -63,7 +67,7 @@ TEST_F(BatteryTesting, DisplayBar){
        // Check displayBar
     EXPECT_TRUE(negativeLife.GetDisplayBar() == 0) << "GetDisplayBar or Constructor is faulty for negative";
     EXPECT_TRUE(greaterMaxLife.GetDisplayBar() == 5) << "GetDisplayBar or Constructor is faulty for over";
-    EXPECT_TRUE(normal.GetDisplayBar() == 2) << "GetRemainingLife or Constructor is faulty for normal";
+    EXPECT_TRUE(normal.GetDisplayBar() == 5) << "GetRemainingLife or Constructor is faulty for normal";
 }
 
 TEST_F(BatteryTesting, Depleting) {
@@ -101,7 +105,7 @@ TEST_F(BatteryTesting, Charging){
     
     // more than remainingLife
     normal.Charging(10000);
-    EXPECT_TRUE(normal.GetRemainingLife() == 10000) << "Depleting is faulty for big sec";
+    EXPECT_TRUE(normal.GetRemainingLife() == 5000) << "Depleting is faulty for big sec";
     EXPECT_FALSE(normal.IsDead()) << "Depleting is faulty for big sec";
     
     // regular charging
@@ -110,9 +114,19 @@ TEST_F(BatteryTesting, Charging){
     EXPECT_FALSE(greaterMaxLife.IsDead()) << "Depleting is faulty for normal sec";
 }
 
+TEST_F(BatteryTesting, IsFull){
+    EXPECT_TRUE(greaterMaxLife.IsFull()) << "IsFull function does not work";
+    normal.Depleting(20);
+    EXPECT_FALSE(normal.IsFull())<< "IsFull function does not work";
+    normal.Charging(20);
+    EXPECT_TRUE(normal.IsFull()) << "IsFull() function does not work";
+}
+
+
+
 TEST_F(BatteryTesting, TimeToFull){
     EXPECT_TRUE(greaterMaxLife.TimeToFull() == 0) << "TimeToFull does not work";
-    EXPECT_TRUE(normal.TimeToFull() == 5000) << "TimeToFull does not work";
-    EXPECT_TRUE(negativeLife.TimeToFull() == 10000) << "TimeToFull does not work"; 
+    EXPECT_TRUE(normal.TimeToFull() == 0) << "TimeToFull does not work";
+    EXPECT_FLOAT_EQ(negativeLife.TimeToFull(),10000) << "TimeToFull does not work"; 
 }
 }
