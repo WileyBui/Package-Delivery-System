@@ -56,9 +56,14 @@ class RechargeDrone : public csci3081::EntityBase, public csci3081::ASubject {
     * @brief This function will charge the recharging drone at the station when there is no
     * DeadCarrier
     * @param[in] t time that charge the recharging drone
-    */
+  */
 
   bool IsCurrentlyCharging();
+  /**
+    * @brief This function will charge the recharging drone at the station when there is no
+    * DeadCarrier
+    * @param[in] t time that charge the recharging drone
+  */
 
   void ChargeFromStation(float dt);
 
