@@ -1,4 +1,12 @@
 /*! \mainpage CSCI 3081 Delivery Simulation project
+
+* **Iteration 3 JSON File** 
+We would like you to test our Iteration 3 Deliverable on the all_features.json 
+file that we have altered in our scenes folder. This should provide a simulation in 
+which drones and robots are continuously recharged as they run out of battery during
+their deliveries \n
+
+
 * **Extra Credit** 
 This version does run on the extra credit files, including: multiple_drones.json, 
 multiple_customers.json, multiple_packages.json, and multiple_deliveries.json \n
@@ -163,8 +171,24 @@ scene when getting the package on its descent.
 In order to solve the problem, we first raise the drone to a certain height first,then perform parabolic movement in the air and descend veritcally.  
 
 When a drone carrier runs out of battery in mid air, it becomes idle and also notifies the observer. It then falls down to the ground, along with its package if it currently delivers one. Therefore, another carrier, especially a robot, can come over to the dead drone to pick up the undelivered package and deliver it back to its corresponding customer. Similarly, when a robot carrier runs out of battery, it notifies the observer and stays right where it is because it's at the ground, making it easier for other carriers to come & pick up the package.
-  
 
+* **Dicussion of Iteration 3 new feature: Recharging Drones and Recharging Stations**
+
+We chose to implement a system that has designated “recharge_drones” that will wait at a recharge station until they are notified that a delivery carrier has run out of battery. Once they are notified, a recharging mission will be “scheduled,” and the recharge drone can fly to the specified carrier and charge it for a given amount of time, before returning to the recharging station. We made several calculated decisions about how the drone would know how much charge to give, and make sure that it has enough charge to return to the charging station. With this new implementation, we are able to recharge carriers that have died, so that they can resume delivering packages.
+
+<CENTER>
+\image html FactoryPatterns.png "Factory Pattern updated to include Recharging Drones and Recharging Stations"
+</CENTER>
+
+<CENTER>
+\image html RechargingStation.png "A Diagram denoting the relationships between recharging drones, recharging stations and other entities."
+</CENTER>
+
+We had to write 4 new classes. We needed a class each for the functionalities of the recharging station and the recharging drone, and we needed to write a factory for each of these classes as well, so that they could be created in the composite factory pattern.
+
+In order to implement this, we had to use the factory pattern that we implemented in iteration 1. The true benefits of this pattern were made clear to us when we updated our code to include entities “recharge_stations” and “recharge_drones”. Since we have already done the work of implementing the factory pattern, creating new entities required very little fixing of old code, and we just had to create new factories that were added into the composite factory. 
+
+What was most difficult for us was integrating our new features into the pre-existing code. For example, we had some trouble editing the json files to be able to accommodate our new functionality, but after a while we were able to figure it out. Other than small snaffles like these, we were able to implement this feature without much issue, since all of the patterns we used were pre-existing in our code, we just had to change the functionalities.
 
 * **General roles of members**
 | Roles 	        | Member Name       |  Priority Task
@@ -188,11 +212,12 @@ When a drone carrier runs out of battery in mid air, it becomes idle and also no
 
 * **Gantt Chart**
 <CENTER>
-\image html Gantt_chart.png "Figure 5. Gantt chart to show work progress"
+\image html Gantt_Chart.png "Figure 5. Gantt chart to show work progress"
 </CENTER>
 
 * **Distribution of tasks among members**
 
+* **Iteration 2**
 | Members	        |   Priority Task	                                                    |   Github Issue number |	Collaborate with (if any)
 | :---------------: | :-------------------------------------------                          | :-------------------: | :-----------------------------
 |-------------------|-----------------------------------------------------------------------|-----------------------|----------------------------------------------
@@ -227,6 +252,31 @@ When a drone carrier runs out of battery in mid air, it becomes idle and also no
 |                   |   Gantt chart                                                         | n/a                   | n/a
 
 
+* **Iteration 3**
+| Members           |   Priority Task                                                       |   Github Issue number |   Collaborate with (if any)
+| :---------------: | :-------------------------------------------                          | :-------------------: | :-----------------------------
+|-------------------|-----------------------------------------------------------------------|-----------------------|----------------------------------------------
+| Wiley Bui         | Create a charging station class; inherits from Entities               | 6                     | n/a
+|                   | Create Google Tests for Battery & Charging Station                    | 15                    | n/a
+|                   | Add documentation&refactor ChargingStation, DeliverSimulation, Carrier| 17                    | n/a
+|                   | Feature: change carrier's full capacity battery to initialized JSON   | 25                    | n/a
+|                   | values (or 10,000 if not represented)                                 | 25                    | n/a
+|                   | Feature: charge recharge-drone when coming back to recharge station   | 23                    | n/a
+|-------------------|-----------------------------------------------------------------------|-----------------------|----------------------------------------------
+| Dustin Zhang      | Create Recharge Drone                                                 | 8                     | n/a       
+|                   | Test: Make Google tests for the robot class                           | 11                    | n/a   
+|                   | Create Google test for RechargeDrone                                  | 12                    | n/a   
+|                   | Add documentations for the recharge drone                             | 16                    | n/a
+|                   | Make the robot to drop thee package                                   | 20                    | n/a
+|-------------------|-----------------------------------------------------------------------|-----------------------|----------------------------------------------
+| Aunya Mukherjee   | Create Recharging Drone Factory                                       | 2                     | n/a
+|                   | Discussion of new Iteration in Mainpage.h                             | 21                    | n/a
+|-------------------|-----------------------------------------------------------------------|-----------------------|----------------------------------------------
+| Lin Huynh         | Adding json files(s) for recharging drone and station                 | 1                     | n/a       
+|                   | Adding funtionality in Delivery Simulation                            | 5                     | n/a       
+|                   | Update UML                                                            | n/a                   | n/a
+|                   | Update Gantt Chart                                                    | n/a                   | n/a
+ 
 * **Summary of Team Meetings** <br>
 
 Team usually meets 1 or 2 times a week. The following only contains meetings for iteration 2, but we also had meetings for iteration 1
@@ -334,5 +384,32 @@ Team usually meets 1 or 2 times a week. The following only contains meetings for
 |                   | + Lin
 |                   | 1. Discuss about Observer Pattern in mainpage.h
 |                   | 2. Check every github’s README file only has name of the person who works on it
+|-------------------|-----------------------------------------------------------------------------------------------------
+| 4/23/2021         | - Choosing what feature to do for iteration 3
+|                   | + Choose recharging drone and station
+|                   | - Distribution of work
+|                   | + Dustin: 
+|                   | . Charging drone class
+|                   | + Aunya:
+|                   | . Charging drone factory
+|                   | . Mainpage discussion 
+|                   | + Wiley:
+|                   | . Charging station class
+|                   | . Charging station factory
+|                   | . Google Tests
+|                   | + Lin: 
+|                   | . Json files
+|                   | . Edit delivery simulation
+|                   | . UML
+|-------------------|-----------------------------------------------------------------------------------------------------
+| 4/26/2021         | - Check-in last action steps
+|                   | - Presentation
+|                   | + Introduction & Motivation - Lin
+|                   | + Related work - Lin
+|                   | + Implementation - Wiley & Dustin
+|                   | + Results - Wiley & Dustin
+|                   | + Conclusion - Aunya
+|-------------------|-----------------------------------------------------------------------------------------------------
+| 4/30/2021         | - Check-in if there is any issue before submitting
 
 */

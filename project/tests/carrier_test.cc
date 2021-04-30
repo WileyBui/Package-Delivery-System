@@ -45,6 +45,7 @@ class CarrierTest : public ::testing::Test {
     JsonHelper::AddStdFloatVectorToJsonObject(obj2, "direction", direction_to_add2);
     JsonHelper::AddFloatToJsonObject(obj, "radius", radius);
     JsonHelper::AddFloatToJsonObject(obj, "battery_capacity", battery_capacity);
+    JsonHelper::AddFloatToJsonObject(obj, "speed", speed);
     JsonHelper::AddFloatToJsonObject(obj2, "radius", radius);
     JsonHelper::AddFloatToJsonObject(obj2, "speed", speed);
     JsonHelper::AddFloatToJsonObject(obj2, "battery_capacity", battery_capacity);
@@ -79,6 +80,23 @@ TEST_F(CarrierTest, Getter) {
   EXPECT_FALSE(carrier->HavePackage()) << "Normal Constructor or HavePackage does not work";
   EXPECT_TRUE(carrier->Charging(1000)) << "Normal Constructor or Charging does not work";
   EXPECT_TRUE(carrier->DropPackage()==NULL) << "Normal Constructor or BatteryDead does not work";
+}
+
+TEST_F(CarrierTest, BatteryFullTest) {
+  Drone SHINeeCD(obj2);
+  SHINeeCD.Charging(15000);
+  EXPECT_TRUE(SHINeeCD.BatteryFull()) << "BatteryFull does not work";
+  SHINeeCD.GetBatteryObj()->Depleting(10000);
+  EXPECT_FALSE(SHINeeCD.BatteryFull() ) << "BatteryFull does not work";
+}
+
+TEST_F(CarrierTest, GetMaxBatteryTest) {
+  Drone drone(obj2);
+  Drone drone2(obj);
+  Carrier* carrier1 = &drone;
+  EXPECT_FLOAT_EQ(drone.GetMaxBattery(), 10000) << "GetMaxBattery does not work";
+  Carrier* carrier2 = &drone2;
+  EXPECT_FLOAT_EQ(drone.GetMaxBattery(), 10000) << "GetMaxBattery does not work";
 }
 
 TEST_F(CarrierTest, AddingPackage){
@@ -180,7 +198,6 @@ TEST_F(CarrierTest, UpdateAndBattery){
   EXPECT_TRUE(carrier->BatteryDead()) << "BatteryDead does not work";
 }
 
-
 TEST_F(CarrierTest, SetSpeed){
   Drone SHINeeCD(obj2);
   Carrier*carrier = &SHINeeCD;
@@ -189,5 +206,52 @@ TEST_F(CarrierTest, SetSpeed){
   carrier->SetSpeed(-10.5);
   EXPECT_FLOAT_EQ(carrier->GetSpeed(),2.4) << "SetSpeed or GetSpeed is faulty";
 }
+
+TEST_F(CarrierTest, RouteStrategyTests){
+  Drone drone1(obj);
+  Carrier* carrier1 = &drone1;
+  RouteStrategy* routeChoice = carrier1->GetRouteStrategy();
+  EXPECT_TRUE((dynamic_cast<SmartRoute*> (routeChoice)) != nullptr) << "GetRouteStrategy() does not work for path choosing";
+}
+
+TEST_F(CarrierTest, CurrentlyChargingTest){
+  Drone SHINeeCD(obj2);
+  Carrier* carrier = &SHINeeCD;
+  
+  carrier->SetChargingStatus(true);
+  EXPECT_TRUE(carrier->IsCurrentlyCharging()) << "IsCurrentlyCharging does not work";
+  carrier->SetChargingStatus(false);
+  EXPECT_FALSE(carrier->IsCurrentlyCharging()) << "IsCurrentlyCharging does not work";
+}
+
+TEST_F(CarrierTest, DroneStatusWhenBatteryDiesTest){
+  Drone SHINeeCD(obj2);
+  Carrier* carrier = &SHINeeCD;
+  
+  carrier->SetDroneStatusWhenBatteryDies("battery dead; on the ground");
+  EXPECT_TRUE(carrier->GetDroneStatusWhenBatteryDies() == "battery dead; on the ground") << "GetDroneStatusWhenBatteryDies does not work";
+  carrier->SetDroneStatusWhenBatteryDies("battery dead; still on the air");
+  EXPECT_TRUE(carrier->GetDroneStatusWhenBatteryDies() == "battery dead; still on the air") << "GetDroneStatusWhenBatteryDies does not work";
+}
+
+TEST_F(CarrierTest, GoDownToGroundTest){
+  Drone SHINeeCD(obj2);
+  Carrier* carrier = &SHINeeCD;
+  
+  carrier->SetDroneStatusWhenBatteryDies("not dead yet");
+  EXPECT_TRUE(carrier->GetDroneStatusWhenBatteryDies() == "not dead yet") << "GetDroneStatusWhenBatteryDies does not work";
+  carrier->GoDownToGround();
+
+  carrier->SetDroneStatusWhenBatteryDies("battery dead; going towards ground");
+  EXPECT_TRUE(carrier->GetDroneStatusWhenBatteryDies() == "battery dead; going towards ground") << "GetDroneStatusWhenBatteryDies does not work";
+  carrier->GoDownToGround();
+
+  carrier->SetDroneStatusWhenBatteryDies("battery dead; is on ground");
+  EXPECT_TRUE(carrier->GetDroneStatusWhenBatteryDies() == "battery dead; is on ground") << "GetDroneStatusWhenBatteryDies does not work";
+  carrier->GoDownToGround();
+}
+
+TEST_F(CarrierTest, GetStatus){} //since this function relies heavily on Notify (which relies heavily on OnEvent) 
+                                  //which is provided for us, we decided that we would not test it
 
 }  // namespace csci3081

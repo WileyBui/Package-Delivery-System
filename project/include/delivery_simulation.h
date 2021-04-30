@@ -15,11 +15,12 @@
 #include "customer_factory.h"
 #include "package_factory.h"
 #include "carrier_factory.h"
-#include "drone.h"
-#include "robot.h"
+#include "charging_station_factory.h"
+#include "recharge_drone_factory.h"
 #include "carrier.h"
 #include "package.h"
 #include "customer.h"
+#include "charging_station.h"
 
 namespace csci3081 {
 
@@ -113,7 +114,8 @@ class DeliverySimulation : public IDeliverySystem {
   drone should move 1 * .05 = .05 units of distance.
 
   Some things that should happen in the Update function: move drones, check if
-  packages have been delivered to customers, etc.
+  packages have been delivered to customers, move recharge drone & fill up battery to
+  dead carriers, ect...
   */
 
   void Update(float dt);
@@ -144,7 +146,7 @@ class DeliverySimulation : public IDeliverySystem {
   CompositeFactory* composite;
   int numEntities;
   const IGraph* graph;
-  
+  ChargingStation* rechargeStation;
 };
 
 }  // namespace csci3081

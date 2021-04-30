@@ -2,7 +2,7 @@
 #include "json_helper.h"
 #include "drone_factory.h"
 #include "drone.h"
-
+#include <iostream>
 namespace csci3081 {
 
 IEntity* DroneFactory::CreateEntity(const picojson::object& val){
