@@ -161,14 +161,15 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     Battery* GetBatteryObj();
 
     /**
-    * @brief This function sets the carrier battery if it's currently charging.
+    * @brief This function sets the carrier battery status.
+    * @param[in] b TRUE if battery is charging. False otherwise.
     */
     void SetChargingStatus(bool b);
     
     /**
     * @brief This function sets the battery status when the battery dies (alive, 
     * dead on ground, or dead in the air)
-    * @param status Status of the battery.
+    * @param[in] status Status of the battery.
     */
     void SetDroneStatusWhenBatteryDies(std::string status);
 
@@ -179,8 +180,9 @@ class Carrier : public csci3081::EntityBase, public csci3081::ASubject {
     std::string GetDroneStatusWhenBatteryDies();
 
     /**
-    * @brief This function sends the drone down to the ground if the battery's dead and
-    * is in the air.
+    * @brief This function sends the carrier down (if on the air) to the ground when the 
+    * battery is dead. If the carrier is currently delivering a package, it will drop its
+    * package for other available carriers to come and pick it up.
     */
     void GoDownToGround();
 

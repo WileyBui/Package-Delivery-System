@@ -46,8 +46,9 @@ class ChargingStation : public csci3081::EntityBase {
     void AddDeadCarrier(Carrier* carrier);
     
     /**
-    * @brief This removes the first element from a deadCarriers vector.
-    * This is due to a charging carrier that is heading towards to charge a dead carrier.
+    * @brief This removes the first dead carrier from a deadCarriers vector.
+    * This is due to a recharging drone that is heading towards a dead carrier
+    * to charge its battery.
     */
     void PopDeadCarrier();
 

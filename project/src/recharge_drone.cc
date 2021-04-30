@@ -5,9 +5,6 @@
 #include "../include/package.h"
 #include "../include/vector.h"
 #include <iostream>
-// #include "../include/beeline_route.h"
-// #include "../include/smart_route.h"
-// #include "../include/parabolic_route.h"
 
 namespace csci3081 {
 RechargeDrone::RechargeDrone(const picojson::object& val) {
@@ -26,7 +23,7 @@ RechargeDrone::RechargeDrone(const picojson::object& val) {
   ID = GenerateId::GenerateNewId();
   details = val;
   type = "recharging_drone";
-    // Checking to see if a route type is specified
+  // Checking to see if a route type is specified
   std::string routetype;
   try {
     routetype = JsonHelper::GetString(val, "path");
@@ -84,11 +81,9 @@ bool RechargeDrone::IsChargingCarrierFull(float dt){
       std::cout << DeadCarrier->GetName() << ": recharge full with battery = " << DeadCarrier->GetBattery() << std::endl;
       return true;
     } else {
-      // std::cout << "Charging... " << DeadCarrier->GetBattery() << "; maxCapacity: " << DeadCarrier->GetMaxBattery() << std::endl;
       DeadCarrier->SetChargingStatus(true);
       DeadCarrier->Charging(dt);
       battery.Depleting(dt);
-      // std::cout<<battery.GetRemainingLife()<<std::endl;
     }
   }
 
@@ -98,12 +93,15 @@ bool RechargeDrone::IsChargingCarrierFull(float dt){
 bool RechargeDrone::BatteryDead() {
   return battery.IsDead();
 }
+
 bool RechargeDrone::BatteryFull(){
   return battery.IsFull();
 }
+
 float RechargeDrone::GetBattery() {
   return battery.GetRemainingLife();
 }
+
 float RechargeDrone::GetBatteryMaxCharge() {
   return battery.GetMaxCharge();
 }
@@ -126,6 +124,7 @@ void RechargeDrone::SetSpeed(float s) {
     speed = s;
   }
 }
+
 float RechargeDrone::GetSpeed() {
   return speed;
 }
@@ -188,12 +187,15 @@ void RechargeDrone::SetDeadCarrier(Carrier* carrier){
 Carrier* RechargeDrone::GetDeadCarrier(){
   return DeadCarrier;
 }
+
 void RechargeDrone::SetPositionOfStation(vector<float> station){
   PositionOfStation = station;
 }
+
 vector<float> RechargeDrone::GetPositionOfStation(){
   return PositionOfStation;
 }
+
 void RechargeDrone::Update(float dt){
   if(DeadCarrier&&(DistanceBetween(DeadCarrier) < 20)){
     if(IsChargingCarrierFull(dt)) {

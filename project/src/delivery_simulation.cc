@@ -153,16 +153,10 @@ void DeliverySimulation::Update(float dt) {
 			} else if (carrier->BatteryDead()) {
 				carrier->GoDownToGround();
 			} else if (carrier->HavePackage() && (carrier->NextPosition() == carrier->GetPosition()) && (!carrier->IsCurrentlyCharging())){
-				// Adding path to customer
-				// std::vector<vector<float>> path;
-
 				std::vector<vector<float>> path = carrier->GetRouteStrategy()->GetRoute(graph, carrier->GetPosition(),carrier->GetPackage()->GetOwner()->GetPosition());
 				carrier->SetRoute(path);
 				carrier->GetPackage()->GetStatus();
 				carrier->GetStatus();
-
-				// if the carrier is dead, then call the charging station
-				// rechargeStation.AddDeadCarrier(carrier);
 			}
 		}
 	}
