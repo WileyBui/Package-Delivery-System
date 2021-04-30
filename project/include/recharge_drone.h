@@ -52,11 +52,28 @@ class RechargeDrone : public csci3081::EntityBase, public csci3081::ASubject {
     * @param[in] cpy    Drone instance that wants to be copied
     */
   RechargeDrone(RechargeDrone&);
-  ///need to add documentaion 
-  void ChargeDrone(float dt);
+  /**
+    * @brief This function will charge the recharging drone at the station when there is no
+    * DeadCarrier
+    * @param[in] t time that charge the recharging drone
+  */
+
+  bool IsCurrentlyCharging();
+  /**
+    * @brief This function will charge the recharging drone at the station when there is no
+    * DeadCarrier
+    * @param[in] t time that charge the recharging drone
+  */
 
   void ChargeFromStation(float dt);
-  
+
+  /**
+    * @brief This function will charge the DeadCarrier if the DeadCarrier is not charged to full. After
+    * the DeadCarrier get charged to full it will set the DeadCarrier Charging Status to false so the simulation will know
+    * the DeadCarrier is ready to be schduled 
+    * @param[in] t time that charge the recharging drone
+    * @return this function will return true when the DeadCarrier get charged to full
+    */
   bool IsChargingCarrierFull(float dt);
 
   /**
@@ -149,23 +166,53 @@ class RechargeDrone : public csci3081::EntityBase, public csci3081::ASubject {
     * @param const entity_project::IEntity& entity
     */
     void GetStatus();
-    void SetDeadCarrier(Carrier* carrier);
-    Carrier* GetDeadCarrier();
-    void SetPositionOfStation(vector<float> station);
-    vector<float> GetPositionOfStation();
 
+    /**
+    * @brief This function set the DeadCarrier Pointer to a new carrier.
+    * @param[in] carrier a carrier pointer that needed to be charged by recharging drone 
+    */
+    void SetDeadCarrier(Carrier* carrier);
+    /**
+    * @brief This function set the DeadCarrier Pointer to a new carrier.
+    * @return return the DeadCarrier NULL for nothing
+    */
+    Carrier* GetDeadCarrier();
+    /**
+    * @brief This function set the position of the station(SetPositionOfStation)
+    *  to a new position
+    * @param[in] pos the new position of the Station
+    */
+    void SetPositionOfStation(vector<float> station);
+     /**
+    * @brief This function Get the position of the station(SetPositionOfStation)
+    * @return return the SetPositionOfStation(NULL for nothing)
+    */
+    vector<float> GetPositionOfStation();
+    /**
+    * @brief This function should check the DeadCarrier pointer if its null or not and check if the DeadCarrier is getting charged or not.
+    * This function should be called in the simulation that to check the status of the recharging_drone. If its charing a DeadCarrier then 
+    * does not need to Update the recharging drone.
+    * @return the boolean value that indicates reacharging drone is charging a DeadCarrier or not.
+    */
     bool IsChargingACarrier();
 
     /**
     * @brief return the Route Strategy that the carrier uses, such as Smart Route, Beeline, 
     * or Parabolic Route
+    * @return RouteStrategy pointer
     */
     RouteStrategy* GetRouteStrategy();
+     /**
+    * @brief This function checks the battery Capacity to see if it's full or not. This function should be called in 
+    * IsChargingCarrierFull() to check if the DeadDrone need to be charged more.
+    * @return the boolean value that indicates ss the battery full or not
+    */
     bool BatteryFull();
   private:
     Battery battery;
     float speed;
     bool alreadyNotified = false;
+    bool isCurrentlyCharging = false;
     std::vector<std::vector<float>> route;
     RouteStrategy* routeStrategy = NULL;
     std::vector<float> PositionOfStation;

@@ -190,4 +190,7 @@ TEST_F(CarrierTest, SetSpeed){
   EXPECT_FLOAT_EQ(carrier->GetSpeed(),2.4) << "SetSpeed or GetSpeed is faulty";
 }
 
+TEST_F(CarrierTest, GetStatus){} //since this function relies heavily on Notify (which relies heavily on OnEvent) 
+                                  //which is provided for us, we decided that we would not test it
+
 }  // namespace csci3081

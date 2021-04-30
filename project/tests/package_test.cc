@@ -172,4 +172,7 @@ TEST_F(PackageTest, Deliver){
   EXPECT_TRUE(SHINeeCD.IsDelivered()) << "IsDelivered or Deliver does not work";
 }
 
+TEST_F(PackageTest, GetStatus){} //since this function relies heavily on Notify (which relies heavily on OnEvent) 
+                                  //which is provided for us, we decided that we would not test it
+
 }  // namespace csci3081

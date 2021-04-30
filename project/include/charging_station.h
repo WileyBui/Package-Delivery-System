@@ -85,7 +85,7 @@ class ChargingStation : public csci3081::EntityBase {
     void Update(float dt);
     
   private: 
-    std::vector<RechargeDrone*> chargingDronesAtStation;
+    std::vector<RechargeDrone*> chargingDrones;
     std::vector<Carrier*> deadCarriers;
 };
 
