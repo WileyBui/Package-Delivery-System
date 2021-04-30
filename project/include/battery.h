@@ -91,6 +91,11 @@ class Battery {
         */
         bool IsDead();
 
+        /**
+        * @brief This returns a boolean value if the battery is full.
+        *       True if the battery is full.
+        *       False otherwise.
+        */
         bool IsFull();
 };
 

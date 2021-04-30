@@ -60,13 +60,19 @@ class ChargingStation : public csci3081::EntityBase {
     */
     void PopDeadCarrier();
 
+    /**
+    * @brief This function checks if the charging station has already stored the dead carrier.
+    * @param[in]  carrier   Dead carrier to be checked if noted in the charging station
+    * @return     bool      True if the charging station has already stored the dead carrier.
+    *                       False otherwise.
+    */
     bool HasDeadCarrier(Carrier* carrier);
 
     /**
     * @brief This adds a unique charging drone to the charging station only if the distance
     * between the two is close together.
-    * @param[in] chargingDrone A charging drone to be added to the charging station.
-    * @returns bool         Returns true if the charging drone was successfully added.
+    * @param[in]  chargingDrone A charging drone to be added to the charging station.
+    * @returns    bool          Returns true if the charging drone was successfully added.
     */
     bool AddChargingDrone(RechargeDrone* chargingDrone);
 
@@ -77,7 +83,6 @@ class ChargingStation : public csci3081::EntityBase {
     */
     void RemoveChargingDrone(RechargeDrone* chargingDrone);
 
-
     /**
     * @brief This is an inherited method from EntityBase to use for DeliverySimulation.
     * This updates the position of the carrier on the simulation if the position changes
@@ -86,8 +91,9 @@ class ChargingStation : public csci3081::EntityBase {
     * with the customer to drop off the package
     */
     void Update(float dt);
+    
   private: 
-    std::vector<RechargeDrone*> chargingDronesAtStation;
+    std::vector<RechargeDrone*> chargingDrones;
     std::vector<Carrier*> deadCarriers;
 };
 
