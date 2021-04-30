@@ -59,10 +59,6 @@ RechargeDrone::RechargeDrone(RechargeDrone& cpy) {
   type = "recharging_drone";
   routeStrategy = cpy.routeStrategy;
 }
-void RechargeDrone::ChargeDrone(float dt){
-  DeadCarrier->Charging(1000*dt);
-  battery.Depleting(1000*dt);
-}
 
 bool RechargeDrone::IsCurrentlyCharging() {
   return isCurrentlyCharging;
