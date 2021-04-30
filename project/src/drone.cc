@@ -4,9 +4,6 @@
 #include "../include/json_helper.h"
 #include "../include/package.h"
 #include "../include/vector.h"
-// #include "../include/beeline_route.h"
-// #include "../include/smart_route.h"
-// #include "../include/parabolic_route.h"
 
 namespace csci3081 {
 

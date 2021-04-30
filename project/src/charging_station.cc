@@ -54,12 +54,10 @@ bool ChargingStation::AddChargingDrone(RechargeDrone* chargingDrone) {
 }
 
 void ChargingStation::Update(float dt) {
-  // chargingDrone->GetBatteryObj();
   float maxChargeBattery;
   
   for (RechargeDrone* chargingDrone : chargingDrones) {
     maxChargeBattery = chargingDrone->GetBatteryMaxCharge();
-    // std::cout << deadCarriers.size() << std::endl;
     // still has dead carriers
     if ((chargingDrone->GetBattery() >= maxChargeBattery * 0.2) &&
         (!chargingDrone->IsDynamic()) && (!chargingDrone->IsCurrentlyCharging()) &&
