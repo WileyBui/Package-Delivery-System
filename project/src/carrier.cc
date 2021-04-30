@@ -65,6 +65,7 @@ void Carrier::SetSpeed(float s) {
     speed = s;
   }
 }
+
 float Carrier::GetSpeed() {
   return speed;
 }
@@ -185,10 +186,6 @@ void Carrier::Update(float dt) {
   float portion;
   Vector3D result;
   if (IsDynamic()) {
-    if (ChargingStatus == true) {
-      std::cout << "Charging!!!" << std::endl;
-      return;
-    }
     if (BatteryDead()) {
       GoDownToGround();
     } else if (dt > GetBattery()) {
