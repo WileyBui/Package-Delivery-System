@@ -248,6 +248,8 @@ TEST_F(RechargeDroneTest,ChargeTheDroneAndGetDeadDrone){
   EXPECT_FALSE(droneDefault.IsChargingACarrier())<<"RechargeDrone IsChargingACarrier function does not work";
   EXPECT_FALSE(DeadDrone.IsCurrentlyCharging())<<"Drone IsCharging function does not work";
 }
-TEST_F(RechargeDroneTest, GetStatus){} //since this function relies heavily on Notify (which relies heavily on OnEvent) 
-                                  //which is provided for us, we decided that we would not test it
+
+TEST_F(RechargeDroneTest, GetStatus){}  //since this function relies heavily on Notify (which relies heavily on OnEvent) 
+                                        //which is provided for us, we decided that we would not test it
+
 }  // namespace csci3081
