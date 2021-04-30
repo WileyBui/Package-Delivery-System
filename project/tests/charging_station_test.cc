@@ -203,7 +203,7 @@ TEST_F(ChargingStationTest, UpdateTest) {
   EXPECT_FALSE(station.HasDeadCarrier(&drone)) << "HasDeadCarrier is faulty (drone)";
 
   station.Update(1500);
-  EXPECT_FALSE(drone.BatteryDead()) << "drone.BatteryDead() is faulty";
+  EXPECT_TRUE(drone.BatteryDead()) << "drone.BatteryDead() is faulty";
   EXPECT_FLOAT_EQ(station.GetPosition()[0], rechargeDrone.GetPosition()[0]) << "GetPosition() does not match";
   EXPECT_FLOAT_EQ(station.GetPosition()[1], rechargeDrone.GetPosition()[1]) << "GetPosition() does not match";
   EXPECT_FLOAT_EQ(station.GetPosition()[2], rechargeDrone.GetPosition()[2]) << "GetPosition() does not match";
