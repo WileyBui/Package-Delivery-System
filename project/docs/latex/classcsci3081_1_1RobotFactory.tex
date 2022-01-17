@@ -1,0 +1,72 @@
+\hypertarget{classcsci3081_1_1RobotFactory}{}\section{csci3081\+:\+:Robot\+Factory Class Reference}
+\label{classcsci3081_1_1RobotFactory}\index{csci3081\+::\+Robot\+Factory@{csci3081\+::\+Robot\+Factory}}
+
+
+This is the \hyperlink{classcsci3081_1_1RobotFactory}{Robot\+Factory}, responsible for making a robot object.  
+
+
+
+
+{\ttfamily \#include $<$robot\+\_\+factory.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Robot\+Factory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{classcsci3081_1_1RobotFactory__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$ \hyperlink{classcsci3081_1_1RobotFactory_a5775ecc230c01ae455284cd04f491129}{Create\+Entity} (const picojson\+::object \&val)
+\begin{DoxyCompactList}\small\item\em This is an inheritance function from I\+Entity\+Factory to create an approxiate Entity object based on the argument pass in Given the picojson\+::object val, this should create an entity. Based on the type of entity, there may be different fields. You can see the vals that will be passed in the project/web/scenes directory. Some of the fields are for our backend system and you don\textquotesingle{}t need to worry about them. (for instance, mesh, rotation, offset, etc.) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the \hyperlink{classcsci3081_1_1RobotFactory}{Robot\+Factory}, responsible for making a robot object. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1RobotFactory_a5775ecc230c01ae455284cd04f491129}\label{classcsci3081_1_1RobotFactory_a5775ecc230c01ae455284cd04f491129}} 
+\index{csci3081\+::\+Robot\+Factory@{csci3081\+::\+Robot\+Factory}!Create\+Entity@{Create\+Entity}}
+\index{Create\+Entity@{Create\+Entity}!csci3081\+::\+Robot\+Factory@{csci3081\+::\+Robot\+Factory}}
+\subsubsection{\texorpdfstring{Create\+Entity()}{CreateEntity()}}
+{\footnotesize\ttfamily \hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$ csci3081\+::\+Robot\+Factory\+::\+Create\+Entity (\begin{DoxyParamCaption}\item[{const picojson\+::object \&}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+This is an inheritance function from I\+Entity\+Factory to create an approxiate Entity object based on the argument pass in Given the picojson\+::object val, this should create an entity. Based on the type of entity, there may be different fields. You can see the vals that will be passed in the project/web/scenes directory. Some of the fields are for our backend system and you don\textquotesingle{}t need to worry about them. (for instance, mesh, rotation, offset, etc.) 
+
+Some fields in val that you will need to create the entity correctly\+:
+
+type\+: string (could be \char`\"{}robot/drone/customer/package/robot\char`\"{})
+
+name\+: string
+
+position\+: array (contains \mbox{[}x\+\_\+position, y\+\_\+position, z\+\_\+position\mbox{]})
+
+direction\+: array (contains \mbox{[}x, y, z\mbox{]})
+
+speed\+: float
+
+battery\+\_\+capacity\+: float 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em val} & the picojson\+::object that constains all of the necessary information above in a json format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+I\+Entity pointer if the object has type \char`\"{}robot\char`\"{}; N\+U\+LL otherwise 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classentity__project_1_1IEntityFactory_ac4e8eaf4294958fef0b98bd3684704bb}{entity\+\_\+project\+::\+I\+Entity\+Factory}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/\hyperlink{robot__factory_8h}{robot\+\_\+factory.\+h}\item 
+/home/user/repo/project/src/robot\+\_\+factory.\+cc\end{DoxyCompactItemize}

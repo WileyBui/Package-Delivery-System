@@ -1,0 +1,115 @@
+\hypertarget{classcsci3081_1_1JsonHelper}{}\section{csci3081\+:\+:Json\+Helper Class Reference}
+\label{classcsci3081_1_1JsonHelper}\index{csci3081\+::\+Json\+Helper@{csci3081\+::\+Json\+Helper}}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const picojson\+::value \& \hyperlink{classcsci3081_1_1JsonHelper_a5c690dab7594cc0a33e6c17cf7afc708}{Get\+Value} (const picojson\+::object \&obj, std\+::string key)
+\begin{DoxyCompactList}\small\item\em Returns the key from json object obj as a json value, throws error if key doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_ae11653e9550cf64a42e531aa03593307}\label{classcsci3081_1_1JsonHelper_ae11653e9550cf64a42e531aa03593307}} 
+static const picojson\+::object \& \hyperlink{classcsci3081_1_1JsonHelper_ae11653e9550cf64a42e531aa03593307}{Get\+Object} (const picojson\+::object \&obj, std\+::string key)
+\begin{DoxyCompactList}\small\item\em Returns the key from json object obj as a json object, throws error if key doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_afd99b2ed07c187ca1fa2f95adc5d1346}\label{classcsci3081_1_1JsonHelper_afd99b2ed07c187ca1fa2f95adc5d1346}} 
+static const picojson\+::array \& \hyperlink{classcsci3081_1_1JsonHelper_afd99b2ed07c187ca1fa2f95adc5d1346}{Get\+Array} (const picojson\+::object \&obj, std\+::string key)
+\begin{DoxyCompactList}\small\item\em Returns the key from json object obj as a json array, will throw an error if key doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_af50a46a1f75f23c755e45b8477f69133}\label{classcsci3081_1_1JsonHelper_af50a46a1f75f23c755e45b8477f69133}} 
+static std\+::string \hyperlink{classcsci3081_1_1JsonHelper_af50a46a1f75f23c755e45b8477f69133}{Get\+String} (const picojson\+::object \&obj, std\+::string key)
+\begin{DoxyCompactList}\small\item\em Returns the key from json object obj as a string, will throw an error if key doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_ae190f5c7e182d60c52d6b9e06dc97def}\label{classcsci3081_1_1JsonHelper_ae190f5c7e182d60c52d6b9e06dc97def}} 
+static double \hyperlink{classcsci3081_1_1JsonHelper_ae190f5c7e182d60c52d6b9e06dc97def}{Get\+Double} (const picojson\+::object \&obj, std\+::string key)
+\begin{DoxyCompactList}\small\item\em Returns the key from json object obj as a double, will throw an error if key doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_a0c243724051e5fb795c40701d66d844e}\label{classcsci3081_1_1JsonHelper_a0c243724051e5fb795c40701d66d844e}} 
+static std\+::vector$<$ float $>$ \hyperlink{classcsci3081_1_1JsonHelper_a0c243724051e5fb795c40701d66d844e}{Get\+Std\+Float\+Vector} (const picojson\+::object \&obj, std\+::string key)
+\begin{DoxyCompactList}\small\item\em Returns the key from json object obj as a float vector, will throw an error if key doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_acb0d4fa20d41a93d4076b447d732d0fa}\label{classcsci3081_1_1JsonHelper_acb0d4fa20d41a93d4076b447d732d0fa}} 
+static bool \hyperlink{classcsci3081_1_1JsonHelper_acb0d4fa20d41a93d4076b447d732d0fa}{Contains\+Key} (const picojson\+::object \&obj, std\+::string key)
+\begin{DoxyCompactList}\small\item\em Returns a boolean value of whether the json object obj contains key or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_a5a69da28dbe3017826d53bdc6d17652f}\label{classcsci3081_1_1JsonHelper_a5a69da28dbe3017826d53bdc6d17652f}} 
+static picojson\+::object \hyperlink{classcsci3081_1_1JsonHelper_a5a69da28dbe3017826d53bdc6d17652f}{Create\+Json\+Notification} ()
+\begin{DoxyCompactList}\small\item\em Create a new json object for sending notifications. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_a58c0b129bcdd4f4fcbab655a47ab7a2b}\label{classcsci3081_1_1JsonHelper_a58c0b129bcdd4f4fcbab655a47ab7a2b}} 
+static picojson\+::object \hyperlink{classcsci3081_1_1JsonHelper_a58c0b129bcdd4f4fcbab655a47ab7a2b}{Create\+Json\+Object} ()
+\begin{DoxyCompactList}\small\item\em Returns a new json object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_aa0ea9463bc5167423bac8ae271715933}\label{classcsci3081_1_1JsonHelper_aa0ea9463bc5167423bac8ae271715933}} 
+static picojson\+::value \hyperlink{classcsci3081_1_1JsonHelper_aa0ea9463bc5167423bac8ae271715933}{Convert\+Picojson\+Object\+To\+Value} (picojson\+::object \&obj)
+\begin{DoxyCompactList}\small\item\em Converts given obj to an equivalent picojson\+::value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_a49238200fde32b3d4903d52cf247145e}\label{classcsci3081_1_1JsonHelper_a49238200fde32b3d4903d52cf247145e}} 
+static void \hyperlink{classcsci3081_1_1JsonHelper_a49238200fde32b3d4903d52cf247145e}{Add\+Value\+To\+Json\+Object} (picojson\+::object \&obj, std\+::string key, picojson\+::value val)
+\begin{DoxyCompactList}\small\item\em Adds a picojson value to the specifiied key in a json object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_a794297b781172a2d46f12e978c7cc8cc}\label{classcsci3081_1_1JsonHelper_a794297b781172a2d46f12e978c7cc8cc}} 
+static void \hyperlink{classcsci3081_1_1JsonHelper_a794297b781172a2d46f12e978c7cc8cc}{Add\+Object\+To\+Json\+Object} (picojson\+::object \&obj, std\+::string key, picojson\+::object \&val)
+\begin{DoxyCompactList}\small\item\em Adds the latter picojson object to the former object as a value under the key \textquotesingle{}key\textquotesingle{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_a036b0eb621942715e3a72c89932ebaee}\label{classcsci3081_1_1JsonHelper_a036b0eb621942715e3a72c89932ebaee}} 
+static void \hyperlink{classcsci3081_1_1JsonHelper_a036b0eb621942715e3a72c89932ebaee}{Add\+String\+To\+Json\+Object} (picojson\+::object \&obj, std\+::string key, std\+::string val)
+\begin{DoxyCompactList}\small\item\em Adds a string value named key to a json object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_a1573d805bea9871a518466370cc02fa9}\label{classcsci3081_1_1JsonHelper_a1573d805bea9871a518466370cc02fa9}} 
+static void \hyperlink{classcsci3081_1_1JsonHelper_a1573d805bea9871a518466370cc02fa9}{Add\+Float\+To\+Json\+Object} (picojson\+::object \&obj, std\+::string key, float num)
+\begin{DoxyCompactList}\small\item\em Adds a float value named key to a json object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_acbcf77e9f8d54e7d6ce39caaa6564a0e}\label{classcsci3081_1_1JsonHelper_acbcf77e9f8d54e7d6ce39caaa6564a0e}} 
+static void \hyperlink{classcsci3081_1_1JsonHelper_acbcf77e9f8d54e7d6ce39caaa6564a0e}{Add\+Std\+Float\+Vector\+To\+Json\+Object} (picojson\+::object \&obj, std\+::string key, std\+::vector$<$ float $>$ vec)
+\begin{DoxyCompactList}\small\item\em Adds a float vector value named key to a json object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_ae87680699677b9f6d34b93c96f16ee61}\label{classcsci3081_1_1JsonHelper_ae87680699677b9f6d34b93c96f16ee61}} 
+static picojson\+::array \hyperlink{classcsci3081_1_1JsonHelper_ae87680699677b9f6d34b93c96f16ee61}{Create\+Json\+Array\+From\+Vector} (std\+::vector$<$ float $>$ vec)
+\begin{DoxyCompactList}\small\item\em Creates a json array from a float vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_a5e57c802c5147d4fb94834230b5720e2}\label{classcsci3081_1_1JsonHelper_a5e57c802c5147d4fb94834230b5720e2}} 
+static void \hyperlink{classcsci3081_1_1JsonHelper_a5e57c802c5147d4fb94834230b5720e2}{Add\+Std\+Vector\+Vector\+Float\+To\+Json\+Object} (picojson\+::object \&obj, std\+::string key, std\+::vector$<$ std\+::vector$<$ float $>$$>$ array)
+\begin{DoxyCompactList}\small\item\em Given a picojson object, key, and vector$<$vector$<$float$>$$>$ array, adds the array as the value for key in obj. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_a36c358cd77740237f23cfd9e5038be5a}\label{classcsci3081_1_1JsonHelper_a36c358cd77740237f23cfd9e5038be5a}} 
+static picojson\+::value \hyperlink{classcsci3081_1_1JsonHelper_a36c358cd77740237f23cfd9e5038be5a}{Encode\+Array} (const vector$<$ vector$<$ float $>$$>$ arr)
+\begin{DoxyCompactList}\small\item\em Given a vector$<$vector$<$float$>$$>$ array, returns the array as a picojson\+::value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_a20952fc9b2a5ea86fe2b98d5192b2440}\label{classcsci3081_1_1JsonHelper_a20952fc9b2a5ea86fe2b98d5192b2440}} 
+static void \hyperlink{classcsci3081_1_1JsonHelper_a20952fc9b2a5ea86fe2b98d5192b2440}{Print\+Array} (const picojson\+::array \&arr)
+\begin{DoxyCompactList}\small\item\em Helper method for Print\+Entity\+Details. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_a8e86a6fb3d67050b27d9b6ffb75ab35e}\label{classcsci3081_1_1JsonHelper_a8e86a6fb3d67050b27d9b6ffb75ab35e}} 
+static void \hyperlink{classcsci3081_1_1JsonHelper_a8e86a6fb3d67050b27d9b6ffb75ab35e}{Print\+Key\+Values} (const picojson\+::object \&obj, std\+::string prefix=\char`\"{}  \char`\"{})
+\begin{DoxyCompactList}\small\item\em Helper method for Print\+Entity\+Details. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_a0fff115517f86bfef0acb5508dd42b84}\label{classcsci3081_1_1JsonHelper_a0fff115517f86bfef0acb5508dd42b84}} 
+static void \hyperlink{classcsci3081_1_1JsonHelper_a0fff115517f86bfef0acb5508dd42b84}{Print} (const picojson\+::object \&obj, std\+::string prefix=\char`\"{}  \char`\"{})
+\begin{DoxyCompactList}\small\item\em Helper method for Print\+Entity\+Details. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_aea804b5a89146f20df5f75bbe6fdba17}\label{classcsci3081_1_1JsonHelper_aea804b5a89146f20df5f75bbe6fdba17}} 
+static void \hyperlink{classcsci3081_1_1JsonHelper_aea804b5a89146f20df5f75bbe6fdba17}{Print\+Entity\+Details} (const picojson\+::object \&val)
+\begin{DoxyCompactList}\small\item\em Prints the details of a json object representation of an entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1JsonHelper_a5c690dab7594cc0a33e6c17cf7afc708}\label{classcsci3081_1_1JsonHelper_a5c690dab7594cc0a33e6c17cf7afc708}} 
+\index{csci3081\+::\+Json\+Helper@{csci3081\+::\+Json\+Helper}!Get\+Value@{Get\+Value}}
+\index{Get\+Value@{Get\+Value}!csci3081\+::\+Json\+Helper@{csci3081\+::\+Json\+Helper}}
+\subsubsection{\texorpdfstring{Get\+Value()}{GetValue()}}
+{\footnotesize\ttfamily static const picojson\+::value\& csci3081\+::\+Json\+Helper\+::\+Get\+Value (\begin{DoxyParamCaption}\item[{const picojson\+::object \&}]{obj,  }\item[{std\+::string}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Returns the key from json object obj as a json value, throws error if key doesn\textquotesingle{}t exist. 
+
+U\+S\+A\+GE\+: Use these querying methods to retrieve entity details from a json object. Look at project/web/scenes/umn.\+json lines 5-\/18 for an example of how an entity is represeted in a json object, or use \hyperlink{classcsci3081_1_1JsonHelper_aea804b5a89146f20df5f75bbe6fdba17}{Json\+Helper\+::\+Print\+Entity\+Details(const picojson\+::object\& val)} to print the object\textquotesingle{}s contents to the terminal.
+
+Examples\+:
+
+{\ttfamily vector$<$float$>$ position = \hyperlink{classcsci3081_1_1JsonHelper_a0c243724051e5fb795c40701d66d844e}{Json\+Helper\+::\+Get\+Std\+Float\+Vector}(val, \char`\"{}position\char`\"{});}
+
+{\ttfamily string type = \hyperlink{classcsci3081_1_1JsonHelper_af50a46a1f75f23c755e45b8477f69133}{Json\+Helper\+::\+Get\+String}(val, \char`\"{}type\char`\"{});}
+
+
+\begin{DoxyCode}
+\textcolor{keywordtype}{bool} contains = \hyperlink{classcsci3081_1_1JsonHelper_acb0d4fa20d41a93d4076b447d732d0fa}{JsonHelper::ContainsKey}(val, \textcolor{stringliteral}{"battery\_capacity"});
+\textcolor{keywordflow}{if} (contains)...
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+std::vector<std::vector<float>> path = ...
+...
+picojson::object notification\_builder = \hyperlink{classcsci3081_1_1JsonHelper_a5a69da28dbe3017826d53bdc6d17652f}{JsonHelper::CreateJsonNotification}
+      ();
+JsonHelper::AddStdVectorVectorFloatToObject(notification\_builder, \textcolor{stringliteral}{"path"}, path);
+...
+picojson::value notification\_to\_send = JsonHelper::ConvertJsonObjectToValue(notification\_builder);
+SendToObservers(notification\_to\_send);
+...
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/json\+\_\+helper.\+h\end{DoxyCompactItemize}

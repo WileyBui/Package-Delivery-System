@@ -1,0 +1,359 @@
+{\bfseries Iteration 3 J\+S\+ON File} We would like you to test our Iteration 3 Deliverable on the all\+\_\+features.\+json file that we have altered in our scenes folder. This should provide a simulation in which drones and robots are continuously recharged as they run out of battery during their deliveries ~\newline
+
+
+{\bfseries Extra Credit} This version does run on the extra credit files, including\+: multiple\+\_\+drones.\+json, multiple\+\_\+customers.\+json, multiple\+\_\+packages.\+json, and multiple\+\_\+deliveries.\+json ~\newline
+
+
+{\bfseries To obtain the code}, in the terminal, type\+: 
+\begin{DoxyPre} \$ git clone \href{https://github.umn.edu/umn-csci-3081-s21/repo-iter2-10-22.git}{\tt https://github.umn.edu/umn-csci-3081-s21/repo-iter2-10-22.git} \end{DoxyPre}
+ This will prompt you to sign in into your Github. If you have the right access, you would be able to obtain the code. To compile the code, navigate to the \char`\"{}repo-\/iter2-\/10-\/22\char`\"{} directory that you just download from github by typing\+: 
+\begin{DoxyPre} \$ cd repo-iter2-10-22 \end{DoxyPre}
+ To compile the code$\ast$$\ast$, in the terminal, type\+: 
+\begin{DoxyPre} \$ make \end{DoxyPre}
+ {\bfseries To run the simulation}, there are two ways\+:
+\begin{DoxyItemize}
+\item If you are using {\bfseries Docker}, after install all of the Docker software needed for your environment, in directory \char`\"{}repo-\/iter2-\/10-\/22\char`\"{}, type the following commands to the terminal\+: 
+\begin{DoxyPre} \$ bin/build-env.sh \end{DoxyPre}
+ This will help build the docker image. To run docker image\+: 
+\begin{DoxyPre} bin/run-env.sh \end{DoxyPre}
+ Build project web server (inside docker image), navigate to the \char`\"{}repo-\/iter2-\/10-\/22\char`\"{} directory, then\+: 
+\begin{DoxyPre} \$ make \end{DoxyPre}
+ To run the web server (inside docker image), inside \char`\"{}repo-\/iter2-\/10-\/22\char`\"{} directory\+: 
+\begin{DoxyPre} \$ ./bin/run.sh \end{DoxyPre}
+
+\item If you are using {\bfseries V\+O\+LE}, navigate to \char`\"{}repo-\/iter2-\/10-\/22\char`\"{} directory, then 
+\begin{DoxyPre} \$ cd project \end{DoxyPre}
+ 
+\begin{DoxyPre} \$ make \end{DoxyPre}
+ 
+\begin{DoxyPre} \$ ./bin/run.sh \end{DoxyPre}
+
+\item Note that the project is not designed to work on S\+SH yet ~\newline
+ {\bfseries Dicussion of concrete factory pattern vs. abstract factory pattern vs. composite factory pattern}
+\end{DoxyItemize}
+
+\begin{center}  \end{center} 
+
+First, we begin with the concrete factory pattern. As we can see in Figure 1, there is a new class call Entity\+Factory that is responsible for creating Entity. This prevents the program to have a lot of different Entity derived classes and to not know which one would be created until runtime. This is good; however, there is still tight coupling. Everytime we have a new Entity derived class, we have to add new case/ new if else statement in Entity\+Factory. Here is how Abstract Factory come to the story.
+
+\begin{center}  \end{center} 
+
+Figure 2 depicts how the U\+ML of this program would look like if we employ Abstract Factory pattern. Entity\+Factory becomes an abstract class, pushing the creation of each Entity derived class into subclasses. For example, Drone object is created by Drone\+Factory. With this model, every time we create a new Entity derived class, we just need to create a new subclass of Entity\+Factory. However, even with this pattern, the Create\+Entity function of Delivery\+Simulation still contains a thread of if-\/else statement to decide which Entity to create. This is not idea, since every time we add a new Entity derived class, we still have to edit our Create\+Entity function in Delivery\+Simulation. This is where Composite Factory Pattern helps.
+
+\begin{center} \end{center} 
+
+With the Composite Factory pattern, we can just create a Composite\+Factory attribute in Deliver\+Simulation class, then use that to link to the other attribute. This would eliminate the long list of if and else statement anywhere in the code, and allow easy addition of new Entity derived as well as Entity\+Factory derived classes.
+
+{\bfseries Discussion about the composite factory pattern} implemented in the package delivery system\+:
+
+So we have discussed about the advantage of Composite Factory Pattern in the previous section. This pattern is excellent; however, it does have some disadvantages. The most obvious cons of composite factory pattern is that it might be difficult to provide a common interface for classes whose functionality differs too much. We might need to overgeneralize the componenent interface, making it harder to comprehend. In addition, the cons from this package delivery simulation, the composite factory pattern requires more classes to be created. It is hard to see the relationship between these classes even with a U\+ML diagram.
+
+{\bfseries Designing and Implementing Strategy Pattern} ~\newline
+
+
+In order to implement the strategy pattern in regards to choosing which route strategy for the drone to follow, we had to make several changes to our existing code. First, we had to create the interface which the concrete strategies would override. This abstract interface class is called Route\+Strategy and it has the method Get\+Route. We also have three concrete strategy classes; Smart\+Route, Beeline\+Route, and Parabolic\+Route. These concrete classes inherit from Route\+Strategy, and they implement the Get\+Route method to their own specifications. Once we had this structure in place, we had to alter the drone and robot classes to extract the path type information from the json details. Once the constructor was aware of which type of path was specified, it would store a pointer to that class type in it’s route\+Strategy attribute. This way, when we are in the delivery simulation, we can call the Get\+Route method from the route\+Strategy attribute of the carrier. The default route is set to smart path, and for the robots, only smart path is implemented (as robots cannot fly).
+
+\begin{center}  Beeline\+Route, Smart\+Route and Parabolic\+Route" \end{center} 
+
+At first it was difficult to understand the strategy pattern for us, but after working through different examples in class and online (\href{https://www.geeksforgeeks.org/strategy-pattern-set-2/}{\tt https\+://www.\+geeksforgeeks.\+org/strategy-\/pattern-\/set-\/2/}), we were able to better apply the strategy pattern to our own code.
+
+{\bfseries Designing and Implementing Observer Pattern} ~\newline
+
+
+In this project, {\bfseries observer Pattern} is implemented to notify the observers (the Web\+Scene\+Viewers and the Entity\+Console\+Logger) about change(s) in subjects (drones, robots, or packages). For the drones and robots, notifications are sent when they become idle or moving. For the packages, notifications are sent when the package is scheduled to be delivered, is en route (picked up), or is delivered.
+
+We are given the implementation of the Observer classes (including the Web\+Scene\+Viewers and the Entity\+Console\+Logger classes), and therefore only need to write implementations for A\+Subject class, as well as its functionaility, and relate it to Drone, Package and Robot class. Following is the U\+ML depecting the relationship of the Observer pattern that we implement.
+
+\begin{center}  and package to selected observers" \end{center} 
+
+{\bfseries Designing and Implementing Different Route} ~\newline
+
+
+Drones and Robots are carriers, where they can deliver from a source to the designated location. When a carrier moves, it notifies to all the observers the path of its current destination. Likewise, when a carrier stops moving, it also notifies all the observers. To go to the destination, there are three different route options that carriers can use, such as the Smart\+Route, Beeline\+Route, and Parabolic\+Route, all of which are handled by Route\+Strategy. However, the only strategy for the robots to deliver is the smart route since they cannot fly whereas the drones can use all three strategies since they are able to move in any 3D space (except buildings). The default strategy for the deliveries is the Smart\+Route.
+
+The {\bfseries Smart\+Route} uses the A$\ast$ algorithm to find the shortest path, which uses the I\+Graph\+::\+Get\+Path() function. This path allows both the robot and the drone to deliver on the specified \char`\"{}roads\char`\"{} without having to worry about colliding into buildings.
+
+For the {\bfseries Beeline\+Route}, the only type of carrier that can use this beeline path is for the drone, where it flies up to a height of 400 from its source location. It then flies horizontally to its destination. Lastly, it flies down to the ground to reach the destination. The beeline route uses the height of 400 so it prevents the drones to not hit any building that crosses its path from one place to another.
+
+For the last strategy, {\bfseries Parabolic\+Route,} only the drones can use the parabolic path where it followed by a smooth projectile curve. The calculation is as follows\+: 
+\begin{DoxyPre}
+y = (1 - distance(V, Vm)^2 / distance(Vo, Vm)^2) * j (2), where\end{DoxyPre}
+
+
+
+\begin{DoxyPre}Vo is our source point
+V is the point we are moving to
+Vm is our midpoint equal to distance(source, destination) / 2
+T is the number of steps we are estimating
+Vt is our step interval equal to distance(source, destination) / T
+j is a tuning parameter that we can use to avoid building collision and scale the parabola's slope
+\end{DoxyPre}
+ However for a pure parabolic path, when the package is somewhat in a building, drone clips that building a little bit in the scene when getting the package on its descent.
+
+In order to solve the problem, we first raise the drone to a certain height first,then perform parabolic movement in the air and descend veritcally.
+
+When a drone carrier runs out of battery in mid air, it becomes idle and also notifies the observer. It then falls down to the ground, along with its package if it currently delivers one. Therefore, another carrier, especially a robot, can come over to the dead drone to pick up the undelivered package and deliver it back to its corresponding customer. Similarly, when a robot carrier runs out of battery, it notifies the observer and stays right where it is because it\textquotesingle{}s at the ground, making it easier for other carriers to come \& pick up the package.
+
+{\bfseries Dicussion of Iteration 3 new feature\+: Recharging Drones and Recharging Stations}
+
+We chose to implement a system that has designated “recharge\+\_\+drones” that will wait at a recharge station until they are notified that a delivery carrier has run out of battery. Once they are notified, a recharging mission will be “scheduled,” and the recharge drone can fly to the specified carrier and charge it for a given amount of time, before returning to the recharging station. We made several calculated decisions about how the drone would know how much charge to give, and make sure that it has enough charge to return to the charging station. With this new implementation, we are able to recharge carriers that have died, so that they can resume delivering packages.
+
+\begin{center} \end{center} 
+
+\begin{center} \end{center} 
+
+We had to write 4 new classes. We needed a class each for the functionalities of the recharging station and the recharging drone, and we needed to write a factory for each of these classes as well, so that they could be created in the composite factory pattern.
+
+In order to implement this, we had to use the factory pattern that we implemented in iteration 1. The true benefits of this pattern were made clear to us when we updated our code to include entities “recharge\+\_\+stations” and “recharge\+\_\+drones”. Since we have already done the work of implementing the factory pattern, creating new entities required very little fixing of old code, and we just had to create new factories that were added into the composite factory.
+
+What was most difficult for us was integrating our new features into the pre-\/existing code. For example, we had some trouble editing the json files to be able to accommodate our new functionality, but after a while we were able to figure it out. Other than small snaffles like these, we were able to implement this feature without much issue, since all of the patterns we used were pre-\/existing in our code, we just had to change the functionalities.
+
+{\bfseries General roles of members} \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering \textbf{ Roles }&\PBS\centering \textbf{ Member Name }&\textbf{ Priority Task  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering \textbf{ Roles }&\PBS\centering \textbf{ Member Name }&\textbf{ Priority Task  }\\\cline{1-3}
+\endhead
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-3}
+\PBS\centering Development Lead &\PBS\centering Lin Huynh &-\/ Make major decisions for design and implementation \\\cline{1-3}
+\PBS\centering &\PBS\centering &such as how the drone/robot should behave when battery \\\cline{1-3}
+\PBS\centering &\PBS\centering &is out (drone should free fall into the ground before \\\cline{1-3}
+\PBS\centering &\PBS\centering &releasing the package) \\\cline{1-3}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-3}
+\PBS\centering Scheduler &\PBS\centering Aunya Mukherjee &-\/ First use when2meet.\+com to figure out a time that all \\\cline{1-3}
+\PBS\centering &\PBS\centering &team members are available to meet, then make Google \\\cline{1-3}
+\PBS\centering &\PBS\centering &Calendar events and invites \\\cline{1-3}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-3}
+\PBS\centering Reporter &\PBS\centering Dustin Zhang &-\/ In charge of making meeting minutes and taking notes \\\cline{1-3}
+\PBS\centering &\PBS\centering &during team\textquotesingle{}s meetings \\\cline{1-3}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-3}
+\PBS\centering Project Manager &\PBS\centering Wiley Bui &-\/ Keep team members on track and make sure group \\\cline{1-3}
+\PBS\centering &\PBS\centering &deadlines are being met. Manage the project timeline \\\cline{1-3}
+\PBS\centering &\PBS\centering &using trello and plan \\\cline{1-3}
+\end{longtabu}
+{\bfseries Gantt Chart} \begin{center} \end{center} 
+
+{\bfseries Distribution of tasks among members}
+
+{\bfseries Iteration 2} \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering \textbf{ Members }&\textbf{ Priority Task }&\PBS\centering \textbf{ Github Issue number }&\textbf{ Collaborate with (if any)  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering \textbf{ Members }&\textbf{ Priority Task }&\PBS\centering \textbf{ Github Issue number }&\textbf{ Collaborate with (if any)  }\\\cline{1-4}
+\endhead
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-4}
+\PBS\centering Wiley Bui &Add a Robot entity to deliver packages &\PBS\centering 1 &n/a \\\cline{1-4}
+\PBS\centering &Refactor\+: move Update() from I\+Entity to A\+Subject \& misc. work &\PBS\centering 22 &n/a \\\cline{1-4}
+\PBS\centering &Test\+: add additional Google Tests on untested functions &\PBS\centering 29 &Dustin Zhang \\\cline{1-4}
+\PBS\centering &Refactor entities\textquotesingle{} unique I\+Ds &\PBS\centering 33 &n/a \\\cline{1-4}
+\PBS\centering &Implement Beeline\+Path() for Drone &\PBS\centering 38 &n/a \\\cline{1-4}
+\PBS\centering &Adding Documentation &\PBS\centering 48 &Dustin Zhang, Aunya Mukherjee, Lin Huynh \\\cline{1-4}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-4}
+\PBS\centering Dustin Zhang &Test\+: Make Google tests for the robot class &\PBS\centering 11 &n/a \\\cline{1-4}
+\PBS\centering &Refactor\+: Moving Robot Update function to Carrier Class &\PBS\centering 15 &n/a \\\cline{1-4}
+\PBS\centering &Test\+: add additional Google Tests on untested functions &\PBS\centering 29 &Wiley Bui \\\cline{1-4}
+\PBS\centering &Implement Parabolic Path for Drone &\PBS\centering 40 &n/a \\\cline{1-4}
+\PBS\centering &Adding Documentation &\PBS\centering 48 &Wiley Bui, Aunya Mukherjee, Lin Huynh \\\cline{1-4}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-4}
+\PBS\centering Aunya Mukherjee &Create A\+Subject Class for the Observer Pattern &\PBS\centering 3 &Lin Huynh \\\cline{1-4}
+\PBS\centering &Test\+: Making Google Tests for A\+Subject Class &\PBS\centering 7 &n/a \\\cline{1-4}
+\PBS\centering &Feature\+: change package to inherit from Asubject &\PBS\centering 23 &n/a \\\cline{1-4}
+\PBS\centering &Bug\+: Package left undelivered in all\+\_\+scenes.\+json simulation &\PBS\centering 24 &n/a \\\cline{1-4}
+\PBS\centering &Implement General Strategy Pattern &\PBS\centering 37 &n/a \\\cline{1-4}
+\PBS\centering &Adding Documentation &\PBS\centering 48 &Dustin Zhang, Wiley Bui, Lin Huynh \\\cline{1-4}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-4}
+\PBS\centering Lin Huynh &Create Carrier class to be the base class of Drone and Robot &\PBS\centering 2 &n/a \\\cline{1-4}
+\PBS\centering &Bug\+: two drones move if there is one package &\PBS\centering 5 &n/a \\\cline{1-4}
+\PBS\centering &Update Drone class to adopt A\+Subject class &\PBS\centering 9 &n/a \\\cline{1-4}
+\PBS\centering &Observer Info does not showing up in Simulation &\PBS\centering 13 &n/a \\\cline{1-4}
+\PBS\centering &Inherit Robot class to A\+Subject &\PBS\centering 18 &n/a \\\cline{1-4}
+\PBS\centering &Refactor Set\+Route of Carrier &\PBS\centering 20 &n/a \\\cline{1-4}
+\PBS\centering &Battery Capacity for Robot &\PBS\centering 44 &n/a \\\cline{1-4}
+\PBS\centering &Adding Documentation &\PBS\centering 48 &Dustin Zhang, Aunya Mukherjee, Wiley Bui \\\cline{1-4}
+\PBS\centering &Gantt chart &\PBS\centering n/a &n/a \\\cline{1-4}
+\end{longtabu}
+
+
+{\bfseries Iteration 3} \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering \textbf{ Members }&\textbf{ Priority Task }&\PBS\centering \textbf{ Github Issue number }&\textbf{ Collaborate with (if any)  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering \textbf{ Members }&\textbf{ Priority Task }&\PBS\centering \textbf{ Github Issue number }&\textbf{ Collaborate with (if any)  }\\\cline{1-4}
+\endhead
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-4}
+\PBS\centering Wiley Bui &Create a charging station class; inherits from Entities &\PBS\centering 6 &n/a \\\cline{1-4}
+\PBS\centering &Create Google Tests for Battery \& Charging Station &\PBS\centering 15 &n/a \\\cline{1-4}
+\PBS\centering &Add documentation\&refactor Charging\+Station, Deliver\+Simulation, Carrier&\PBS\centering 17 &n/a \\\cline{1-4}
+\PBS\centering &Feature\+: change carrier\textquotesingle{}s full capacity battery to initialized J\+S\+ON &\PBS\centering 25 &n/a \\\cline{1-4}
+\PBS\centering &values (or 10,000 if not represented) &\PBS\centering 25 &n/a \\\cline{1-4}
+\PBS\centering &Feature\+: charge recharge-\/drone when coming back to recharge station &\PBS\centering 23 &n/a \\\cline{1-4}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-4}
+\PBS\centering Dustin Zhang &Create Recharge Drone &\PBS\centering 8 &n/a \\\cline{1-4}
+\PBS\centering &Test\+: Make Google tests for the robot class &\PBS\centering 11 &n/a \\\cline{1-4}
+\PBS\centering &Create Google test for Recharge\+Drone &\PBS\centering 12 &n/a \\\cline{1-4}
+\PBS\centering &Add documentations for the recharge drone &\PBS\centering 16 &n/a \\\cline{1-4}
+\PBS\centering &Make the robot to drop thee package &\PBS\centering 20 &n/a \\\cline{1-4}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-4}
+\PBS\centering Aunya Mukherjee &Create Recharging Drone Factory &\PBS\centering 2 &n/a \\\cline{1-4}
+\PBS\centering &Discussion of new Iteration in Mainpage.\+h &\PBS\centering 21 &n/a \\\cline{1-4}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-4}
+\PBS\centering Lin Huynh &Adding json files(s) for recharging drone and station &\PBS\centering 1 &n/a \\\cline{1-4}
+\PBS\centering &Adding funtionality in Delivery Simulation &\PBS\centering 5 &n/a \\\cline{1-4}
+\PBS\centering &Update U\+ML &\PBS\centering n/a &n/a \\\cline{1-4}
+\PBS\centering &Update Gantt Chart &\PBS\centering n/a &n/a \\\cline{1-4}
+\end{longtabu}
+{\bfseries Summary of Team Meetings} ~\newline
+
+
+Team usually meets 1 or 2 times a week. The following only contains meetings for iteration 2, but we also had meetings for iteration 1 \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering \textbf{ Meeting Date }&\textbf{ Objective Summary  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering \textbf{ Meeting Date }&\textbf{ Objective Summary  }\\\cline{1-2}
+\endhead
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-2}
+\PBS\centering 3/23/2021 &-\/ Finish in-\/class exercise \#9 \\\cline{1-2}
+\PBS\centering &-\/ Discuss what version of code to use (Lin\textquotesingle{}s version) \\\cline{1-2}
+\PBS\centering &-\/ Discuss the requirement for iteration 2 (including abstract A\+Subject, concerte subject, etc) \\\cline{1-2}
+\PBS\centering &-\/ Set up a timeline for work \\\cline{1-2}
+\PBS\centering &1. Implement A\+Subject abstract class \\\cline{1-2}
+\PBS\centering &2. Implement Robot \\\cline{1-2}
+\PBS\centering &3. Implement Inheritance to existing classes (Drone, package, robot) \\\cline{1-2}
+\PBS\centering &4. Write Google Test \\\cline{1-2}
+\PBS\centering &-\/ Delegate work \\\cline{1-2}
+\PBS\centering &+ Lin and Aunya\+: A\+Subject class, Update Drone and Package to have inheritance \\\cline{1-2}
+\PBS\centering &+ Wiley and Dustin\+: Implement Robot class and create google tests \\\cline{1-2}
+\PBS\centering &-\/ Next Meeting\+: Friday 3/26/21 (1\+PM -\/ 2\+PM) \\\cline{1-2}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-2}
+\PBS\centering 3/26/2021 &-\/ Update from members \\\cline{1-2}
+\PBS\centering &+ Lin\+: \\\cline{1-2}
+\PBS\centering &1. Create Carrier class and test \\\cline{1-2}
+\PBS\centering &2. Implement Get\+Status for Drone \\\cline{1-2}
+\PBS\centering &3. Implement Add\+Observer and Remove\+Observer in Deliver\+Simulation \\\cline{1-2}
+\PBS\centering &4. Fix bug where two drones fly together when there is only one package \\\cline{1-2}
+\PBS\centering &5. Get Battery pattern to work for Drone (check test drone\+\_\+low\+\_\+battery a and b json) \\\cline{1-2}
+\PBS\centering &6. Work with Aunya to finish A\+Subject \\\cline{1-2}
+\PBS\centering &+ Aunya\+: \\\cline{1-2}
+\PBS\centering &1. Finish A\+Subject \\\cline{1-2}
+\PBS\centering &+ Wiley and Dustin\+: \\\cline{1-2}
+\PBS\centering &1. Finished robot class and gtest \\\cline{1-2}
+\PBS\centering &-\/ Answer questions from members \\\cline{1-2}
+\PBS\centering &-\/ Fix segmentation fault together \\\cline{1-2}
+\PBS\centering &-\/ Delegate work\+: keep working on tasks from 3/23 \\\cline{1-2}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-2}
+\PBS\centering 3/30/2021 &-\/ Update from members \\\cline{1-2}
+\PBS\centering &+ Lin\+: \\\cline{1-2}
+\PBS\centering &1. Refactor Add\+Position to Set\+Route \\\cline{1-2}
+\PBS\centering &+ Aunya\+: \\\cline{1-2}
+\PBS\centering &1. Finish Package inherited from A\+Subject \\\cline{1-2}
+\PBS\centering &+ Wiley and Dustin\+: \\\cline{1-2}
+\PBS\centering &1. Fixed some google tests together. \\\cline{1-2}
+\PBS\centering &-\/ Answer questions from members \\\cline{1-2}
+\PBS\centering &-\/ Run Devel again with all simulations and see if all notifications are printed out correctly \\\cline{1-2}
+\PBS\centering &-\/ Next meeting\+: \\\cline{1-2}
+\PBS\centering &1. Split work for documentation and \hyperlink{mainpage_8h_source}{mainpage.\+h} \\\cline{1-2}
+\PBS\centering &2. Figure out U\+ML\textquotesingle{}s subcription \\\cline{1-2}
+\PBS\centering &3. Start brainstorming for next iteration \\\cline{1-2}
+\PBS\centering &-\/ Action items\+: \\\cline{1-2}
+\PBS\centering &+ Dustin and Wiley\+: \\\cline{1-2}
+\PBS\centering &1. Implement Beeline \\\cline{1-2}
+\PBS\centering &+ Aunya and Lin\+: \\\cline{1-2}
+\PBS\centering &1. Start building strategy pattern structure \\\cline{1-2}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-2}
+\PBS\centering 4/13/2021 &-\/ Finish in class exercise 11 \\\cline{1-2}
+\PBS\centering &-\/ Update from members \\\cline{1-2}
+\PBS\centering &+ Aunya\+: \\\cline{1-2}
+\PBS\centering &1. Implemented the strategy pattern \\\cline{1-2}
+\PBS\centering &+ Wiley and Dustin\+: \\\cline{1-2}
+\PBS\centering &1. Implemented Beeline but needs to fix all\+\_\+features.\+json \\\cline{1-2}
+\PBS\centering &2. Implement parabolic path \\\cline{1-2}
+\PBS\centering &-\/ Answer questions from members \\\cline{1-2}
+\PBS\centering &-\/ Action items\+: \\\cline{1-2}
+\PBS\centering &+ Wiley\+: \\\cline{1-2}
+\PBS\centering &1. Fix the beeline -\/ all\+\_\+features.\+json \\\cline{1-2}
+\PBS\centering &2. Add beeline Google test \\\cline{1-2}
+\PBS\centering &3. Drop the drone \& its package if it’s out of battery \\\cline{1-2}
+\PBS\centering &4. Write about beeline and parabolic route in documentation \\\cline{1-2}
+\PBS\centering &+ Dustin\+: \\\cline{1-2}
+\PBS\centering &1. Implement Parabolic Path \\\cline{1-2}
+\PBS\centering &2. Write about beeline and parabolic route in documentation \\\cline{1-2}
+\PBS\centering &+ Aunya \\\cline{1-2}
+\PBS\centering &1. Write about strategy structure \\\cline{1-2}
+\PBS\centering &2. Add strategy route in drone constructor \\\cline{1-2}
+\PBS\centering &+ Lin \\\cline{1-2}
+\PBS\centering &1. Do team documentation in \hyperlink{mainpage_8h_source}{mainpage.\+h} \\\cline{1-2}
+\PBS\centering &2. Add test for path in drone and robot constructor \\\cline{1-2}
+\PBS\centering &3. Fix U\+ML \\\cline{1-2}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-2}
+\PBS\centering 4/16/2021 &-\/ Update from members \\\cline{1-2}
+\PBS\centering &+ Aunya\+: \\\cline{1-2}
+\PBS\centering &1. Add the strategy route in the drone constructor \\\cline{1-2}
+\PBS\centering &2. Design \& Documentation discussion about strategy pattern \\\cline{1-2}
+\PBS\centering &+ Wiley\+: \\\cline{1-2}
+\PBS\centering &1. Fix the beeline -\/ all\+\_\+features.\+json \\\cline{1-2}
+\PBS\centering &2. Drop the drone \& its package if it’s out of battery \\\cline{1-2}
+\PBS\centering &3. Smart\+Route, Beeline\+Route, and Parabolic\+Route Design \& Documentation \\\cline{1-2}
+\PBS\centering &+ Dustin\+: \\\cline{1-2}
+\PBS\centering &1. Parabolic path \\\cline{1-2}
+\PBS\centering &+ Lin\+: \\\cline{1-2}
+\PBS\centering &1. Create Task table \\\cline{1-2}
+\PBS\centering &2. Update Robot to die when run out of battery \\\cline{1-2}
+\PBS\centering &-\/ Answer questions from members \\\cline{1-2}
+\PBS\centering &-\/ Run all simulation together \\\cline{1-2}
+\PBS\centering &-\/ Check in for documentation \\\cline{1-2}
+\PBS\centering &-\/ Action items\+: \\\cline{1-2}
+\PBS\centering &+ Wiley\+: \\\cline{1-2}
+\PBS\centering &1. Adding test for beeline path \\\cline{1-2}
+\PBS\centering &2. Check if every single file has documentation \\\cline{1-2}
+\PBS\centering &+ Dustin\+: \\\cline{1-2}
+\PBS\centering &1. Add height in parabolic path \\\cline{1-2}
+\PBS\centering &2. Adding test for parabolic path \\\cline{1-2}
+\PBS\centering &+ Aunya \\\cline{1-2}
+\PBS\centering &1. Test the observer pattern \\\cline{1-2}
+\PBS\centering &+ Lin \\\cline{1-2}
+\PBS\centering &1. Discuss about Observer Pattern in \hyperlink{mainpage_8h_source}{mainpage.\+h} \\\cline{1-2}
+\PBS\centering &2. Check every github’s R\+E\+A\+D\+ME file only has name of the person who works on it \\\cline{1-2}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-2}
+\PBS\centering 4/23/2021 &-\/ Choosing what feature to do for iteration 3 \\\cline{1-2}
+\PBS\centering &+ Choose recharging drone and station \\\cline{1-2}
+\PBS\centering &-\/ Distribution of work \\\cline{1-2}
+\PBS\centering &+ Dustin\+: \\\cline{1-2}
+\PBS\centering &. Charging drone class \\\cline{1-2}
+\PBS\centering &+ Aunya\+: \\\cline{1-2}
+\PBS\centering &. Charging drone factory \\\cline{1-2}
+\PBS\centering &. Mainpage discussion \\\cline{1-2}
+\PBS\centering &+ Wiley\+: \\\cline{1-2}
+\PBS\centering &. Charging station class \\\cline{1-2}
+\PBS\centering &. Charging station factory \\\cline{1-2}
+\PBS\centering &. Google Tests \\\cline{1-2}
+\PBS\centering &+ Lin\+: \\\cline{1-2}
+\PBS\centering &. Json files \\\cline{1-2}
+\PBS\centering &. Edit delivery simulation \\\cline{1-2}
+\PBS\centering &. U\+ML \\\cline{1-2}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-2}
+\PBS\centering 4/26/2021 &-\/ Check-\/in last action steps \\\cline{1-2}
+\PBS\centering &-\/ Presentation \\\cline{1-2}
+\PBS\centering &+ Introduction \& Motivation -\/ Lin \\\cline{1-2}
+\PBS\centering &+ Related work -\/ Lin \\\cline{1-2}
+\PBS\centering &+ Implementation -\/ Wiley \& Dustin \\\cline{1-2}
+\PBS\centering &+ Results -\/ Wiley \& Dustin \\\cline{1-2}
+\PBS\centering &+ Conclusion -\/ Aunya \\\cline{1-2}
+\PBS\centering -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---&-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\\cline{1-2}
+\PBS\centering 4/30/2021 &-\/ Check-\/in if there is any issue before submitting \\\cline{1-2}
+\end{longtabu}

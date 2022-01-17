@@ -1,0 +1,398 @@
+\subsection*{Iteration 1 -\/ V\+E\+R\+S\+I\+ON 4, March 8th -- Relaxed unit testing requirements from \char`\"{}all public methods\char`\"{} to \char`\"{}all public methods which do not overly rely on external classes\char`\"{}.}
+
+\subsection*{Iteration 1 -\/ V\+E\+R\+S\+I\+ON 3, March 4th -- Clarified the overall goal of the simulation in the introduction.}
+
+\subsection*{Iteration 1 -\/ V\+E\+R\+S\+I\+ON 2, March 3rd -- Changed I\+Entity.\+h to Entity.\+h}
+
+\subsection*{Iteration 1 -\/ V\+E\+R\+S\+I\+ON 1, February 19th -\/ {\bfseries N\+O\+TE, T\+HE R\+E\+Q\+U\+I\+R\+E\+M\+E\+N\+TS IN T\+H\+IS D\+O\+C\+U\+M\+E\+NT A\+RE S\+U\+B\+J\+E\+CT TO C\+H\+A\+N\+GE. T\+H\+E\+RE W\+I\+LL BE A C\+A\+N\+V\+AS A\+N\+N\+O\+U\+N\+C\+E\+M\+E\+NT W\+H\+EN T\+H\+E\+RE IS A C\+H\+A\+N\+GE TO T\+H\+IS D\+O\+C\+U\+M\+E\+NT.}}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering \textbf{ Date }&\textbf{ Item }&\textbf{ Description of Verification and Validation of Deliverable(s)  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering \textbf{ Date }&\textbf{ Item }&\textbf{ Description of Verification and Validation of Deliverable(s)  }\\\cline{1-3}
+\endhead
+\PBS\centering F\+RI, March 5th, 11\+:55pm &U\+ML diagram of your proposed solution for iteration One &inspection \\\cline{1-3}
+\PBS\centering F\+RI, March 12th, 11\+:55pm &Preliminary Google Tests for \textquotesingle{}Drone\textquotesingle{}, \textquotesingle{}Customer\textquotesingle{}, \textquotesingle{}Package\textquotesingle{}, \textquotesingle{}Vector3D\textquotesingle{}, \textquotesingle{}Battery\textquotesingle{}, and \textquotesingle{}Vector2D\textquotesingle{} &Pass automated tests and inspection \\\cline{1-3}
+\PBS\centering F\+RI, March 19th, 11\+:55pm &Documentation and Code Implementation &Automated tests and inspection \\\cline{1-3}
+\end{longtabu}
+\subsection*{Project Introduction}
+
+For this project you will be creating a package delivery simulation. Amazon, Fed\+Ex, U\+PS, and other delivery services companies are developing automated delivery systems using drones, robots, and self-\/driving trucks. For this iteration of the project you will be creating just the drone package delivery system. {\bfseries Your overall goal is for the drone to pick up the package and deliver it to the customer.} In this process you will have to create the following classes\+: Customer, Drone, Package, Vector3D, Vector2D, and a Battery class. To assist you in completing your solution we have provided you support code so the simulation runs in a web browser, firefox, chrome, etc.
+
+As part of the solution you will be using the facade design pattern (\href{https://www.dofactory.com/net/facade-design-pattern}{\tt https\+://www.\+dofactory.\+com/net/facade-\/design-\/pattern}) where the complexity of the system is hidden behind an interface. We will be giving you a Doxygen generated html file containing the documentation of all the classes being implemented behind the facade. {\bfseries Do not modify the class I\+Delivery\+System or I\+Entity}
+
+Your completed project deliverables should demonstrate good software design and development practices using good design methodologies, and rigorously follow the process for using version control you learned in lab 10
+
+Intermediate deadlines are designed to keep you on track in the iterative development process you are using to develop iteration 1 and the rest of the project this semester.
+
+For this iteration you will be submitting the following deliverables based upon the timetable specified above. Below is the order of submission\+:
+
+\subsubsection*{First Deliverable}
+
+$>$Create a U\+ML class diagram of your solution to Iteration One. Use \href{https://cppcodetips.wordpress.com/2013/12/23/uml-class-diagram-explained-with-c-samples/}{\tt https\+://cppcodetips.\+wordpress.\+com/2013/12/23/uml-\/class-\/diagram-\/explained-\/with-\/c-\/samples/} as a guide to developing your U\+ML.
+
+\subsubsection*{Second Deliverable}
+
+$>$Create the classes for \textquotesingle{}Drone\textquotesingle{}, \textquotesingle{}Customer\textquotesingle{}, \textquotesingle{}Package\textquotesingle{}, \textquotesingle{}Battery\textquotesingle{}, \textquotesingle{}Vector3D\textquotesingle{}, and \textquotesingle{}Vector2D\textquotesingle{}. Also create the Google Unit tests for these classes \textquotesingle{}Drone\textquotesingle{}, \textquotesingle{}Package\textquotesingle{}, \textquotesingle{}Customer\textquotesingle{}, \textquotesingle{}Battery\textquotesingle{}, Vector3D, and \textquotesingle{}Vector2D\textquotesingle{}. See the assessment section below and the Iteration 1, Deliverable 2 item on you class Canvas site for details.
+
+\subsubsection*{Third Deliverable}
+
+
+\begin{DoxyEnumerate}
+\item Design and implement a composite factory capable of creating customers, packages, and drones. There will be a lab to assist you in your development.
+\item Update your U\+ML diagram to include any changes made to your original U\+ML document from the first deliverable.
+\item In your Doxygen mainpage, create a user guide that tutors a new user, with your level of experience, on obtaining, configuring, compiling, and running the simulation, and discuss the alternate design choices you considered for your factories. Your discussion should include at least one pro and con of each design, and why you chose to implement the design you implemented.
+\item Ensure all classes in the {\ttfamily project/src} directory are properly documented $\ast$$\ast$(All header functions document the classes and their methods using Doxygen, and all implementation (that is, $\ast$.cc) files have self-\/documenting code).$\ast$$\ast$
+\item Correct and update the first U\+ML diagram you delivered to include changes to your code including your factory class(es) and their relationships to the classes that already existed in the simulation.
+\end{DoxyEnumerate}
+
+{\itshape {\bfseries 6. The drone delivers a package to the customer.}}
+
+\subsection*{Deliverables and Submission Process}
+
+$>$You will submit all your deliverables via Git\+Hub according to the process specified lab 10. We will tag and pull your repository at the specified due dates and grade them according to the contents at that time.
+
+$>$\#\#\#\# You must verify that your submission compiles on a cselabs machine and it is complete. You will receive zero or be heavily penalized if your code does not compile and/or we cannot generate documentation using Doxygen as specified in Lab 8 upon submission.
+
+The schedule is very tight, and it is important that you keep up with the project. The project will continue to build throughout the semester, and if you get behind, it will be very difficult to catch up. For this reason, {\bfseries late assignments will will receive the following penalities\+: 1 day late -- 10\% deduction, 2 days late -- 20\% deduction. A day is defined as a regular day of the week, thus if your submission is due on Friday at 11\+:55 PM and it is submitted on Saturday it is one day late. Submissions after two days will not be accepted}, but you will receive partial credit for partial completion of the requirements -\/ so {\bfseries A\+L\+W\+A\+YS M\+A\+KE S\+U\+RE TO S\+U\+B\+M\+IT S\+O\+M\+E\+T\+H\+I\+NG -\/ S\+O\+ME P\+O\+I\+N\+TS A\+RE B\+E\+T\+T\+ER T\+H\+AN N\+O\+NE}.
+
+You can convert this requirements document to pdf using this tool\+: \href{http://www.markdowntopdf.com/}{\tt http\+://www.\+markdowntopdf.\+com/}
+
+
+
+
+
+\subsection*{Documentation and Code Implementation Requirements}
+
+\subsubsection*{Overview}
+
+The goal of this software project is to produce a package delivery system in which the simulation can be controlled via external configuration (without code change) and be visualized on a web browser.
+
+In this iteration, you do the following development including\+:
+
+
+\begin{DoxyItemize}
+\item writing classes to represent the entities
+\item formulating unit tests with Google Test
+\item adding to the simulation class structure
+\item ensuring style guide compliance
+\item create design documentation using U\+ML
+\item using Doxygen to document and generate documentation
+\item Use git, and produce self-\/documenting code (i.\+e. good organization and naming conventions).
+\end{DoxyItemize}
+
+Teaching staff (Undergraduate TA\textquotesingle{}s, Graduate TA\textquotesingle{}s, and Instructors) will also be working diligently to provide the structure and support for development, testing, and documentation. Automation in unit testing, style compliance, in-\/house github testing, and documentation will make this an easier process, however it means that you will have to develop within the constraints of these systems. {\bfseries Often there is a learning curve and a lot of systems trouble-\/shooting to get it all working, so start early!}
+
+In the first iteration, you will be adding classes to our support code to enhance the simulation by designing and implementing the items listed above. Since this a proof of concept, {\bfseries your simulation should use a single drone to deliver a single package to a customer.} The simulation is using three.\+js to create a 3D model of the University of Minnesota campus. Later we will be adding more scenes, drones, packages, etc. Therefore your solution to iteration one should be robust. {\bfseries The drone has to detect the package, pick up the package, and deliver it to the customer. Once the package is delivered it should be removed from the simulation.}
+
+Iterations 2 and 3 will include more changes, enhancements/extensions, and put the core functionality to greater use.
+
+\subsubsection*{Functional Requirements}
+
+You are being provided with a significant initial code base. The first iteration is focused on building classes and getting practiced in the software development process. It is also a drop into the depths of C++ syntax. The support-\/code will not be provided to you. You will have to interact with our code via the Facade. Please ask questions. We do not expect you to understand all the constructs in this code. Below is an outline of the existing functionality.
+
+The code is organized such that simulation behavior (i.\+e. the model) is separate from visualization (i.\+e. the view), which allows for automated unit testing using Google Test. In addition, there have been a few entities which have been made into abstractions to allow for extension (and for grading). The primary driver of the visual simulation is you, the user, via the simulation graphics panel (which displays the 3D U of M campus and a user interface). The code that drives the simulation can be found in the Java\+Script file {\ttfamily three.\+js} located in the directory {\ttfamily project/web}. {\bfseries There is no need for you to change this file for this project.}
+
+The {\itshape main function} (in the file {\itshape main.\+cc} {\bfseries DO N\+OT C\+H\+A\+N\+GE}) and the {\itshape I\+Entity\+System} class are used to configure the package delivery simulation and facilitate communication via the simulation your classes (found in the {\ttfamily project/src} directory) and the graphical user interface displayed on a web page via the {\itshape Web\+Scene\+Viewer} class. The Ientity\+System and Web\+Scene\+Viewer are complex classes that will interact with the facade classes. 
+
+
+
+{\bfseries R\+E\+Q\+U\+I\+R\+E\+M\+E\+N\+TS you need to fulfill}
+
+\begin{quote}
+This is just functionality. Along the way, make sure to document the code using Doxygen syntax in the header files, and self documenting code (as discussed in Mc\+Connell\textquotesingle{}s text in Chapter 32) in your class implementation ($\ast$.cc) files. and the main function. \end{quote}
+
+
+Below is a prioritized list of enhancements to our support code to make the simulation realistic. {\bfseries Complete all functionality in one priority level before moving on to the next.} In this way, if we run out of time, the low priority items will be dropped from the requirements.
+
+\paragraph*{General understanding}
+
+Packages, Customers, and Drones are added to the simulation by two methods found in the I\+Delivery\+System class\+: Create\+Entity and Add\+Entity. The prototype of the Create\+Entity method is; I\+Entity $\ast$ Create\+Entity(const picojson\+::object \&val);
+
+We have created json\+\_\+helper class to assist you in creating/using the appropriate picojson object. This is needed so the appropriate entity appears. We have created a file called umn.\+json that contains the following default json structures for drones, packages, and customers. An example of the contents of this file is below\+:
+
+\paragraph*{Drone}
+
+$>$\{ “type”\+: “drone”, “name”\+: “drone”, “position”\+: \mbox{[}0,0,0\mbox{]}, “direction”\+: \mbox{[}1,0,0\mbox{]}, “speed”\+: 1.\+0, “radius”\+: 1.\+0 \}
+
+\paragraph*{Package}
+
+$>$\{ “type”\+: “package”, “name”\+: “package”, “position”\+: \mbox{[}0,0,0\mbox{]}, “direction”\+: \mbox{[}1,0,0\mbox{]}, “radius”\+: 1.\+0 \}
+
+\paragraph*{Customer}
+
+$>$\{ “type”\+: “customer”, “name”\+: “customer”, “position”\+: \mbox{[}0,0,0\mbox{]}, “direction”\+: \mbox{[}1,0,0\mbox{]}, “radius”\+: 1.\+0 \}
+
+This is a three dimensional simulation, therefore all positions in the simulation will be on the x, y, z plane. In addition, you will have to use Eulerian integration (See\+: \href{https://gafferongames.com/post/integration_basics/}{\tt https\+://gafferongames.\+com/post/integration\+\_\+basics/} for more information.) In addition, unit vectors will also be needed. Recommend that you review vector math.
+
+{\bfseries Overview of the process}
+
+Implementation in the prototype phase is important for developing a proof of concept. Here is an overview of what we are proposing\+:
+
+
+\begin{DoxyEnumerate}
+\item When the application is run, the visualization loads and starts the simulation. This should be available with the base code.
+\item Entities are created based on the \textquotesingle{}Create\+Entity(...)\textquotesingle{} method within the facade. This includes all \textquotesingle{}drones\textquotesingle{}, \textquotesingle{}packages\textquotesingle{}, and \textquotesingle{}customers\textquotesingle{}.
+\item The created entities are added to the system within the \textquotesingle{}Add\+Entity(...)\textquotesingle{} method within the facade.
+\item Once entities are added, they are updated with each time delta dt inside the \textquotesingle{}Update(float dt)\textquotesingle{} method within the facade. This means drones and packages move within this function.
+\item Packages are scheduled for delivery within the \textquotesingle{}Schedule\+Delivery(...)\textquotesingle{} method within the facade. Once scheduled, drones can pick up packages and deliver them from the source customer to the destination customer. The package moves with the drone.
+\end{DoxyEnumerate}
+
+\paragraph*{Priority Level 1 \+: Create a U\+ML design for your iteration one solution. Follow these guidelines\+: \href{https://cppcodetips.wordpress.com/2013/12/23/uml-class-diagram-explained-with-c-samples/}{\tt https\+://cppcodetips.\+wordpress.\+com/2013/12/23/uml-\/class-\/diagram-\/explained-\/with-\/c-\/samples/} when completing your U\+ML.}
+
+\subparagraph*{Priority Level 2\+: Create the following classes and the associated Google Tests}
+
+{\bfseries Vector3D}
+
+Should contain all of the methods necessary to perform 3D Vector Math. I.\+e. normalize, magnitude, etc. Should also contain (x, y, z) coordinates. This will be used for all entities that have three dimensional movement capabilities.
+
+{\bfseries Vector2D}
+
+Should contain all ofthe methods necessary to perform 2D Vector Math. Contains (x,0, z) coordinates. This will be used for all entities that cannot fly.
+
+The following classes should inherit from the abstract class I\+Entity.
+
+{\bfseries Drone}
+
+Override all of the methods in the I\+Entity class. Drones can do beeline deliveries or they can follow a smart route which we have created using the A$\ast$ algorithm for finding shortest path.
+
+The drone should have the following functionality\+:
+
+
+\begin{DoxyEnumerate}
+\item Drones should be able to move from point A to point B at a constant speed. You can use the following formula for calculating movement for the prototype\+: $>$Pseudocode\+: position = position + direction $\ast$speed $\ast$dt~\newline
+ $>$Note\+: position and direction are stored in the I\+Entity class interface in Entity.\+h.
+\item When a package is scheduled for delivery, a drone should navigate to the package, pick up the package, and bring it to its destination. The drone should follow the route from the source to the destination based on a beeline path or one of our default routes. The drone should never exceed the constant speed for this iteration.
+\item When a drone’s radius is within the radius of the package it will pick it up. When a drone’s radius is within the radius of a destination customer, it will drop off the package.
+\end{DoxyEnumerate}
+
+All drones have a battery (Battery class Why? Because in iteration 2 we are expanding the delivery system to include robots and delivery trucks which require different types of batteries.), should also have an attribute that indicates it is moving, and an attribute containing the route to follow.
+
+The Drone class will be discussed in more detail either in a lab or in lecture.
+
+{\bfseries Package}
+
+The package can only move when it is picked up by the drone. It needs to know the customer to deliver to and the package destination. The attributes required for the package are\+: customer, destination, and weight.
+
+You will need to create the appropiate constructor, destructor, setters, and getters.
+
+{\bfseries Customer}
+
+All that is needed is the customer\textquotesingle{}s location in the simulation. The package needs this information. Whatever entity picks up the package will need this information since this is the delivery destination.
+
+{\bfseries Battery}
+
+The battery class should have attributes that indicate the max charge, remaining battery life, and also if it has no charge remaining.
+
+Add the methods that check if the battery is dead and how much charge is remaining. You may assume the initialize maximum charge is 10000. In addition, the battery is depleted when the drone is moving. The battery life is in seconds (easier for us in the simulation). You may assume for the first iteration that the drain on the battery is constant relative to the movement.
+
+\subparagraph*{Priority Level 3\+: Utilize the Composite Pattern and the Factory Pattern to create a Composite Factory}
+
+Utilize both the composite pattern and the factory pattern to create a Composite Factory to produce entities. For this iteration the entities are drones, packages, and customers. There will be a lab on this material to assist you in the development of your composite factory.
+
+
+
+
+
+\subsubsection*{Unit Testing with Google Test}
+
+\href{https://github.com/google/googletest}{\tt https\+://github.\+com/google/googletest}
+
+Unit tests are essential in a large-\/scale project, because the entire code base can be tested regularly and automatically as it is being developed. In the strictest application of Test-\/\+Driven Development (T\+DD), the tests are written {\itshape before} the code, which helps solidify requirements and write testable code.
+
+A sample test file is provided in the /project/tests directory. This directory must be a sibling to your {\itshape src} directory. When you {\itshape make} the tests, they will generate an executable (in build/bin) which, when executed, displays a report of the tests. Use this file as a guide to your own testing. While the requirements for testing in Preliminary Turn-\/in \#2 (more later) are rather light, you can expect a much more robust testing requirement in later iterations. Do not slack on making good tests for your code!
+
+\subsubsection*{Style Compliance}
+
+You may use the style guidelines suggested in Mc\+Connell or the following google style guide.
+
+\href{https://google.github.io/styleguide/cppguide.html}{\tt https\+://google.\+github.\+io/styleguide/cppguide.\+html}
+
+Consistency in code organization, naming conventions, file structure, and formatting makes code easier to read and integrate. There are many options with various merits, so it is up to the development team to establish these conventions, or, in the words of Kevin Wendt, an instructor for previous iterations of the course, \char`\"{}\+The only style guide that really matters is the one your boss uses.\char`\"{}
+
+
+
+
+
+\subsection*{Documentation}
+
+
+\begin{DoxyItemize}
+\item U\+ML diagrams
+\item Doxygen generated web pages including mainpage.\+h
+\item Self-\/\+Documenting code that is style compliant
+\end{DoxyItemize}
+
+Code documentation comes in many forms for many audiences. For this project, {\bfseries your audience is other programmers}, who need to understand class interfaces, function parameters, function behavior, code organization, class organization, and code logic. Self-\/documenting code (i.\+e. using good organization and naming conventions) is an efficient means of communicating, since you have to write the code anyway. {\itshape Good} comments -\/ not too much, not too little -\/ help guide others through the logic and class interfaces. For the larger picture of code and class structure, use U\+ML diagrams and Doxygen-\/generated (automatic) web pages.
+
+\paragraph*{U\+ML}
+
+The U\+ML diagram is a visual aid that helps other programmers better understand the code structure. It should include only those aspects that are essential, otherwise your diagram will get too cluttered and overwhelm the reader. Here are some things to keep in mind as you are designing your U\+ML\+:
+
+
+\begin{DoxyItemize}
+\item Make the most important classes prominent in the layout (i.\+e. your eye tends to focus in that general area when you first look at it).
+\item Lay out the classes so that the connections have as few crossovers as possible.
+\item Do not include setters and getters in your methods list unless there is something special about them that you need to communicate.
+\item You should not include structs or enumerated types unless they add value to the understanding of the overall code structure.
+\item If a class is composed of another class, you can show that association with a solid line arrow (if there is only 1) or using the {\itshape compose} diamond.
+\item Include cardinality where appropriate.
+\item Add comments to classes and/or relationships to clarify the interaction or to point out subtleties that are essential to using the code.
+\end{DoxyItemize}
+
+The final diagram you submit for iteration 1 U\+ML should reflect the changes you made while completing the code requirements. We will be looking for proper use of U\+ML components, and a correct depiction of the code structure.
+
+There are many free tools that you can use to create the U\+ML including Doxygen (see\+: \href{https://inneka.com/programming/cpp/how-to-use-doxygen-to-create-uml-class-diagrams-from-c-source/}{\tt https\+://inneka.\+com/programming/cpp/how-\/to-\/use-\/doxygen-\/to-\/create-\/uml-\/class-\/diagrams-\/from-\/c-\/source/}), and draw.\+io (see\+: \href{https://www.draw.io/}{\tt https\+://www.\+draw.\+io/}). {\bfseries Submit your U\+ML as a pdf into the assignment folder on Canvas.}.
+
+Here is a starting point for your U\+ML, along with the corresponding Lucid\+Chart document\+: \href{https://lucid.app/lucidchart/invitations/accept/fb445b0d-921b-4bd0-a04d-2d052d36c5b1}{\tt https\+://lucid.\+app/lucidchart/invitations/accept/fb445b0d-\/921b-\/4bd0-\/a04d-\/2d052d36c5b1}
+
+
+
+\paragraph*{Doxygen}
+
+Doxygen automatically generates documentation of class and code structure when you follow some simple conventions for commenting within your code ({\itshape see} \href{http://www.doxygen.nl/manual/index.html}{\tt http\+://www.\+doxygen.\+nl/manual/index.\+html} and \href{https://caiorss.github.io/C-Cpp-Notes/Doxygen-documentation.html}{\tt https\+://caiorss.\+github.\+io/\+C-\/\+Cpp-\/\+Notes/\+Doxygen-\/documentation.\+html}). You have had a lab on Doxygen (lab 8) and we will likely cover a bit more in class. To start with, look over the documentation provided with the code base to understand how to document classes, methods, parameters, and even {\itshape todo\textquotesingle{}s} and {\itshape bugs} in your code. In lab 8, you learned how to compile with your Doxyfile and generate web pages. Please look over the generated web pages for missing and incorrect information. The requirements for Doxygen include\+:
+
+
+\begin{DoxyItemize}
+\item the file {\ttfamily project/docs/\+Doxyfile} to generate documentation (after you complete lab 8, you should have this in your {\ttfamily project/docs} directory).
+\item a {\itshape mainpage.\+h} file that serves as the homepage of your automated documentation. This is an introduction to the code to other programmers who might be new to the project and need to know how to obtain it, configure it, compile it, and execute it. After you complete lab 8, you should have a mainpage.\+h file that you can extend in your {\ttfamily project/src} directory.
+\item fully documented classes and methods.
+\item {\itshape {\bfseries a discussion of the abstract factory vs. concrete factory vs. the composite factory. The discussion should clearly describe each possible implementation (use a U\+ML diagram), and discuss at least one pro and one con of implementing each of the alternatives. Include in your discussion the advantages and disadvantages of each type of factory.}}
+\item The /html directory should {\itshape not} be in your repo in github.\+umn.\+edu -\/ nor should your build directory, executable files, or object files.
+\end{DoxyItemize}
+
+\begin{quote}
+{\bfseries As part of your fresh clone prior to submission, please also compile the Doxygen and look at the generated webpages.} \end{quote}
+
+
+All of these elements of documentation will be assessed, accounting for a significant portion of your grade for each iteration (for this iteration -\/ iteration 1, documentation will account for 1/2 of your grade). Think about these two extremes\+: 1) your code functions perfectly and you have almost no documentation -\/ you will likely fail on this iteration; 2) your code is not functional and will only compile when you comment most of it out, but if you have complete, great documentation -\/ you will likely get a decent grade on this iteration. {\bfseries Get in the habit of creating the documentation along with the code.}
+
+
+
+
+
+\subsection*{Assessment}
+
+Your software {\bfseries must compile on a cselabs machine or it will not be graded, and you will recieve a zero for your submission}. We will not grade your project unless it compiles. As long as you provide a version that compiles, we will evaluate those aspects that are partially functional for partial credit. In other words, $<$u$>$comment it out if it breaks compilation$<$/u$>$.
+
+Your software will be assessed through automatic testing and by the T\+As. You will receive immediate feedback whenever you push to github (although not now -\/ we will let you know when those scripts are in place). At the deadline, all submissions will be downloaded and the automated testing will no longer be available. Through both automated testing and the T\+As, the process for testing will be to {\ttfamily make clean} then {\ttfamily make}. We {\bfseries highly encourage} you too freshly clone your repo on a {\bfseries cselabs machine} and to then {\ttfamily make clean} and {\ttfamily make}, followed by a run of your tests to confirm all is working well before submitting your tests and code.
+
+This is the breakdown for point distribution\+:
+
+20\% \+: Iteration \#1
+\begin{DoxyItemize}
+\item 5\% \+: U\+ML (base code, draft). Refine for submission with Final Documentation.
+\item 10\% \+: Preliminary Testing Submission
+\item 45\% \+: Final Documentation
+\item 40\% \+: Final Code
+\end{DoxyItemize}
+
+\subsubsection*{Documentation Assessment ( 50\% )}
+
+\paragraph*{Draft of U\+ML Class Diagrams ( 5\% )}
+
+Preliminary Turn-\/in \#1 will require you to turn in a U\+ML diagram of the your proposed iteration one solution. You will depict project code you\textquotesingle{}ve already been given in the {\ttfamily project/src} directory. $\ast$$\ast$\+\_\+\+\_\+\+At this point in time, the reality is that it is Y\+OU who needs to understand the code we have provided, and this exercise will be a tremendous help in that regard, saving you hours when you start to code.\+\_\+\+\_\+$\ast$$\ast$ Keep in mind that U\+ML is a visual aid and {\bfseries should include only those aspects that are essential, otherwise your diagram will get too cluttered and overwhelming to the reader}. Keep in mind that you can add notes and clarification within the document.
+
+This is a draft of the final product, and we anticipate that it will be revised and improved. $\ast$$\ast$\+We will be looking for general proper use of U\+ML syntax, and a correct depiction of the your proposed code structure for the iteration one specification and how it connects to existing project code (code from shared-\/upstream\textquotesingle{}s support-\/code branch). The U\+ML syntax you should use is specified and documented here\+: \href{https://cppcodetips.wordpress.com/2013/12/23/uml-class-diagram-explained-with-c-samples/}{\tt https\+://cppcodetips.\+wordpress.\+com/2013/12/23/uml-\/class-\/diagram-\/explained-\/with-\/c-\/samples/}
+
+\paragraph*{Complete Iteration Documentation ( 45\% )}
+
+\paragraph*{Design Document and U\+ML}
+
+Documentation includes a design overview of the core domain elements (the classes you\textquotesingle{}re building) provided in mainpage.\+h in /src and your final updated U\+ML diagram in P\+DF file format. The mainpage instructions for how to obtain, configure, compile, and execute the simulation should be written in prose and your discussion of the design and implementation of your factory class should be at least 2 pages of text (if it were on an 8.\+5x11 paper), probably not more than 3.\+5. Your should highlight important elements of your composite factory design and implementation, and the structure of your domain elements. We will look for a well written and well organized document that clearly articulates the design. It must stand alone in the sense that anyone reading it should not have to look at code to understand the design. {\bfseries This will likely require images of U\+ML and/or snippets of code included.}
+
+Your initial U\+ML diagram should be updated to include the class(es), methods, and relationships that you have added or changed during your iteration 1 developement activities. {\bfseries Submit your final version of your U\+ML diagram in a .pdf file via the submission item on Canvas.}
+
+\paragraph*{Style Compliance}
+
+Will be done by inspection.
+
+\paragraph*{Doxygen Documentation}
+
+We will compile the code to generate {\itshape Doxygen} web pages. All classes and major functions must be documented as specified in the {\itshape Doxygen} documentation.
+
+\paragraph*{Git\+Hub Issues}
+
+Your repository must include Issues that communicate to the T\+As. If there are no bugs in your code, include a Git\+Hub Issue that states that there are no known bugs to report and that further verification is necessary (never say that there aren\textquotesingle{}t bugs, because we know that that is typically not the case \+:-\/). We anticipate that a few bugs will exist in your project and they will reveal themselves during testing. If you have a few bugs A\+ND you report them, then you will lose fewer points than if you don\textquotesingle{}t report them -\/ provided the bugs aren\textquotesingle{}t preventing the simulation from running to completion. Also, keep in mind that development will continue throughout the semester, and if you can\textquotesingle{}t fix your code this iteration, you {\itshape might} have an opportunity in successive iterations to do so(there are no implied guarantees on this though), so keep use github to keep track of all your bugs.
+
+For this iteration, every time you make one single change to your code, you should follow the process documented in lab 10. Create an issue, a new branch, address the issue (add or fix functionality, etc.), test. When it works, commit and include a $\ast$$\ast$ meaningful$\ast$$\ast$ commit message (what did you fix, add, etc.), merge the new branch back in with the development branch, and then test again. We will grade you on your adherence to the process. You should have at L\+E\+A\+ST as many issues, branches, commits, and merges as there are updates and new functionality required by the iteration.
+
+\paragraph*{Self-\/\+Documenting Code}
+
+T\+As will inspect code for good naming conventions, good code organization, and internal comments to highlight logic. You should not nest conditional statements too deep. Methods should not be more than a screen full, if possible. Names should be descriptive of the variable\textquotesingle{}s or function\textquotesingle{}s purpose. Like elements should be next to each other in the file. Review Chapter 32 in the Mc\+Connell text, available on the Class Canvas site, for more information on how to create self-\/documenting code.
+
+\subsubsection*{Code Assessment ( 50\% )}
+
+\paragraph*{Preliminary Testing Submission ( 10\% ) {\bfseries U\+P\+D\+A\+TE}}
+
+In the week prior to the due date of the completed iteration, we will confirm that you have submitted work for Preliminary Turn-\/in \#2. You must include tests for $\sim$$\sim$all$\sim$$\sim$ all public methods {\itshape which do not overly rely on external classes} in the Drone, Package, Customer, Vector3D, Vector2D, and Battery classes. These should include tests for all Boolean valued functions and constructors to receive full points for the preliminary submission. There will be no manual inspection of the code at this point -- it is strictly a test for completed functionality and testing. We will ensure that your tests are effective using automatic means, similar to the Testing lab. There will be transparency in this process in that you will know what functionality will be tested, and you will see the results. Points earned at this stage are independent of the 40\% points for the final submission.
+
+Your google-\/test unit tests do not have to be google style compliant, and you do not need to follow the version control development process specified in lab 10 to design and implement your tests. Your google tests should be in the {\bfseries development branch} in your repository on github.\+umn.\+edu by the end of the day Friday, March 12. Remember to G\+IT A\+DD, G\+IT C\+O\+M\+M\+IT and G\+IT P\+U\+SH your tests before the deadline!!!!
+
+\paragraph*{Completed Iteration Code ( 40\% )}
+
+Code functionality will be tested with automated tests through Github, which in turn run the automated unit tests of Google Test. We expect you to have basic feedback running by the end of week two of Iteration 1. In that case, you will see {\itshape some} of the elements we\textquotesingle{}ll be testing in our assessment. Review the automated feedback prior to final submission, as it will identify any issues with directory structure, compilation issues, or failed unit tests. Assessment will also include a visual inspection of the simulation and its output, as well as a visual inspection of the code.
+
+
+
+
+
+\subsection*{Getting Started}
+
+A\+F\+T\+ER reading this document, if you have not done so, complete lab 9. Lab 10 will be assigned next week.
+
+
+
+
+
+\subsection*{Important notes to remember}
+
+$>$Your software is a reflection of your understanding of the requirements as specified in this document. If you do not understand any portion of the requirements or you think that the requirements are underspecified, it is your responsibility to get clarification from the instructor or a TA. Please read this document carefully and review it prior to turning in your iteration for assessment.
+
+$>$The O\+N\+LY supported environment is the C\+S\+E\+Labs environment. This is where we will run your code for assessment, and where you should absolutely ensure that your project will compile and run. It is recommended to log onto a C\+S\+E\+Labs machine, do a {\bfseries clean} pull of your repo (i.\+e., pull into a brand new directory), and then build and test your project.
+
+
+
+
+
+\subsection*{Additional Resources}
+
+Local System and Compilation\+:
+\begin{DoxyItemize}
+\item Repo\+: \href{https://github.umn.edu/umn-csci-3081-s21/shared-upstream}{\tt https\+://github.\+umn.\+edu/umn-\/csci-\/3081-\/s21/shared-\/upstream}
+\item Compilation\+: \href{https://gcc.gnu.org/}{\tt https\+://gcc.\+gnu.\+org/}
+\item Linux quick reference\+: \href{https://files.fosswire.com/2007/08/fwunixref.pdf}{\tt https\+://files.\+fosswire.\+com/2007/08/fwunixref.\+pdf}
+\item Makefile Resources\+: \href{https://www.cs.bu.edu/teaching/cpp/writing-makefiles/}{\tt https\+://www.\+cs.\+bu.\+edu/teaching/cpp/writing-\/makefiles/}
+\end{DoxyItemize}
+
+Testing\+:
+\begin{DoxyItemize}
+\item \href{https://github.com/google/googletest}{\tt https\+://github.\+com/google/googletest}
+\item Unit Testing\+: \href{https://martinfowler.com/bliki/UnitTest.html}{\tt https\+://martinfowler.\+com/bliki/\+Unit\+Test.\+html}
+\end{DoxyItemize}
+
+Style\+:
+\begin{DoxyItemize}
+\item \href{https://google.github.io/styleguide/cppguide.html}{\tt https\+://google.\+github.\+io/styleguide/cppguide.\+html}
+\item \href{https://github.com/google/styleguide/tree/gh-pages/cpplint}{\tt https\+://github.\+com/google/styleguide/tree/gh-\/pages/cpplint}
+\item \href{https://www.python.org/downloads/}{\tt https\+://www.\+python.\+org/downloads/}
+\end{DoxyItemize}
+
+Documentation\+:
+\begin{DoxyItemize}
+\item \href{https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet}{\tt https\+://github.\+com/adam-\/p/markdown-\/here/wiki/\+Markdown-\/\+Cheatsheet}
+\end{DoxyItemize}
+
+I\+D\+Es\+:
+\begin{DoxyItemize}
+\item Xemacs\+: \href{https://www.xemacs.org/}{\tt https\+://www.\+xemacs.\+org/}
+\item vi\+: \href{http://www.lagmonster.org/docs/vi.html}{\tt http\+://www.\+lagmonster.\+org/docs/vi.\+html}
+\item Atom\+: \href{https://atom.io/}{\tt https\+://atom.\+io/}
+\item Sublime\+: \href{https://www.sublimetext.com/}{\tt https\+://www.\+sublimetext.\+com/}
+\item Eclipse\+: \href{https://eclipse.org/}{\tt https\+://eclipse.\+org/} 
+\end{DoxyItemize}

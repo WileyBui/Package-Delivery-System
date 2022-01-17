@@ -1,0 +1,75 @@
+\hypertarget{classentity__project_1_1WebSceneViewer}{}\section{entity\+\_\+project\+:\+:Web\+Scene\+Viewer Class Reference}
+\label{classentity__project_1_1WebSceneViewer}\index{entity\+\_\+project\+::\+Web\+Scene\+Viewer@{entity\+\_\+project\+::\+Web\+Scene\+Viewer}}
+
+
+A web viewer for the entity system that uses web sockets.  
+
+
+
+
+{\ttfamily \#include $<$web\+\_\+scene\+\_\+viewer.\+h$>$}
+
+
+
+Inheritance diagram for entity\+\_\+project\+:\+:Web\+Scene\+Viewer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classentity__project_1_1WebSceneViewer__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classentity__project_1_1WebSceneViewer_a1ea9f448e7921803aa678af7ab76ec76}\label{classentity__project_1_1WebSceneViewer_a1ea9f448e7921803aa678af7ab76ec76}} 
+\hyperlink{classentity__project_1_1WebSceneViewer_a1ea9f448e7921803aa678af7ab76ec76}{Web\+Scene\+Viewer} (int port, const std\+::string \&web\+Dir, const std\+::string \&scene)
+\begin{DoxyCompactList}\small\item\em Constructor that initializes with a port and a website directory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classentity__project_1_1WebSceneViewer_a56359983bd429dea6d84d9c096dab9b0}\label{classentity__project_1_1WebSceneViewer_a56359983bd429dea6d84d9c096dab9b0}} 
+virtual \hyperlink{classentity__project_1_1WebSceneViewer_a56359983bd429dea6d84d9c096dab9b0}{$\sim$\+Web\+Scene\+Viewer} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classentity__project_1_1WebSceneViewer_af8194e84e65c3688e934f71b1736b8fc}{Set\+Entity\+System} (\hyperlink{classentity__project_1_1IEntitySystem}{I\+Entity\+System} $\ast$entity\+System)
+\begin{DoxyCompactList}\small\item\em Sets the current entity system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classentity__project_1_1WebSceneViewer_a1133bc5b5176c9ebec6edeae6b41c5bb}\label{classentity__project_1_1WebSceneViewer_a1133bc5b5176c9ebec6edeae6b41c5bb}} 
+virtual \hyperlink{classentity__project_1_1IEntitySystem}{I\+Entity\+System} $\ast$ \hyperlink{classentity__project_1_1WebSceneViewer_a1133bc5b5176c9ebec6edeae6b41c5bb}{Get\+Entity\+System} () const
+\begin{DoxyCompactList}\small\item\em Returns the current entity system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classentity__project_1_1WebSceneViewer_a60b5a903167b43ff350cee71c313707b}\label{classentity__project_1_1WebSceneViewer_a60b5a903167b43ff350cee71c313707b}} 
+bool \hyperlink{classentity__project_1_1WebSceneViewer_a60b5a903167b43ff350cee71c313707b}{Run} ()
+\begin{DoxyCompactList}\small\item\em Runs the web viewer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classentity__project_1_1WebSceneViewer_a2b585b5b2edf6ad8b09689839556eb8a}\label{classentity__project_1_1WebSceneViewer_a2b585b5b2edf6ad8b09689839556eb8a}} 
+void \hyperlink{classentity__project_1_1WebSceneViewer_a2b585b5b2edf6ad8b09689839556eb8a}{On\+Event} (const picojson\+::value \&event, const \hyperlink{classentity__project_1_1IEntity}{I\+Entity} \&entity)
+\begin{DoxyCompactList}\small\item\em Sends events to the web page over web sockets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classentity__project_1_1WebSceneViewer_ad646d66fcd60ddddf86e0a960beb2d1a}\label{classentity__project_1_1WebSceneViewer_ad646d66fcd60ddddf86e0a960beb2d1a}} 
+void \hyperlink{classentity__project_1_1WebSceneViewer_ad646d66fcd60ddddf86e0a960beb2d1a}{Send\+J\+S\+ON} (const picojson\+::value \&json)
+\begin{DoxyCompactList}\small\item\em Sends J\+S\+ON to all web clients. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classentity__project_1_1WebSceneViewer_a1600473b4e8290d50d5a430360636c0f}\label{classentity__project_1_1WebSceneViewer_a1600473b4e8290d50d5a430360636c0f}} 
+\hyperlink{classentity__project_1_1IEntitySystem}{I\+Entity\+System} $\ast$ \hyperlink{classentity__project_1_1WebSceneViewer_a1600473b4e8290d50d5a430360636c0f}{entity\+System\+\_\+}
+\begin{DoxyCompactList}\small\item\em The current entity system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A web viewer for the entity system that uses web sockets. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classentity__project_1_1WebSceneViewer_af8194e84e65c3688e934f71b1736b8fc}\label{classentity__project_1_1WebSceneViewer_af8194e84e65c3688e934f71b1736b8fc}} 
+\index{entity\+\_\+project\+::\+Web\+Scene\+Viewer@{entity\+\_\+project\+::\+Web\+Scene\+Viewer}!Set\+Entity\+System@{Set\+Entity\+System}}
+\index{Set\+Entity\+System@{Set\+Entity\+System}!entity\+\_\+project\+::\+Web\+Scene\+Viewer@{entity\+\_\+project\+::\+Web\+Scene\+Viewer}}
+\subsubsection{\texorpdfstring{Set\+Entity\+System()}{SetEntitySystem()}}
+{\footnotesize\ttfamily void entity\+\_\+project\+::\+Web\+Scene\+Viewer\+::\+Set\+Entity\+System (\begin{DoxyParamCaption}\item[{\hyperlink{classentity__project_1_1IEntitySystem}{I\+Entity\+System} $\ast$}]{entity\+System }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Sets the current entity system. 
+
+This is overriden so that the web viewer can observe entities. 
+
+Implements \hyperlink{classentity__project_1_1ISceneViewer_ab6c9ee1c8c551dd463e8ff1788b3d407}{entity\+\_\+project\+::\+I\+Scene\+Viewer}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/.\+dependencies/include/\+Entity\+Project/web\+\_\+scene\+\_\+viewer.\+h\end{DoxyCompactItemize}

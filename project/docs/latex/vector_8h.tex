@@ -1,0 +1,106 @@
+\hypertarget{vector_8h}{}\section{/home/user/repo/project/include/vector.h File Reference}
+\label{vector_8h}\index{/home/user/repo/project/include/vector.\+h@{/home/user/repo/project/include/vector.\+h}}
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+Include dependency graph for vector.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vector_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vector_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classcsci3081_1_1Vector}{csci3081\+::\+Vector}
+\begin{DoxyCompactList}\small\item\em This is the interface class for the \hyperlink{classcsci3081_1_1Vector3D}{Vector3D} and \hyperlink{classcsci3081_1_1Vector2D}{Vector2D} classes. \end{DoxyCompactList}\item 
+class \hyperlink{classcsci3081_1_1Vector3D}{csci3081\+::\+Vector3D}
+\begin{DoxyCompactList}\small\item\em This is the \hyperlink{classcsci3081_1_1Vector3D}{Vector3D} class. \end{DoxyCompactList}\item 
+class \hyperlink{classcsci3081_1_1Vector2D}{csci3081\+::\+Vector2D}
+\begin{DoxyCompactList}\small\item\em This is the \hyperlink{classcsci3081_1_1Vector2D}{Vector2D} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Vector2D {\bfseries csci3081\+::to2D} (Vector3D \&)
+\begin{DoxyCompactList}\small\item\em This function converts a \hyperlink{classcsci3081_1_1Vector3D}{Vector3D} instance to a \hyperlink{classcsci3081_1_1Vector2D}{Vector2D}. \end{DoxyCompactList}\item 
+Vector3D {\bfseries csci3081\+::to3D} (Vector2D \&)
+\begin{DoxyCompactList}\small\item\em This function converts a \hyperlink{classcsci3081_1_1Vector2D}{Vector2D} instance to a \hyperlink{classcsci3081_1_1Vector3D}{Vector3D}. \end{DoxyCompactList}\item 
+Vector3D {\bfseries csci3081\+::\+Cross\+Product} (const Vector \&v1, const Vector \&v2)
+\begin{DoxyCompactList}\small\item\em This function computes the cross product between two vector objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyCopyright}{Copyright}
+Lin Huynh, All rights reserved. 
+\end{DoxyCopyright}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{vector_8cc_file_acc9137c5e4b3021f36bc5c5359b6bea4}\label{vector_8cc_file_acc9137c5e4b3021f36bc5c5359b6bea4}} 
+\index{vector.\+h@{vector.\+h}!Cross\+Product@{Cross\+Product}}
+\index{Cross\+Product@{Cross\+Product}!vector.\+h@{vector.\+h}}
+\subsubsection{\texorpdfstring{Cross\+Product()}{CrossProduct()}}
+{\footnotesize\ttfamily Vector3D csci3081\+::\+Cross\+Product (\begin{DoxyParamCaption}\item[{const \hyperlink{classcsci3081_1_1Vector}{Vector} \&}]{v1,  }\item[{const \hyperlink{classcsci3081_1_1Vector}{Vector} \&}]{v2 }\end{DoxyParamCaption})}
+
+
+
+This function computes the cross product between two vector objects. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v1} & Vector object \\
+\hline
+\mbox{\tt in}  & {\em v2} & Vector object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector3D object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vector_8cc_file_a488c1378b7a2576eec7ff5a4f427f773}\label{vector_8cc_file_a488c1378b7a2576eec7ff5a4f427f773}} 
+\index{vector.\+h@{vector.\+h}!to2D@{to2D}}
+\index{to2D@{to2D}!vector.\+h@{vector.\+h}}
+\subsubsection{\texorpdfstring{to2\+D()}{to2D()}}
+{\footnotesize\ttfamily Vector2D csci3081\+::to2D (\begin{DoxyParamCaption}\item[{\hyperlink{classcsci3081_1_1Vector3D}{Vector3D} \&}]{ }\end{DoxyParamCaption})}
+
+
+
+This function converts a Vector3D instance to a Vector2D. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em other} & Vector3D object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector2D object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vector_8cc_file_a346eac008afbbe1c70ce26b188f186ab}\label{vector_8cc_file_a346eac008afbbe1c70ce26b188f186ab}} 
+\index{vector.\+h@{vector.\+h}!to3D@{to3D}}
+\index{to3D@{to3D}!vector.\+h@{vector.\+h}}
+\subsubsection{\texorpdfstring{to3\+D()}{to3D()}}
+{\footnotesize\ttfamily Vector3D csci3081\+::to3D (\begin{DoxyParamCaption}\item[{\hyperlink{classcsci3081_1_1Vector2D}{Vector2D} \&}]{ }\end{DoxyParamCaption})}
+
+
+
+This function converts a Vector2D instance to a Vector3D. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em other} & Vector2D object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector3D object 
+\end{DoxyReturn}

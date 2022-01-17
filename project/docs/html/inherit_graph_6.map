@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classentity__project_1_1IEntityFactory.html" title="entity_project::IEntityFactory" alt="" coords="5,199,215,225"/>
+<area shape="rect" id="node2" href="$classcsci3081_1_1CarrierFactory.html" title="This is a derived class from IEntityFactory to manage all other factories (e.g. DroneFactory, PackageFactory, CustomerFactory...) " alt="" coords="290,5,469,32"/>
+<area shape="rect" id="node3" href="$classcsci3081_1_1ChargingStationFactory.html" title="This is the ChargingStationFactory, responsible for making charging station object. " alt="" coords="284,57,475,98"/>
+<area shape="rect" id="node4" href="$classcsci3081_1_1CompositeFactory.html" title="This is a derived class from IEntityFactory to manage all other factories (e.g. DroneFactory, PackageFactory, CustomerFactory...) " alt="" coords="277,123,481,149"/>
+<area shape="rect" id="node5" href="$classcsci3081_1_1CustomerFactory.html" title="This is the CustomerFactory, responsible for making Customer object. " alt="" coords="281,173,478,200"/>
+<area shape="rect" id="node6" href="$classcsci3081_1_1DroneFactory.html" title="This is the DroneFactory, responsible for making Drone object. " alt="" coords="293,224,466,251"/>
+<area shape="rect" id="node7" href="$classcsci3081_1_1PackageFactory.html" title="This is the PackageFactory, responsible for making Drone object. " alt="" coords="285,275,473,301"/>
+<area shape="rect" id="node8" href="$classcsci3081_1_1RechargeDroneFactory.html" title="This is the RECHARGE_DRONE_FACTORY, responsible for making Recharge Drones. " alt="" coords="263,325,496,352"/>
+<area shape="rect" id="node9" href="$classcsci3081_1_1RobotFactory.html" title="This is the RobotFactory, responsible for making a robot object. " alt="" coords="294,376,465,403"/>
+</map>

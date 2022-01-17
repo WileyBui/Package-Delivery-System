@@ -1,0 +1,10 @@
+<map id="entity_project::IEntity" name="entity_project::IEntity">
+<area shape="rect" id="node2" href="$classcsci3081_1_1EntityBase.html" title="The base class for creating entities. " alt="" coords="532,248,693,604"/>
+<area shape="rect" id="node3" href="$classcsci3081_1_1Carrier.html" title="A representation of a carrier An abstract base class for delivery transportation clases like Drone or..." alt="" coords="29,652,258,964"/>
+<area shape="rect" id="node6" href="$classcsci3081_1_1ChargingStation.html" title="A representation of a ChargingStation, inherited from EntityBase It stores the ChargingStation&#39;s name..." alt="" coords="282,718,479,898"/>
+<area shape="rect" id="node7" href="$classcsci3081_1_1Customer.html" title="A representation of a Customer, inherited from EntityBase It stores the Customer&#39;s name..." alt="" coords="503,725,722,891"/>
+<area shape="rect" id="node8" href="$classcsci3081_1_1Package.html" title="A representation of a Package, inherited from EntityBase It stores the Package&#39;s name, ID, version, position, direction, and dynamic mode. " alt="" coords="746,689,887,927"/>
+<area shape="rect" id="node9" href="$classcsci3081_1_1RechargeDrone.html" title="A representation of a drone It stores the drone&#39;s name, ID, version, position, direction, speed, and dynamic mode. " alt="" coords="912,696,1103,920"/>
+<area shape="rect" id="node4" href="$classcsci3081_1_1Drone.html" title="A representation of a drone It stores the drone&#39;s name, ID, version, position, direction, speed, and dynamic mode. " alt="" coords="5,1012,132,1104"/>
+<area shape="rect" id="node5" href="$classcsci3081_1_1Robot.html" title="A representation of a robot It stores the robot&#39;s name, ID, version, position, direction, speed, and dynamic mode. " alt="" coords="156,1012,280,1104"/>
+</map>

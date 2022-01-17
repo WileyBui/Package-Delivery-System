@@ -1,0 +1,60 @@
+\hypertarget{classentity__project_1_1IEntitySystem}{}\section{entity\+\_\+project\+:\+:I\+Entity\+System Class Reference}
+\label{classentity__project_1_1IEntitySystem}\index{entity\+\_\+project\+::\+I\+Entity\+System@{entity\+\_\+project\+::\+I\+Entity\+System}}
+
+
+An abstract class that represents an entity system that contains entities and updates over time.  
+
+
+
+
+{\ttfamily \#include $<$entity\+\_\+system.\+h$>$}
+
+
+
+Inheritance diagram for entity\+\_\+project\+:\+:I\+Entity\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classentity__project_1_1IEntitySystem__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classentity__project_1_1IEntitySystem_ab4ba3624f6f8c76b6040874dad2f9e6f}\label{classentity__project_1_1IEntitySystem_ab4ba3624f6f8c76b6040874dad2f9e6f}} 
+virtual \hyperlink{classentity__project_1_1IEntitySystem_ab4ba3624f6f8c76b6040874dad2f9e6f}{$\sim$\+I\+Entity\+System} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classentity__project_1_1IEntitySystem_a57a31878f9ae43f2ac3e70aa1903b8ec}{Run\+Script} (const picojson\+::array \&script, \hyperlink{classentity__project_1_1IEntitySystem}{I\+Entity\+System} $\ast$system) const =0
+\begin{DoxyCompactList}\small\item\em Runs a J\+S\+ON script on an entity system as a set of commands. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classentity__project_1_1IEntitySystem_a43255ef96f8504e2a536d10fd018e52a}\label{classentity__project_1_1IEntitySystem_a43255ef96f8504e2a536d10fd018e52a}} 
+virtual const std\+::vector$<$ \hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$ $>$ \& \hyperlink{classentity__project_1_1IEntitySystem_a43255ef96f8504e2a536d10fd018e52a}{Get\+Entities} () const =0
+\begin{DoxyCompactList}\small\item\em Returns the list of entities in the system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classentity__project_1_1IEntitySystem_ada758b54da573bb18372880633544c20}\label{classentity__project_1_1IEntitySystem_ada758b54da573bb18372880633544c20}} 
+virtual void \hyperlink{classentity__project_1_1IEntitySystem_ada758b54da573bb18372880633544c20}{Update} (float dt)=0
+\begin{DoxyCompactList}\small\item\em Updates the entity system by a time of dt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An abstract class that represents an entity system that contains entities and updates over time. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classentity__project_1_1IEntitySystem_a57a31878f9ae43f2ac3e70aa1903b8ec}\label{classentity__project_1_1IEntitySystem_a57a31878f9ae43f2ac3e70aa1903b8ec}} 
+\index{entity\+\_\+project\+::\+I\+Entity\+System@{entity\+\_\+project\+::\+I\+Entity\+System}!Run\+Script@{Run\+Script}}
+\index{Run\+Script@{Run\+Script}!entity\+\_\+project\+::\+I\+Entity\+System@{entity\+\_\+project\+::\+I\+Entity\+System}}
+\subsubsection{\texorpdfstring{Run\+Script()}{RunScript()}}
+{\footnotesize\ttfamily virtual void entity\+\_\+project\+::\+I\+Entity\+System\+::\+Run\+Script (\begin{DoxyParamCaption}\item[{const picojson\+::array \&}]{script,  }\item[{\hyperlink{classentity__project_1_1IEntitySystem}{I\+Entity\+System} $\ast$}]{system }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Runs a J\+S\+ON script on an entity system as a set of commands. 
+
+This method does not make any changes to the current entity system, but rather acts as a strategy for the entity system passed into the method. It is therefore possible to override how scripts are read in depending on the application. 
+
+Implemented in \hyperlink{classcsci3081_1_1DeliverySimulation_a332938cb4b972af169ad58dbc1b3bb05}{csci3081\+::\+Delivery\+Simulation}, and \hyperlink{classcsci3081_1_1IDeliverySystem_ae152276130e859b052f1d89417be6fc2}{csci3081\+::\+I\+Delivery\+System}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/.\+dependencies/include/\+Entity\+Project/entity\+\_\+system.\+h\end{DoxyCompactItemize}

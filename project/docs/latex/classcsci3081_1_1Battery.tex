@@ -1,0 +1,116 @@
+\hypertarget{classcsci3081_1_1Battery}{}\section{csci3081\+:\+:Battery Class Reference}
+\label{classcsci3081_1_1Battery}\index{csci3081\+::\+Battery@{csci3081\+::\+Battery}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1Battery_a7ac32ee83e3d7b87b8ddc0cfd42d8088}\label{classcsci3081_1_1Battery_a7ac32ee83e3d7b87b8ddc0cfd42d8088}} 
+\hyperlink{classcsci3081_1_1Battery_a7ac32ee83e3d7b87b8ddc0cfd42d8088}{Battery} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. This sets up an instance of \hyperlink{classcsci3081_1_1Battery}{Battery} with empty remaining life. \end{DoxyCompactList}\item 
+\hyperlink{classcsci3081_1_1Battery_a523da2c50bea66ea0d4aa49a7688a385}{Battery} (float remaining\+Lifein\+Sec\+\_\+, std\+::string battery\+Type=\char`\"{}carrier\char`\"{})
+\begin{DoxyCompactList}\small\item\em Constructor to set up an instance of \hyperlink{classcsci3081_1_1Battery}{Battery} with passing remaining life. \end{DoxyCompactList}\item 
+float \hyperlink{classcsci3081_1_1Battery_a6233a4d2c5c11d9db3db41db3c3c675c}{Get\+Remaining\+Life} ()
+\item 
+float \hyperlink{classcsci3081_1_1Battery_af9e2a6131a7a1a0db66b95a3610e7db2}{Get\+Max\+Charge} ()
+\item 
+int \hyperlink{classcsci3081_1_1Battery_a68eb2bc2fdd001fa025f44374d6edc69}{Get\+Display\+Bar} ()
+\item 
+int \hyperlink{classcsci3081_1_1Battery_a2ea2113b8dbea215849c5446eb96134e}{Get\+Id} ()
+\item 
+void \hyperlink{classcsci3081_1_1Battery_a5a31b2b3b97718db96a9aeaaca1a4cc6}{Depleting} (float sec)
+\begin{DoxyCompactList}\small\item\em Depleting The \hyperlink{classcsci3081_1_1Battery}{Battery}. Should be used everytime the object using battery is in action. \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1Battery_add69602a44edb56918384d3c24888e20}{Charging} (float sec)
+\begin{DoxyCompactList}\small\item\em Charging The \hyperlink{classcsci3081_1_1Battery}{Battery}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Battery_a03b38835791a378ac3374efbb3993eb4}\label{classcsci3081_1_1Battery_a03b38835791a378ac3374efbb3993eb4}} 
+float \hyperlink{classcsci3081_1_1Battery_a03b38835791a378ac3374efbb3993eb4}{Time\+To\+Full} ()
+\begin{DoxyCompactList}\small\item\em This function returns the time battery needed charged to be full. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Battery_a76a8b9485a8b901eed3e45cb738380cc}\label{classcsci3081_1_1Battery_a76a8b9485a8b901eed3e45cb738380cc}} 
+bool \hyperlink{classcsci3081_1_1Battery_a76a8b9485a8b901eed3e45cb738380cc}{Is\+Dead} ()
+\begin{DoxyCompactList}\small\item\em This returns a boolean value for the battery\textquotesingle{}s life False if battery is dead (below 20\%) True otherwise. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Battery_a04760ee4be9a947c7478e7da48e2f75e}\label{classcsci3081_1_1Battery_a04760ee4be9a947c7478e7da48e2f75e}} 
+bool \hyperlink{classcsci3081_1_1Battery_a04760ee4be9a947c7478e7da48e2f75e}{Is\+Full} ()
+\begin{DoxyCompactList}\small\item\em This returns a boolean value if the battery is full. True if the battery is full. False otherwise. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1Battery_a523da2c50bea66ea0d4aa49a7688a385}\label{classcsci3081_1_1Battery_a523da2c50bea66ea0d4aa49a7688a385}} 
+\index{csci3081\+::\+Battery@{csci3081\+::\+Battery}!Battery@{Battery}}
+\index{Battery@{Battery}!csci3081\+::\+Battery@{csci3081\+::\+Battery}}
+\subsubsection{\texorpdfstring{Battery()}{Battery()}}
+{\footnotesize\ttfamily csci3081\+::\+Battery\+::\+Battery (\begin{DoxyParamCaption}\item[{float}]{remaining\+Lifein\+Sec\+\_\+,  }\item[{std\+::string}]{battery\+Type = {\ttfamily \char`\"{}carrier\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Constructor to set up an instance of \hyperlink{classcsci3081_1_1Battery}{Battery} with passing remaining life. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em remaining\+Lifein\+Sec\+\_\+} & current remaining life in the battery \\
+\hline
+\mbox{\tt in}  & {\em battery\+Type} & optional; there are 2 types of batteries\+: carrier and recharging\+\_\+drone. Recharging drone has higher max\+Charge than carrier. Default of batter\+Type is carrier. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1Battery_add69602a44edb56918384d3c24888e20}\label{classcsci3081_1_1Battery_add69602a44edb56918384d3c24888e20}} 
+\index{csci3081\+::\+Battery@{csci3081\+::\+Battery}!Charging@{Charging}}
+\index{Charging@{Charging}!csci3081\+::\+Battery@{csci3081\+::\+Battery}}
+\subsubsection{\texorpdfstring{Charging()}{Charging()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Battery\+::\+Charging (\begin{DoxyParamCaption}\item[{float}]{sec }\end{DoxyParamCaption})}
+
+
+
+Charging The \hyperlink{classcsci3081_1_1Battery}{Battery}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em sec} & seconds battery is charged \\
+\hline
+\mbox{\tt out}  & {\em True} & if the battery is charged, False otherwise \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1Battery_a5a31b2b3b97718db96a9aeaaca1a4cc6}\label{classcsci3081_1_1Battery_a5a31b2b3b97718db96a9aeaaca1a4cc6}} 
+\index{csci3081\+::\+Battery@{csci3081\+::\+Battery}!Depleting@{Depleting}}
+\index{Depleting@{Depleting}!csci3081\+::\+Battery@{csci3081\+::\+Battery}}
+\subsubsection{\texorpdfstring{Depleting()}{Depleting()}}
+{\footnotesize\ttfamily void csci3081\+::\+Battery\+::\+Depleting (\begin{DoxyParamCaption}\item[{float}]{sec }\end{DoxyParamCaption})}
+
+
+
+Depleting The \hyperlink{classcsci3081_1_1Battery}{Battery}. Should be used everytime the object using battery is in action. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em sec} & seconds battery is used \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1Battery_a68eb2bc2fdd001fa025f44374d6edc69}\label{classcsci3081_1_1Battery_a68eb2bc2fdd001fa025f44374d6edc69}} 
+\index{csci3081\+::\+Battery@{csci3081\+::\+Battery}!Get\+Display\+Bar@{Get\+Display\+Bar}}
+\index{Get\+Display\+Bar@{Get\+Display\+Bar}!csci3081\+::\+Battery@{csci3081\+::\+Battery}}
+\subsubsection{\texorpdfstring{Get\+Display\+Bar()}{GetDisplayBar()}}
+{\footnotesize\ttfamily int csci3081\+::\+Battery\+::\+Get\+Display\+Bar (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This functions return the current display\+Bar of the \hyperlink{classcsci3081_1_1Battery}{Battery} \mbox{\Hypertarget{classcsci3081_1_1Battery_a2ea2113b8dbea215849c5446eb96134e}\label{classcsci3081_1_1Battery_a2ea2113b8dbea215849c5446eb96134e}} 
+\index{csci3081\+::\+Battery@{csci3081\+::\+Battery}!Get\+Id@{Get\+Id}}
+\index{Get\+Id@{Get\+Id}!csci3081\+::\+Battery@{csci3081\+::\+Battery}}
+\subsubsection{\texorpdfstring{Get\+Id()}{GetId()}}
+{\footnotesize\ttfamily int csci3081\+::\+Battery\+::\+Get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This functions return the ID of the battery \mbox{\Hypertarget{classcsci3081_1_1Battery_af9e2a6131a7a1a0db66b95a3610e7db2}\label{classcsci3081_1_1Battery_af9e2a6131a7a1a0db66b95a3610e7db2}} 
+\index{csci3081\+::\+Battery@{csci3081\+::\+Battery}!Get\+Max\+Charge@{Get\+Max\+Charge}}
+\index{Get\+Max\+Charge@{Get\+Max\+Charge}!csci3081\+::\+Battery@{csci3081\+::\+Battery}}
+\subsubsection{\texorpdfstring{Get\+Max\+Charge()}{GetMaxCharge()}}
+{\footnotesize\ttfamily float csci3081\+::\+Battery\+::\+Get\+Max\+Charge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This function returns the max charge of the battery. \mbox{\Hypertarget{classcsci3081_1_1Battery_a6233a4d2c5c11d9db3db41db3c3c675c}\label{classcsci3081_1_1Battery_a6233a4d2c5c11d9db3db41db3c3c675c}} 
+\index{csci3081\+::\+Battery@{csci3081\+::\+Battery}!Get\+Remaining\+Life@{Get\+Remaining\+Life}}
+\index{Get\+Remaining\+Life@{Get\+Remaining\+Life}!csci3081\+::\+Battery@{csci3081\+::\+Battery}}
+\subsubsection{\texorpdfstring{Get\+Remaining\+Life()}{GetRemainingLife()}}
+{\footnotesize\ttfamily float csci3081\+::\+Battery\+::\+Get\+Remaining\+Life (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This functions return the remaining life of the battery 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/battery.\+h\item 
+/home/user/repo/project/src/battery.\+cc\end{DoxyCompactItemize}

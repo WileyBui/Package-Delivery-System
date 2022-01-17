@@ -1,0 +1,4 @@
+<map id="csci3081::ChargingStation" name="csci3081::ChargingStation">
+<area shape="rect" id="node2" href="$classcsci3081_1_1EntityBase.html" title="The base class for creating entities. " alt="" coords="23,248,185,604"/>
+<area shape="rect" id="node3" href="$classentity__project_1_1IEntity.html" title="A movable object in a scene. Entities have position, direction and size. " alt="" coords="23,5,185,200"/>
+</map>

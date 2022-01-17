@@ -1,0 +1,340 @@
+\hypertarget{classcsci3081_1_1Carrier}{}\section{csci3081\+:\+:Carrier Class Reference}
+\label{classcsci3081_1_1Carrier}\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+
+
+A representation of a carrier An abstract base class for delivery transportation clases like \hyperlink{classcsci3081_1_1Drone}{Drone} or \hyperlink{classcsci3081_1_1Robot}{Robot}. \hyperlink{classcsci3081_1_1Robot}{Robot} and \hyperlink{classcsci3081_1_1Drone}{Drone} inherited from \hyperlink{classcsci3081_1_1Carrier}{Carrier}.  
+
+
+
+
+{\ttfamily \#include $<$carrier.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Carrier\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classcsci3081_1_1Carrier__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classcsci3081_1_1Carrier_abbf8f72d3b13da90793555e25053d793}{Battery\+Dead} ()
+\begin{DoxyCompactList}\small\item\em This checks if the carrier is out of battery. \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1Carrier_aaeb0a45df6b9fa522e04681da272cb6f}{Battery\+Full} ()
+\begin{DoxyCompactList}\small\item\em This function checks if the battery is full. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_ad8e833d85c22f1f516646360aa852338}\label{classcsci3081_1_1Carrier_ad8e833d85c22f1f516646360aa852338}} 
+float \hyperlink{classcsci3081_1_1Carrier_ad8e833d85c22f1f516646360aa852338}{Get\+Battery} ()
+\begin{DoxyCompactList}\small\item\em This returns the time in secs left in the carrier\textquotesingle{}s battery. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a5935ddc44bb01290fe65168332d5a811}\label{classcsci3081_1_1Carrier_a5935ddc44bb01290fe65168332d5a811}} 
+float \hyperlink{classcsci3081_1_1Carrier_a5935ddc44bb01290fe65168332d5a811}{Get\+Max\+Battery} ()
+\begin{DoxyCompactList}\small\item\em This returns the battery maximum capacity. \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1Carrier_aa004703e60b8ffed9661ee204f619983}{Charging} (float)
+\begin{DoxyCompactList}\small\item\em This function is used to charge the battery of the carrier for a certain amount of time in seconds. \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1Carrier_a5f20ff445085ba10866ff83dc3d2ea93}{Have\+Package} ()
+\begin{DoxyCompactList}\small\item\em This checks if the carrier is already linked to a package. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a8938441bb8d2984178eb75b4ce45e6b9}\label{classcsci3081_1_1Carrier_a8938441bb8d2984178eb75b4ce45e6b9}} 
+\hyperlink{classcsci3081_1_1Package}{Package} $\ast$ \hyperlink{classcsci3081_1_1Carrier_a8938441bb8d2984178eb75b4ce45e6b9}{Get\+Package} ()
+\begin{DoxyCompactList}\small\item\em This returns a \hyperlink{classcsci3081_1_1Package}{Package} pointer to the package that the carrier is linking to, and returns N\+U\+LL if the carrier is not linking to any package. \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1Carrier_a8b1996acbdeb796bcbc68f8d092e09c0}{Add\+Package} (\hyperlink{classcsci3081_1_1Package}{Package} $\ast$arg)
+\begin{DoxyCompactList}\small\item\em This links a package object to the carrier if the carrier is not already linking to another package (carrier can only carry one package at a time) \end{DoxyCompactList}\item 
+\hyperlink{classcsci3081_1_1Package}{Package} $\ast$ \hyperlink{classcsci3081_1_1Carrier_a6fa3861b1b7acb89827e768308196cc1}{Drop\+Package} ()
+\begin{DoxyCompactList}\small\item\em This releases the link of the package from the carrier, making the package pointer of the carrier N\+U\+LL, and return a pointer to the just dropped/delivered package. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1Carrier_aede9d79fffb164f90fe30b19f2e2c854}{Set\+Position} (std\+::vector$<$ float $>$ v)
+\begin{DoxyCompactList}\small\item\em This function uses to set the new position of the carrier. However, carrier only moves in simulation if its dynamic attribute is set to true. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1Carrier_a1f74a376887685a69b3d0512eb97188e}{Set\+Speed} (float)
+\begin{DoxyCompactList}\small\item\em This sets the speed of the carrier. Change the speed of the carrier if the argument is a non-\/negative float number. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_ab290cc18c82e6104dc1d3e3fa94ec3ff}\label{classcsci3081_1_1Carrier_ab290cc18c82e6104dc1d3e3fa94ec3ff}} 
+float \hyperlink{classcsci3081_1_1Carrier_ab290cc18c82e6104dc1d3e3fa94ec3ff}{Get\+Speed} ()
+\begin{DoxyCompactList}\small\item\em return the current speed of the carrier \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1Carrier_a0b8c743cb8ab7843a4cece11225634f4}{Set\+Route} (std\+::vector$<$ vector$<$ float $>$$>$)
+\begin{DoxyCompactList}\small\item\em This function adds a full route to route attribute of the carrier This is useful when use for the Get\+Path() function from I\+Graph class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a41a796fd2ee1261ad61dd87e1d4ed54f}\label{classcsci3081_1_1Carrier_a41a796fd2ee1261ad61dd87e1d4ed54f}} 
+std\+::vector$<$ float $>$ \hyperlink{classcsci3081_1_1Carrier_a41a796fd2ee1261ad61dd87e1d4ed54f}{Next\+Position} ()
+\begin{DoxyCompactList}\small\item\em This function returns the next position in std\+::vector$<$float$>$ in the queue that the carrier needs to move to. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_aa181fd3d4bf00e9800c9ddea28930523}\label{classcsci3081_1_1Carrier_aa181fd3d4bf00e9800c9ddea28930523}} 
+void \hyperlink{classcsci3081_1_1Carrier_aa181fd3d4bf00e9800c9ddea28930523}{Pop\+Position} ()
+\begin{DoxyCompactList}\small\item\em This function pops the first element/position in the position queue of the carrier. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1Carrier_a2b96f30454fee0766a5ed3a26fbf092c}{Get\+Status} ()
+\begin{DoxyCompactList}\small\item\em Overwritten Get\+Status from \hyperlink{classcsci3081_1_1ASubject}{A\+Subject}. This function creates the arguments required by Notify function and makes call to Notify function. This function should be called when path is added to the carrier and when the carrier becomes idle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a871790b7d86cc3fc47c659131d752bfe}\label{classcsci3081_1_1Carrier_a871790b7d86cc3fc47c659131d752bfe}} 
+\hyperlink{classcsci3081_1_1RouteStrategy}{Route\+Strategy} $\ast$ \hyperlink{classcsci3081_1_1Carrier_a871790b7d86cc3fc47c659131d752bfe}{Get\+Route\+Strategy} ()
+\begin{DoxyCompactList}\small\item\em return the Route Strategy that the carrier uses, such as Smart Route, Beeline, or Parabolic Route \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1Carrier_ac126252e1b6bf129d4369b299851211d}{Is\+Currently\+Charging} ()
+\begin{DoxyCompactList}\small\item\em This function checks if the carrier battery is currently charging. \end{DoxyCompactList}\item 
+\hyperlink{classcsci3081_1_1Battery}{Battery} $\ast$ \hyperlink{classcsci3081_1_1Carrier_a0d871b65140eefec69158b14703d92bc}{Get\+Battery\+Obj} ()
+\begin{DoxyCompactList}\small\item\em This function will return the \hyperlink{classcsci3081_1_1Battery}{Battery} object. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1Carrier_a10382f16402af20f4bc03eaad5eb9e30}{Set\+Charging\+Status} (bool b)
+\begin{DoxyCompactList}\small\item\em This function sets the carrier battery status. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1Carrier_a039d932119b4b3b7e076ff9e6ffada80}{Set\+Drone\+Status\+When\+Battery\+Dies} (std\+::string status)
+\begin{DoxyCompactList}\small\item\em This function sets the battery status when the battery dies (alive, dead on ground, or dead in the air) \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classcsci3081_1_1Carrier_a25d1396e9c91e9574ab752eaf0b24048}{Get\+Drone\+Status\+When\+Battery\+Dies} ()
+\begin{DoxyCompactList}\small\item\em This function gets the battery status (alive, dead on ground, or dead in the air) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_ab09ba1ba2a316e0ef29458cc9c303afd}\label{classcsci3081_1_1Carrier_ab09ba1ba2a316e0ef29458cc9c303afd}} 
+void \hyperlink{classcsci3081_1_1Carrier_ab09ba1ba2a316e0ef29458cc9c303afd}{Go\+Down\+To\+Ground} ()
+\begin{DoxyCompactList}\small\item\em This function sends the carrier down (if on the air) to the ground when the battery is dead. If the carrier is currently delivering a package, it will drop its package for other available carriers to come and pick it up. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a5f202411aa049586514a48129b959ed7}\label{classcsci3081_1_1Carrier_a5f202411aa049586514a48129b959ed7}} 
+void \hyperlink{classcsci3081_1_1Carrier_a5f202411aa049586514a48129b959ed7}{Update} (float dt)
+\begin{DoxyCompactList}\small\item\em This is an inherited method from \hyperlink{classcsci3081_1_1EntityBase}{Entity\+Base} to use for \hyperlink{classcsci3081_1_1DeliverySimulation}{Delivery\+Simulation}. This updates the position of the carrier on the simulation if the position changes and its dynamic is set to true. In addition, this function also checks if the carrier is in within distance with the package to pick it up, or within distance with the customer to drop off the package. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a6d5a40dc3672b6b8667bac84a967dfc7}\label{classcsci3081_1_1Carrier_a6d5a40dc3672b6b8667bac84a967dfc7}} 
+\hyperlink{classcsci3081_1_1Battery}{Battery} {\bfseries battery}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_abe593b696584b20307c5eb7fb9184aff}\label{classcsci3081_1_1Carrier_abe593b696584b20307c5eb7fb9184aff}} 
+\hyperlink{classcsci3081_1_1Package}{Package} $\ast$ {\bfseries package}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_abe394952b911bb17b1acfd88163c9c05}\label{classcsci3081_1_1Carrier_abe394952b911bb17b1acfd88163c9c05}} 
+float {\bfseries speed}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_ac2d6218c5d9856936c75b270e4e32be6}\label{classcsci3081_1_1Carrier_ac2d6218c5d9856936c75b270e4e32be6}} 
+std\+::vector$<$ std\+::vector$<$ float $>$ $>$ {\bfseries route}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_aa8d4466ebdba226c137122012a193633}\label{classcsci3081_1_1Carrier_aa8d4466ebdba226c137122012a193633}} 
+std\+::string {\bfseries drone\+Status\+When\+Battery\+Dies} = \char`\"{}not dead yet\char`\"{}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_aa689bdcb7d895a92ff802b39ab649b21}\label{classcsci3081_1_1Carrier_aa689bdcb7d895a92ff802b39ab649b21}} 
+bool {\bfseries Charging\+Status} = false
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a2fc7570deeaf96260542f0cb218225f2}\label{classcsci3081_1_1Carrier_a2fc7570deeaf96260542f0cb218225f2}} 
+\hyperlink{classcsci3081_1_1RouteStrategy}{Route\+Strategy} $\ast$ {\bfseries route\+Strategy} = N\+U\+LL
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A representation of a carrier An abstract base class for delivery transportation clases like \hyperlink{classcsci3081_1_1Drone}{Drone} or \hyperlink{classcsci3081_1_1Robot}{Robot}. \hyperlink{classcsci3081_1_1Robot}{Robot} and \hyperlink{classcsci3081_1_1Drone}{Drone} inherited from \hyperlink{classcsci3081_1_1Carrier}{Carrier}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a8b1996acbdeb796bcbc68f8d092e09c0}\label{classcsci3081_1_1Carrier_a8b1996acbdeb796bcbc68f8d092e09c0}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Add\+Package@{Add\+Package}}
+\index{Add\+Package@{Add\+Package}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Add\+Package()}{AddPackage()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Carrier\+::\+Add\+Package (\begin{DoxyParamCaption}\item[{\hyperlink{classcsci3081_1_1Package}{Package} $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+This links a package object to the carrier if the carrier is not already linking to another package (carrier can only carry one package at a time) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em arg} & a \hyperlink{classcsci3081_1_1Package}{Package} pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True upon succeeding linking the package to the carrier False otherwise (e.\+g. carrier is already linked to another package) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_abbf8f72d3b13da90793555e25053d793}\label{classcsci3081_1_1Carrier_abbf8f72d3b13da90793555e25053d793}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Battery\+Dead@{Battery\+Dead}}
+\index{Battery\+Dead@{Battery\+Dead}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Battery\+Dead()}{BatteryDead()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Carrier\+::\+Battery\+Dead (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This checks if the carrier is out of battery. 
+
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if the battery of the carrier is out F\+A\+L\+SE otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_aaeb0a45df6b9fa522e04681da272cb6f}\label{classcsci3081_1_1Carrier_aaeb0a45df6b9fa522e04681da272cb6f}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Battery\+Full@{Battery\+Full}}
+\index{Battery\+Full@{Battery\+Full}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Battery\+Full()}{BatteryFull()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Carrier\+::\+Battery\+Full (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function checks if the battery is full. 
+
+\begin{DoxyReturn}{Returns}
+bool True if battery is full. False otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_aa004703e60b8ffed9661ee204f619983}\label{classcsci3081_1_1Carrier_aa004703e60b8ffed9661ee204f619983}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Charging@{Charging}}
+\index{Charging@{Charging}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Charging()}{Charging()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Carrier\+::\+Charging (\begin{DoxyParamCaption}\item[{float}]{sec }\end{DoxyParamCaption})}
+
+
+
+This function is used to charge the battery of the carrier for a certain amount of time in seconds. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em sec} & amount of time in secs to charge the battery \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if the battery can be charged F\+A\+L\+SE otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a6fa3861b1b7acb89827e768308196cc1}\label{classcsci3081_1_1Carrier_a6fa3861b1b7acb89827e768308196cc1}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Drop\+Package@{Drop\+Package}}
+\index{Drop\+Package@{Drop\+Package}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Drop\+Package()}{DropPackage()}}
+{\footnotesize\ttfamily \hyperlink{classcsci3081_1_1Package}{Package} $\ast$ csci3081\+::\+Carrier\+::\+Drop\+Package (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This releases the link of the package from the carrier, making the package pointer of the carrier N\+U\+LL, and return a pointer to the just dropped/delivered package. 
+
+\begin{DoxyReturn}{Returns}
+a \hyperlink{classcsci3081_1_1Package}{Package} pointer to the just dropped/delivered package 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a0d871b65140eefec69158b14703d92bc}\label{classcsci3081_1_1Carrier_a0d871b65140eefec69158b14703d92bc}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Get\+Battery\+Obj@{Get\+Battery\+Obj}}
+\index{Get\+Battery\+Obj@{Get\+Battery\+Obj}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Get\+Battery\+Obj()}{GetBatteryObj()}}
+{\footnotesize\ttfamily \hyperlink{classcsci3081_1_1Battery}{Battery} $\ast$ csci3081\+::\+Carrier\+::\+Get\+Battery\+Obj (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function will return the \hyperlink{classcsci3081_1_1Battery}{Battery} object. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classcsci3081_1_1Battery}{Battery} \hyperlink{classcsci3081_1_1Battery}{Battery} in the drone 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a25d1396e9c91e9574ab752eaf0b24048}\label{classcsci3081_1_1Carrier_a25d1396e9c91e9574ab752eaf0b24048}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Get\+Drone\+Status\+When\+Battery\+Dies@{Get\+Drone\+Status\+When\+Battery\+Dies}}
+\index{Get\+Drone\+Status\+When\+Battery\+Dies@{Get\+Drone\+Status\+When\+Battery\+Dies}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Get\+Drone\+Status\+When\+Battery\+Dies()}{GetDroneStatusWhenBatteryDies()}}
+{\footnotesize\ttfamily std\+::string csci3081\+::\+Carrier\+::\+Get\+Drone\+Status\+When\+Battery\+Dies (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function gets the battery status (alive, dead on ground, or dead in the air) 
+
+\begin{DoxyReturn}{Returns}
+string battery status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a2b96f30454fee0766a5ed3a26fbf092c}\label{classcsci3081_1_1Carrier_a2b96f30454fee0766a5ed3a26fbf092c}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Get\+Status@{Get\+Status}}
+\index{Get\+Status@{Get\+Status}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Get\+Status()}{GetStatus()}}
+{\footnotesize\ttfamily void csci3081\+::\+Carrier\+::\+Get\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Overwritten Get\+Status from \hyperlink{classcsci3081_1_1ASubject}{A\+Subject}. This function creates the arguments required by Notify function and makes call to Notify function. This function should be called when path is added to the carrier and when the carrier becomes idle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em picojson\+::value\&} & event \\
+\hline
+{\em const} & \hyperlink{classentity__project_1_1IEntity}{entity\+\_\+project\+::\+I\+Entity}\& entity \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classcsci3081_1_1ASubject_a206a9ddb559da279011e2f9ea29663dc}{csci3081\+::\+A\+Subject}.
+
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a5f20ff445085ba10866ff83dc3d2ea93}\label{classcsci3081_1_1Carrier_a5f20ff445085ba10866ff83dc3d2ea93}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Have\+Package@{Have\+Package}}
+\index{Have\+Package@{Have\+Package}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Have\+Package()}{HavePackage()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Carrier\+::\+Have\+Package (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This checks if the carrier is already linked to a package. 
+
+\begin{DoxyReturn}{Returns}
+True if the carrier is already linked to a package (package pointer of the carrier is not N\+U\+LL) False otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_ac126252e1b6bf129d4369b299851211d}\label{classcsci3081_1_1Carrier_ac126252e1b6bf129d4369b299851211d}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Is\+Currently\+Charging@{Is\+Currently\+Charging}}
+\index{Is\+Currently\+Charging@{Is\+Currently\+Charging}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Is\+Currently\+Charging()}{IsCurrentlyCharging()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Carrier\+::\+Is\+Currently\+Charging (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function checks if the carrier battery is currently charging. 
+
+\begin{DoxyReturn}{Returns}
+bool True if battery is currently charging. False otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a10382f16402af20f4bc03eaad5eb9e30}\label{classcsci3081_1_1Carrier_a10382f16402af20f4bc03eaad5eb9e30}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Set\+Charging\+Status@{Set\+Charging\+Status}}
+\index{Set\+Charging\+Status@{Set\+Charging\+Status}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Set\+Charging\+Status()}{SetChargingStatus()}}
+{\footnotesize\ttfamily void csci3081\+::\+Carrier\+::\+Set\+Charging\+Status (\begin{DoxyParamCaption}\item[{bool}]{b }\end{DoxyParamCaption})}
+
+
+
+This function sets the carrier battery status. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em b} & T\+R\+UE if battery is charging. False otherwise. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a039d932119b4b3b7e076ff9e6ffada80}\label{classcsci3081_1_1Carrier_a039d932119b4b3b7e076ff9e6ffada80}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Set\+Drone\+Status\+When\+Battery\+Dies@{Set\+Drone\+Status\+When\+Battery\+Dies}}
+\index{Set\+Drone\+Status\+When\+Battery\+Dies@{Set\+Drone\+Status\+When\+Battery\+Dies}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Set\+Drone\+Status\+When\+Battery\+Dies()}{SetDroneStatusWhenBatteryDies()}}
+{\footnotesize\ttfamily void csci3081\+::\+Carrier\+::\+Set\+Drone\+Status\+When\+Battery\+Dies (\begin{DoxyParamCaption}\item[{std\+::string}]{status }\end{DoxyParamCaption})}
+
+
+
+This function sets the battery status when the battery dies (alive, dead on ground, or dead in the air) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em status} & Status of the battery. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_aede9d79fffb164f90fe30b19f2e2c854}\label{classcsci3081_1_1Carrier_aede9d79fffb164f90fe30b19f2e2c854}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Set\+Position@{Set\+Position}}
+\index{Set\+Position@{Set\+Position}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Set\+Position()}{SetPosition()}}
+{\footnotesize\ttfamily void csci3081\+::\+Carrier\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{std\+::vector$<$ float $>$}]{v }\end{DoxyParamCaption})}
+
+
+
+This function uses to set the new position of the carrier. However, carrier only moves in simulation if its dynamic attribute is set to true. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em agr} & a std\+::vector$<$float$>$ that has the new position of the carrier \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a0b8c743cb8ab7843a4cece11225634f4}\label{classcsci3081_1_1Carrier_a0b8c743cb8ab7843a4cece11225634f4}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Set\+Route@{Set\+Route}}
+\index{Set\+Route@{Set\+Route}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Set\+Route()}{SetRoute()}}
+{\footnotesize\ttfamily void csci3081\+::\+Carrier\+::\+Set\+Route (\begin{DoxyParamCaption}\item[{std\+::vector$<$ vector$<$ float $>$$>$}]{ }\end{DoxyParamCaption})}
+
+
+
+This function adds a full route to route attribute of the carrier This is useful when use for the Get\+Path() function from I\+Graph class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em agr} & a std\+::vector$<$std\+::vector$<$float$>$$>$ that has the positions need to be added \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1Carrier_a1f74a376887685a69b3d0512eb97188e}\label{classcsci3081_1_1Carrier_a1f74a376887685a69b3d0512eb97188e}} 
+\index{csci3081\+::\+Carrier@{csci3081\+::\+Carrier}!Set\+Speed@{Set\+Speed}}
+\index{Set\+Speed@{Set\+Speed}!csci3081\+::\+Carrier@{csci3081\+::\+Carrier}}
+\subsubsection{\texorpdfstring{Set\+Speed()}{SetSpeed()}}
+{\footnotesize\ttfamily void csci3081\+::\+Carrier\+::\+Set\+Speed (\begin{DoxyParamCaption}\item[{float}]{s }\end{DoxyParamCaption})}
+
+
+
+This sets the speed of the carrier. Change the speed of the carrier if the argument is a non-\/negative float number. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em s} & a non-\/negative float value for the carrier\textquotesingle{}s speed \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/\hyperlink{carrier_8h}{carrier.\+h}\item 
+/home/user/repo/project/src/carrier.\+cc\end{DoxyCompactItemize}

@@ -1,0 +1,115 @@
+\hypertarget{classcsci3081_1_1IDeliverySystem}{}\section{csci3081\+:\+:I\+Delivery\+System Class Reference}
+\label{classcsci3081_1_1IDeliverySystem}\index{csci3081\+::\+I\+Delivery\+System@{csci3081\+::\+I\+Delivery\+System}}
+
+
+The abstract facade of a drone delivery subsystem.  
+
+
+
+
+{\ttfamily \#include $<$delivery\+\_\+system.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:I\+Delivery\+System\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classcsci3081_1_1IDeliverySystem__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1IDeliverySystem_a756634386c8a889ca93ba0e2fc960155}\label{classcsci3081_1_1IDeliverySystem_a756634386c8a889ca93ba0e2fc960155}} 
+virtual \hyperlink{classcsci3081_1_1IDeliverySystem_a756634386c8a889ca93ba0e2fc960155}{$\sim$\+I\+Delivery\+System} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classcsci3081_1_1IDeliverySystem_ae152276130e859b052f1d89417be6fc2}{Run\+Script} (const picojson\+::array \&script, \hyperlink{classentity__project_1_1IEntitySystem}{I\+Entity\+System} $\ast$system) const =0
+\begin{DoxyCompactList}\small\item\em Translates a set of J\+S\+ON commands into method calls for the drone delivery system. \end{DoxyCompactList}\item 
+virtual \hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$ \hyperlink{classcsci3081_1_1IDeliverySystem_abc1959b16d1fcfdeea2a2d8af0733301}{Create\+Entity} (const picojson\+::object \&val)=0
+\begin{DoxyCompactList}\small\item\em Creates an entity based on a J\+S\+ON object passed in. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1IDeliverySystem_a4d6a5fa94ab597dbe88ae0046d698e76}\label{classcsci3081_1_1IDeliverySystem_a4d6a5fa94ab597dbe88ae0046d698e76}} 
+virtual void \hyperlink{classcsci3081_1_1IDeliverySystem_a4d6a5fa94ab597dbe88ae0046d698e76}{Add\+Factory} (\hyperlink{classentity__project_1_1IEntityFactory}{I\+Entity\+Factory} $\ast$factory)=0
+\begin{DoxyCompactList}\small\item\em Adds an entity factory to a composite factory for creating new entities. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1IDeliverySystem_ae8fe57f0627f3429d4a8cea4d910e233}\label{classcsci3081_1_1IDeliverySystem_ae8fe57f0627f3429d4a8cea4d910e233}} 
+virtual void \hyperlink{classcsci3081_1_1IDeliverySystem_ae8fe57f0627f3429d4a8cea4d910e233}{Add\+Entity} (\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$entity)=0
+\begin{DoxyCompactList}\small\item\em Adds an entity to an entity vector member. Once added, entities can be affected by the system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1IDeliverySystem_ac379454e54cc392ff7c24f565a3e8353}\label{classcsci3081_1_1IDeliverySystem_ac379454e54cc392ff7c24f565a3e8353}} 
+virtual void \hyperlink{classcsci3081_1_1IDeliverySystem_ac379454e54cc392ff7c24f565a3e8353}{Set\+Graph} (const \hyperlink{classentity__project_1_1IGraph}{I\+Graph} $\ast$graph)=0
+\begin{DoxyCompactList}\small\item\em Adds the graph used for dynamic routing in the delivery system. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classcsci3081_1_1IDeliverySystem_a25210b242623675309c16e8a2c3cfd0e}{Schedule\+Delivery} (\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$package, \hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$dest)=0
+\begin{DoxyCompactList}\small\item\em Schedule a drone delivery for a package to be delivered to a customer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1IDeliverySystem_a53161d8f9f94ee5f56e39f98b52ac3e2}\label{classcsci3081_1_1IDeliverySystem_a53161d8f9f94ee5f56e39f98b52ac3e2}} 
+virtual void \hyperlink{classcsci3081_1_1IDeliverySystem_a53161d8f9f94ee5f56e39f98b52ac3e2}{Add\+Observer} (\hyperlink{classentity__project_1_1IEntityObserver}{I\+Entity\+Observer} $\ast$observer)=0
+\begin{DoxyCompactList}\small\item\em Add an observer to a specific entity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1IDeliverySystem_a79d4336f9fd4bcb837a5be1713f84ab1}\label{classcsci3081_1_1IDeliverySystem_a79d4336f9fd4bcb837a5be1713f84ab1}} 
+virtual void \hyperlink{classcsci3081_1_1IDeliverySystem_a79d4336f9fd4bcb837a5be1713f84ab1}{Remove\+Observer} (\hyperlink{classentity__project_1_1IEntityObserver}{I\+Entity\+Observer} $\ast$observer)=0
+\begin{DoxyCompactList}\small\item\em Remove an observer from a specific entity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1IDeliverySystem_aca4e7e3e9a9a19ca87f788935b882277}\label{classcsci3081_1_1IDeliverySystem_aca4e7e3e9a9a19ca87f788935b882277}} 
+virtual const std\+::vector$<$ \hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$ $>$ \& \hyperlink{classcsci3081_1_1IDeliverySystem_aca4e7e3e9a9a19ca87f788935b882277}{Get\+Entities} () const =0
+\begin{DoxyCompactList}\small\item\em Returns all the entities that are added to the drone system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1IDeliverySystem_a3ef0dda19a6e1ad322bb6dd35ae3e3f1}\label{classcsci3081_1_1IDeliverySystem_a3ef0dda19a6e1ad322bb6dd35ae3e3f1}} 
+virtual void \hyperlink{classcsci3081_1_1IDeliverySystem_a3ef0dda19a6e1ad322bb6dd35ae3e3f1}{Update} (float dt)=0
+\begin{DoxyCompactList}\small\item\em Updates the drone system time by dt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The abstract facade of a drone delivery subsystem. 
+
+U\+S\+A\+GE\+: this class is meant to be inherited by a delivery system class you create. Extend this class to manage the drone delivery subsystem of entities. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1IDeliverySystem_abc1959b16d1fcfdeea2a2d8af0733301}\label{classcsci3081_1_1IDeliverySystem_abc1959b16d1fcfdeea2a2d8af0733301}} 
+\index{csci3081\+::\+I\+Delivery\+System@{csci3081\+::\+I\+Delivery\+System}!Create\+Entity@{Create\+Entity}}
+\index{Create\+Entity@{Create\+Entity}!csci3081\+::\+I\+Delivery\+System@{csci3081\+::\+I\+Delivery\+System}}
+\subsubsection{\texorpdfstring{Create\+Entity()}{CreateEntity()}}
+{\footnotesize\ttfamily virtual \hyperlink{classentity__project_1_1IEntity}{I\+Entity}$\ast$ csci3081\+::\+I\+Delivery\+System\+::\+Create\+Entity (\begin{DoxyParamCaption}\item[{const picojson\+::object \&}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates an entity based on a J\+S\+ON object passed in. 
+
+Passes a json object to an entity factory to create that entity. The entity creation should be done by your entity factory.
+
+Essentially, this method represents a factory so that creation is separate from the system itself. This means that entities can be created for use outside the subsystem. It also ensures entities can be created within or outside the system for any reason. 
+
+Implemented in \hyperlink{classcsci3081_1_1DeliverySimulation_a2441732ada38ae3b816266c9d471e528}{csci3081\+::\+Delivery\+Simulation}.
+
+\mbox{\Hypertarget{classcsci3081_1_1IDeliverySystem_ae152276130e859b052f1d89417be6fc2}\label{classcsci3081_1_1IDeliverySystem_ae152276130e859b052f1d89417be6fc2}} 
+\index{csci3081\+::\+I\+Delivery\+System@{csci3081\+::\+I\+Delivery\+System}!Run\+Script@{Run\+Script}}
+\index{Run\+Script@{Run\+Script}!csci3081\+::\+I\+Delivery\+System@{csci3081\+::\+I\+Delivery\+System}}
+\subsubsection{\texorpdfstring{Run\+Script()}{RunScript()}}
+{\footnotesize\ttfamily virtual void csci3081\+::\+I\+Delivery\+System\+::\+Run\+Script (\begin{DoxyParamCaption}\item[{const picojson\+::array \&}]{script,  }\item[{\hyperlink{classentity__project_1_1IEntitySystem}{I\+Entity\+System} $\ast$}]{system }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Translates a set of J\+S\+ON commands into method calls for the drone delivery system. 
+
+The script will be called by main.\+cc Override this method only if you would like to control or extend your own script commands. 
+
+Implements \hyperlink{classentity__project_1_1IEntitySystem_a57a31878f9ae43f2ac3e70aa1903b8ec}{entity\+\_\+project\+::\+I\+Entity\+System}.
+
+
+
+Implemented in \hyperlink{classcsci3081_1_1DeliverySimulation_a332938cb4b972af169ad58dbc1b3bb05}{csci3081\+::\+Delivery\+Simulation}.
+
+\mbox{\Hypertarget{classcsci3081_1_1IDeliverySystem_a25210b242623675309c16e8a2c3cfd0e}\label{classcsci3081_1_1IDeliverySystem_a25210b242623675309c16e8a2c3cfd0e}} 
+\index{csci3081\+::\+I\+Delivery\+System@{csci3081\+::\+I\+Delivery\+System}!Schedule\+Delivery@{Schedule\+Delivery}}
+\index{Schedule\+Delivery@{Schedule\+Delivery}!csci3081\+::\+I\+Delivery\+System@{csci3081\+::\+I\+Delivery\+System}}
+\subsubsection{\texorpdfstring{Schedule\+Delivery()}{ScheduleDelivery()}}
+{\footnotesize\ttfamily virtual void csci3081\+::\+I\+Delivery\+System\+::\+Schedule\+Delivery (\begin{DoxyParamCaption}\item[{\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$}]{package,  }\item[{\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$}]{dest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Schedule a drone delivery for a package to be delivered to a customer. 
+
+Package/\+Customer details allows extra specifications for package delivery based on the business needs. 
+
+Implemented in \hyperlink{classcsci3081_1_1DeliverySimulation_a4d777e31fb067b5a5475c88116a321e1}{csci3081\+::\+Delivery\+Simulation}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/.\+dependencies/include/\+Entity\+Project/facade/delivery\+\_\+system.\+h\end{DoxyCompactItemize}

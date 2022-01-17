@@ -1,0 +1,161 @@
+\hypertarget{classcsci3081_1_1Vector}{}\section{csci3081\+:\+:Vector Class Reference}
+\label{classcsci3081_1_1Vector}\index{csci3081\+::\+Vector@{csci3081\+::\+Vector}}
+
+
+This is the interface class for the \hyperlink{classcsci3081_1_1Vector3D}{Vector3D} and \hyperlink{classcsci3081_1_1Vector2D}{Vector2D} classes.  
+
+
+
+
+{\ttfamily \#include $<$vector.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Vector\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{classcsci3081_1_1Vector__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1Vector_a25668daef8abbefe545400b61370e465}\label{classcsci3081_1_1Vector_a25668daef8abbefe545400b61370e465}} 
+void \hyperlink{classcsci3081_1_1Vector_a25668daef8abbefe545400b61370e465}{SetX} (float x\+\_\+)
+\begin{DoxyCompactList}\small\item\em This function uses to set x coordinator of a vector instance. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Vector_ade27e84fb7cfc517d10982a231cf1514}\label{classcsci3081_1_1Vector_ade27e84fb7cfc517d10982a231cf1514}} 
+void \hyperlink{classcsci3081_1_1Vector_ade27e84fb7cfc517d10982a231cf1514}{SetZ} (float z\+\_\+)
+\begin{DoxyCompactList}\small\item\em This function uses to set z coordinator of a vector instance. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Vector_a22a861b6ac42caa61304da2f291eccff}\label{classcsci3081_1_1Vector_a22a861b6ac42caa61304da2f291eccff}} 
+float \hyperlink{classcsci3081_1_1Vector_a22a861b6ac42caa61304da2f291eccff}{GetX} () const
+\begin{DoxyCompactList}\small\item\em This function uses to get x coordinator of a vector instance. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Vector_a3e4a88cae4754e20f214a3029a8831dd}\label{classcsci3081_1_1Vector_a3e4a88cae4754e20f214a3029a8831dd}} 
+float \hyperlink{classcsci3081_1_1Vector_a3e4a88cae4754e20f214a3029a8831dd}{GetZ} () const
+\begin{DoxyCompactList}\small\item\em This function uses to get z coordinator of a vector instance. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Vector_aeefa39719f335e798a9475f7f9cf8ca7}\label{classcsci3081_1_1Vector_aeefa39719f335e798a9475f7f9cf8ca7}} 
+float \hyperlink{classcsci3081_1_1Vector_aeefa39719f335e798a9475f7f9cf8ca7}{GetY} () const
+\begin{DoxyCompactList}\small\item\em This function uses to get y coordinator of a vector instance. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Vector_af9e09e9b9ce246fe42907c78533d3dc4}\label{classcsci3081_1_1Vector_af9e09e9b9ce246fe42907c78533d3dc4}} 
+float \hyperlink{classcsci3081_1_1Vector_af9e09e9b9ce246fe42907c78533d3dc4}{Magnitude} ()
+\begin{DoxyCompactList}\small\item\em This function returns the magitude of a vector instance. \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1Vector_a0ce4762325d81521ba1e1a1f6ee1a171}{operator==} (const \hyperlink{classcsci3081_1_1Vector}{Vector} \&)
+\begin{DoxyCompactList}\small\item\em Convert vector distance to std\+::vector$<$float$>$ instances. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Vector_a8f0661975d9635c803551cd778f75ed4}\label{classcsci3081_1_1Vector_a8f0661975d9635c803551cd778f75ed4}} 
+virtual void \hyperlink{classcsci3081_1_1Vector_a8f0661975d9635c803551cd778f75ed4}{Print} ()=0
+\begin{DoxyCompactList}\small\item\em Function to print the coordinate of a vector instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1Vector_aad8fb83cdb7c74bec16148252a30ef85}\label{classcsci3081_1_1Vector_aad8fb83cdb7c74bec16148252a30ef85}} 
+float {\bfseries x}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1Vector_a4636a264c229f016fcca5b066d6b2329}\label{classcsci3081_1_1Vector_a4636a264c229f016fcca5b066d6b2329}} 
+float {\bfseries y}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1Vector_a11acb4af7109f0f16cec3eb95c881128}\label{classcsci3081_1_1Vector_a11acb4af7109f0f16cec3eb95c881128}} 
+float \hyperlink{classcsci3081_1_1Vector_a11acb4af7109f0f16cec3eb95c881128}{z}
+\begin{DoxyCompactList}\small\item\em Coordinates of a vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classcsci3081_1_1Vector_ae3bcd7cf17dbea6b1f935534c69ca0f0}{Dot\+Product} (const \hyperlink{classcsci3081_1_1Vector}{Vector} \&v1, const \hyperlink{classcsci3081_1_1Vector}{Vector} \&v2)
+\begin{DoxyCompactList}\small\item\em Compute the dot product (float variable) between two vectors instances. \end{DoxyCompactList}\item 
+float \hyperlink{classcsci3081_1_1Vector_acd23c5473c105b42b0656eaa0ffa02d2}{Distance} (const \hyperlink{classcsci3081_1_1Vector}{Vector} \&v1, const \hyperlink{classcsci3081_1_1Vector}{Vector} \&v2)
+\begin{DoxyCompactList}\small\item\em Compute the distance (float variable) between two vectors instances. \end{DoxyCompactList}\item 
+std\+::vector$<$ float $>$ \hyperlink{classcsci3081_1_1Vector_a7647fb9682b28785ce754fa445a2d365}{to\+Vector\+Float} (\hyperlink{classcsci3081_1_1Vector}{Vector} \&v)
+\begin{DoxyCompactList}\small\item\em Convert vector distance to std\+::vector$<$float$>$ instances. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the interface class for the \hyperlink{classcsci3081_1_1Vector3D}{Vector3D} and \hyperlink{classcsci3081_1_1Vector2D}{Vector2D} classes. 
+
+This class will set up (virtual) common methods as well as attributes shared by both \hyperlink{classcsci3081_1_1Vector3D}{Vector3D} and vector2D class. Also has some friends functions to find relationship between more than one vector instances 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1Vector_a0ce4762325d81521ba1e1a1f6ee1a171}\label{classcsci3081_1_1Vector_a0ce4762325d81521ba1e1a1f6ee1a171}} 
+\index{csci3081\+::\+Vector@{csci3081\+::\+Vector}!operator==@{operator==}}
+\index{operator==@{operator==}!csci3081\+::\+Vector@{csci3081\+::\+Vector}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Vector\+::operator== (\begin{DoxyParamCaption}\item[{const \hyperlink{classcsci3081_1_1Vector}{Vector} \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Convert vector distance to std\+::vector$<$float$>$ instances. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v} & \hyperlink{classcsci3081_1_1Vector}{Vector} instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if argument vector is equal to current object False otherwise 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1Vector_acd23c5473c105b42b0656eaa0ffa02d2}\label{classcsci3081_1_1Vector_acd23c5473c105b42b0656eaa0ffa02d2}} 
+\index{csci3081\+::\+Vector@{csci3081\+::\+Vector}!Distance@{Distance}}
+\index{Distance@{Distance}!csci3081\+::\+Vector@{csci3081\+::\+Vector}}
+\subsubsection{\texorpdfstring{Distance}{Distance}}
+{\footnotesize\ttfamily float Distance (\begin{DoxyParamCaption}\item[{const \hyperlink{classcsci3081_1_1Vector}{Vector} \&}]{v1,  }\item[{const \hyperlink{classcsci3081_1_1Vector}{Vector} \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Compute the distance (float variable) between two vectors instances. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v1} & \hyperlink{classcsci3081_1_1Vector}{Vector} instance \\
+\hline
+\mbox{\tt in}  & {\em v2} & \hyperlink{classcsci3081_1_1Vector}{Vector} instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float Distance of v1 and v2 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1Vector_ae3bcd7cf17dbea6b1f935534c69ca0f0}\label{classcsci3081_1_1Vector_ae3bcd7cf17dbea6b1f935534c69ca0f0}} 
+\index{csci3081\+::\+Vector@{csci3081\+::\+Vector}!Dot\+Product@{Dot\+Product}}
+\index{Dot\+Product@{Dot\+Product}!csci3081\+::\+Vector@{csci3081\+::\+Vector}}
+\subsubsection{\texorpdfstring{Dot\+Product}{DotProduct}}
+{\footnotesize\ttfamily float Dot\+Product (\begin{DoxyParamCaption}\item[{const \hyperlink{classcsci3081_1_1Vector}{Vector} \&}]{v1,  }\item[{const \hyperlink{classcsci3081_1_1Vector}{Vector} \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Compute the dot product (float variable) between two vectors instances. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v1} & \hyperlink{classcsci3081_1_1Vector}{Vector} instance \\
+\hline
+\mbox{\tt in}  & {\em v2} & \hyperlink{classcsci3081_1_1Vector}{Vector} instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float Dot product of v1 and v2 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1Vector_a7647fb9682b28785ce754fa445a2d365}\label{classcsci3081_1_1Vector_a7647fb9682b28785ce754fa445a2d365}} 
+\index{csci3081\+::\+Vector@{csci3081\+::\+Vector}!to\+Vector\+Float@{to\+Vector\+Float}}
+\index{to\+Vector\+Float@{to\+Vector\+Float}!csci3081\+::\+Vector@{csci3081\+::\+Vector}}
+\subsubsection{\texorpdfstring{to\+Vector\+Float}{toVectorFloat}}
+{\footnotesize\ttfamily std\+::vector$<$float$>$ to\+Vector\+Float (\begin{DoxyParamCaption}\item[{\hyperlink{classcsci3081_1_1Vector}{Vector} \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Convert vector distance to std\+::vector$<$float$>$ instances. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v} & \hyperlink{classcsci3081_1_1Vector}{Vector} instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$float$>$ Have x,y,z as its elements 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/\hyperlink{vector_8h}{vector.\+h}\item 
+/home/user/repo/project/src/vector.\+cc\end{DoxyCompactItemize}

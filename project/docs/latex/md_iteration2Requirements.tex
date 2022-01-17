@@ -1,0 +1,381 @@
+\subsection*{Iteration 2 -\/ Version 6, April 19th -\/ Due Date Change -\/ Iteration 2 Final Deliverable is due by 11\+:59 PM April 20th}
+
+\subsection*{Iteration 2 -\/ Version 5, March 28th -\/ Adding priority 4 to the final deliverable requirements and adding delivery of multiple packages to multiple customers in the first deliverable.}
+
+\subsection*{Iteration 2 -\/ V\+E\+R\+S\+I\+ON 4, March 26th -\/ Adding clarification regarding path passed to observers and robot entity.}
+
+\subsection*{Iteration 2 -\/ V\+E\+R\+S\+I\+ON 3, March 23rd -\/ Adding clarification that simulations should be capable of multiple-\/package simulations.}
+
+\subsection*{Iteration 2 -\/ V\+E\+R\+S\+I\+ON 2, March 23rd -\/ {\bfseries Changed the due date of the final deliverable from April 12th to April 19th}}
+
+\subsection*{Iteration 2 -\/ V\+E\+R\+S\+I\+ON 1, March 22nd -\/ {\bfseries N\+O\+TE, T\+HE R\+E\+Q\+U\+I\+R\+E\+M\+E\+N\+TS IN T\+H\+IS D\+O\+C\+U\+M\+E\+NT A\+RE S\+U\+B\+J\+E\+CT TO C\+H\+A\+N\+GE. T\+H\+E\+RE W\+I\+LL BE A C\+A\+N\+V\+AS A\+N\+N\+O\+U\+N\+C\+E\+M\+E\+NT W\+H\+EN T\+H\+E\+RE IS A C\+H\+A\+N\+GE TO T\+H\+IS D\+O\+C\+U\+M\+E\+NT.}}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering \textbf{ Date }&\textbf{ Item }&\textbf{ Description of Verification and Validation of Deliverable(s)  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\PBS\centering \textbf{ Date }&\textbf{ Item }&\textbf{ Description of Verification and Validation of Deliverable(s)  }\\\cline{1-3}
+\endhead
+\PBS\centering F\+RI, April 2nd, 11\+:55pm &Robot also delivers packages and implement the Observer Pattern for observing Packages, Drones, and Robots. Fix your Google\+Tests &inspection \\\cline{1-3}
+\PBS\centering Mon, April 20 , 11\+:59pm &Incorporate a strategy for choosing different routes (smart, beeline, parabolic) for the drone and when the battery is depleted the drone or robot will drop the package and become idle. The package must be rescheduled for delivery &Automated tests and inspection \\\cline{1-3}
+\end{longtabu}
+In the previous iteration you showed that a drone can deliver a package to a customer either using a predefined route or a beeline route. In this iteration we will be enhancing the functionality of the previous iteration to include a robot that also delivers packages, report when a package is scheduled, in route, and when it has been delivered. Add additional reporting features for the robot and drone to report when they are moving or idle. You will also implement a strategy for routes the drone will take either smart, beeline, or parabolic. (All three routes will be tested). Add the functionality of determining if the battery of either the robot or the drone is depleted the package will be dropped, rescheduled for delivery, and the robot or drone will be idle.
+
+\subsubsection*{Team}
+
+You will work with your team to complete this iteration. A lab will be posted describing how this will work for the remainder of the iterations. At the end of the iteration everyone on the team will evaluate the performance of each team member. The evaluation process will be used in determining the grade of each team member.
+
+\subsubsection*{First Deliverable -\/--- Due Friday April 2nd by 11\+:59 PM}
+
+0. Download the latest support code from the shared upstream. Contains a modification to the jsonhelper and additional scenes for you to test your functionality.
+
+
+\begin{DoxyEnumerate}
+\item Add a robot entity to the simulation that will also deliver packages. The robot cannot fly, but it can follow the routes to deliver the packages to the customer. Create google tests for all the public methods of the new robot class.
+\item Implement the observer pattern to report when a package is scheduled, delivered, or enroute to all of the observers. In addition, report when either entity the drone or the robot are moving or idle. Further details can be found in the section Deliverables and Submission Process. {\bfseries See\+: \href{https://www.geeksforgeeks.org/observer-pattern-set-1-introduction/}{\tt Observer Pattern} and also chapter two in the heads first design book} for an overview of the observer pattern.
+\item {\bfseries The simulation must show the robot/drone can deliver multiple packages to multiple customers.}
+\item Fix your google tests from the first iteration based upon the feedback received.
+\end{DoxyEnumerate}
+
+\subsubsection*{Final Deliverable --- Due Monday April 19th by 11\+:59 PM}
+
+
+\begin{DoxyEnumerate}
+\item The drone will be choosing a route using one of three routes\+: shortest path algorithm, beeline, or parabolic based upon differing sets of criteria, for example\+: Time of day and/or route information, etc. Further details can be found in the section Deliverables and Submission Process. The strategy pattern may be useful for designing and implementing this capability. {\bfseries See\+: \href{https://www.geeksforgeeks.org/strategy-pattern-set-1/}{\tt Strategy Pattern}} for an overview of the strategy pattern. See the following links for examples of implementation of the strategy patten in java and C++\+:
+\end{DoxyEnumerate}
+
+a. \href{https://www.geeksforgeeks.org/strategy-pattern-set-2}{\tt https\+://www.\+geeksforgeeks.\+org/strategy-\/pattern-\/set-\/2} (in Java) b. \href{https://sourcemaking.com/design_patterns/strategy/cpp/1}{\tt https\+://sourcemaking.\+com/design\+\_\+patterns/strategy/cpp/1} (in c++)
+
+
+\begin{DoxyEnumerate}
+\item Priority 4 must be implemented in the simulation.
+\item In your Doxygen mainpage add a section named\+: $\ast$$\ast$\char`\"{}\+Designing and Implementing the different routes\char`\"{}$\ast$$\ast$ that discusses the design and implementation of different routes and any design pattern used by the drone to deliver packages. Specify what classes and methods you had to add, where you had to add them, -\/ and include pictures where applicable and possible. {\bfseries Note which parts of the design and implementation were most difficult for you, and include any tips or advice on how to understand and implement the different routes (for example, what sources of information (documentation, lecture, lab) that helped you understand the routes and enabled you to design and implement it (for example, what sources of information (e.\+g., links to web sites, books, lecture, lab)).}
+\item In your Doxygen mainpage add a section named\+: {\bfseries Team Documentation} that includes summaries of team meetings (minimum of three) and who was assigned a task to complete.
+\item Ensure all new classes and methods you have written are properly documented. All header files must document the classes and their methods using Doxygen, and all implementation (that is, $\ast$.cc) files must have self-\/documenting code. {\bfseries You do not need to document the web server code base.}
+\item Correct and update your U\+ML class diagram from Iteration 1 to include the changes to your code including all classes you added to complete the iteration 2 requirements and their relationships to each other and the classes that previously existed in the simulation.
+\end{DoxyEnumerate}
+
+{\bfseries N\+O\+TE, if you are unable to complete all or a portion of an implementation item, include a discussion of your P\+R\+O\+P\+O\+S\+ED design of the observer pattern in your mainpage, and your P\+R\+O\+P\+O\+S\+ED class design / changes for all your implementation items in your U\+ML and and note that in a paragraph at the top of your mainpage (Tell us what you did not sucessfully implement -\/ success is defined as the functionality compiles and executes) so you recieve credit for your design efforts.}
+
+\subsection*{Deliverables and Submission Process}
+
+$>$You will submit all your deliverables via Git\+Hub according to the process specified lab 10. We will tag and pull your repository at the specified due dates and grade them according to the contents at that time.
+
+$>$\#\#\#\# You must verify that your submission compiles on a cselabs machine and it is complete. You will receive zero or be heavily penalized if your code does not compile and/or we cannot generate documentation using Doxygen as specified in Lab 8 upon submission.
+
+The schedule is very tight, and it is important that you keep up with the project. The project will continue to build throughout the semester, and if you get behind, it will be very difficult to catch up. For this reason, {\bfseries late assignments will will receive the following penalities\+: 1 day late -- 10\% deduction, 2 days late -- 20\% deduction. A day is defined as a regular day of the week, thus if your submission is due on Friday at 11\+:55 PM and it is submitted on Saturday it is one day late. Submissions after two days will not be accepted}, but you will receive partial credit for partial completion of the requirements -\/ so {\bfseries A\+L\+W\+A\+YS M\+A\+KE S\+U\+RE TO S\+U\+B\+M\+IT S\+O\+M\+E\+T\+H\+I\+NG -\/ S\+O\+ME P\+O\+I\+N\+TS A\+RE B\+E\+T\+T\+ER T\+H\+AN N\+O\+NE}.
+
+You can convert this requirements document to pdf using this tool\+: \href{http://www.markdowntopdf.com/}{\tt http\+://www.\+markdowntopdf.\+com/}
+
+
+
+
+
+\subsubsection*{Overview}
+
+In this iteration, you do the following development including\+:
+
+
+\begin{DoxyItemize}
+\item writing a robot class that will also deliver packages.
+\item formulating unit tests with Google Test
+\item adding to the simulation class structure
+\item ensuring coding style compliance
+\item augmenting the design discussion in your doxygen mainpage to include a discussion on your design and implementation of the routes used by the drone.
+\item augmenting the design discussion in your doxygen mainpage to include a section on your teamwork for this iteration
+\item modify/update your iteration U\+ML design documentation to include the classes and methods you add or refactor in iteration 2.
+\item using Doxygen to document and generate documentation.
+\item Use git, and produce self-\/documenting code (i.\+e. good organization and naming conventions).
+\end{DoxyItemize}
+
+Teaching staff (Undergraduate TA\textquotesingle{}s, Graduate TA\textquotesingle{}s, and Instructors) will also be working diligently to provide the structure and support for development, testing, and documentation. Automation in unit testing, style compliance, in-\/house github testing, and documentation will make this an easier process, however it means that you will have to develop within the constraints of these systems. {\bfseries Often there is a learning curve and a lot of systems trouble-\/shooting to get it all working, so start early!}
+
+\subsection*{Documentation and Code Implementation Requirements}
+
+{\bfseries R\+E\+Q\+U\+I\+R\+E\+M\+E\+N\+TS you need to fulfill}
+
+\begin{quote}
+This is just functionality. Along the way, make sure to document the code using Doxygen syntax in the header files, and self documenting code (as discussed in Mc\+Connell\textquotesingle{}s text in Chapter 32) in your class implementation ($\ast$.cc) files. and the main function. \end{quote}
+
+
+Below is a prioritized list of enhancements to our support code to make the simulation realistic. {\bfseries Complete all functionality in one priority level before moving on to the next.} In this way, if we run out of time, the low priority items will be dropped from the requirements.
+
+\paragraph*{Priority Level 1\+:}
+
+
+\begin{DoxyEnumerate}
+\item Fix your Google Tests from Iteration 1.
+\item Create a Robot class that can deliver packages to a customer. The Robot cannot fly, therefore it will be grounded and will essentially have the same functionality of the drone class. The Robot class should use the \char`\"{}smart\char`\"{} route method, which uses the I\+Graph\+::\+Get\+Path() function. The Robot entity will be specified in Create\+Entity when the json contains \char`\"{}robot\char`\"{} as the value for the \char`\"{}type\char`\"{} key.
+\end{DoxyEnumerate}
+
+\paragraph*{Priority Level 2\+:}
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries Allow for multiple packages to be delivered in a simulation}
+\begin{DoxyItemize}
+\item Having only one package scheduled and delivered in a simulation is very constricting. We would like simulations to be capable of delivering multiple packages, utilizing multiple robots/drones.
+\item Scheduling logic is open-\/ended and up to you to decide. You can determine which Drone/\+Robot delivers which package however you want. One simple metric could be choosing whichever Drone/\+Robot is closest to the package and is not currently making a delivery.
+\item Drones/\+Robots should only be capable of delivering one package at a time.
+\item If a Package is scheduled for delivery at a time when no Drone/\+Robot is available, the Package should be delivered when one of the Drones/\+Robots finishing making their delivery.
+\item Remember to run a specific scene with {\ttfamily ./bin/run.sh scenes/$<$name\+\_\+of\+\_\+scene\+\_\+file$>$}, there are a few scene files which include multiple packages so you can debug this feature of your simulation. See the file {\ttfamily project/web/scenes/scene\+\_\+descriptions.\+md} for a description of each scene file.
+\end{DoxyItemize}
+\item {\bfseries Observe Packages}
+\begin{DoxyItemize}
+\item Observers will be added to your simulation through the {\ttfamily Add\+Observer} method. Any Observers added should be notified by calling their {\ttfamily On\+Event()} method when the described events occur.
+\item We have already made observers for you\+: {\itshape the Web\+Scene\+Viewer and the Entity\+Console\+Logger}. The teams task is to implement the subject part of the Observer pattern, your team does not need to implement any Observers.
+\item When a package has been scheduled, picked up, or delivered, all observers associated with the simulation should have their {\itshape On\+Event(...) method} called. This method is part of the front-\/end code, but you need to pass the correct information to it in regards to the observer in the following situations\+:
+\begin{DoxyItemize}
+\item {\bfseries Package scheduled\+:} \begin{quote}
+observer-\/$>$On\+Event(\{“type”\+: “notify”, “value”\+: “scheduled” \}, package) \end{quote}
+
+\item {\bfseries Package picked up by drone or robot\+:} \begin{quote}
+observer-\/$>$On\+Event(\{“type”\+: “notify”, “value”\+: “en route” \}, package) \end{quote}
+
+\item {\bfseries Package dropped off by drone or robot\+:} \begin{quote}
+observer-\/$>$On\+Event(\{“type”\+: “notify”, “value”\+: “delivered” \}, package) \end{quote}
+
+\item {\itshape {\bfseries This notification will be displayed as an overlay on top of the visualization.}}
+\item Packages\textquotesingle{} notifications should be passed to all observers associated to the simulation.
+\item You should be able to remove any observers from the simulation with the remove\+Observer(...) method.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item {\bfseries Observe Drone/\+Robot}
+\begin{DoxyItemize}
+\item We need to be notified of all drone/robot path changes so we can analyze and keep track of the drones/robots, as well as draw the routes of drones/robots in the simulation.
+\item When a Drone/\+Robot begins moving, it should pass the path of its current destination to all observers. (If the Drone/\+Robot is moving to a Package, it should pass the path to the Package, if it is moving to a Customer, it should pass the path to the Customer).
+\item When a drone/robot stops moving or starts moving all observers associated with the simulation should have their {\itshape On\+Event(...) method} called. This method is part of the front-\/end code, but you need to pass the correct information to in regards to the observer in the following situations\+:
+\begin{DoxyItemize}
+\item {\bfseries Drone/\+Robot enters idle state (stops moving)\+:} $>$observer-\/$>$On\+Event(\{“type”\+: “notify”, “value”\+: “idle” \}, drone)
+\item {\bfseries Drone/\+Robot enters moving state\+:} (See the Json\+Helper for how to encode the path) $>$observer-\/$>$On\+Event(\{“type”\+: “notify”, “value”\+: “moving” “path”\+:\mbox{[}\mbox{[}x0,y0,z0\mbox{]},\mbox{[}x1,y1,z1\mbox{]},...,\mbox{[}xn,yn,zn\mbox{]}\mbox{]}\}, drone)
+\item Drones and robots should notify all observers associated with the simulation.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\paragraph*{Priority Level 3\+: Implement a different drone route using the Strategy Pattern}
+
+To enhance the simulation even further, the drone will use different routes to deliver the package to the customer. The routes to implement are\+:
+\begin{DoxyItemize}
+\item smart
+\item beeline
+\item parabolic
+\end{DoxyItemize}
+
+The routing strategy that a drone uses will be specified in the details object that is passed into the Create\+Entity function, under the key \textquotesingle{}path\textquotesingle{}. The possible values for the \textquotesingle{}path\textquotesingle{} key are \textquotesingle{}smart\textquotesingle{}, \textquotesingle{}beeline\textquotesingle{}, and \textquotesingle{}parabolic\textquotesingle{}. For example, if a drone has a details object where \textquotesingle{}path\textquotesingle{} = \textquotesingle{}smart\textquotesingle{}, it should use the \textquotesingle{}smart\textquotesingle{} pathing strategy.
+
+How to implement this priority will be discussed via lecture and a lab.
+
+\paragraph*{Priority Level 4\+: Drone/\+Robot Delivery Functionality}
+
+Drones and robots will have the following realistic limitation of battery life (in seconds). The following rules will apply for drones and robots\+:
+
+
+\begin{DoxyItemize}
+\item If a \textquotesingle{}battery\+\_\+capacity\textquotesingle{} key is present in the {\ttfamily details} object passed to {\ttfamily Create\+Entity()}, the robot/drone should be initialized with a battery of max capacity equal to the value of the \textquotesingle{}battery\+\_\+capacity\textquotesingle{} key (which will be a floating point number).
+\item When either are moving the battery life starts to drain. Once the battery life is gone, the robot or the drone will switch to idle mode and no longer move. When this occurs the package will be dropped and should be rescheduled. This event needs to be reported to the observer that the package has been scheduled again according to priority 2 requirements. In addition, the robot or drone also need to report to the observer a change in state.
+\item If a package is dropped a new drone/robot should be allocated to complete the delivery.
+\item Drones/\+Robots cannot exceed their maximum speed.
+\item When Drones/\+Robots enter idle mode when not moving and the battery does not drain since they are not moving.
+\end{DoxyItemize}
+
+\subsubsection*{Unit Testing with Google Test}
+
+\href{https://github.com/google/googletest}{\tt https\+://github.\+com/google/googletest}
+
+Unit tests are essential in a large-\/scale project, because the entire code base can be tested regularly and automatically as it is being developed. In the strictest application of Test-\/\+Driven Development (T\+DD), the tests are written {\itshape before} the code, which helps solidify requirements and write testable code.
+
+A sample test file is provided in the /project/tests directory. This directory must be a sibling to your {\itshape src} directory. When you {\itshape make} the tests, they will generate an executable (in build/bin) which, when executed, displays a report of the tests. Use this file as a guide to your own testing. While the requirements for testing in Preliminary Turn-\/in \#2 (more later) are rather light, you can expect a much more robust testing requirement in later iterations. Do not slack on making good tests for your code!
+
+\subsubsection*{Style Compliance}
+
+You may use the style guidelines suggested in Mc\+Connell or the following google style guide.
+
+\href{https://google.github.io/styleguide/cppguide.html}{\tt https\+://google.\+github.\+io/styleguide/cppguide.\+html}
+
+Consistency in code organization, naming conventions, file structure, and formatting makes code easier to read and integrate. There are many options with various merits, so it is up to the development team to establish these conventions, or, in the words of Kevin Wendt, an instructor for previous iterations of the course, \char`\"{}\+The only style guide that really matters is the one your boss uses.\char`\"{}
+
+
+
+
+
+\subsection*{Documentation}
+
+
+\begin{DoxyItemize}
+\item U\+ML diagrams
+\item Doxygen generated web pages including mainpage.\+h
+\item Self-\/\+Documenting code that is style compliant
+\end{DoxyItemize}
+
+Code documentation comes in many forms for many audiences. For this project, {\bfseries your audience is other programmers}, who need to understand class interfaces, function parameters, function behavior, code organization, class organization, and code logic. Self-\/documenting code (i.\+e. using good organization and naming conventions) is an efficient means of communicating, since you have to write the code anyway. {\itshape Good} comments -\/ not too much, not too little -\/ help guide others through the logic and class interfaces. For the larger picture of code and class structure, use U\+ML diagrams and Doxygen-\/generated (automatic) web pages.
+
+\paragraph*{U\+ML}
+
+The U\+ML diagram is a visual aid that helps other programmers better understand the code structure. It should include only those aspects that are essential, otherwise your diagram will get too cluttered and overwhelm the reader. Here are some things to keep in mind as you are designing your U\+ML\+:
+
+
+\begin{DoxyItemize}
+\item Make the most important classes prominent in the layout (i.\+e. your eye tends to focus in that general area when you first look at it).
+\item Lay out the classes so that the connections have as few crossovers as possible.
+\item Do not include setters and getters in your methods list unless there is something special about them that you need to communicate.
+\item You should not include structs or enumerated types unless they add value to the understanding of the overall code structure.
+\item If a class is composed of another class, you can show that association with a solid line arrow (if there is only 1) or using the {\itshape compose} diamond.
+\item Include cardinality where appropriate.
+\item Add comments to classes and/or relationships to clarify the interaction or to point out subtleties that are essential to using the code.
+\end{DoxyItemize}
+
+The final diagram you submit for iteration 2 U\+ML should reflect the changes you made while completing the code requirements. We will be looking for proper use of U\+ML components, and a correct depiction of the code structure.
+
+There are many free tools that you can use to create the U\+ML including Doxygen (see\+: \href{https://inneka.com/programming/cpp/how-to-use-doxygen-to-create-uml-class-diagrams-from-c-source/}{\tt https\+://inneka.\+com/programming/cpp/how-\/to-\/use-\/doxygen-\/to-\/create-\/uml-\/class-\/diagrams-\/from-\/c-\/source/}), and draw.\+io (see\+: \href{https://www.draw.io/}{\tt https\+://www.\+draw.\+io/}). {\bfseries Submit your U\+ML as a pdf into the assignment folder on Canvas.}.
+
+\paragraph*{Doxygen}
+
+Doxygen automatically generates documentation of class and code structure when you follow some simple conventions for commenting within your code ({\itshape see} \href{http://www.doxygen.nl/manual/index.html}{\tt http\+://www.\+doxygen.\+nl/manual/index.\+html} and \href{https://caiorss.github.io/C-Cpp-Notes/Doxygen-documentation.html}{\tt https\+://caiorss.\+github.\+io/\+C-\/\+Cpp-\/\+Notes/\+Doxygen-\/documentation.\+html}). You have had a lab on Doxygen (lab 8) and we will likely cover a bit more in class. To start with, look over the documentation provided with the code base to understand how to document classes, methods, parameters, and even {\itshape todo\textquotesingle{}s} and {\itshape bugs} in your code. In lab 8, you learned how to compile with your Doxyfile and generate web pages. Please look over the generated web pages for missing and incorrect information. The requirements for Doxygen include\+:
+
+
+\begin{DoxyItemize}
+\item the file {\ttfamily project/docs/\+Doxyfile} to generate documentation (after you complete lab 8, you should have this in your {\ttfamily project/docs} directory).
+\item a {\itshape mainpage.\+h} file that serves as the homepage of your automated documentation. The information that you added from iteration 1 should remain. You should have a mainpage.\+h file that you can extend in your {\ttfamily project/src} directory.
+\item document all classes, methods, and functions that you add in interation 2 in their header (.h) files.
+\item add a section named\+: $\ast$$\ast$\char`\"{}\+Desiging and Implementing the routes\char`\"{}$\ast$$\ast$ that discusses the design and implementation of routes used by the drone, as per the description in the final deliverables above.
+\item The /html directory should {\itshape not} be in your repo in github.\+umn.\+edu -\/ nor should your build directory, executable files, or object files.
+\end{DoxyItemize}
+
+\begin{quote}
+{\bfseries As part of your fresh clone prior to submission, please also compile the Doxygen and look at the generated webpages.} \end{quote}
+
+
+All of these elements of documentation will be assessed, accounting for a significant portion of your grade for each iteration (for this iteration -\/ iteration 1, documentation will account for 1/2 of your grade). Think about these two extremes\+: 1) your code functions perfectly and you have almost no documentation -\/ you will likely fail on this iteration; 2) your code is not functional and will only compile when you comment most of it out, but if you have complete, great documentation -\/ you will likely get a decent grade on this iteration. {\bfseries Get in the habit of creating the documentation along with the code.}
+
+
+
+
+
+\subsection*{Assessment}
+
+Your software {\bfseries must compile on a cselabs machine or it will not be graded, and you will recieve a zero for your submission}. We will not grade your project unless it compiles. As long as you provide a version that compiles, we will evaluate those aspects that are partially functional for partial credit. In other words, $<$u$>$comment it out if it breaks compilation$<$/u$>$.
+
+Your software will be assessed through automatic testing and by the T\+As. You will receive immediate feedback whenever you push to github (although not now -\/ we will let you know when those scripts are in place). At the deadline, all submissions will be downloaded and the automated testing will no longer be available. Through both automated testing and the T\+As, the process for testing will be to {\ttfamily make clean} then {\ttfamily make}. We {\bfseries highly encourage} you too freshly clone your repo on a {\bfseries cselabs machine} and to then {\ttfamily make clean} and {\ttfamily make}, followed by a run of your tests to confirm all is working well before submitting your tests and code.
+
+This is the breakdown for point distribution\+:
+
+20\% \+: Iteration \#2
+\begin{DoxyItemize}
+\item 15\% \+: First Deliverable
+\item 50\% \+: Final Documentation
+\item 35\% \+: Final Code
+\end{DoxyItemize}
+
+\subsubsection*{Documentation Assessment ( 50\% )}
+
+\paragraph*{Complete Iteration Documentation}
+
+\paragraph*{Design Document and U\+ML}
+
+$\ast$$\ast$\char`\"{}\+Designing and Implementing the different routes\char`\"{}$\ast$$\ast$ that discusses the design and implementation of different routes the and any design pattern used for the drone to deliver packages. Specify what classes and methods you had to add and where you had to add them -\/ and include pictures where applicable and possible. {\bfseries Note which parts of the design and implementation were most difficult for you, and include any tips or advice on how to understand and implement the different routes (for example, what sources of information (documentation, lecture, lab) that helped you understand the routes and enabled you to design and implement it (for example, what sources of information (e.\+g., links to web sites, books, lecture, lab)).}
+
+In your Doxygen mainpage add a section named\+: {\bfseries Team Documentation} that includes summaries of team meetings (minimum of three) and who was assigned a task to complete.
+
+Documentation includes a design overview of the core domain elements (the classes you\textquotesingle{}re building) provided in mainpage.\+h in /src and your final updated U\+ML diagram in P\+DF file format. We will look for a well written and well organized document that clearly articulates the design. It must stand alone in the sense that anyone reading it should not have to look at code to understand the design. {\bfseries This will likely require U\+ML images and/or snippets of code included.}
+
+{\itshape {\bfseries Your final U\+ML diagram from iteration 1 should be updated to include the class(es), methods, and relationships that you have added or changed during your iteration 2 development activities. The U\+ML syntax you should use is specified and documented here\+: \href{https://cppcodetips.wordpress.com/2013/12/23/uml-class-diagram-explained-with-c-samples/}{\tt https\+://cppcodetips.\+wordpress.\+com/2013/12/23/uml-\/class-\/diagram-\/explained-\/with-\/c-\/samples/}. We will be looking for general proper use of U\+ML syntax, and a correct depiction of the code structure of the existing project code (code from shared-\/upstream\textquotesingle{}s support-\/code branch).}}
+
+{\bfseries Submit your final version of your U\+ML diagram in a .pdf file via the submission item on Canvas.}
+
+\paragraph*{Style Compliance}
+
+Will be done by inspection.
+
+\paragraph*{Doxygen Documentation}
+
+We will compile the code to generate {\itshape Doxygen} web pages. All classes and major functions must be documented as specified in the {\itshape Doxygen} documentation.
+
+\paragraph*{Git\+Hub Issues}
+
+Your repository must include Issues that communicate to the T\+As. If there are no bugs in your code, include a Git\+Hub Issue that states that there are no known bugs to report and that further verification is necessary (never say that there aren\textquotesingle{}t bugs, because we know that that is typically not the case \+:-\/). We anticipate that a few bugs will exist in your project and they will reveal themselves during testing. If you have a few bugs A\+ND you report them, then you will lose fewer points than if you don\textquotesingle{}t report them -\/ provided the bugs aren\textquotesingle{}t preventing the simulation from running to completion. Also, keep in mind that development will continue throughout the semester, and if you can\textquotesingle{}t fix your code this iteration, you {\itshape might} have an opportunity in successive iterations to do so(there are no implied guarantees on this though), so keep use github to keep track of all your bugs.
+
+For this iteration, every time you make one single change to your code, you should follow the process documented in lab 10. Create an issue, a new branch, address the issue (add or fix functionality, etc.), test. When it works, commit and include a $\ast$$\ast$ meaningful$\ast$$\ast$ commit message (what did you fix, add, etc.), merge the new branch back in with the development branch, and then test again. We will grade you on your adherence to the process. You should have at L\+E\+A\+ST as many issues, branches, commits, and merges as there are updates and new functionality required by the iteration.
+
+\paragraph*{Self-\/\+Documenting Code}
+
+T\+As will inspect code for good naming conventions, good code organization, and internal comments to highlight logic. You should not nest conditional statements too deep. Methods should not be more than a screen full, if possible. Names should be descriptive of the variable\textquotesingle{}s or function\textquotesingle{}s purpose. Like elements should be next to each other in the file. Review Chapter 32 in the Mc\+Connell text, available on the Class Canvas site, for more information on how to create self-\/documenting code.
+
+\subsubsection*{Code Assessment ( 50\% )}
+
+\paragraph*{First Deliverable\+: Fixed Google Tests From Iteration 1, robot delivers packages, and the observer pattern has been implemented ( 15\% )}
+
+In the week prior to the due date of the completed iteration, we will confirm that you have submitted work for your first deliverable \#1.
+
+Your Google Tests from iteration 1 should be revised and updated based upon the feedback provided to you in the first iteration.
+
+Points you earn in the first deliverable are independent of the 35\% points for the final submission.
+
+{\bfseries Your tests should be in the development branch in your repository on github.\+umn.\+edu by the end of the day Friday, April 2.} {\itshape Remember to G\+IT A\+DD, G\+IT C\+O\+M\+M\+IT and G\+IT P\+U\+SH them before the deadline}
+
+\paragraph*{Completed Iteration Code ( 35\% )}
+
+Code functionality will be tested with automated tests through Github, which in turn run the automated unit tests of Google Test. Assessment will also be a visual inspection of the simulation and its output, as well as a visual inspection of the code.
+
+
+
+
+
+\subsection*{Getting Started}
+
+A\+F\+T\+ER reading this document, complete Lab 13 Working with Teams that will be assigned this week. This should be completed before Friday March 26.
+
+
+
+
+
+\subsection*{Important notes to remember}
+
+$>$Your software is a reflection of your understanding of the requirements as specified in this document. If you do not understand any portion of the requirements or you think that the requirements are underspecified, it is your responsibility to get clarification from the instructor or a TA. Please read this document carefully and review it prior to turning in your iteration for assessment.
+
+$>$The O\+N\+LY supported environment is the C\+S\+E\+Labs environment. This is where we will run your code for assessment, and where you should absolutely ensure that your project will compile and run. It is recommended to log onto a C\+S\+E\+Labs machine, do a {\bfseries clean} pull of your repo (i.\+e., pull into a brand new directory), and then build and test your project.
+
+
+
+
+
+\subsection*{Additional Resources}
+
+Local System and Compilation\+:
+\begin{DoxyItemize}
+\item Repo\+: \href{https://github.umn.edu/umn-csci-3081-s21/shared-upstream}{\tt https\+://github.\+umn.\+edu/umn-\/csci-\/3081-\/s21/shared-\/upstream}
+\item Compilation\+: \href{https://gcc.gnu.org/}{\tt https\+://gcc.\+gnu.\+org/}
+\item Linux quick reference\+: \href{https://files.fosswire.com/2007/08/fwunixref.pdf}{\tt https\+://files.\+fosswire.\+com/2007/08/fwunixref.\+pdf}
+\item Makefile Resources\+: \href{https://www.cs.bu.edu/teaching/cpp/writing-makefiles/}{\tt https\+://www.\+cs.\+bu.\+edu/teaching/cpp/writing-\/makefiles/}
+\end{DoxyItemize}
+
+Testing\+:
+\begin{DoxyItemize}
+\item \href{https://github.com/google/googletest}{\tt https\+://github.\+com/google/googletest}
+\item Unit Testing\+: \href{https://martinfowler.com/bliki/UnitTest.html}{\tt https\+://martinfowler.\+com/bliki/\+Unit\+Test.\+html}
+\end{DoxyItemize}
+
+Style\+:
+\begin{DoxyItemize}
+\item \href{https://google.github.io/styleguide/cppguide.html}{\tt https\+://google.\+github.\+io/styleguide/cppguide.\+html}
+\item \href{https://github.com/google/styleguide/tree/gh-pages/cpplint}{\tt https\+://github.\+com/google/styleguide/tree/gh-\/pages/cpplint}
+\item \href{https://www.python.org/downloads/}{\tt https\+://www.\+python.\+org/downloads/}
+\end{DoxyItemize}
+
+Documentation\+:
+\begin{DoxyItemize}
+\item \href{https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet}{\tt https\+://github.\+com/adam-\/p/markdown-\/here/wiki/\+Markdown-\/\+Cheatsheet}
+\end{DoxyItemize}
+
+I\+D\+Es\+:
+\begin{DoxyItemize}
+\item Xemacs\+: \href{https://www.xemacs.org/}{\tt https\+://www.\+xemacs.\+org/}
+\item vi\+: \href{http://www.lagmonster.org/docs/vi.html}{\tt http\+://www.\+lagmonster.\+org/docs/vi.\+html}
+\item Atom\+: \href{https://atom.io/}{\tt https\+://atom.\+io/}
+\item Sublime\+: \href{https://www.sublimetext.com/}{\tt https\+://www.\+sublimetext.\+com/}
+\item Eclipse\+: \href{https://eclipse.org/}{\tt https\+://eclipse.\+org/} 
+\end{DoxyItemize}

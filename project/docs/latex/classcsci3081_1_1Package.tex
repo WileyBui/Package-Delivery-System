@@ -1,0 +1,151 @@
+\hypertarget{classcsci3081_1_1Package}{}\section{csci3081\+:\+:Package Class Reference}
+\label{classcsci3081_1_1Package}\index{csci3081\+::\+Package@{csci3081\+::\+Package}}
+
+
+A representation of a \hyperlink{classcsci3081_1_1Package}{Package}, inherited from \hyperlink{classcsci3081_1_1EntityBase}{Entity\+Base} It stores the \hyperlink{classcsci3081_1_1Package}{Package}\textquotesingle{}s name, ID, version, position, direction, and dynamic mode.  
+
+
+
+
+{\ttfamily \#include $<$package.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Package\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classcsci3081_1_1Package__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classcsci3081_1_1Package_abf7f7782bd24ceeae85f4ec6e16a8021}{Package} (const picojson\+::object \&detail)
+\item 
+\hyperlink{classcsci3081_1_1Package_a9a5517a9f494de1dda493c0613918e00}{Package} (\hyperlink{classcsci3081_1_1Package}{Package} \&package)
+\begin{DoxyCompactList}\small\item\em Copy Constructor. This creates a new instance of \hyperlink{classcsci3081_1_1Package}{Package} that has the same content as the \hyperlink{classcsci3081_1_1Package}{Package} argument. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1Package_afc93b118e87b8dc43388a0e8f485f830}{Set\+Owner} (\hyperlink{classcsci3081_1_1Customer}{Customer} $\ast$)
+\begin{DoxyCompactList}\small\item\em This links a customer object to the package object if the package has not already had a customer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Package_a0d58f83494c174f43a0b94dfbaaebfc7}\label{classcsci3081_1_1Package_a0d58f83494c174f43a0b94dfbaaebfc7}} 
+\hyperlink{classcsci3081_1_1Customer}{Customer} $\ast$ \hyperlink{classcsci3081_1_1Package_a0d58f83494c174f43a0b94dfbaaebfc7}{Get\+Owner} ()
+\begin{DoxyCompactList}\small\item\em This returns a customer object of the package object if there is one, return N\+U\+LL otherwise. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1Package_afc467e1989fa6d08182e22006afcc9cd}{Set\+Position} (std\+::vector$<$ float $>$ agr)
+\begin{DoxyCompactList}\small\item\em This function uses to set the new position of the package. However, package only moves in simulation if its dynamic attribute is set to true. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1Package_abf6700f1011412936069e7cff9ea86c9}{Set\+Carrier} (\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$)
+\begin{DoxyCompactList}\small\item\em This links a carrier Entity object (drone, truck, robot, etc) to the package object if the package has not already had a one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Package_acf298d89a9d964a38cc451dd3c57f984}\label{classcsci3081_1_1Package_acf298d89a9d964a38cc451dd3c57f984}} 
+\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$ \hyperlink{classcsci3081_1_1Package_acf298d89a9d964a38cc451dd3c57f984}{Get\+Carrier} ()
+\begin{DoxyCompactList}\small\item\em This returns the pointer that points to the carrier carrying the package if there is one; return N\+U\+LL otherwise. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1Package_aa481bfe50ca15db8c19eadbeac91b889}{Set\+Dynamic} (bool n)
+\begin{DoxyCompactList}\small\item\em This changes the dynamic of the drone. Note that for the drone to move on the simulation, dynamic of the drone must be set to true. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Package_a6ee0a24832784064cd3938d3cfddb9d7}\label{classcsci3081_1_1Package_a6ee0a24832784064cd3938d3cfddb9d7}} 
+void \hyperlink{classcsci3081_1_1Package_a6ee0a24832784064cd3938d3cfddb9d7}{Deliver} ()
+\begin{DoxyCompactList}\small\item\em This sets the deliverd attribute of the package to true, signaling that the package has already been delivered. Change the carrier of the package to N\+U\+LL. Change the position of the package to out of the camera of the simulation to \char`\"{}teleport\char`\"{} out of the scene when delivered. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Package_a725716addd162b42a08ccddf9bdfcfa9}\label{classcsci3081_1_1Package_a725716addd162b42a08ccddf9bdfcfa9}} 
+bool \hyperlink{classcsci3081_1_1Package_a725716addd162b42a08ccddf9bdfcfa9}{Is\+Delivered} ()
+\begin{DoxyCompactList}\small\item\em This returns a T\+R\+UE if the package has been delivered, F\+A\+L\+SE otherwise. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Package_aaf2a9604fc4d3dd108e4b4002751be05}\label{classcsci3081_1_1Package_aaf2a9604fc4d3dd108e4b4002751be05}} 
+void \hyperlink{classcsci3081_1_1Package_aaf2a9604fc4d3dd108e4b4002751be05}{Get\+Status} ()
+\begin{DoxyCompactList}\small\item\em Overwritten Get\+Status from \hyperlink{classcsci3081_1_1ASubject}{A\+Subject}. This function creates the arguments required by Notify function and makes call to Notify function. This function should be called when path is added to the package is schedule to deliver, en route (picked up) or delivered. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Package_acd1f198a6e087c08e1cfeed0f44a90be}\label{classcsci3081_1_1Package_acd1f198a6e087c08e1cfeed0f44a90be}} 
+void \hyperlink{classcsci3081_1_1Package_acd1f198a6e087c08e1cfeed0f44a90be}{Update} (float dt)
+\begin{DoxyCompactList}\small\item\em This is an inherited method from \hyperlink{classcsci3081_1_1EntityBase}{Entity\+Base} to use for \hyperlink{classcsci3081_1_1DeliverySimulation}{Delivery\+Simulation}. This updates the position of the package on the simulation if the position changes and its dynamic is set to true. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A representation of a \hyperlink{classcsci3081_1_1Package}{Package}, inherited from \hyperlink{classcsci3081_1_1EntityBase}{Entity\+Base} It stores the \hyperlink{classcsci3081_1_1Package}{Package}\textquotesingle{}s name, ID, version, position, direction, and dynamic mode. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1Package_abf7f7782bd24ceeae85f4ec6e16a8021}\label{classcsci3081_1_1Package_abf7f7782bd24ceeae85f4ec6e16a8021}} 
+\index{csci3081\+::\+Package@{csci3081\+::\+Package}!Package@{Package}}
+\index{Package@{Package}!csci3081\+::\+Package@{csci3081\+::\+Package}}
+\subsubsection{\texorpdfstring{Package()}{Package()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily csci3081\+::\+Package\+::\+Package (\begin{DoxyParamCaption}\item[{const picojson\+::object \&}]{detail }\end{DoxyParamCaption})}
+
+Constructor, creates a \hyperlink{classcsci3081_1_1Package}{Package} object param\mbox{[}in\mbox{]} detail a picojson\+::object object that has the detail of the package including name, position, direction, and radius \mbox{\Hypertarget{classcsci3081_1_1Package_a9a5517a9f494de1dda493c0613918e00}\label{classcsci3081_1_1Package_a9a5517a9f494de1dda493c0613918e00}} 
+\index{csci3081\+::\+Package@{csci3081\+::\+Package}!Package@{Package}}
+\index{Package@{Package}!csci3081\+::\+Package@{csci3081\+::\+Package}}
+\subsubsection{\texorpdfstring{Package()}{Package()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily csci3081\+::\+Package\+::\+Package (\begin{DoxyParamCaption}\item[{\hyperlink{classcsci3081_1_1Package}{Package} \&}]{package }\end{DoxyParamCaption})}
+
+
+
+Copy Constructor. This creates a new instance of \hyperlink{classcsci3081_1_1Package}{Package} that has the same content as the \hyperlink{classcsci3081_1_1Package}{Package} argument. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em package} & \hyperlink{classcsci3081_1_1Package}{Package} instance that wants to be copied \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1Package_abf6700f1011412936069e7cff9ea86c9}\label{classcsci3081_1_1Package_abf6700f1011412936069e7cff9ea86c9}} 
+\index{csci3081\+::\+Package@{csci3081\+::\+Package}!Set\+Carrier@{Set\+Carrier}}
+\index{Set\+Carrier@{Set\+Carrier}!csci3081\+::\+Package@{csci3081\+::\+Package}}
+\subsubsection{\texorpdfstring{Set\+Carrier()}{SetCarrier()}}
+{\footnotesize\ttfamily void csci3081\+::\+Package\+::\+Set\+Carrier (\begin{DoxyParamCaption}\item[{\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$}]{ve }\end{DoxyParamCaption})}
+
+
+
+This links a carrier Entity object (drone, truck, robot, etc) to the package object if the package has not already had a one. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em o} & a I\+Entity pointer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1Package_aa481bfe50ca15db8c19eadbeac91b889}\label{classcsci3081_1_1Package_aa481bfe50ca15db8c19eadbeac91b889}} 
+\index{csci3081\+::\+Package@{csci3081\+::\+Package}!Set\+Dynamic@{Set\+Dynamic}}
+\index{Set\+Dynamic@{Set\+Dynamic}!csci3081\+::\+Package@{csci3081\+::\+Package}}
+\subsubsection{\texorpdfstring{Set\+Dynamic()}{SetDynamic()}}
+{\footnotesize\ttfamily void csci3081\+::\+Package\+::\+Set\+Dynamic (\begin{DoxyParamCaption}\item[{bool}]{n }\end{DoxyParamCaption})}
+
+
+
+This changes the dynamic of the drone. Note that for the drone to move on the simulation, dynamic of the drone must be set to true. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n} & True if the drone is actively moving in the simulation False otherwise \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1Package_afc93b118e87b8dc43388a0e8f485f830}\label{classcsci3081_1_1Package_afc93b118e87b8dc43388a0e8f485f830}} 
+\index{csci3081\+::\+Package@{csci3081\+::\+Package}!Set\+Owner@{Set\+Owner}}
+\index{Set\+Owner@{Set\+Owner}!csci3081\+::\+Package@{csci3081\+::\+Package}}
+\subsubsection{\texorpdfstring{Set\+Owner()}{SetOwner()}}
+{\footnotesize\ttfamily void csci3081\+::\+Package\+::\+Set\+Owner (\begin{DoxyParamCaption}\item[{\hyperlink{classcsci3081_1_1Customer}{Customer} $\ast$}]{o }\end{DoxyParamCaption})}
+
+
+
+This links a customer object to the package object if the package has not already had a customer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em o} & a \hyperlink{classcsci3081_1_1Customer}{Customer} pointer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1Package_afc467e1989fa6d08182e22006afcc9cd}\label{classcsci3081_1_1Package_afc467e1989fa6d08182e22006afcc9cd}} 
+\index{csci3081\+::\+Package@{csci3081\+::\+Package}!Set\+Position@{Set\+Position}}
+\index{Set\+Position@{Set\+Position}!csci3081\+::\+Package@{csci3081\+::\+Package}}
+\subsubsection{\texorpdfstring{Set\+Position()}{SetPosition()}}
+{\footnotesize\ttfamily void csci3081\+::\+Package\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{std\+::vector$<$ float $>$}]{agr }\end{DoxyParamCaption})}
+
+
+
+This function uses to set the new position of the package. However, package only moves in simulation if its dynamic attribute is set to true. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em agr} & a std\+::vector$<$float$>$ that has the new position of the package \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/package.\+h\item 
+/home/user/repo/project/src/package.\+cc\end{DoxyCompactItemize}

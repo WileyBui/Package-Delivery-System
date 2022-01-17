@@ -1,0 +1,48 @@
+\hypertarget{classcsci3081_1_1GenerateId}{}\section{csci3081\+:\+:Generate\+Id Class Reference}
+\label{classcsci3081_1_1GenerateId}\index{csci3081\+::\+Generate\+Id@{csci3081\+::\+Generate\+Id}}
+
+
+\hyperlink{classcsci3081_1_1GenerateId}{Generate\+Id} class generates a static unique identifier to the customer, drone, robot, package, and battery objects. Each time \hyperlink{classcsci3081_1_1GenerateId_a26a75b8750133b7624199a29c5620dd5}{Generate\+New\+Id()} is called, the {\ttfamily id} variable gets incremented.  
+
+
+
+
+{\ttfamily \#include $<$generate\+\_\+id.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classcsci3081_1_1GenerateId_afb9af0fc5150212ef877a786fa597c9b}{Reset\+Id} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classcsci3081_1_1GenerateId_a26a75b8750133b7624199a29c5620dd5}{Generate\+New\+Id} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classcsci3081_1_1GenerateId}{Generate\+Id} class generates a static unique identifier to the customer, drone, robot, package, and battery objects. Each time \hyperlink{classcsci3081_1_1GenerateId_a26a75b8750133b7624199a29c5620dd5}{Generate\+New\+Id()} is called, the {\ttfamily id} variable gets incremented. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1GenerateId_a26a75b8750133b7624199a29c5620dd5}\label{classcsci3081_1_1GenerateId_a26a75b8750133b7624199a29c5620dd5}} 
+\index{csci3081\+::\+Generate\+Id@{csci3081\+::\+Generate\+Id}!Generate\+New\+Id@{Generate\+New\+Id}}
+\index{Generate\+New\+Id@{Generate\+New\+Id}!csci3081\+::\+Generate\+Id@{csci3081\+::\+Generate\+Id}}
+\subsubsection{\texorpdfstring{Generate\+New\+Id()}{GenerateNewId()}}
+{\footnotesize\ttfamily int csci3081\+::\+Generate\+Id\+::\+Generate\+New\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This function statically increments the ID counter to create a unique identifier. \mbox{\Hypertarget{classcsci3081_1_1GenerateId_afb9af0fc5150212ef877a786fa597c9b}\label{classcsci3081_1_1GenerateId_afb9af0fc5150212ef877a786fa597c9b}} 
+\index{csci3081\+::\+Generate\+Id@{csci3081\+::\+Generate\+Id}!Reset\+Id@{Reset\+Id}}
+\index{Reset\+Id@{Reset\+Id}!csci3081\+::\+Generate\+Id@{csci3081\+::\+Generate\+Id}}
+\subsubsection{\texorpdfstring{Reset\+Id()}{ResetId()}}
+{\footnotesize\ttfamily int csci3081\+::\+Generate\+Id\+::\+Reset\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Warning\+: this function S\+H\+O\+U\+LD O\+N\+LY BE C\+A\+L\+L\+ED during Google Test cases. This function resets the ID counter back to 0. \begin{DoxyReturn}{Returns}
+Current reset ID. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/generate\+\_\+id.\+h\item 
+/home/user/repo/project/src/generate\+\_\+id.\+cc\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="csci3081::Carrier" name="csci3081::Carrier">
+<area shape="rect" id="node5" href="$classcsci3081_1_1Drone.html" title="A representation of a drone It stores the drone&#39;s name, ID, version, position, direction, speed, and dynamic mode. " alt="" coords="37,1012,163,1104"/>
+<area shape="rect" id="node6" href="$classcsci3081_1_1Robot.html" title="A representation of a robot It stores the robot&#39;s name, ID, version, position, direction, speed, and dynamic mode. " alt="" coords="187,1012,311,1104"/>
+<area shape="rect" id="node2" href="$classcsci3081_1_1EntityBase.html" title="The base class for creating entities. " alt="" coords="6,248,167,604"/>
+<area shape="rect" id="node3" href="$classentity__project_1_1IEntity.html" title="A movable object in a scene. Entities have position, direction and size. " alt="" coords="5,5,168,200"/>
+<area shape="rect" id="node4" href="$classcsci3081_1_1ASubject.html" title="This is the Abstract Subject class from which our subjects will inherit Implements the Observer/subje..." alt="" coords="192,351,336,501"/>
+</map>

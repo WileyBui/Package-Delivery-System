@@ -1,0 +1,46 @@
+\hypertarget{classentity__project_1_1IGraph}{}\section{entity\+\_\+project\+:\+:I\+Graph Class Reference}
+\label{classentity__project_1_1IGraph}\index{entity\+\_\+project\+::\+I\+Graph@{entity\+\_\+project\+::\+I\+Graph}}
+
+
+Represents a read only graph object.  
+
+
+
+
+{\ttfamily \#include $<$graph.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classentity__project_1_1IGraph_ad4eafcdb3b6902e54924a6c21e1971a0}\label{classentity__project_1_1IGraph_ad4eafcdb3b6902e54924a6c21e1971a0}} 
+virtual \hyperlink{classentity__project_1_1IGraph_ad4eafcdb3b6902e54924a6c21e1971a0}{$\sim$\+I\+Graph} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classentity__project_1_1IGraph_a900c64b856e9163727693276fc870bd9}\label{classentity__project_1_1IGraph_a900c64b856e9163727693276fc870bd9}} 
+virtual const \hyperlink{classentity__project_1_1IGraphNode}{I\+Graph\+Node} $\ast$ \hyperlink{classentity__project_1_1IGraph_a900c64b856e9163727693276fc870bd9}{Get\+Node} (const std\+::string \&name) const =0
+\begin{DoxyCompactList}\small\item\em Gets a node in the graph by name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classentity__project_1_1IGraph_a690ed9b025c9b7709154c4fc7f89ef93}\label{classentity__project_1_1IGraph_a690ed9b025c9b7709154c4fc7f89ef93}} 
+virtual const std\+::vector$<$ \hyperlink{classentity__project_1_1IGraphNode}{I\+Graph\+Node} $\ast$ $>$ \& \hyperlink{classentity__project_1_1IGraph_a690ed9b025c9b7709154c4fc7f89ef93}{Get\+Nodes} () const =0
+\begin{DoxyCompactList}\small\item\em Gets all nodes in the graph. \end{DoxyCompactList}\item 
+virtual const std\+::vector$<$ std\+::vector$<$ float $>$ $>$ \hyperlink{classentity__project_1_1IGraph_aa96a691b82108d0901463f3cd5cd79b9}{Get\+Path} (std\+::vector$<$ float $>$ src, std\+::vector$<$ float $>$ dest) const =0
+\begin{DoxyCompactList}\small\item\em Returns a vector of float vectors that represent a path from src to dest. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents a read only graph object. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classentity__project_1_1IGraph_aa96a691b82108d0901463f3cd5cd79b9}\label{classentity__project_1_1IGraph_aa96a691b82108d0901463f3cd5cd79b9}} 
+\index{entity\+\_\+project\+::\+I\+Graph@{entity\+\_\+project\+::\+I\+Graph}!Get\+Path@{Get\+Path}}
+\index{Get\+Path@{Get\+Path}!entity\+\_\+project\+::\+I\+Graph@{entity\+\_\+project\+::\+I\+Graph}}
+\subsubsection{\texorpdfstring{Get\+Path()}{GetPath()}}
+{\footnotesize\ttfamily virtual const std\+::vector$<$ std\+::vector$<$float$>$ $>$ entity\+\_\+project\+::\+I\+Graph\+::\+Get\+Path (\begin{DoxyParamCaption}\item[{std\+::vector$<$ float $>$}]{src,  }\item[{std\+::vector$<$ float $>$}]{dest }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns a vector of float vectors that represent a path from src to dest. 
+
+Given a source and destination in the form of 3-\/element x,y,z vectors, this function will return a list of positions to traverse in-\/order, which avoids the geometry of the scene. The returned path includes the source and destination points. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/.\+dependencies/include/\+Entity\+Project/graph.\+h\end{DoxyCompactItemize}

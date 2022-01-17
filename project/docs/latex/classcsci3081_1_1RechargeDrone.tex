@@ -1,0 +1,372 @@
+\hypertarget{classcsci3081_1_1RechargeDrone}{}\section{csci3081\+:\+:Recharge\+Drone Class Reference}
+\label{classcsci3081_1_1RechargeDrone}\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+
+
+A representation of a drone It stores the drone\textquotesingle{}s name, ID, version, position, direction, speed, and dynamic mode.  
+
+
+
+
+{\ttfamily \#include $<$recharge\+\_\+drone.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Recharge\+Drone\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classcsci3081_1_1RechargeDrone__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classcsci3081_1_1RechargeDrone_a04313869575a751f7f763cf72c2e6410}{Recharge\+Drone} (const picojson\+::object \&val)
+\item 
+\hyperlink{classcsci3081_1_1RechargeDrone_aa7f639598af768a3c92c082f5d4e74fd}{Recharge\+Drone} (\hyperlink{classcsci3081_1_1RechargeDrone}{Recharge\+Drone} \&)
+\begin{DoxyCompactList}\small\item\em Copy Constructor. This creates a new instance of recharing drone that has the same content as the \hyperlink{classcsci3081_1_1Package}{Package} argument. \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1RechargeDrone_a21f38d9534ed51a82006df0a4d7ab78e}{Is\+Currently\+Charging} ()
+\begin{DoxyCompactList}\small\item\em This function will charge the recharging drone at the station when there is no Dead\+Carrier. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1RechargeDrone_aae4cc9921818edce62664130e29cc205}{Charge\+From\+Station} (float dt)
+\begin{DoxyCompactList}\small\item\em This function will charge the recharging drone at the station when there is no Dead\+Carrier. \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1RechargeDrone_af6c18a005a235b569b10225f9f0b3d78}{Is\+Charging\+Carrier\+Full} (float dt)
+\begin{DoxyCompactList}\small\item\em This function will charge the Dead\+Carrier if the Dead\+Carrier is not charged to full. After the Dead\+Carrier get charged to full it will set the Dead\+Carrier Charging Status to false so the simulation will know the Dead\+Carrier is ready to be schduled. \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1RechargeDrone_a17d45a9ee48936ddbe019e8ab677f7cf}{Battery\+Dead} ()
+\begin{DoxyCompactList}\small\item\em This checks if the recharging drone is out of battery. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_a77787f8e9b4ae3b3575e6c68ba3e8ca3}\label{classcsci3081_1_1RechargeDrone_a77787f8e9b4ae3b3575e6c68ba3e8ca3}} 
+float \hyperlink{classcsci3081_1_1RechargeDrone_a77787f8e9b4ae3b3575e6c68ba3e8ca3}{Get\+Battery} ()
+\begin{DoxyCompactList}\small\item\em This returns the time in secs left in the carrier\textquotesingle{}s battery. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_a52a715c52891edfcc9a31b06c30d6198}\label{classcsci3081_1_1RechargeDrone_a52a715c52891edfcc9a31b06c30d6198}} 
+float \hyperlink{classcsci3081_1_1RechargeDrone_a52a715c52891edfcc9a31b06c30d6198}{Get\+Battery\+Max\+Charge} ()
+\begin{DoxyCompactList}\small\item\em This returns the max charge of the recharge drone\textquotesingle{}s battery. \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1RechargeDrone_a54f93680add2c289a2b354e1331ad81f}{Charging} (float)
+\begin{DoxyCompactList}\small\item\em This function is used to charge the battery of the carrier for a certain amount of time in seconds. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1RechargeDrone_a4cfa100bfeabb0b9c893c74a6aeffc23}{Set\+Speed} (float)
+\begin{DoxyCompactList}\small\item\em This sets the speed of the carrier. Change the speed of the carrier if the argument is a non-\/negative float number. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_aded486fd6cf88c9f773953daf3d492a4}\label{classcsci3081_1_1RechargeDrone_aded486fd6cf88c9f773953daf3d492a4}} 
+float \hyperlink{classcsci3081_1_1RechargeDrone_aded486fd6cf88c9f773953daf3d492a4}{Get\+Speed} ()
+\begin{DoxyCompactList}\small\item\em return the current speed of the carrier \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1RechargeDrone_a226ad5a957052707e19d986a94a53c2d}{Set\+Position} (std\+::vector$<$ float $>$ v)
+\begin{DoxyCompactList}\small\item\em This function uses to set the new position of the carrier. However, carrier only moves in simulation if its dynamic attribute is set to true. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1RechargeDrone_a2c3e7c4f5c4ca78feef664fca810d0ea}{Set\+Dynamic} (bool dynamic\+\_\+)
+\begin{DoxyCompactList}\small\item\em This changes the dynamic of the recharge drone. Note that for the recharge drone to move on the simulation, dynamic of the recharge drone must be set to true. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1RechargeDrone_a06c5c7bde0b661c5920ad9dc0e8e5420}{Set\+Route} (std\+::vector$<$ vector$<$ float $>$$>$)
+\begin{DoxyCompactList}\small\item\em This function adds a full route to route attribute of the carrier This is useful when use for the Get\+Path() function from I\+Graph class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_abf8979f7773a6a280eefedf344992356}\label{classcsci3081_1_1RechargeDrone_abf8979f7773a6a280eefedf344992356}} 
+std\+::vector$<$ float $>$ \hyperlink{classcsci3081_1_1RechargeDrone_abf8979f7773a6a280eefedf344992356}{Next\+Position} ()
+\begin{DoxyCompactList}\small\item\em This function returns the next position in std\+::vector$<$float$>$ in the queue that the carrier needs to move to. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_af4901b3bd3755500a4841a1318022359}\label{classcsci3081_1_1RechargeDrone_af4901b3bd3755500a4841a1318022359}} 
+void \hyperlink{classcsci3081_1_1RechargeDrone_af4901b3bd3755500a4841a1318022359}{Pop\+Position} ()
+\begin{DoxyCompactList}\small\item\em This function pops the first element/position in the position queue of the carrier. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_ac4b45136e2969ac25941d46a8ccdb83a}\label{classcsci3081_1_1RechargeDrone_ac4b45136e2969ac25941d46a8ccdb83a}} 
+void \hyperlink{classcsci3081_1_1RechargeDrone_ac4b45136e2969ac25941d46a8ccdb83a}{Update} (float dt)
+\begin{DoxyCompactList}\small\item\em This is an inherited method from \hyperlink{classcsci3081_1_1EntityBase}{Entity\+Base} to use for \hyperlink{classcsci3081_1_1DeliverySimulation}{Delivery\+Simulation}. This updates the position of the carrier on the simulation if the position changes and its dynamic is set to true. In addition, this function also checks if the carrier is in within distance with the package to pick it up, or within distance with the customer to drop off the package. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1RechargeDrone_aa245b79215b39c86c1f9fde874bdf264}{Get\+Status} ()
+\begin{DoxyCompactList}\small\item\em Overwritten Get\+Status from \hyperlink{classcsci3081_1_1ASubject}{A\+Subject}. This function creates the arguments required by Notify function and makes call to Notify function. This function should be called when path is added to the carrier and when the carrier becomes idle. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1RechargeDrone_ab1acfe860678cd982e0d65be34d4e1d7}{Set\+Dead\+Carrier} (\hyperlink{classcsci3081_1_1Carrier}{Carrier} $\ast$carrier)
+\begin{DoxyCompactList}\small\item\em This function set the Dead\+Carrier Pointer to a new carrier. \end{DoxyCompactList}\item 
+\hyperlink{classcsci3081_1_1Carrier}{Carrier} $\ast$ \hyperlink{classcsci3081_1_1RechargeDrone_a3e8eae4e2d65ba366f0935354262d48a}{Get\+Dead\+Carrier} ()
+\begin{DoxyCompactList}\small\item\em This function set the Dead\+Carrier Pointer to a new carrier. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1RechargeDrone_a0bd3d0f578960d5a58842781c8dccd46}{Set\+Position\+Of\+Station} (vector$<$ float $>$ station)
+\begin{DoxyCompactList}\small\item\em This function set the position of the station(\+Set\+Position\+Of\+Station) to a new position. \end{DoxyCompactList}\item 
+vector$<$ float $>$ \hyperlink{classcsci3081_1_1RechargeDrone_aa8116aa4337b43f649adaf21db0d0b08}{Get\+Position\+Of\+Station} ()
+\begin{DoxyCompactList}\small\item\em This function Get the position of the station(\+Set\+Position\+Of\+Station) \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1RechargeDrone_af84e518c7cf9b47b47c8c0fe21883272}{Is\+Charging\+A\+Carrier} ()
+\begin{DoxyCompactList}\small\item\em This function should check the Dead\+Carrier pointer if its null or not and check if the Dead\+Carrier is getting charged or not. This function should be called in the simulation that to check the status of the recharging\+\_\+drone. If its charing a Dead\+Carrier then does not need to Update the recharging drone. \end{DoxyCompactList}\item 
+\hyperlink{classcsci3081_1_1RouteStrategy}{Route\+Strategy} $\ast$ \hyperlink{classcsci3081_1_1RechargeDrone_a5dacec43761a0e06f063c04f56654346}{Get\+Route\+Strategy} ()
+\begin{DoxyCompactList}\small\item\em return the Route Strategy that the carrier uses, such as Smart Route, Beeline, or Parabolic Route \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1RechargeDrone_acc49b5dd6e59d7bc14be53536648288a}{Battery\+Full} ()
+\begin{DoxyCompactList}\small\item\em This function checks the battery Capacity to see if it\textquotesingle{}s full or not. This function should be called in \hyperlink{classcsci3081_1_1RechargeDrone_af6c18a005a235b569b10225f9f0b3d78}{Is\+Charging\+Carrier\+Full()} to check if the Dead\+Drone need to be charged more. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A representation of a drone It stores the drone\textquotesingle{}s name, ID, version, position, direction, speed, and dynamic mode. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_a04313869575a751f7f763cf72c2e6410}\label{classcsci3081_1_1RechargeDrone_a04313869575a751f7f763cf72c2e6410}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Recharge\+Drone@{Recharge\+Drone}}
+\index{Recharge\+Drone@{Recharge\+Drone}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Recharge\+Drone()}{RechargeDrone()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily csci3081\+::\+Recharge\+Drone\+::\+Recharge\+Drone (\begin{DoxyParamCaption}\item[{const picojson\+::object \&}]{val }\end{DoxyParamCaption})}
+
+Constructor, creates a recharing drone object param\mbox{[}in\mbox{]} val a picojson\+::object object that has the detail of the package including name, position, direction, radius, and speed \mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_aa7f639598af768a3c92c082f5d4e74fd}\label{classcsci3081_1_1RechargeDrone_aa7f639598af768a3c92c082f5d4e74fd}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Recharge\+Drone@{Recharge\+Drone}}
+\index{Recharge\+Drone@{Recharge\+Drone}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Recharge\+Drone()}{RechargeDrone()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily csci3081\+::\+Recharge\+Drone\+::\+Recharge\+Drone (\begin{DoxyParamCaption}\item[{\hyperlink{classcsci3081_1_1RechargeDrone}{Recharge\+Drone} \&}]{cpy }\end{DoxyParamCaption})}
+
+
+
+Copy Constructor. This creates a new instance of recharing drone that has the same content as the \hyperlink{classcsci3081_1_1Package}{Package} argument. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em cpy} & \hyperlink{classcsci3081_1_1Drone}{Drone} instance that wants to be copied \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_a17d45a9ee48936ddbe019e8ab677f7cf}\label{classcsci3081_1_1RechargeDrone_a17d45a9ee48936ddbe019e8ab677f7cf}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Battery\+Dead@{Battery\+Dead}}
+\index{Battery\+Dead@{Battery\+Dead}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Battery\+Dead()}{BatteryDead()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Recharge\+Drone\+::\+Battery\+Dead (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This checks if the recharging drone is out of battery. 
+
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if the battery of the carrier is out F\+A\+L\+SE otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_acc49b5dd6e59d7bc14be53536648288a}\label{classcsci3081_1_1RechargeDrone_acc49b5dd6e59d7bc14be53536648288a}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Battery\+Full@{Battery\+Full}}
+\index{Battery\+Full@{Battery\+Full}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Battery\+Full()}{BatteryFull()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Recharge\+Drone\+::\+Battery\+Full (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function checks the battery Capacity to see if it\textquotesingle{}s full or not. This function should be called in \hyperlink{classcsci3081_1_1RechargeDrone_af6c18a005a235b569b10225f9f0b3d78}{Is\+Charging\+Carrier\+Full()} to check if the Dead\+Drone need to be charged more. 
+
+\begin{DoxyReturn}{Returns}
+the boolean value that indicates ss the battery full or not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_aae4cc9921818edce62664130e29cc205}\label{classcsci3081_1_1RechargeDrone_aae4cc9921818edce62664130e29cc205}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Charge\+From\+Station@{Charge\+From\+Station}}
+\index{Charge\+From\+Station@{Charge\+From\+Station}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Charge\+From\+Station()}{ChargeFromStation()}}
+{\footnotesize\ttfamily void csci3081\+::\+Recharge\+Drone\+::\+Charge\+From\+Station (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})}
+
+
+
+This function will charge the recharging drone at the station when there is no Dead\+Carrier. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em t} & time that charge the recharging drone \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_a54f93680add2c289a2b354e1331ad81f}\label{classcsci3081_1_1RechargeDrone_a54f93680add2c289a2b354e1331ad81f}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Charging@{Charging}}
+\index{Charging@{Charging}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Charging()}{Charging()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Recharge\+Drone\+::\+Charging (\begin{DoxyParamCaption}\item[{float}]{sec }\end{DoxyParamCaption})}
+
+
+
+This function is used to charge the battery of the carrier for a certain amount of time in seconds. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em sec} & amount of time in secs to charge the battery \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if the battery can be charged F\+A\+L\+SE otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_a3e8eae4e2d65ba366f0935354262d48a}\label{classcsci3081_1_1RechargeDrone_a3e8eae4e2d65ba366f0935354262d48a}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Get\+Dead\+Carrier@{Get\+Dead\+Carrier}}
+\index{Get\+Dead\+Carrier@{Get\+Dead\+Carrier}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Get\+Dead\+Carrier()}{GetDeadCarrier()}}
+{\footnotesize\ttfamily \hyperlink{classcsci3081_1_1Carrier}{Carrier} $\ast$ csci3081\+::\+Recharge\+Drone\+::\+Get\+Dead\+Carrier (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function set the Dead\+Carrier Pointer to a new carrier. 
+
+\begin{DoxyReturn}{Returns}
+return the Dead\+Carrier N\+U\+LL for nothing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_aa8116aa4337b43f649adaf21db0d0b08}\label{classcsci3081_1_1RechargeDrone_aa8116aa4337b43f649adaf21db0d0b08}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Get\+Position\+Of\+Station@{Get\+Position\+Of\+Station}}
+\index{Get\+Position\+Of\+Station@{Get\+Position\+Of\+Station}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Get\+Position\+Of\+Station()}{GetPositionOfStation()}}
+{\footnotesize\ttfamily vector$<$ float $>$ csci3081\+::\+Recharge\+Drone\+::\+Get\+Position\+Of\+Station (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function Get the position of the station(\+Set\+Position\+Of\+Station) 
+
+\begin{DoxyReturn}{Returns}
+return the Set\+Position\+Of\+Station(\+N\+U\+L\+L for nothing) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_a5dacec43761a0e06f063c04f56654346}\label{classcsci3081_1_1RechargeDrone_a5dacec43761a0e06f063c04f56654346}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Get\+Route\+Strategy@{Get\+Route\+Strategy}}
+\index{Get\+Route\+Strategy@{Get\+Route\+Strategy}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Get\+Route\+Strategy()}{GetRouteStrategy()}}
+{\footnotesize\ttfamily \hyperlink{classcsci3081_1_1RouteStrategy}{Route\+Strategy} $\ast$ csci3081\+::\+Recharge\+Drone\+::\+Get\+Route\+Strategy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the Route Strategy that the carrier uses, such as Smart Route, Beeline, or Parabolic Route 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classcsci3081_1_1RouteStrategy}{Route\+Strategy} pointer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_aa245b79215b39c86c1f9fde874bdf264}\label{classcsci3081_1_1RechargeDrone_aa245b79215b39c86c1f9fde874bdf264}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Get\+Status@{Get\+Status}}
+\index{Get\+Status@{Get\+Status}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Get\+Status()}{GetStatus()}}
+{\footnotesize\ttfamily void csci3081\+::\+Recharge\+Drone\+::\+Get\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Overwritten Get\+Status from \hyperlink{classcsci3081_1_1ASubject}{A\+Subject}. This function creates the arguments required by Notify function and makes call to Notify function. This function should be called when path is added to the carrier and when the carrier becomes idle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em picojson\+::value\&} & event \\
+\hline
+{\em const} & \hyperlink{classentity__project_1_1IEntity}{entity\+\_\+project\+::\+I\+Entity}\& entity \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classcsci3081_1_1ASubject_a206a9ddb559da279011e2f9ea29663dc}{csci3081\+::\+A\+Subject}.
+
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_af84e518c7cf9b47b47c8c0fe21883272}\label{classcsci3081_1_1RechargeDrone_af84e518c7cf9b47b47c8c0fe21883272}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Is\+Charging\+A\+Carrier@{Is\+Charging\+A\+Carrier}}
+\index{Is\+Charging\+A\+Carrier@{Is\+Charging\+A\+Carrier}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Is\+Charging\+A\+Carrier()}{IsChargingACarrier()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Recharge\+Drone\+::\+Is\+Charging\+A\+Carrier (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function should check the Dead\+Carrier pointer if its null or not and check if the Dead\+Carrier is getting charged or not. This function should be called in the simulation that to check the status of the recharging\+\_\+drone. If its charing a Dead\+Carrier then does not need to Update the recharging drone. 
+
+\begin{DoxyReturn}{Returns}
+the boolean value that indicates reacharging drone is charging a Dead\+Carrier or not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_af6c18a005a235b569b10225f9f0b3d78}\label{classcsci3081_1_1RechargeDrone_af6c18a005a235b569b10225f9f0b3d78}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Is\+Charging\+Carrier\+Full@{Is\+Charging\+Carrier\+Full}}
+\index{Is\+Charging\+Carrier\+Full@{Is\+Charging\+Carrier\+Full}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Is\+Charging\+Carrier\+Full()}{IsChargingCarrierFull()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Recharge\+Drone\+::\+Is\+Charging\+Carrier\+Full (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})}
+
+
+
+This function will charge the Dead\+Carrier if the Dead\+Carrier is not charged to full. After the Dead\+Carrier get charged to full it will set the Dead\+Carrier Charging Status to false so the simulation will know the Dead\+Carrier is ready to be schduled. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em t} & time that charge the recharging drone \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this function will return true when the Dead\+Carrier get charged to full 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_a21f38d9534ed51a82006df0a4d7ab78e}\label{classcsci3081_1_1RechargeDrone_a21f38d9534ed51a82006df0a4d7ab78e}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Is\+Currently\+Charging@{Is\+Currently\+Charging}}
+\index{Is\+Currently\+Charging@{Is\+Currently\+Charging}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Is\+Currently\+Charging()}{IsCurrentlyCharging()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Recharge\+Drone\+::\+Is\+Currently\+Charging (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function will charge the recharging drone at the station when there is no Dead\+Carrier. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em t} & time that charge the recharging drone \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_ab1acfe860678cd982e0d65be34d4e1d7}\label{classcsci3081_1_1RechargeDrone_ab1acfe860678cd982e0d65be34d4e1d7}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Set\+Dead\+Carrier@{Set\+Dead\+Carrier}}
+\index{Set\+Dead\+Carrier@{Set\+Dead\+Carrier}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Set\+Dead\+Carrier()}{SetDeadCarrier()}}
+{\footnotesize\ttfamily void csci3081\+::\+Recharge\+Drone\+::\+Set\+Dead\+Carrier (\begin{DoxyParamCaption}\item[{\hyperlink{classcsci3081_1_1Carrier}{Carrier} $\ast$}]{carrier }\end{DoxyParamCaption})}
+
+
+
+This function set the Dead\+Carrier Pointer to a new carrier. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em carrier} & a carrier pointer that needed to be charged by recharging drone \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_a2c3e7c4f5c4ca78feef664fca810d0ea}\label{classcsci3081_1_1RechargeDrone_a2c3e7c4f5c4ca78feef664fca810d0ea}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Set\+Dynamic@{Set\+Dynamic}}
+\index{Set\+Dynamic@{Set\+Dynamic}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Set\+Dynamic()}{SetDynamic()}}
+{\footnotesize\ttfamily void csci3081\+::\+Recharge\+Drone\+::\+Set\+Dynamic (\begin{DoxyParamCaption}\item[{bool}]{dynamic\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+This changes the dynamic of the recharge drone. Note that for the recharge drone to move on the simulation, dynamic of the recharge drone must be set to true. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n} & True if the recharge drone is actively moving in the simulation False otherwise \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_a226ad5a957052707e19d986a94a53c2d}\label{classcsci3081_1_1RechargeDrone_a226ad5a957052707e19d986a94a53c2d}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Set\+Position@{Set\+Position}}
+\index{Set\+Position@{Set\+Position}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Set\+Position()}{SetPosition()}}
+{\footnotesize\ttfamily void csci3081\+::\+Recharge\+Drone\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{std\+::vector$<$ float $>$}]{v }\end{DoxyParamCaption})}
+
+
+
+This function uses to set the new position of the carrier. However, carrier only moves in simulation if its dynamic attribute is set to true. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em agr} & a std\+::vector$<$float$>$ that has the new position of the carrier \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_a0bd3d0f578960d5a58842781c8dccd46}\label{classcsci3081_1_1RechargeDrone_a0bd3d0f578960d5a58842781c8dccd46}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Set\+Position\+Of\+Station@{Set\+Position\+Of\+Station}}
+\index{Set\+Position\+Of\+Station@{Set\+Position\+Of\+Station}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Set\+Position\+Of\+Station()}{SetPositionOfStation()}}
+{\footnotesize\ttfamily void csci3081\+::\+Recharge\+Drone\+::\+Set\+Position\+Of\+Station (\begin{DoxyParamCaption}\item[{vector$<$ float $>$}]{station }\end{DoxyParamCaption})}
+
+
+
+This function set the position of the station(\+Set\+Position\+Of\+Station) to a new position. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pos} & the new position of the Station \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_a06c5c7bde0b661c5920ad9dc0e8e5420}\label{classcsci3081_1_1RechargeDrone_a06c5c7bde0b661c5920ad9dc0e8e5420}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Set\+Route@{Set\+Route}}
+\index{Set\+Route@{Set\+Route}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Set\+Route()}{SetRoute()}}
+{\footnotesize\ttfamily void csci3081\+::\+Recharge\+Drone\+::\+Set\+Route (\begin{DoxyParamCaption}\item[{std\+::vector$<$ vector$<$ float $>$$>$}]{ }\end{DoxyParamCaption})}
+
+
+
+This function adds a full route to route attribute of the carrier This is useful when use for the Get\+Path() function from I\+Graph class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em agr} & a std\+::vector$<$std\+::vector$<$float$>$$>$ that has the positions need to be added \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1RechargeDrone_a4cfa100bfeabb0b9c893c74a6aeffc23}\label{classcsci3081_1_1RechargeDrone_a4cfa100bfeabb0b9c893c74a6aeffc23}} 
+\index{csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}!Set\+Speed@{Set\+Speed}}
+\index{Set\+Speed@{Set\+Speed}!csci3081\+::\+Recharge\+Drone@{csci3081\+::\+Recharge\+Drone}}
+\subsubsection{\texorpdfstring{Set\+Speed()}{SetSpeed()}}
+{\footnotesize\ttfamily void csci3081\+::\+Recharge\+Drone\+::\+Set\+Speed (\begin{DoxyParamCaption}\item[{float}]{s }\end{DoxyParamCaption})}
+
+
+
+This sets the speed of the carrier. Change the speed of the carrier if the argument is a non-\/negative float number. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em s} & a non-\/negative float value for the carrier\textquotesingle{}s speed \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/\hyperlink{recharge__drone_8h}{recharge\+\_\+drone.\+h}\item 
+/home/user/repo/project/src/recharge\+\_\+drone.\+cc\end{DoxyCompactItemize}

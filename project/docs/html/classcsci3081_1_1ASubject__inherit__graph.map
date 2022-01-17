@@ -1,0 +1,7 @@
+<map id="csci3081::ASubject" name="csci3081::ASubject">
+<area shape="rect" id="node2" href="$classcsci3081_1_1Carrier.html" title="A representation of a carrier An abstract base class for delivery transportation clases like Drone or..." alt="" coords="29,204,258,516"/>
+<area shape="rect" id="node5" href="$classcsci3081_1_1Package.html" title="A representation of a Package, inherited from EntityBase It stores the Package&#39;s name, ID, version, position, direction, and dynamic mode. " alt="" coords="282,241,423,479"/>
+<area shape="rect" id="node6" href="$classcsci3081_1_1RechargeDrone.html" title="A representation of a drone It stores the drone&#39;s name, ID, version, position, direction, speed, and dynamic mode. " alt="" coords="448,248,639,472"/>
+<area shape="rect" id="node3" href="$classcsci3081_1_1Drone.html" title="A representation of a drone It stores the drone&#39;s name, ID, version, position, direction, speed, and dynamic mode. " alt="" coords="5,564,132,656"/>
+<area shape="rect" id="node4" href="$classcsci3081_1_1Robot.html" title="A representation of a robot It stores the robot&#39;s name, ID, version, position, direction, speed, and dynamic mode. " alt="" coords="156,564,280,656"/>
+</map>

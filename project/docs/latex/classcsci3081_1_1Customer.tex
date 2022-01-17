@@ -1,0 +1,108 @@
+\hypertarget{classcsci3081_1_1Customer}{}\section{csci3081\+:\+:Customer Class Reference}
+\label{classcsci3081_1_1Customer}\index{csci3081\+::\+Customer@{csci3081\+::\+Customer}}
+
+
+A representation of a \hyperlink{classcsci3081_1_1Customer}{Customer}, inherited from \hyperlink{classcsci3081_1_1EntityBase}{Entity\+Base} It stores the \hyperlink{classcsci3081_1_1Customer}{Customer}\textquotesingle{}s name, ID, version, position, direction, and dynamic mode.  
+
+
+
+
+{\ttfamily \#include $<$customer.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Customer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classcsci3081_1_1Customer__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classcsci3081_1_1Customer_abbbf2b0f11d653b3cb0c2926064a830a}{Customer} (const picojson\+::object \&val)
+\item 
+\hyperlink{classcsci3081_1_1Customer_ad4eec3e1ba0f5dbe815e8552eb1715e2}{Customer} (\hyperlink{classcsci3081_1_1Customer}{Customer} \&customer)
+\begin{DoxyCompactList}\small\item\em Copy Constructor. This creates a new instance of \hyperlink{classcsci3081_1_1Customer}{Customer} that has the same content as the \hyperlink{classcsci3081_1_1Customer}{Customer} argument. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Customer_a9547aa6dd6c208f56ca02f945bd9441e}\label{classcsci3081_1_1Customer_a9547aa6dd6c208f56ca02f945bd9441e}} 
+int \hyperlink{classcsci3081_1_1Customer_a9547aa6dd6c208f56ca02f945bd9441e}{Get\+Num\+Package\+Total} () const
+\begin{DoxyCompactList}\small\item\em This return the number of packages the customer has in total. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Customer_a1f6ddb2ecac6de13f8e5631483b959ea}\label{classcsci3081_1_1Customer_a1f6ddb2ecac6de13f8e5631483b959ea}} 
+int \hyperlink{classcsci3081_1_1Customer_a1f6ddb2ecac6de13f8e5631483b959ea}{Get\+Num\+Deliver\+Package} () const
+\begin{DoxyCompactList}\small\item\em This return the number of packages the customer has in total. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1Customer_a7eba42384d9648731c81862c36fed1ec}{Add\+Package} (int package\+ID)
+\begin{DoxyCompactList}\small\item\em This adds a package ID into the customer\textquotesingle{}s tracked package\+ID vector if the package has not already been added. This would help check package delivery for the customer. \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1Customer_a0277fdbb1cdb28f8932f69ead7eadf9f}{Package\+Deliver} (int package\+ID)
+\begin{DoxyCompactList}\small\item\em This returns T\+R\+UE if the package with the ID passed in has already been delivered; F\+A\+L\+SE otherwise. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Customer_a82be2bf29df5167f5f6e15c510597bf7}\label{classcsci3081_1_1Customer_a82be2bf29df5167f5f6e15c510597bf7}} 
+int \hyperlink{classcsci3081_1_1Customer_a82be2bf29df5167f5f6e15c510597bf7}{Get\+Num\+Undeliver\+Package} () const
+\begin{DoxyCompactList}\small\item\em This return the number of undelivered packages the customer has. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A representation of a \hyperlink{classcsci3081_1_1Customer}{Customer}, inherited from \hyperlink{classcsci3081_1_1EntityBase}{Entity\+Base} It stores the \hyperlink{classcsci3081_1_1Customer}{Customer}\textquotesingle{}s name, ID, version, position, direction, and dynamic mode. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1Customer_abbbf2b0f11d653b3cb0c2926064a830a}\label{classcsci3081_1_1Customer_abbbf2b0f11d653b3cb0c2926064a830a}} 
+\index{csci3081\+::\+Customer@{csci3081\+::\+Customer}!Customer@{Customer}}
+\index{Customer@{Customer}!csci3081\+::\+Customer@{csci3081\+::\+Customer}}
+\subsubsection{\texorpdfstring{Customer()}{Customer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily csci3081\+::\+Customer\+::\+Customer (\begin{DoxyParamCaption}\item[{const picojson\+::object \&}]{val }\end{DoxyParamCaption})}
+
+Constructor param\mbox{[}in\mbox{]} val\+: the json object of the \hyperlink{classcsci3081_1_1Customer}{Customer} \mbox{\Hypertarget{classcsci3081_1_1Customer_ad4eec3e1ba0f5dbe815e8552eb1715e2}\label{classcsci3081_1_1Customer_ad4eec3e1ba0f5dbe815e8552eb1715e2}} 
+\index{csci3081\+::\+Customer@{csci3081\+::\+Customer}!Customer@{Customer}}
+\index{Customer@{Customer}!csci3081\+::\+Customer@{csci3081\+::\+Customer}}
+\subsubsection{\texorpdfstring{Customer()}{Customer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily csci3081\+::\+Customer\+::\+Customer (\begin{DoxyParamCaption}\item[{\hyperlink{classcsci3081_1_1Customer}{Customer} \&}]{customer }\end{DoxyParamCaption})}
+
+
+
+Copy Constructor. This creates a new instance of \hyperlink{classcsci3081_1_1Customer}{Customer} that has the same content as the \hyperlink{classcsci3081_1_1Customer}{Customer} argument. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em customer} & \hyperlink{classcsci3081_1_1Customer}{Customer} instance that wants to be copied \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1Customer_a7eba42384d9648731c81862c36fed1ec}\label{classcsci3081_1_1Customer_a7eba42384d9648731c81862c36fed1ec}} 
+\index{csci3081\+::\+Customer@{csci3081\+::\+Customer}!Add\+Package@{Add\+Package}}
+\index{Add\+Package@{Add\+Package}!csci3081\+::\+Customer@{csci3081\+::\+Customer}}
+\subsubsection{\texorpdfstring{Add\+Package()}{AddPackage()}}
+{\footnotesize\ttfamily void csci3081\+::\+Customer\+::\+Add\+Package (\begin{DoxyParamCaption}\item[{int}]{package\+ID }\end{DoxyParamCaption})}
+
+
+
+This adds a package ID into the customer\textquotesingle{}s tracked package\+ID vector if the package has not already been added. This would help check package delivery for the customer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em package\+ID} & the int for the ID of the package \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1Customer_a0277fdbb1cdb28f8932f69ead7eadf9f}\label{classcsci3081_1_1Customer_a0277fdbb1cdb28f8932f69ead7eadf9f}} 
+\index{csci3081\+::\+Customer@{csci3081\+::\+Customer}!Package\+Deliver@{Package\+Deliver}}
+\index{Package\+Deliver@{Package\+Deliver}!csci3081\+::\+Customer@{csci3081\+::\+Customer}}
+\subsubsection{\texorpdfstring{Package\+Deliver()}{PackageDeliver()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Customer\+::\+Package\+Deliver (\begin{DoxyParamCaption}\item[{int}]{package\+ID }\end{DoxyParamCaption})}
+
+
+
+This returns T\+R\+UE if the package with the ID passed in has already been delivered; F\+A\+L\+SE otherwise. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em package\+ID} & the int for the ID of the package \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/customer.\+h\item 
+/home/user/repo/project/src/customer.\+cc\end{DoxyCompactItemize}

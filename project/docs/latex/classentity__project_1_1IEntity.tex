@@ -1,0 +1,140 @@
+\hypertarget{classentity__project_1_1IEntity}{}\section{entity\+\_\+project\+:\+:I\+Entity Class Reference}
+\label{classentity__project_1_1IEntity}\index{entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}}
+
+
+A movable object in a scene. Entities have position, direction and size.  
+
+
+
+
+{\ttfamily \#include $<$entity.\+h$>$}
+
+
+
+Inheritance diagram for entity\+\_\+project\+:\+:I\+Entity\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classentity__project_1_1IEntity__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classentity__project_1_1IEntity_a37acee64a35e2bfaccf294d20be16b7f}\label{classentity__project_1_1IEntity_a37acee64a35e2bfaccf294d20be16b7f}} 
+virtual \hyperlink{classentity__project_1_1IEntity_a37acee64a35e2bfaccf294d20be16b7f}{$\sim$\+I\+Entity} ()
+\begin{DoxyCompactList}\small\item\em The destructor. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classentity__project_1_1IEntity_a87f9d99f58cdc28b654ae9a6d82fbff6}{Get\+Id} () const =0
+\item 
+virtual const std\+::string \& \hyperlink{classentity__project_1_1IEntity_a60fe17f543af26a48181a0c290a822ab}{Get\+Name} ()=0
+\item 
+virtual const std\+::vector$<$ float $>$ \& \hyperlink{classentity__project_1_1IEntity_a1369c59d258645a12a06239ece1134cf}{Get\+Position} () const =0
+\item 
+virtual const std\+::vector$<$ float $>$ \& \hyperlink{classentity__project_1_1IEntity_a385dad034b5a86666df9fc979a3d1d1b}{Get\+Direction} () const =0
+\item 
+virtual float \hyperlink{classentity__project_1_1IEntity_af2c2f81a5d201c4c1968f055808ba59c}{Get\+Radius} () const =0
+\item 
+virtual const picojson\+::object \& \hyperlink{classentity__project_1_1IEntity_a73c5b6deac9e2659160d2952ae7572c4}{Get\+Details} ()=0
+\item 
+virtual int \hyperlink{classentity__project_1_1IEntity_a254b8c22f103ebf23261cb79bc121118}{Get\+Version} () const =0
+\item 
+virtual bool \hyperlink{classentity__project_1_1IEntity_a58d710abd04e533123d033a7ba80f017}{Is\+Dynamic} () const =0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A movable object in a scene. Entities have position, direction and size. 
+
+Defines the common characteristics of an Entity.
+
+All entities that you create must implement this interface. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classentity__project_1_1IEntity_a73c5b6deac9e2659160d2952ae7572c4}\label{classentity__project_1_1IEntity_a73c5b6deac9e2659160d2952ae7572c4}} 
+\index{entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}!Get\+Details@{Get\+Details}}
+\index{Get\+Details@{Get\+Details}!entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}}
+\subsubsection{\texorpdfstring{Get\+Details()}{GetDetails()}}
+{\footnotesize\ttfamily virtual const picojson\+::object\& entity\+\_\+project\+::\+I\+Entity\+::\+Get\+Details (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns the entity\textquotesingle{}s details. The returned picojson\+::object should be a copy of the json that was passed in when the entity was created. Details are also used to send additional information to other subsystems (e.\+g. mesh, scale, rotation, etc...). 
+
+Implemented in \hyperlink{classcsci3081_1_1EntityBase_aed18a7db12bfc8d6908ac6c28078110c}{csci3081\+::\+Entity\+Base}.
+
+\mbox{\Hypertarget{classentity__project_1_1IEntity_a385dad034b5a86666df9fc979a3d1d1b}\label{classentity__project_1_1IEntity_a385dad034b5a86666df9fc979a3d1d1b}} 
+\index{entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}!Get\+Direction@{Get\+Direction}}
+\index{Get\+Direction@{Get\+Direction}!entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}}
+\subsubsection{\texorpdfstring{Get\+Direction()}{GetDirection()}}
+{\footnotesize\ttfamily virtual const std\+::vector$<$float$>$\& entity\+\_\+project\+::\+I\+Entity\+::\+Get\+Direction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns the entity\textquotesingle{}s direction. The vector should be a unit length vector. 
+
+Implemented in \hyperlink{classcsci3081_1_1EntityBase_aeffff43e1d9b696b0ea3de83f7bee37d}{csci3081\+::\+Entity\+Base}.
+
+\mbox{\Hypertarget{classentity__project_1_1IEntity_a87f9d99f58cdc28b654ae9a6d82fbff6}\label{classentity__project_1_1IEntity_a87f9d99f58cdc28b654ae9a6d82fbff6}} 
+\index{entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}!Get\+Id@{Get\+Id}}
+\index{Get\+Id@{Get\+Id}!entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}}
+\subsubsection{\texorpdfstring{Get\+Id()}{GetId()}}
+{\footnotesize\ttfamily virtual int entity\+\_\+project\+::\+I\+Entity\+::\+Get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns the unique entity id. Each Entity should have a unique ID. 
+
+Implemented in \hyperlink{classcsci3081_1_1EntityBase_a2802163d8d20092d985e763ad91d26da}{csci3081\+::\+Entity\+Base}.
+
+\mbox{\Hypertarget{classentity__project_1_1IEntity_a60fe17f543af26a48181a0c290a822ab}\label{classentity__project_1_1IEntity_a60fe17f543af26a48181a0c290a822ab}} 
+\index{entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}!Get\+Name@{Get\+Name}}
+\index{Get\+Name@{Get\+Name}!entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}}
+\subsubsection{\texorpdfstring{Get\+Name()}{GetName()}}
+{\footnotesize\ttfamily virtual const std\+::string\& entity\+\_\+project\+::\+I\+Entity\+::\+Get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns the name of an entity. (Should match the \char`\"{}name\char`\"{} field of the json that was passed in when the entity was created) 
+
+Implemented in \hyperlink{classcsci3081_1_1EntityBase_ac18421e6e96eb3939e136a579c9ac6dd}{csci3081\+::\+Entity\+Base}.
+
+\mbox{\Hypertarget{classentity__project_1_1IEntity_a1369c59d258645a12a06239ece1134cf}\label{classentity__project_1_1IEntity_a1369c59d258645a12a06239ece1134cf}} 
+\index{entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}!Get\+Position@{Get\+Position}}
+\index{Get\+Position@{Get\+Position}!entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}}
+\subsubsection{\texorpdfstring{Get\+Position()}{GetPosition()}}
+{\footnotesize\ttfamily virtual const std\+::vector$<$float$>$\& entity\+\_\+project\+::\+I\+Entity\+::\+Get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns the entity\textquotesingle{}s position. The returned vector should have three values which correspond to the x, y, z, position of the entity. 
+
+Implemented in \hyperlink{classcsci3081_1_1EntityBase_a05830db8b41c0a9c05eec08f95f683ad}{csci3081\+::\+Entity\+Base}.
+
+\mbox{\Hypertarget{classentity__project_1_1IEntity_af2c2f81a5d201c4c1968f055808ba59c}\label{classentity__project_1_1IEntity_af2c2f81a5d201c4c1968f055808ba59c}} 
+\index{entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}!Get\+Radius@{Get\+Radius}}
+\index{Get\+Radius@{Get\+Radius}!entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}}
+\subsubsection{\texorpdfstring{Get\+Radius()}{GetRadius()}}
+{\footnotesize\ttfamily virtual float entity\+\_\+project\+::\+I\+Entity\+::\+Get\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns the entity\textquotesingle{}s radius. Entities are bounded by a sphere used for calculating proximity to boundaries or other entities. 
+
+Implemented in \hyperlink{classcsci3081_1_1EntityBase_abf61eb1cc8b94a7756f0ebc6a0c8a8f3}{csci3081\+::\+Entity\+Base}.
+
+\mbox{\Hypertarget{classentity__project_1_1IEntity_a254b8c22f103ebf23261cb79bc121118}\label{classentity__project_1_1IEntity_a254b8c22f103ebf23261cb79bc121118}} 
+\index{entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}!Get\+Version@{Get\+Version}}
+\index{Get\+Version@{Get\+Version}!entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}}
+\subsubsection{\texorpdfstring{Get\+Version()}{GetVersion()}}
+{\footnotesize\ttfamily virtual int entity\+\_\+project\+::\+I\+Entity\+::\+Get\+Version (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Get version can be used to see whether or not a variable other than position or direction has changed. 
+
+Implemented in \hyperlink{classcsci3081_1_1EntityBase_af5c87e8daf9161dc8c959c355b076bea}{csci3081\+::\+Entity\+Base}.
+
+\mbox{\Hypertarget{classentity__project_1_1IEntity_a58d710abd04e533123d033a7ba80f017}\label{classentity__project_1_1IEntity_a58d710abd04e533123d033a7ba80f017}} 
+\index{entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}!Is\+Dynamic@{Is\+Dynamic}}
+\index{Is\+Dynamic@{Is\+Dynamic}!entity\+\_\+project\+::\+I\+Entity@{entity\+\_\+project\+::\+I\+Entity}}
+\subsubsection{\texorpdfstring{Is\+Dynamic()}{IsDynamic()}}
+{\footnotesize\ttfamily virtual bool entity\+\_\+project\+::\+I\+Entity\+::\+Is\+Dynamic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+This method specifies whether or not the entity is static (doesn\textquotesingle{}t change) or moves. It should return true if you want the entities position/orientation to be updated in the visualization.
+
+Combining \hyperlink{classentity__project_1_1IEntity_a254b8c22f103ebf23261cb79bc121118}{Get\+Version()} with a non-\/dynamic entity allows the entity to be updated less often than on a frame by frame basis for other subsystems. For example, we may want to update a dynamic object every frame, while it is more efficient to update a static object only when the version changes. 
+
+Implemented in \hyperlink{classcsci3081_1_1EntityBase_aa2a894f7821745acd91fbfb2e2e92082}{csci3081\+::\+Entity\+Base}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/.\+dependencies/include/\+Entity\+Project/entity.\+h\end{DoxyCompactItemize}

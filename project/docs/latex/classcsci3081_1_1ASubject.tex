@@ -1,0 +1,154 @@
+\hypertarget{classcsci3081_1_1ASubject}{}\section{csci3081\+:\+:A\+Subject Class Reference}
+\label{classcsci3081_1_1ASubject}\index{csci3081\+::\+A\+Subject@{csci3081\+::\+A\+Subject}}
+
+
+This is the Abstract Subject class from which our subjects will inherit Implements the Observer/subject pattern.  
+
+
+
+
+{\ttfamily \#include $<$asubject.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:A\+Subject\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcsci3081_1_1ASubject__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classcsci3081_1_1ASubject_a8a04b98cb169de561a8a861baf82c8c3}{Attach} (\hyperlink{classentity__project_1_1IEntityObserver}{entity\+\_\+project\+::\+I\+Entity\+Observer} $\ast$observer)
+\begin{DoxyCompactList}\small\item\em Adds an observer to the list of observers for this subject. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1ASubject_ae077b42d8551ecf10c587250a6c46cc2}{Detach} (\hyperlink{classentity__project_1_1IEntityObserver}{entity\+\_\+project\+::\+I\+Entity\+Observer} $\ast$observer)
+\begin{DoxyCompactList}\small\item\em Deletes an observer from the list of observers for this subject. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{classentity__project_1_1IEntityObserver}{entity\+\_\+project\+::\+I\+Entity\+Observer} $\ast$ $>$ \hyperlink{classcsci3081_1_1ASubject_aaa18e3aab659fe04b75dd6cba8efd4fa}{Get\+List} ()
+\begin{DoxyCompactList}\small\item\em Getter function for the list of observers (mostly used in testing) \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1ASubject_a2f219d68c9fc28373bb6f5e90170b4ae}{Notify} (picojson\+::value \&event, const \hyperlink{classentity__project_1_1IEntity}{entity\+\_\+project\+::\+I\+Entity} \&entity)
+\begin{DoxyCompactList}\small\item\em Sends out Notification to the observer watching this subject. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classcsci3081_1_1ASubject_a206a9ddb559da279011e2f9ea29663dc}{Get\+Status} ()=0
+\begin{DoxyCompactList}\small\item\em Pure virtual function Get\+Status that needs to implemented by derived class based on their types of notification. This function creates the arguments required by Notify function and makes call to Notify function. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classcsci3081_1_1ASubject_a04fdda736b2eb2784e5ef10d5f70dc7a}{Update} (float dt)=0
+\begin{DoxyCompactList}\small\item\em Pure virtual function Update that needs to implemented by derived class based on their entity type. This function is used to advance time in the simulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1ASubject_a3babfe8bff88a50ce4ce30973f2c5003}\label{classcsci3081_1_1ASubject_a3babfe8bff88a50ce4ce30973f2c5003}} 
+std\+::vector$<$ \hyperlink{classentity__project_1_1IEntityObserver}{entity\+\_\+project\+::\+I\+Entity\+Observer} $\ast$ $>$ \hyperlink{classcsci3081_1_1ASubject_a3babfe8bff88a50ce4ce30973f2c5003}{list}
+\begin{DoxyCompactList}\small\item\em List of pointers to the observers for this subject. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the Abstract Subject class from which our subjects will inherit Implements the Observer/subject pattern. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1ASubject_a8a04b98cb169de561a8a861baf82c8c3}\label{classcsci3081_1_1ASubject_a8a04b98cb169de561a8a861baf82c8c3}} 
+\index{csci3081\+::\+A\+Subject@{csci3081\+::\+A\+Subject}!Attach@{Attach}}
+\index{Attach@{Attach}!csci3081\+::\+A\+Subject@{csci3081\+::\+A\+Subject}}
+\subsubsection{\texorpdfstring{Attach()}{Attach()}}
+{\footnotesize\ttfamily void csci3081\+::\+A\+Subject\+::\+Attach (\begin{DoxyParamCaption}\item[{\hyperlink{classentity__project_1_1IEntityObserver}{entity\+\_\+project\+::\+I\+Entity\+Observer} $\ast$}]{observer }\end{DoxyParamCaption})}
+
+
+
+Adds an observer to the list of observers for this subject. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em I\+Entity\+Observer$\ast$} & observer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1ASubject_ae077b42d8551ecf10c587250a6c46cc2}\label{classcsci3081_1_1ASubject_ae077b42d8551ecf10c587250a6c46cc2}} 
+\index{csci3081\+::\+A\+Subject@{csci3081\+::\+A\+Subject}!Detach@{Detach}}
+\index{Detach@{Detach}!csci3081\+::\+A\+Subject@{csci3081\+::\+A\+Subject}}
+\subsubsection{\texorpdfstring{Detach()}{Detach()}}
+{\footnotesize\ttfamily void csci3081\+::\+A\+Subject\+::\+Detach (\begin{DoxyParamCaption}\item[{\hyperlink{classentity__project_1_1IEntityObserver}{entity\+\_\+project\+::\+I\+Entity\+Observer} $\ast$}]{observer }\end{DoxyParamCaption})}
+
+
+
+Deletes an observer from the list of observers for this subject. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em I\+Entity\+Observer$\ast$} & observer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1ASubject_aaa18e3aab659fe04b75dd6cba8efd4fa}\label{classcsci3081_1_1ASubject_aaa18e3aab659fe04b75dd6cba8efd4fa}} 
+\index{csci3081\+::\+A\+Subject@{csci3081\+::\+A\+Subject}!Get\+List@{Get\+List}}
+\index{Get\+List@{Get\+List}!csci3081\+::\+A\+Subject@{csci3081\+::\+A\+Subject}}
+\subsubsection{\texorpdfstring{Get\+List()}{GetList()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classentity__project_1_1IEntityObserver}{entity\+\_\+project\+::\+I\+Entity\+Observer} $\ast$ $>$ csci3081\+::\+A\+Subject\+::\+Get\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter function for the list of observers (mostly used in testing) 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector $<$\hyperlink{classentity__project_1_1IEntityObserver}{entity\+\_\+project\+::\+I\+Entity\+Observer}$\ast$$>$ list 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1ASubject_a206a9ddb559da279011e2f9ea29663dc}\label{classcsci3081_1_1ASubject_a206a9ddb559da279011e2f9ea29663dc}} 
+\index{csci3081\+::\+A\+Subject@{csci3081\+::\+A\+Subject}!Get\+Status@{Get\+Status}}
+\index{Get\+Status@{Get\+Status}!csci3081\+::\+A\+Subject@{csci3081\+::\+A\+Subject}}
+\subsubsection{\texorpdfstring{Get\+Status()}{GetStatus()}}
+{\footnotesize\ttfamily virtual void csci3081\+::\+A\+Subject\+::\+Get\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Pure virtual function Get\+Status that needs to implemented by derived class based on their types of notification. This function creates the arguments required by Notify function and makes call to Notify function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em picojson\+::value\&} & event \\
+\hline
+{\em const} & \hyperlink{classentity__project_1_1IEntity}{entity\+\_\+project\+::\+I\+Entity}\& entity \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classcsci3081_1_1RechargeDrone_aa245b79215b39c86c1f9fde874bdf264}{csci3081\+::\+Recharge\+Drone}, \hyperlink{classcsci3081_1_1Carrier_a2b96f30454fee0766a5ed3a26fbf092c}{csci3081\+::\+Carrier}, and \hyperlink{classcsci3081_1_1Package_aaf2a9604fc4d3dd108e4b4002751be05}{csci3081\+::\+Package}.
+
+\mbox{\Hypertarget{classcsci3081_1_1ASubject_a2f219d68c9fc28373bb6f5e90170b4ae}\label{classcsci3081_1_1ASubject_a2f219d68c9fc28373bb6f5e90170b4ae}} 
+\index{csci3081\+::\+A\+Subject@{csci3081\+::\+A\+Subject}!Notify@{Notify}}
+\index{Notify@{Notify}!csci3081\+::\+A\+Subject@{csci3081\+::\+A\+Subject}}
+\subsubsection{\texorpdfstring{Notify()}{Notify()}}
+{\footnotesize\ttfamily void csci3081\+::\+A\+Subject\+::\+Notify (\begin{DoxyParamCaption}\item[{picojson\+::value \&}]{event,  }\item[{const \hyperlink{classentity__project_1_1IEntity}{entity\+\_\+project\+::\+I\+Entity} \&}]{entity }\end{DoxyParamCaption})}
+
+
+
+Sends out Notification to the observer watching this subject. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em picojson\+::value\&} & event \\
+\hline
+{\em const} & \hyperlink{classentity__project_1_1IEntity}{entity\+\_\+project\+::\+I\+Entity}\& entity \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1ASubject_a04fdda736b2eb2784e5ef10d5f70dc7a}\label{classcsci3081_1_1ASubject_a04fdda736b2eb2784e5ef10d5f70dc7a}} 
+\index{csci3081\+::\+A\+Subject@{csci3081\+::\+A\+Subject}!Update@{Update}}
+\index{Update@{Update}!csci3081\+::\+A\+Subject@{csci3081\+::\+A\+Subject}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily virtual void csci3081\+::\+A\+Subject\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Pure virtual function Update that needs to implemented by derived class based on their entity type. This function is used to advance time in the simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em float} & dt refers to the amount of time the update call should advance the simulation by. For instance if a drone moves 1 unit of distance per unit of time, and Update is called with dt=.05, then the drone should move 1 $\ast$ .05 = .05 units of distance.\\
+\hline
+\end{DoxyParams}
+Some things that should happen in the Update function\+: move drones, check if packages have been delivered to customers, etc. 
+
+Implemented in \hyperlink{classcsci3081_1_1Carrier_a5f202411aa049586514a48129b959ed7}{csci3081\+::\+Carrier}, \hyperlink{classcsci3081_1_1RechargeDrone_ac4b45136e2969ac25941d46a8ccdb83a}{csci3081\+::\+Recharge\+Drone}, and \hyperlink{classcsci3081_1_1Package_acd1f198a6e087c08e1cfeed0f44a90be}{csci3081\+::\+Package}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/asubject.\+h\item 
+/home/user/repo/project/src/asubject.\+cc\end{DoxyCompactItemize}

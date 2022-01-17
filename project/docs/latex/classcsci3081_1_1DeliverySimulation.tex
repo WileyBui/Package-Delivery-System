@@ -1,0 +1,189 @@
+\hypertarget{classcsci3081_1_1DeliverySimulation}{}\section{csci3081\+:\+:Delivery\+Simulation Class Reference}
+\label{classcsci3081_1_1DeliverySimulation}\index{csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}}
+
+
+This is the facade for the delivery system.  
+
+
+
+
+{\ttfamily \#include $<$delivery\+\_\+simulation.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Delivery\+Simulation\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classcsci3081_1_1DeliverySimulation__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1DeliverySimulation_ae59f8cb2306f603c4887fcaa06613200}\label{classcsci3081_1_1DeliverySimulation_ae59f8cb2306f603c4887fcaa06613200}} 
+\hyperlink{classcsci3081_1_1DeliverySimulation_ae59f8cb2306f603c4887fcaa06613200}{Delivery\+Simulation} ()
+\begin{DoxyCompactList}\small\item\em Constructor\+: this can do any setup your system necessitates. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1DeliverySimulation_a83a3c4b1ba37a675bae575d3f46c55ab}\label{classcsci3081_1_1DeliverySimulation_a83a3c4b1ba37a675bae575d3f46c55ab}} 
+\hyperlink{classcsci3081_1_1DeliverySimulation_a83a3c4b1ba37a675bae575d3f46c55ab}{$\sim$\+Delivery\+Simulation} ()
+\begin{DoxyCompactList}\small\item\em Desconstructor\+: This should free any memory that your program uses. \end{DoxyCompactList}\item 
+\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$ \hyperlink{classcsci3081_1_1DeliverySimulation_a2441732ada38ae3b816266c9d471e528}{Create\+Entity} (const picojson\+::object \&val)
+\item 
+void \hyperlink{classcsci3081_1_1DeliverySimulation_a25b9f689b5ec1c831776d6160593e605}{Add\+Factory} (\hyperlink{classentity__project_1_1IEntityFactory}{I\+Entity\+Factory} $\ast$factory)
+\item 
+void \hyperlink{classcsci3081_1_1DeliverySimulation_ad8693e6b107599588c4f6f944911d0ed}{Add\+Entity} (\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$entity)
+\item 
+void \hyperlink{classcsci3081_1_1DeliverySimulation_a11ca7b8572484e707b3cd8285e522e9c}{Set\+Graph} (const \hyperlink{classentity__project_1_1IGraph}{I\+Graph} $\ast$graph)
+\item 
+void \hyperlink{classcsci3081_1_1DeliverySimulation_a4d777e31fb067b5a5475c88116a321e1}{Schedule\+Delivery} (\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$package, \hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$dest)
+\item 
+void \hyperlink{classcsci3081_1_1DeliverySimulation_a58859737b937fa7724e7eb0157dced2f}{Add\+Observer} (\hyperlink{classentity__project_1_1IEntityObserver}{I\+Entity\+Observer} $\ast$observer)
+\item 
+void \hyperlink{classcsci3081_1_1DeliverySimulation_a8ffa78cd68b1d3cc347436f63639431c}{Remove\+Observer} (\hyperlink{classentity__project_1_1IEntityObserver}{I\+Entity\+Observer} $\ast$observer)
+\item 
+const std\+::vector$<$ \hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$ $>$ \& \hyperlink{classcsci3081_1_1DeliverySimulation_a3d027c435dcc4386da1bf688aae4e21a}{Get\+Entities} () const
+\item 
+void \hyperlink{classcsci3081_1_1DeliverySimulation_a537740cce3dc15c5ff8266580d1e8f13}{Update} (float dt)
+\item 
+void \hyperlink{classcsci3081_1_1DeliverySimulation_a332938cb4b972af169ad58dbc1b3bb05}{Run\+Script} (const picojson\+::array \&script, \hyperlink{classentity__project_1_1IEntitySystem}{I\+Entity\+System} $\ast$system) const
+\begin{DoxyCompactList}\small\item\em You do not need to worry about this function. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1DeliverySimulation_aa5fdc10868678d1198efc458f5040617}\label{classcsci3081_1_1DeliverySimulation_aa5fdc10868678d1198efc458f5040617}} 
+\hyperlink{classcsci3081_1_1Carrier}{Carrier} $\ast$ \hyperlink{classcsci3081_1_1DeliverySimulation_aa5fdc10868678d1198efc458f5040617}{Available\+Carrier} (\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$package)
+\begin{DoxyCompactList}\small\item\em Return pointer to the most suitable available carrier (e.\+g. drone, robot, etc) to deliver a package. Choose the one available, not out of battery, closest to the package. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the facade for the delivery system. 
+
+This class will delegate operations for the whole delivery system. See the documentation for \hyperlink{classcsci3081_1_1IDeliverySystem}{I\+Delivery\+System} for more information. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1DeliverySimulation_ad8693e6b107599588c4f6f944911d0ed}\label{classcsci3081_1_1DeliverySimulation_ad8693e6b107599588c4f6f944911d0ed}} 
+\index{csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}!Add\+Entity@{Add\+Entity}}
+\index{Add\+Entity@{Add\+Entity}!csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}}
+\subsubsection{\texorpdfstring{Add\+Entity()}{AddEntity()}}
+{\footnotesize\ttfamily void csci3081\+::\+Delivery\+Simulation\+::\+Add\+Entity (\begin{DoxyParamCaption}\item[{\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+This function should add an entity to the simulation 
+
+Implements \hyperlink{classcsci3081_1_1IDeliverySystem_ae8fe57f0627f3429d4a8cea4d910e233}{csci3081\+::\+I\+Delivery\+System}.
+
+\mbox{\Hypertarget{classcsci3081_1_1DeliverySimulation_a25b9f689b5ec1c831776d6160593e605}\label{classcsci3081_1_1DeliverySimulation_a25b9f689b5ec1c831776d6160593e605}} 
+\index{csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}!Add\+Factory@{Add\+Factory}}
+\index{Add\+Factory@{Add\+Factory}!csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}}
+\subsubsection{\texorpdfstring{Add\+Factory()}{AddFactory()}}
+{\footnotesize\ttfamily void csci3081\+::\+Delivery\+Simulation\+::\+Add\+Factory (\begin{DoxyParamCaption}\item[{\hyperlink{classentity__project_1_1IEntityFactory}{I\+Entity\+Factory} $\ast$}]{factory }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+This function should add a factory to the composite factory pattern 
+
+Implements \hyperlink{classcsci3081_1_1IDeliverySystem_a4d6a5fa94ab597dbe88ae0046d698e76}{csci3081\+::\+I\+Delivery\+System}.
+
+\mbox{\Hypertarget{classcsci3081_1_1DeliverySimulation_a58859737b937fa7724e7eb0157dced2f}\label{classcsci3081_1_1DeliverySimulation_a58859737b937fa7724e7eb0157dced2f}} 
+\index{csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}!Add\+Observer@{Add\+Observer}}
+\index{Add\+Observer@{Add\+Observer}!csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}}
+\subsubsection{\texorpdfstring{Add\+Observer()}{AddObserver()}}
+{\footnotesize\ttfamily void csci3081\+::\+Delivery\+Simulation\+::\+Add\+Observer (\begin{DoxyParamCaption}\item[{\hyperlink{classentity__project_1_1IEntityObserver}{I\+Entity\+Observer} $\ast$}]{observer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Observer functions will not be used in iteration1 
+
+Implements \hyperlink{classcsci3081_1_1IDeliverySystem_a53161d8f9f94ee5f56e39f98b52ac3e2}{csci3081\+::\+I\+Delivery\+System}.
+
+\mbox{\Hypertarget{classcsci3081_1_1DeliverySimulation_a2441732ada38ae3b816266c9d471e528}\label{classcsci3081_1_1DeliverySimulation_a2441732ada38ae3b816266c9d471e528}} 
+\index{csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}!Create\+Entity@{Create\+Entity}}
+\index{Create\+Entity@{Create\+Entity}!csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}}
+\subsubsection{\texorpdfstring{Create\+Entity()}{CreateEntity()}}
+{\footnotesize\ttfamily \hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$ csci3081\+::\+Delivery\+Simulation\+::\+Create\+Entity (\begin{DoxyParamCaption}\item[{const picojson\+::object \&}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Given the picojson\+::object val, this should create an entity. Based on the type of entity, there may be different fields. You can see the vals that will be passed in the project/web/scenes directory. Some of the fields are for our backend system and you don\textquotesingle{}t need to worry about them. (for instance, mesh, rotation, offset, etc.)
+
+Some fields in val that you will need to create the entity correctly\+:
+
+type\+: string (could be \char`\"{}drone/customer/package\char`\"{})
+
+name\+: string
+
+position\+: array (contains \mbox{[}x\+\_\+position, y\+\_\+position, z\+\_\+position\mbox{]})
+
+direction\+: array (contains \mbox{[}x, y, z\mbox{]})
+
+speed\+: float
+
+battery\+\_\+capacity\+: float
+
+Don\textquotesingle{}t add the entity to the simulation until it is passed in via Add\+Entity 
+
+Implements \hyperlink{classcsci3081_1_1IDeliverySystem_abc1959b16d1fcfdeea2a2d8af0733301}{csci3081\+::\+I\+Delivery\+System}.
+
+\mbox{\Hypertarget{classcsci3081_1_1DeliverySimulation_a3d027c435dcc4386da1bf688aae4e21a}\label{classcsci3081_1_1DeliverySimulation_a3d027c435dcc4386da1bf688aae4e21a}} 
+\index{csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}!Get\+Entities@{Get\+Entities}}
+\index{Get\+Entities@{Get\+Entities}!csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}}
+\subsubsection{\texorpdfstring{Get\+Entities()}{GetEntities()}}
+{\footnotesize\ttfamily const std\+::vector$<$ \hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$ $>$ \& csci3081\+::\+Delivery\+Simulation\+::\+Get\+Entities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Get\+Entities should return all entities that have been A\+D\+D\+ED to the system 
+
+Implements \hyperlink{classcsci3081_1_1IDeliverySystem_aca4e7e3e9a9a19ca87f788935b882277}{csci3081\+::\+I\+Delivery\+System}.
+
+\mbox{\Hypertarget{classcsci3081_1_1DeliverySimulation_a8ffa78cd68b1d3cc347436f63639431c}\label{classcsci3081_1_1DeliverySimulation_a8ffa78cd68b1d3cc347436f63639431c}} 
+\index{csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}!Remove\+Observer@{Remove\+Observer}}
+\index{Remove\+Observer@{Remove\+Observer}!csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}}
+\subsubsection{\texorpdfstring{Remove\+Observer()}{RemoveObserver()}}
+{\footnotesize\ttfamily void csci3081\+::\+Delivery\+Simulation\+::\+Remove\+Observer (\begin{DoxyParamCaption}\item[{\hyperlink{classentity__project_1_1IEntityObserver}{I\+Entity\+Observer} $\ast$}]{observer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Observer functions will not be used in iteration1 
+
+Implements \hyperlink{classcsci3081_1_1IDeliverySystem_a79d4336f9fd4bcb837a5be1713f84ab1}{csci3081\+::\+I\+Delivery\+System}.
+
+\mbox{\Hypertarget{classcsci3081_1_1DeliverySimulation_a332938cb4b972af169ad58dbc1b3bb05}\label{classcsci3081_1_1DeliverySimulation_a332938cb4b972af169ad58dbc1b3bb05}} 
+\index{csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}!Run\+Script@{Run\+Script}}
+\index{Run\+Script@{Run\+Script}!csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}}
+\subsubsection{\texorpdfstring{Run\+Script()}{RunScript()}}
+{\footnotesize\ttfamily void csci3081\+::\+Delivery\+Simulation\+::\+Run\+Script (\begin{DoxyParamCaption}\item[{const picojson\+::array \&}]{script,  }\item[{\hyperlink{classentity__project_1_1IEntitySystem}{I\+Entity\+System} $\ast$}]{system }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+You do not need to worry about this function. 
+
+This function takes care of turning json into function calls of your system. Y\+OU DO N\+OT N\+E\+ED TO I\+M\+P\+L\+E\+M\+E\+NT T\+H\+IS it is already implemented in the delivery\+\_\+simulation.\+cc we have provided. 
+
+Implements \hyperlink{classcsci3081_1_1IDeliverySystem_ae152276130e859b052f1d89417be6fc2}{csci3081\+::\+I\+Delivery\+System}.
+
+\mbox{\Hypertarget{classcsci3081_1_1DeliverySimulation_a4d777e31fb067b5a5475c88116a321e1}\label{classcsci3081_1_1DeliverySimulation_a4d777e31fb067b5a5475c88116a321e1}} 
+\index{csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}!Schedule\+Delivery@{Schedule\+Delivery}}
+\index{Schedule\+Delivery@{Schedule\+Delivery}!csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}}
+\subsubsection{\texorpdfstring{Schedule\+Delivery()}{ScheduleDelivery()}}
+{\footnotesize\ttfamily void csci3081\+::\+Delivery\+Simulation\+::\+Schedule\+Delivery (\begin{DoxyParamCaption}\item[{\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$}]{package,  }\item[{\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$}]{dest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+This function tells the simulation that the I\+Entity$\ast$ package should be delivered to the I\+Entity$\ast$ dest (which is likely a customer). How the delivery takes place is entirely dependent on how you design your code, but it should involve a drone navigating to the package, picking it up, and then moving to the customer and dropping the package. 
+
+Implements \hyperlink{classcsci3081_1_1IDeliverySystem_a25210b242623675309c16e8a2c3cfd0e}{csci3081\+::\+I\+Delivery\+System}.
+
+\mbox{\Hypertarget{classcsci3081_1_1DeliverySimulation_a11ca7b8572484e707b3cd8285e522e9c}\label{classcsci3081_1_1DeliverySimulation_a11ca7b8572484e707b3cd8285e522e9c}} 
+\index{csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}!Set\+Graph@{Set\+Graph}}
+\index{Set\+Graph@{Set\+Graph}!csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}}
+\subsubsection{\texorpdfstring{Set\+Graph()}{SetGraph()}}
+{\footnotesize\ttfamily void csci3081\+::\+Delivery\+Simulation\+::\+Set\+Graph (\begin{DoxyParamCaption}\item[{const \hyperlink{classentity__project_1_1IGraph}{I\+Graph} $\ast$}]{graph }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+This function should simply store a reference to the I\+Graph$\ast$ somewhere. The I\+Graph contains useful functions such as the Get\+Path function which can be used to get a path from one position to another. 
+
+Implements \hyperlink{classcsci3081_1_1IDeliverySystem_ac379454e54cc392ff7c24f565a3e8353}{csci3081\+::\+I\+Delivery\+System}.
+
+\mbox{\Hypertarget{classcsci3081_1_1DeliverySimulation_a537740cce3dc15c5ff8266580d1e8f13}\label{classcsci3081_1_1DeliverySimulation_a537740cce3dc15c5ff8266580d1e8f13}} 
+\index{csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}!Update@{Update}}
+\index{Update@{Update}!csci3081\+::\+Delivery\+Simulation@{csci3081\+::\+Delivery\+Simulation}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void csci3081\+::\+Delivery\+Simulation\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+This function is used to advance time in the simulation. float dt refers to the amount of time the update call should advance the simulation by. For instance if a drone moves 1 unit of distance per unit of time, and Update is called with dt=.05, then the drone should move 1 $\ast$ .05 = .05 units of distance.
+
+Some things that should happen in the Update function\+: move drones, check if packages have been delivered to customers, move recharge drone \& fill up battery to dead carriers, ect... 
+
+Implements \hyperlink{classcsci3081_1_1IDeliverySystem_a3ef0dda19a6e1ad322bb6dd35ae3e3f1}{csci3081\+::\+I\+Delivery\+System}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/\hyperlink{delivery__simulation_8h}{delivery\+\_\+simulation.\+h}\item 
+/home/user/repo/project/src/delivery\+\_\+simulation.\+cc\end{DoxyCompactItemize}

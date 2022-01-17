@@ -1,0 +1,63 @@
+\hypertarget{classcsci3081_1_1RouteStrategy}{}\section{csci3081\+:\+:Route\+Strategy Class Reference}
+\label{classcsci3081_1_1RouteStrategy}\index{csci3081\+::\+Route\+Strategy@{csci3081\+::\+Route\+Strategy}}
+
+
+This is the Route Strategy class where we can use the interface to decide which type of route behaviour to implement using a strategy pattern.  
+
+
+
+
+{\ttfamily \#include $<$route\+\_\+strategy.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Route\+Strategy\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcsci3081_1_1RouteStrategy__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ std\+::vector$<$ float $>$ $>$ \hyperlink{classcsci3081_1_1RouteStrategy_a4bf67b185a4446324ebc13c1cda40cfe}{Get\+Route} (const \hyperlink{classentity__project_1_1IGraph}{I\+Graph} $\ast$graph, std\+::vector$<$ float $>$ location, std\+::vector$<$ float $>$ dest)=0
+\begin{DoxyCompactList}\small\item\em Pure virtual function that will be overridden in derived classes. This function allows the moving item to get the desired route. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the Route Strategy class where we can use the interface to decide which type of route behaviour to implement using a strategy pattern. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1RouteStrategy_a4bf67b185a4446324ebc13c1cda40cfe}\label{classcsci3081_1_1RouteStrategy_a4bf67b185a4446324ebc13c1cda40cfe}} 
+\index{csci3081\+::\+Route\+Strategy@{csci3081\+::\+Route\+Strategy}!Get\+Route@{Get\+Route}}
+\index{Get\+Route@{Get\+Route}!csci3081\+::\+Route\+Strategy@{csci3081\+::\+Route\+Strategy}}
+\subsubsection{\texorpdfstring{Get\+Route()}{GetRoute()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$std\+::vector$<$float$>$ $>$ csci3081\+::\+Route\+Strategy\+::\+Get\+Route (\begin{DoxyParamCaption}\item[{const \hyperlink{classentity__project_1_1IGraph}{I\+Graph} $\ast$}]{graph,  }\item[{std\+::vector$<$ float $>$}]{location,  }\item[{std\+::vector$<$ float $>$}]{dest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Pure virtual function that will be overridden in derived classes. This function allows the moving item to get the desired route. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & I\+Graph$\ast$ graph \\
+\hline
+{\em std\+::vector$<$float$>$} & location \\
+\hline
+{\em std\+::vector$<$float$>$} & dest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector $<$std\+::vector$<$float$>$$>$ 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classcsci3081_1_1BeelineRoute_a38aacbeafb14145e807c60990199785c}{csci3081\+::\+Beeline\+Route}, \hyperlink{classcsci3081_1_1ParabolicRoute_adbafff4df041bd49c060578216cb77fc}{csci3081\+::\+Parabolic\+Route}, and \hyperlink{classcsci3081_1_1SmartRoute_a166304ad52fe67131f4540577e3d863d}{csci3081\+::\+Smart\+Route}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/route\+\_\+strategy.\+h\end{DoxyCompactItemize}

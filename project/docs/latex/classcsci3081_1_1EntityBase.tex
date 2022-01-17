@@ -1,0 +1,190 @@
+\hypertarget{classcsci3081_1_1EntityBase}{}\section{csci3081\+:\+:Entity\+Base Class Reference}
+\label{classcsci3081_1_1EntityBase}\index{csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}}
+
+
+The base class for creating entities.  
+
+
+
+
+{\ttfamily \#include $<$entity\+\_\+base.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Entity\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcsci3081_1_1EntityBase__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+const picojson\+::object \& \hyperlink{classcsci3081_1_1EntityBase_aed18a7db12bfc8d6908ac6c28078110c}{Get\+Details} ()
+\item 
+int \hyperlink{classcsci3081_1_1EntityBase_a2802163d8d20092d985e763ad91d26da}{Get\+Id} () const
+\item 
+const std\+::string \& \hyperlink{classcsci3081_1_1EntityBase_ac18421e6e96eb3939e136a579c9ac6dd}{Get\+Name} ()
+\item 
+const std\+::vector$<$ float $>$ \& \hyperlink{classcsci3081_1_1EntityBase_a05830db8b41c0a9c05eec08f95f683ad}{Get\+Position} () const
+\item 
+const std\+::vector$<$ float $>$ \& \hyperlink{classcsci3081_1_1EntityBase_aeffff43e1d9b696b0ea3de83f7bee37d}{Get\+Direction} () const
+\item 
+float \hyperlink{classcsci3081_1_1EntityBase_abf61eb1cc8b94a7756f0ebc6a0c8a8f3}{Get\+Radius} () const
+\item 
+int \hyperlink{classcsci3081_1_1EntityBase_af5c87e8daf9161dc8c959c355b076bea}{Get\+Version} () const
+\item 
+bool \hyperlink{classcsci3081_1_1EntityBase_aa2a894f7821745acd91fbfb2e2e92082}{Is\+Dynamic} () const
+\item 
+float \hyperlink{classcsci3081_1_1EntityBase_a41270ec9049d9d0a379987ab95796bd9}{Distance\+Between} (\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$another)
+\item 
+bool \hyperlink{classcsci3081_1_1EntityBase_a7ed05da61dab982c517c3481941a4be8}{Is\+Within} (\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$another)
+\item 
+std\+::string \hyperlink{classcsci3081_1_1EntityBase_ac2efc31e2a346b29897f711c44b71ecb}{Get\+Type} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_ac38853fd49f990fbf4a5253f6a629830}\label{classcsci3081_1_1EntityBase_ac38853fd49f990fbf4a5253f6a629830}} 
+std\+::string {\bfseries name}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_aac37ea7e640a8a710b3b5ac1f8c721ab}\label{classcsci3081_1_1EntityBase_aac37ea7e640a8a710b3b5ac1f8c721ab}} 
+int {\bfseries ID}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_aab57c1d92706e8a78b85a159df6955e9}\label{classcsci3081_1_1EntityBase_aab57c1d92706e8a78b85a159df6955e9}} 
+std\+::vector$<$ float $>$ {\bfseries position}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_a76a2b78baa728973a7e3e4608224840e}\label{classcsci3081_1_1EntityBase_a76a2b78baa728973a7e3e4608224840e}} 
+std\+::vector$<$ float $>$ {\bfseries direction}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_ad4623718110440313bf7ee316838a352}\label{classcsci3081_1_1EntityBase_ad4623718110440313bf7ee316838a352}} 
+bool {\bfseries dynamic}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_ae4224835873699684a7b7a1ea39fdf77}\label{classcsci3081_1_1EntityBase_ae4224835873699684a7b7a1ea39fdf77}} 
+int {\bfseries version}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_ae2c7b177b5038a5a369046ae577ef19e}\label{classcsci3081_1_1EntityBase_ae2c7b177b5038a5a369046ae577ef19e}} 
+float {\bfseries radius}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_aed45722b1b5a3b0f191084139d47c051}\label{classcsci3081_1_1EntityBase_aed45722b1b5a3b0f191084139d47c051}} 
+std\+::string {\bfseries type}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_a75477f89357da1cc9ac999ec6bd6db5b}\label{classcsci3081_1_1EntityBase_a75477f89357da1cc9ac999ec6bd6db5b}} 
+picojson\+::object {\bfseries details}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The base class for creating entities. 
+
+This class can be used as the base for all entities in the delivery system. The overall design is up to you (the student), but all entities must implement the I\+Entity interface.
+
+See the documentation for I\+Entity for more information 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_a41270ec9049d9d0a379987ab95796bd9}\label{classcsci3081_1_1EntityBase_a41270ec9049d9d0a379987ab95796bd9}} 
+\index{csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}!Distance\+Between@{Distance\+Between}}
+\index{Distance\+Between@{Distance\+Between}!csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}}
+\subsubsection{\texorpdfstring{Distance\+Between()}{DistanceBetween()}}
+{\footnotesize\ttfamily float csci3081\+::\+Entity\+Base\+::\+Distance\+Between (\begin{DoxyParamCaption}\item[{\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$}]{another }\end{DoxyParamCaption})}
+
+Return the distance between the I\+Entity objects \mbox{\Hypertarget{classcsci3081_1_1EntityBase_aed18a7db12bfc8d6908ac6c28078110c}\label{classcsci3081_1_1EntityBase_aed18a7db12bfc8d6908ac6c28078110c}} 
+\index{csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}!Get\+Details@{Get\+Details}}
+\index{Get\+Details@{Get\+Details}!csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}}
+\subsubsection{\texorpdfstring{Get\+Details()}{GetDetails()}}
+{\footnotesize\ttfamily const picojson\+::object \& csci3081\+::\+Entity\+Base\+::\+Get\+Details (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the entity\textquotesingle{}s details. The returned picojson\+::object should be a copy of the json that was passed in when the entity was created. Details are also used to send additional information to other subsystems (e.\+g. mesh, scale, rotation, etc...). 
+
+Implements \hyperlink{classentity__project_1_1IEntity_a73c5b6deac9e2659160d2952ae7572c4}{entity\+\_\+project\+::\+I\+Entity}.
+
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_aeffff43e1d9b696b0ea3de83f7bee37d}\label{classcsci3081_1_1EntityBase_aeffff43e1d9b696b0ea3de83f7bee37d}} 
+\index{csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}!Get\+Direction@{Get\+Direction}}
+\index{Get\+Direction@{Get\+Direction}!csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}}
+\subsubsection{\texorpdfstring{Get\+Direction()}{GetDirection()}}
+{\footnotesize\ttfamily const std\+::vector$<$ float $>$ \& csci3081\+::\+Entity\+Base\+::\+Get\+Direction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Return the direction of the drone param \mbox{[}out\mbox{]}\+: direction of the drone as vector of float 
+
+Implements \hyperlink{classentity__project_1_1IEntity_a385dad034b5a86666df9fc979a3d1d1b}{entity\+\_\+project\+::\+I\+Entity}.
+
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_a2802163d8d20092d985e763ad91d26da}\label{classcsci3081_1_1EntityBase_a2802163d8d20092d985e763ad91d26da}} 
+\index{csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}!Get\+Id@{Get\+Id}}
+\index{Get\+Id@{Get\+Id}!csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}}
+\subsubsection{\texorpdfstring{Get\+Id()}{GetId()}}
+{\footnotesize\ttfamily int csci3081\+::\+Entity\+Base\+::\+Get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Return the unique ID of the drone param \mbox{[}out\mbox{]}\+: ID of the drone 
+
+Implements \hyperlink{classentity__project_1_1IEntity_a87f9d99f58cdc28b654ae9a6d82fbff6}{entity\+\_\+project\+::\+I\+Entity}.
+
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_ac18421e6e96eb3939e136a579c9ac6dd}\label{classcsci3081_1_1EntityBase_ac18421e6e96eb3939e136a579c9ac6dd}} 
+\index{csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}!Get\+Name@{Get\+Name}}
+\index{Get\+Name@{Get\+Name}!csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}}
+\subsubsection{\texorpdfstring{Get\+Name()}{GetName()}}
+{\footnotesize\ttfamily const std\+::string \& csci3081\+::\+Entity\+Base\+::\+Get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Return the name of the drone param \mbox{[}out\mbox{]}\+: name of the drone 
+
+Implements \hyperlink{classentity__project_1_1IEntity_a60fe17f543af26a48181a0c290a822ab}{entity\+\_\+project\+::\+I\+Entity}.
+
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_a05830db8b41c0a9c05eec08f95f683ad}\label{classcsci3081_1_1EntityBase_a05830db8b41c0a9c05eec08f95f683ad}} 
+\index{csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}!Get\+Position@{Get\+Position}}
+\index{Get\+Position@{Get\+Position}!csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}}
+\subsubsection{\texorpdfstring{Get\+Position()}{GetPosition()}}
+{\footnotesize\ttfamily const std\+::vector$<$ float $>$ \& csci3081\+::\+Entity\+Base\+::\+Get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Return the position of the drone param \mbox{[}out\mbox{]}\+: position of the drone as vector of float 
+
+Implements \hyperlink{classentity__project_1_1IEntity_a1369c59d258645a12a06239ece1134cf}{entity\+\_\+project\+::\+I\+Entity}.
+
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_abf61eb1cc8b94a7756f0ebc6a0c8a8f3}\label{classcsci3081_1_1EntityBase_abf61eb1cc8b94a7756f0ebc6a0c8a8f3}} 
+\index{csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}!Get\+Radius@{Get\+Radius}}
+\index{Get\+Radius@{Get\+Radius}!csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}}
+\subsubsection{\texorpdfstring{Get\+Radius()}{GetRadius()}}
+{\footnotesize\ttfamily float csci3081\+::\+Entity\+Base\+::\+Get\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Return the radius of the drone param \mbox{[}out\mbox{]}\+: radius of the drone as vector of float 
+
+Implements \hyperlink{classentity__project_1_1IEntity_af2c2f81a5d201c4c1968f055808ba59c}{entity\+\_\+project\+::\+I\+Entity}.
+
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_ac2efc31e2a346b29897f711c44b71ecb}\label{classcsci3081_1_1EntityBase_ac2efc31e2a346b29897f711c44b71ecb}} 
+\index{csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}!Get\+Type@{Get\+Type}}
+\index{Get\+Type@{Get\+Type}!csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}}
+\subsubsection{\texorpdfstring{Get\+Type()}{GetType()}}
+{\footnotesize\ttfamily std\+::string csci3081\+::\+Entity\+Base\+::\+Get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Return std\+::string type of the Entity object, such as \char`\"{}carrier\char`\"{} and \char`\"{}customer\char`\"{} \mbox{\Hypertarget{classcsci3081_1_1EntityBase_af5c87e8daf9161dc8c959c355b076bea}\label{classcsci3081_1_1EntityBase_af5c87e8daf9161dc8c959c355b076bea}} 
+\index{csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}!Get\+Version@{Get\+Version}}
+\index{Get\+Version@{Get\+Version}!csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}}
+\subsubsection{\texorpdfstring{Get\+Version()}{GetVersion()}}
+{\footnotesize\ttfamily int csci3081\+::\+Entity\+Base\+::\+Get\+Version (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Return the version of the drone param \mbox{[}out\mbox{]}\+: version of the drone as vector of float 
+
+Implements \hyperlink{classentity__project_1_1IEntity_a254b8c22f103ebf23261cb79bc121118}{entity\+\_\+project\+::\+I\+Entity}.
+
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_aa2a894f7821745acd91fbfb2e2e92082}\label{classcsci3081_1_1EntityBase_aa2a894f7821745acd91fbfb2e2e92082}} 
+\index{csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}!Is\+Dynamic@{Is\+Dynamic}}
+\index{Is\+Dynamic@{Is\+Dynamic}!csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}}
+\subsubsection{\texorpdfstring{Is\+Dynamic()}{IsDynamic()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Entity\+Base\+::\+Is\+Dynamic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Return the dynamic of the drone param \mbox{[}out\mbox{]}\+: dynamic of the drone as vector of float 
+
+Implements \hyperlink{classentity__project_1_1IEntity_a58d710abd04e533123d033a7ba80f017}{entity\+\_\+project\+::\+I\+Entity}.
+
+\mbox{\Hypertarget{classcsci3081_1_1EntityBase_a7ed05da61dab982c517c3481941a4be8}\label{classcsci3081_1_1EntityBase_a7ed05da61dab982c517c3481941a4be8}} 
+\index{csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}!Is\+Within@{Is\+Within}}
+\index{Is\+Within@{Is\+Within}!csci3081\+::\+Entity\+Base@{csci3081\+::\+Entity\+Base}}
+\subsubsection{\texorpdfstring{Is\+Within()}{IsWithin()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Entity\+Base\+::\+Is\+Within (\begin{DoxyParamCaption}\item[{\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$}]{another }\end{DoxyParamCaption})}
+
+Return true if the object is within radius of the I\+Entity object passed in the argument; Return false otherwise 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/\hyperlink{entity__base_8h}{entity\+\_\+base.\+h}\item 
+/home/user/repo/project/src/entity\+\_\+base.\+cc\end{DoxyCompactItemize}

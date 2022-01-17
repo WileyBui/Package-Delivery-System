@@ -1,0 +1,4 @@
+<map id="entity_project::IEntityObserver" name="entity_project::IEntityObserver">
+<area shape="rect" id="node2" href="$classentity__project_1_1EntityConsoleLogger.html" title="The Entity Console Logger outputs entity events to the command line. " alt="" coords="5,189,216,281"/>
+<area shape="rect" id="node3" href="$classentity__project_1_1WebSceneViewer.html" title="A web viewer for the entity system that uses web sockets. " alt="" coords="240,145,427,325"/>
+</map>

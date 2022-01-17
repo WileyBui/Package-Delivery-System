@@ -1,0 +1,64 @@
+\hypertarget{classcsci3081_1_1ParabolicRoute}{}\section{csci3081\+:\+:Parabolic\+Route Class Reference}
+\label{classcsci3081_1_1ParabolicRoute}\index{csci3081\+::\+Parabolic\+Route@{csci3081\+::\+Parabolic\+Route}}
+
+
+This is the Parabolic Route class where we can use the strategy pattern to implement a parabolic route.  
+
+
+
+
+{\ttfamily \#include $<$parabolic\+\_\+route.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Parabolic\+Route\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{classcsci3081_1_1ParabolicRoute__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ float $>$ $>$ \hyperlink{classcsci3081_1_1ParabolicRoute_adbafff4df041bd49c060578216cb77fc}{Get\+Route} (const \hyperlink{classentity__project_1_1IGraph}{I\+Graph} $\ast$graph, std\+::vector$<$ float $>$ location, std\+::vector$<$ float $>$ dest)
+\begin{DoxyCompactList}\small\item\em This function allows the moving item to get the desired route. In this class, the function will return a route that follows the parabolic path. However a pure parabolic path will make the drone clips the building at the end. What we did is raise the drone to a certain height first,then do parabolic in the air and descend veritcally. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the Parabolic Route class where we can use the strategy pattern to implement a parabolic route. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1ParabolicRoute_adbafff4df041bd49c060578216cb77fc}\label{classcsci3081_1_1ParabolicRoute_adbafff4df041bd49c060578216cb77fc}} 
+\index{csci3081\+::\+Parabolic\+Route@{csci3081\+::\+Parabolic\+Route}!Get\+Route@{Get\+Route}}
+\index{Get\+Route@{Get\+Route}!csci3081\+::\+Parabolic\+Route@{csci3081\+::\+Parabolic\+Route}}
+\subsubsection{\texorpdfstring{Get\+Route()}{GetRoute()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ float $>$ $>$ csci3081\+::\+Parabolic\+Route\+::\+Get\+Route (\begin{DoxyParamCaption}\item[{const \hyperlink{classentity__project_1_1IGraph}{I\+Graph} $\ast$}]{graph,  }\item[{std\+::vector$<$ float $>$}]{location,  }\item[{std\+::vector$<$ float $>$}]{dest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+This function allows the moving item to get the desired route. In this class, the function will return a route that follows the parabolic path. However a pure parabolic path will make the drone clips the building at the end. What we did is raise the drone to a certain height first,then do parabolic in the air and descend veritcally. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & I\+Graph$\ast$ graph \\
+\hline
+{\em std\+::vector$<$float$>$} & location \\
+\hline
+{\em std\+::vector$<$float$>$} & dest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector $<$std\+::vector$<$float$>$$>$ 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classcsci3081_1_1RouteStrategy_a4bf67b185a4446324ebc13c1cda40cfe}{csci3081\+::\+Route\+Strategy}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/parabolic\+\_\+route.\+h\item 
+/home/user/repo/project/src/parabolic\+\_\+route.\+cc\end{DoxyCompactItemize}

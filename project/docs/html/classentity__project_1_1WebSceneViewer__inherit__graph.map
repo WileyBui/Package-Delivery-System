@@ -1,0 +1,4 @@
+<map id="entity_project::WebSceneViewer" name="entity_project::WebSceneViewer">
+<area shape="rect" id="node2" href="$classentity__project_1_1ISceneViewer.html" title="Abstact class for viewing a scene representing an entity system. " alt="" coords="5,5,213,127"/>
+<area shape="rect" id="node3" href="$classentity__project_1_1IEntityObserver.html" title="Observers entity events when they occur. " alt="" coords="237,20,459,112"/>
+</map>

@@ -1,0 +1,93 @@
+\hypertarget{classcsci3081_1_1CarrierFactory}{}\section{csci3081\+:\+:Carrier\+Factory Class Reference}
+\label{classcsci3081_1_1CarrierFactory}\index{csci3081\+::\+Carrier\+Factory@{csci3081\+::\+Carrier\+Factory}}
+
+
+This is a derived class from I\+Entity\+Factory to manage all other factories (e.\+g. \hyperlink{classcsci3081_1_1DroneFactory}{Drone\+Factory}, \hyperlink{classcsci3081_1_1PackageFactory}{Package\+Factory}, \hyperlink{classcsci3081_1_1CustomerFactory}{Customer\+Factory}...)  
+
+
+
+
+{\ttfamily \#include $<$carrier\+\_\+factory.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Carrier\+Factory\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{classcsci3081_1_1CarrierFactory__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1CarrierFactory_a8de8128133312b8ccc3fc875072d81ca}\label{classcsci3081_1_1CarrierFactory_a8de8128133312b8ccc3fc875072d81ca}} 
+\hyperlink{classcsci3081_1_1CarrierFactory_a8de8128133312b8ccc3fc875072d81ca}{Carrier\+Factory} ()
+\begin{DoxyCompactList}\small\item\em Constructor\+: this can do any setup your system necessitates. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1CarrierFactory_afeb21b32f748e85beaded1f1bc7e960a}\label{classcsci3081_1_1CarrierFactory_afeb21b32f748e85beaded1f1bc7e960a}} 
+\hyperlink{classcsci3081_1_1CarrierFactory_afeb21b32f748e85beaded1f1bc7e960a}{$\sim$\+Carrier\+Factory} ()
+\begin{DoxyCompactList}\small\item\em Destructor\+: this tear down/reset the memory space related to pointers. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1CarrierFactory_a83f8a2016ad118d028336b589262e3d2}{Add\+Factory} (\hyperlink{classentity__project_1_1IEntityFactory}{I\+Entity\+Factory} $\ast$)
+\begin{DoxyCompactList}\small\item\em This adds an I\+Entity\+Factory factory into the vector factories of carrier class. \end{DoxyCompactList}\item 
+\hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$ \hyperlink{classcsci3081_1_1CarrierFactory_a02cb728c8c3c6c8bf364998272ee1fa3}{Create\+Entity} (const picojson\+::object \&val)
+\begin{DoxyCompactList}\small\item\em This is an inheritance function from I\+Entity\+Factory to create an approxiate Entity object based on the argument pass in Given the picojson\+::object val, this should create an entity. Based on the type of entity, there may be different fields. You can see the vals that will be passed in the project/web/scenes directory. Some of the fields are for our backend system and you don\textquotesingle{}t need to worry about them. (for instance, mesh, rotation, offset, etc.) Some fields in val that you will need to create the entity correctly\+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is a derived class from I\+Entity\+Factory to manage all other factories (e.\+g. \hyperlink{classcsci3081_1_1DroneFactory}{Drone\+Factory}, \hyperlink{classcsci3081_1_1PackageFactory}{Package\+Factory}, \hyperlink{classcsci3081_1_1CustomerFactory}{Customer\+Factory}...) 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1CarrierFactory_a83f8a2016ad118d028336b589262e3d2}\label{classcsci3081_1_1CarrierFactory_a83f8a2016ad118d028336b589262e3d2}} 
+\index{csci3081\+::\+Carrier\+Factory@{csci3081\+::\+Carrier\+Factory}!Add\+Factory@{Add\+Factory}}
+\index{Add\+Factory@{Add\+Factory}!csci3081\+::\+Carrier\+Factory@{csci3081\+::\+Carrier\+Factory}}
+\subsubsection{\texorpdfstring{Add\+Factory()}{AddFactory()}}
+{\footnotesize\ttfamily void csci3081\+::\+Carrier\+Factory\+::\+Add\+Factory (\begin{DoxyParamCaption}\item[{\hyperlink{classentity__project_1_1IEntityFactory}{I\+Entity\+Factory} $\ast$}]{n }\end{DoxyParamCaption})}
+
+
+
+This adds an I\+Entity\+Factory factory into the vector factories of carrier class. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n} & a I\+Entity\+Factory pointer that want to be added into the vector \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1CarrierFactory_a02cb728c8c3c6c8bf364998272ee1fa3}\label{classcsci3081_1_1CarrierFactory_a02cb728c8c3c6c8bf364998272ee1fa3}} 
+\index{csci3081\+::\+Carrier\+Factory@{csci3081\+::\+Carrier\+Factory}!Create\+Entity@{Create\+Entity}}
+\index{Create\+Entity@{Create\+Entity}!csci3081\+::\+Carrier\+Factory@{csci3081\+::\+Carrier\+Factory}}
+\subsubsection{\texorpdfstring{Create\+Entity()}{CreateEntity()}}
+{\footnotesize\ttfamily \hyperlink{classentity__project_1_1IEntity}{I\+Entity} $\ast$ csci3081\+::\+Carrier\+Factory\+::\+Create\+Entity (\begin{DoxyParamCaption}\item[{const picojson\+::object \&}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+This is an inheritance function from I\+Entity\+Factory to create an approxiate Entity object based on the argument pass in Given the picojson\+::object val, this should create an entity. Based on the type of entity, there may be different fields. You can see the vals that will be passed in the project/web/scenes directory. Some of the fields are for our backend system and you don\textquotesingle{}t need to worry about them. (for instance, mesh, rotation, offset, etc.) Some fields in val that you will need to create the entity correctly\+: 
+
+type\+: string (could be \char`\"{}drone/customer/package\char`\"{})
+
+name\+: string
+
+position\+: array (contains \mbox{[}x\+\_\+position, y\+\_\+position, z\+\_\+position\mbox{]})
+
+direction\+: array (contains \mbox{[}x, y, z\mbox{]})
+
+speed\+: float
+
+battery\+\_\+capacity\+: float 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em val} & the picojson\+::object that constains all of the necessary \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+I\+Entity pointer information above in a json format 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classentity__project_1_1IEntityFactory_ac4e8eaf4294958fef0b98bd3684704bb}{entity\+\_\+project\+::\+I\+Entity\+Factory}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/\hyperlink{carrier__factory_8h}{carrier\+\_\+factory.\+h}\item 
+/home/user/repo/project/src/carrier\+\_\+factory.\+cc\end{DoxyCompactItemize}

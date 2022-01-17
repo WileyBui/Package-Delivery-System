@@ -1,0 +1,66 @@
+\hypertarget{classcsci3081_1_1BeelineRoute}{}\section{csci3081\+:\+:Beeline\+Route Class Reference}
+\label{classcsci3081_1_1BeelineRoute}\index{csci3081\+::\+Beeline\+Route@{csci3081\+::\+Beeline\+Route}}
+
+
+This is the Beeline Route class where we can use the strategy pattern to implement a Beeline route for carriers.  
+
+
+
+
+{\ttfamily \#include $<$beeline\+\_\+route.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Beeline\+Route\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{classcsci3081_1_1BeelineRoute__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ float $>$ $>$ \hyperlink{classcsci3081_1_1BeelineRoute_a38aacbeafb14145e807c60990199785c}{Get\+Route} (const \hyperlink{classentity__project_1_1IGraph}{I\+Graph} $\ast$graph, std\+::vector$<$ float $>$ location, std\+::vector$<$ float $>$ dest)
+\begin{DoxyCompactList}\small\item\em This function allows the moving item to get the desired route. In this class, the function will return a route that follows the Beeline path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the Beeline Route class where we can use the strategy pattern to implement a Beeline route for carriers. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1BeelineRoute_a38aacbeafb14145e807c60990199785c}\label{classcsci3081_1_1BeelineRoute_a38aacbeafb14145e807c60990199785c}} 
+\index{csci3081\+::\+Beeline\+Route@{csci3081\+::\+Beeline\+Route}!Get\+Route@{Get\+Route}}
+\index{Get\+Route@{Get\+Route}!csci3081\+::\+Beeline\+Route@{csci3081\+::\+Beeline\+Route}}
+\subsubsection{\texorpdfstring{Get\+Route()}{GetRoute()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ float $>$ $>$ csci3081\+::\+Beeline\+Route\+::\+Get\+Route (\begin{DoxyParamCaption}\item[{const \hyperlink{classentity__project_1_1IGraph}{I\+Graph} $\ast$}]{graph,  }\item[{std\+::vector$<$ float $>$}]{location,  }\item[{std\+::vector$<$ float $>$}]{dest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+This function allows the moving item to get the desired route. In this class, the function will return a route that follows the Beeline path. 
+
+The route includes a point where the drone needs to go up to by a certain height from where it is at, then another point to the destination location with the same certain height, then another point to the final destination location.
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & I\+Graph$\ast$ graph; we don\textquotesingle{}t need to use this parameter \\
+\hline
+{\em std\+::vector$<$float$>$} & location Current drone location \\
+\hline
+{\em std\+::vector$<$float$>$} & dest Final location where the drone needs to be \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector $<$std\+::vector$<$float$>$$>$ The path of the beeline 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classcsci3081_1_1RouteStrategy_a4bf67b185a4446324ebc13c1cda40cfe}{csci3081\+::\+Route\+Strategy}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/beeline\+\_\+route.\+h\item 
+/home/user/repo/project/src/beeline\+\_\+route.\+cc\end{DoxyCompactItemize}

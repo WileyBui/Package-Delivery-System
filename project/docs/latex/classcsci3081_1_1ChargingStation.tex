@@ -1,0 +1,145 @@
+\hypertarget{classcsci3081_1_1ChargingStation}{}\section{csci3081\+:\+:Charging\+Station Class Reference}
+\label{classcsci3081_1_1ChargingStation}\index{csci3081\+::\+Charging\+Station@{csci3081\+::\+Charging\+Station}}
+
+
+A representation of a \hyperlink{classcsci3081_1_1ChargingStation}{Charging\+Station}, inherited from \hyperlink{classcsci3081_1_1EntityBase}{Entity\+Base} It stores the \hyperlink{classcsci3081_1_1ChargingStation}{Charging\+Station}\textquotesingle{}s name, ID, version, position, direction, and dynamic mode.  
+
+
+
+
+{\ttfamily \#include $<$charging\+\_\+station.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Charging\+Station\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classcsci3081_1_1ChargingStation__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classcsci3081_1_1ChargingStation_a97fba4a68715e6b8305557c9b76571dd}{Charging\+Station} (const picojson\+::object \&val)
+\item 
+\hyperlink{classcsci3081_1_1ChargingStation_a3e5d04367a8cb19604714f6544e104b0}{Charging\+Station} (\hyperlink{classcsci3081_1_1ChargingStation}{Charging\+Station} \&charging\+Station)
+\begin{DoxyCompactList}\small\item\em Copy Constructor. This creates a new instance of \hyperlink{classcsci3081_1_1ChargingStation}{Charging\+Station} that has the same content as the charging\+Station argument. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1ChargingStation_a903c7a2bf4e869ddae25409a567a16f2}{Add\+Dead\+Carrier} (\hyperlink{classcsci3081_1_1Carrier}{Carrier} $\ast$carrier)
+\begin{DoxyCompactList}\small\item\em This adds a new dead carrier to a dead\+Carriers vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1ChargingStation_a3c80d7f7982b2f14aff813fc0fa4772b}\label{classcsci3081_1_1ChargingStation_a3c80d7f7982b2f14aff813fc0fa4772b}} 
+void \hyperlink{classcsci3081_1_1ChargingStation_a3c80d7f7982b2f14aff813fc0fa4772b}{Pop\+Dead\+Carrier} ()
+\begin{DoxyCompactList}\small\item\em This removes the first dead carrier from a dead\+Carriers vector. This is due to a recharging drone that is heading towards a dead carrier to charge its battery. \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1ChargingStation_adb8fc616c40a8b8fd2b8e1259453ca9e}{Has\+Dead\+Carrier} (\hyperlink{classcsci3081_1_1Carrier}{Carrier} $\ast$carrier)
+\begin{DoxyCompactList}\small\item\em This function checks if the charging station has already stored the dead carrier. \end{DoxyCompactList}\item 
+bool \hyperlink{classcsci3081_1_1ChargingStation_a49703ccf92dd023e4be93b981d24904a}{Add\+Charging\+Drone} (\hyperlink{classcsci3081_1_1RechargeDrone}{Recharge\+Drone} $\ast$charging\+Drone)
+\begin{DoxyCompactList}\small\item\em This adds a unique charging drone to the charging station only if the distance between the two is close together. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1ChargingStation_a10e78c7ca569a682b91498df6b5a9dd9}{Remove\+Charging\+Drone} (\hyperlink{classcsci3081_1_1RechargeDrone}{Recharge\+Drone} $\ast$charging\+Drone)
+\begin{DoxyCompactList}\small\item\em This removes a charging drone from the charging station. This is due to a charging drone leaving the station to charge for a dead carrier. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1ChargingStation_a1c07341a14013ac118f7bfbc88f2a597}\label{classcsci3081_1_1ChargingStation_a1c07341a14013ac118f7bfbc88f2a597}} 
+void \hyperlink{classcsci3081_1_1ChargingStation_a1c07341a14013ac118f7bfbc88f2a597}{Update} (float dt)
+\begin{DoxyCompactList}\small\item\em This is an inherited method from \hyperlink{classcsci3081_1_1EntityBase}{Entity\+Base} to use for \hyperlink{classcsci3081_1_1DeliverySimulation}{Delivery\+Simulation}. This updates the position of the carrier on the simulation if the position changes and its dynamic is set to true. In addition, this function also checks if the carrier is in within distance with the package to pick it up, or within distance with the customer to drop off the package. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A representation of a \hyperlink{classcsci3081_1_1ChargingStation}{Charging\+Station}, inherited from \hyperlink{classcsci3081_1_1EntityBase}{Entity\+Base} It stores the \hyperlink{classcsci3081_1_1ChargingStation}{Charging\+Station}\textquotesingle{}s name, ID, version, position, direction, and dynamic mode. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1ChargingStation_a97fba4a68715e6b8305557c9b76571dd}\label{classcsci3081_1_1ChargingStation_a97fba4a68715e6b8305557c9b76571dd}} 
+\index{csci3081\+::\+Charging\+Station@{csci3081\+::\+Charging\+Station}!Charging\+Station@{Charging\+Station}}
+\index{Charging\+Station@{Charging\+Station}!csci3081\+::\+Charging\+Station@{csci3081\+::\+Charging\+Station}}
+\subsubsection{\texorpdfstring{Charging\+Station()}{ChargingStation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily csci3081\+::\+Charging\+Station\+::\+Charging\+Station (\begin{DoxyParamCaption}\item[{const picojson\+::object \&}]{val }\end{DoxyParamCaption})}
+
+Constructor param\mbox{[}in\mbox{]} val\+: the json object of the \hyperlink{classcsci3081_1_1ChargingStation}{Charging\+Station} \mbox{\Hypertarget{classcsci3081_1_1ChargingStation_a3e5d04367a8cb19604714f6544e104b0}\label{classcsci3081_1_1ChargingStation_a3e5d04367a8cb19604714f6544e104b0}} 
+\index{csci3081\+::\+Charging\+Station@{csci3081\+::\+Charging\+Station}!Charging\+Station@{Charging\+Station}}
+\index{Charging\+Station@{Charging\+Station}!csci3081\+::\+Charging\+Station@{csci3081\+::\+Charging\+Station}}
+\subsubsection{\texorpdfstring{Charging\+Station()}{ChargingStation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily csci3081\+::\+Charging\+Station\+::\+Charging\+Station (\begin{DoxyParamCaption}\item[{\hyperlink{classcsci3081_1_1ChargingStation}{Charging\+Station} \&}]{charging\+Station }\end{DoxyParamCaption})}
+
+
+
+Copy Constructor. This creates a new instance of \hyperlink{classcsci3081_1_1ChargingStation}{Charging\+Station} that has the same content as the charging\+Station argument. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em charging\+Station} & charging\+Station instance that wants to be copied \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1ChargingStation_a49703ccf92dd023e4be93b981d24904a}\label{classcsci3081_1_1ChargingStation_a49703ccf92dd023e4be93b981d24904a}} 
+\index{csci3081\+::\+Charging\+Station@{csci3081\+::\+Charging\+Station}!Add\+Charging\+Drone@{Add\+Charging\+Drone}}
+\index{Add\+Charging\+Drone@{Add\+Charging\+Drone}!csci3081\+::\+Charging\+Station@{csci3081\+::\+Charging\+Station}}
+\subsubsection{\texorpdfstring{Add\+Charging\+Drone()}{AddChargingDrone()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Charging\+Station\+::\+Add\+Charging\+Drone (\begin{DoxyParamCaption}\item[{\hyperlink{classcsci3081_1_1RechargeDrone}{Recharge\+Drone} $\ast$}]{charging\+Drone }\end{DoxyParamCaption})}
+
+
+
+This adds a unique charging drone to the charging station only if the distance between the two is close together. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em charging\+Drone} & A charging drone to be added to the charging station. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool Returns true if the charging drone was successfully added. False otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1ChargingStation_a903c7a2bf4e869ddae25409a567a16f2}\label{classcsci3081_1_1ChargingStation_a903c7a2bf4e869ddae25409a567a16f2}} 
+\index{csci3081\+::\+Charging\+Station@{csci3081\+::\+Charging\+Station}!Add\+Dead\+Carrier@{Add\+Dead\+Carrier}}
+\index{Add\+Dead\+Carrier@{Add\+Dead\+Carrier}!csci3081\+::\+Charging\+Station@{csci3081\+::\+Charging\+Station}}
+\subsubsection{\texorpdfstring{Add\+Dead\+Carrier()}{AddDeadCarrier()}}
+{\footnotesize\ttfamily void csci3081\+::\+Charging\+Station\+::\+Add\+Dead\+Carrier (\begin{DoxyParamCaption}\item[{\hyperlink{classcsci3081_1_1Carrier}{Carrier} $\ast$}]{carrier }\end{DoxyParamCaption})}
+
+
+
+This adds a new dead carrier to a dead\+Carriers vector. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em carrier} & A new carrier to be added to dead\+Carriers vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcsci3081_1_1ChargingStation_adb8fc616c40a8b8fd2b8e1259453ca9e}\label{classcsci3081_1_1ChargingStation_adb8fc616c40a8b8fd2b8e1259453ca9e}} 
+\index{csci3081\+::\+Charging\+Station@{csci3081\+::\+Charging\+Station}!Has\+Dead\+Carrier@{Has\+Dead\+Carrier}}
+\index{Has\+Dead\+Carrier@{Has\+Dead\+Carrier}!csci3081\+::\+Charging\+Station@{csci3081\+::\+Charging\+Station}}
+\subsubsection{\texorpdfstring{Has\+Dead\+Carrier()}{HasDeadCarrier()}}
+{\footnotesize\ttfamily bool csci3081\+::\+Charging\+Station\+::\+Has\+Dead\+Carrier (\begin{DoxyParamCaption}\item[{\hyperlink{classcsci3081_1_1Carrier}{Carrier} $\ast$}]{carrier }\end{DoxyParamCaption})}
+
+
+
+This function checks if the charging station has already stored the dead carrier. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em carrier} & Dead carrier to be checked if noted in the charging station \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if the charging station has already stored the dead carrier. False otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1ChargingStation_a10e78c7ca569a682b91498df6b5a9dd9}\label{classcsci3081_1_1ChargingStation_a10e78c7ca569a682b91498df6b5a9dd9}} 
+\index{csci3081\+::\+Charging\+Station@{csci3081\+::\+Charging\+Station}!Remove\+Charging\+Drone@{Remove\+Charging\+Drone}}
+\index{Remove\+Charging\+Drone@{Remove\+Charging\+Drone}!csci3081\+::\+Charging\+Station@{csci3081\+::\+Charging\+Station}}
+\subsubsection{\texorpdfstring{Remove\+Charging\+Drone()}{RemoveChargingDrone()}}
+{\footnotesize\ttfamily void csci3081\+::\+Charging\+Station\+::\+Remove\+Charging\+Drone (\begin{DoxyParamCaption}\item[{\hyperlink{classcsci3081_1_1RechargeDrone}{Recharge\+Drone} $\ast$}]{charging\+Drone }\end{DoxyParamCaption})}
+
+
+
+This removes a charging drone from the charging station. This is due to a charging drone leaving the station to charge for a dead carrier. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em charging\+Drone} & A charging drone to be removed from the charging station. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repo/project/include/\hyperlink{charging__station_8h}{charging\+\_\+station.\+h}\item 
+/home/user/repo/project/src/charging\+\_\+station.\+cc\end{DoxyCompactItemize}
